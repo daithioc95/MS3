@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes</title>
+</head>
+<body>
+    {% for quote in quotes %}
+        {{ quote.quote_line }} <br>
+        {{ quote.author }} <br>
+        {{ quote.tags }} <br>
+    {{% endfor % }}
+</body>
+</html>
