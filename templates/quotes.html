@@ -7,9 +7,9 @@
 </head>
 <body>
     {% for quote in quotes %}
-        {{ quote.quote_line }} <br>
+        {{ quote.quote }} <br>
         {{ quote.author }} <br>
         {{ quote.tags }} <br>
-    {{% endfor % }}
+    {% endfor %}
 </body>
 </html>
