@@ -19,21 +19,21 @@
     <header>
         <nav class="indigo lighten-2">
             <div class="nav-wrapper">
-                <a href="#!" class="brand-logo">Quotes</a>
+                <a href="{{ url_for('get_quotes') }}" class="brand-logo">Quotes</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons"><i class="fas fa-bars"></i></i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="{{ url_for('get_quotes') }}">Home</a></li>
                     <li><a href="#">Authors</a></li>
                     <li><a href="#">Books</a></li>
-                    <li><a href="#">Register</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
                 </ul>
             </div>
         </nav>
         <ul class="sidenav" id="mobile-demo">
-            <li><a href="#">Home</a></li>
+            <li><a href="{{ url_for('get_quotes') }}">Home</a></li>
             <li><a href="#">Authors</a></li>
             <li><a href="#">Books</a></li>
-            <li><a href="#">Register</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
         </ul>
     </header>
     <main class="container">
