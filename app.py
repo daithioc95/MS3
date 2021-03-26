@@ -26,6 +26,13 @@ def get_quotes():
     return render_template("quotes.html", quotes=quotes)
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    quotes = list(mongo.db.quotes.find({"$text": {"$search":query }}))
+    return render_template("quotes.html", quotes=quotes)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
