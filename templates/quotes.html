@@ -20,9 +20,9 @@
 </div>
 {% if quotes.count() > 0 %}
 {% for quote in quotes %}
-    {{ quote.quote }} <br>
-    {{ quote.author }} <br>
-    {{ quote.tags }} <br>
+    {{ quote.Quote }} <br>
+    {{ quote.Author }} <br>
+    {{ quote.Tags }} <br>
 {% endfor %}
     {% else %}
         <h3 class="red-text text-darken-4 center-align">No Results Found</h3>
