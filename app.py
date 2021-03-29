@@ -29,7 +29,7 @@ def get_quotes():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
-    quotes = list(mongo.db.quotes.find({"$text": {"$search":query }}))
+    quotes = mongo.db.quotes.find({"$text": {"$search":query }})
     return render_template("quotes.html", quotes=quotes)
 
 

@@ -18,7 +18,7 @@
         </div>
     </form>
 </div>
-{% if quotes|length > 0 %}
+{% if quotes.count() > 0 %}
 {% for quote in quotes %}
     {{ quote.quote }} <br>
     {{ quote.author }} <br>
