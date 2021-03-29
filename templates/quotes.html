@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class="welcome-image-qotd col s12">
+    <img>
+</div>
+
 <div class="row card-panel grey lighten-5">
     <form action="{{ url_for('search') }}" method="POST" class="col s12">
         <div class="row valign-wrapper center-align">
@@ -18,14 +22,26 @@
         </div>
     </form>
 </div>
+
+<h2>Popular Quotes</h2>
+
 {% if quotes.count() > 0 %}
 {% for quote in quotes %}
-    {{ quote.Quote }} <br>
-    {{ quote.Author }} <br>
-    {{ quote.Tags }} <br>
+
+<article class="article">
+
+    <blockquote>
+        <p>{{ quote.Quote }}</p>
+        <cite>{{ quote.Author }}</cite>
+        <!-- <cite>{{ quote.Tags[1] }} </cite> -->
+        <div class="blockquote-author-image"
+            style="--image: url('https://github.com/daithioc95/MS1/blob/master/assets/images/logo.jpg')"></div>
+    </blockquote>
+</article>
+
 {% endfor %}
-    {% else %}
-        <h3 class="red-text text-darken-4 center-align">No Results Found</h3>
-    {% endif %}
+{% else %}
+<h3 class="red-text text-darken-4 center-align">No Results Found</h3>
+{% endif %}
 
 {% endblock %}
