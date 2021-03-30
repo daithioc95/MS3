@@ -22,7 +22,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_quotes")
 def get_quotes():
-    quotes = mongo.db.quotes.find().limit(10)
+    quotes = mongo.db.quotes.find().sort("Popularity", -1).limit(10)
     return render_template("quotes.html", quotes=quotes)
 
 
