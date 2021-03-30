@@ -19,9 +19,9 @@ documents = coll.find()
 
 # Upload quotes from data.txt to quotes collection
 
-with open('data.txt') as json_file:
-    data = json.load(json_file)
-    for p in data:
-        coll.insert_one(p)
+# with open('data.txt') as json_file:
+#     data = json.load(json_file)
+#     for p in data:
+#         coll.insert_one(p)
 
 # coll.ensureIndex( { "Quote":1 }, { unique:true, dropDups:true } )
