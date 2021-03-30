@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-
-<div class="quote--container">
-    <p class="quote">
-        {{ qotd.Quote }}
-    </p>
-    <p class="quote--author">&ndash;{{ qotd.Author }}</p>
+<!-- embed https://codepen.io/chris22smith/pen/oQWavL -->
+<div class="animated-shadow-quote">
+  <blockquote>
+    <p> {{ qotd.Quote }}</p>
+    <cite>{{ qotd.Author }}</cite>
+  </blockquote>
 </div>
 
 
