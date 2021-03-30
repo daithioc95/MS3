@@ -22,15 +22,17 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_quotes")
 def get_quotes():
+    qotd = mongo.db.quotes.find_one()
     quotes = mongo.db.quotes.find().sort("Popularity", -1).limit(10)
-    return render_template("quotes.html", quotes=quotes)
+    return render_template("quotes.html", quotes=quotes, qotd=qotd) 
 
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
+    qotd = mongo.db.quotes.find_one()
     query = request.form.get("query")
     quotes = mongo.db.quotes.find({"$text": {"$search":query }})
-    return render_template("quotes.html", quotes=quotes)
+    return render_template("quotes.html", quotes=quotes, qotd=qotd)
 
 
 @app.route("/register", methods=["GET", "POST"])
