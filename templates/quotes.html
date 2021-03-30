@@ -1,9 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="welcome-image-qotd col s12">
-    <img>
+
+<div class="quote--container">
+    <p class="quote">
+        {{ quotes[2].Quote }}
+    </p>
+    <p class="quote--author">&ndash;{{ quotes[2].Author }}</p>
 </div>
+
 
 <div class="row card-panel grey lighten-5">
     <form action="{{ url_for('search') }}" method="POST" class="col s12">

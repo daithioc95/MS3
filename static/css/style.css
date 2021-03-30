@@ -107,4 +107,63 @@ cite {
 }
 
 /* --- Welcome image --  */
+@import url(https://fonts.googleapis.com/css?family=EB+Garamond|Droid+Serif|Playfair+Display|Open+Sans+Condensed:300);
 
+.quote--container *:after, .quote--container *:before {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.quote--container {
+    font-family: 'EB Garamond';
+    font-size: 32px;
+    line-height: 1.4rem;
+    height: 100%;
+    padding: .5rem;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: auto;
+     -webkit-font-smoothing: antialiased;
+             font-smoothing: antialiased;
+    font-kerning: normal;
+    color: #1A222F;
+}
+
+.quote--container p {
+    line-height: 1.4em;
+}
+
+.quote--container .quote {
+    position: relative;
+    letter-spacing: .03em;
+    margin-bottom: .5rem;
+    
+    &:before {
+        content: "“";
+        position: absolute;
+        left: -.7em;
+    }
+    
+    &:after {
+        content: "”";
+        margin-right: -1rem;
+    }
+}
+
+ .quote--container {
+    margin: 4.5rem auto 0;
+    width: 17em;
+    border-bottom: 2px dotted #C6D1BF;
+    padding-bottom: .5rem;
+}
+
+.quote--container .quote--highlight {
+    color: #D24335;
+}
+
+.quote--container .quote--author {
+    font-family: 'Open Sans Condensed';
+    font-size: .8rem;
+    text-align: right;
+    font-weight: 300;
+}
