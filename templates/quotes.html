@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {% block content %}
 
 <!-- embed https://codepen.io/JoeHastings/pen/MOdRVm -->
@@ -39,17 +40,26 @@
         <cite>{{ quote.Author }}</cite>
         <!-- <cite>{{ quote.Tags[1] }} </cite> -->
         <div class="blockquote-author-image"
-            style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')"></div>
+            style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
+        </div>
+        <div class="star">
+            <label for="id-of-input" class="indigo lighten-2 custom-checkbox">
+                <input type="checkbox" id="id-of-input" />
+                <i class="glyphicon glyphicon-star-empty"></i>
+                <i class="glyphicon glyphicon-star"></i>
+            </label>
+        </div>
     </blockquote>
+
 </article>
 
 <!-- https://codepen.io/chris22smith/pen/oQWavL -->
 
 <div class="hide-on-med-and-up animated-border-quote">
-  <blockquote>
-    <p>{{ quote.Quote }}</p>
+    <blockquote>
+        <p>{{ quote.Quote }}</p>
         <cite>{{ quote.Author }}</cite>
-  </blockquote>
+    </blockquote>
 </div>
 
 {% endfor %}

@@ -152,6 +152,9 @@ h2{
 .blockquote-author-image {
 	position: absolute;
 	left: 0;
+    top: 0;
+    position: absolute;
+	left: 0;
 	top: 0;
 	width: var(--quote-image-width);
 	height: 100%;
@@ -160,6 +163,12 @@ h2{
 	background-blend-mode: hard-light;
 	border-top-left-radius: var(--border-rad);
 	border-bottom-left-radius: var(--border-rad);
+}
+
+.star{
+    position: absolute;
+    right: 4%;
+    top: 0;
 }
 
 .article cite {
@@ -226,3 +235,46 @@ h2{
       z-index: 1;
     }
   }
+
+  /* ---Fav star --- */
+  label {
+  /* Presentation */
+  font-size: 48px
+}
+
+/* Required Styling */
+
+label input[type="checkbox"] {
+  display: none;
+}
+
+.custom-checkbox {
+  margin-left: 2em;
+  position: relative;
+  cursor: pointer;
+}
+
+.custom-checkbox .glyphicon {
+  color: gold;
+  position: absolute;
+  top: 0.4em;
+  left: -1.25em;
+  font-size: 0.75em;
+}
+
+.custom-checkbox .glyphicon-star-empty {
+  color: #7986cb;
+}
+
+.custom-checkbox .glyphicon-star {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.custom-checkbox:hover .glyphicon-star{
+  opacity: 0.5;
+}
+
+.custom-checkbox input[type="checkbox"]:checked ~ .glyphicon-star {
+  opacity: 1;
+}
