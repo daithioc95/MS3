@@ -53,6 +53,7 @@ h2{
 	height: 4rem;
 }
 
+@media screen and (min-width:570px) {
  .welcome-qotd blockquote:before {
 	content: '“';
 	left: -5rem;
@@ -63,6 +64,7 @@ h2{
 	content: '”';
 	right: -5rem;
 	bottom: 1rem;
+}
 }
 
 .welcome-qotd cite {
