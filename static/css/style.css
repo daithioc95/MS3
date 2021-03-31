@@ -1,3 +1,8 @@
+/* --- Fonts --  */
+h2{
+    color: var(--accent-color);
+}
+
 /* --- Welcome image --  */
 
 @import url('https://fonts.googleapis.com/css?family=Special+Elite');
@@ -63,7 +68,7 @@
 	--type-quote: Vollkorn;
 	--quote-image-width: 140px;
 	--border-rad: 7px;
-	--accent-color: hsl(322deg 85% 65%);
+	--accent-color: #7986cb;
     --quote-bg: hsl(0 0% 97%);
 }
 
