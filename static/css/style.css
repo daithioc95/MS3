@@ -1,32 +1,58 @@
 /* --- Welcome image --  */
 
-.animated-shadow-quote {
-  display:inline-block;
-  margin:1em;
-  max-width:20em;
-  position:relative;}
-  .animated-shadow-quote blockquote {
-    animation:shadows 2s linear infinite alternate;
-    display:inline-block;
-    margin:0;
-    padding:1em;}
-     .animated-shadow-quote cite {
-      display: block;
-      font-style: italic;
-      text-align: right;}
-     .animated-shadow-quote &:before {
-        content: "- ";
-      }
+@import url('https://fonts.googleapis.com/css?family=Special+Elite');
 
-@keyframes shadows {
-  0% {
-    box-shadow:0 2px 4px -2px rgba(0,0,0,.25);
-    transform:scale(.95);
-  }
-  100% {
-    box-shadow:0 0 4px 2px rgba(0,0,0,.25);
-    transform:scale(1);
-  }
+.welcome-qotd html, .welcome-qotd body {
+	height: 100%;
+    margin: 0;
+}
+
+.welcome-qotd {
+	font-family: 'Special Elite', cursive;
+	/* background: #fffdf5; */
+	color: #3f3f5a;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.welcome-qotd blockquote {
+    border-left: none;
+	font-weight: 100;
+	font-size: 2rem;
+	max-width: 600px;
+	line-height: 1.4;
+	position: relative;
+	margin: 0;
+	padding: .5rem;
+}
+
+.welcome-qotd blockquote:before,
+.welcome-qotd blockquote:after {
+	position: absolute;
+	color: #f1efe6;
+	font-size: 8rem;
+	width: 4rem;
+	height: 4rem;
+}
+
+ .welcome-qotd blockquote:before {
+	content: '“';
+	left: -5rem;
+	top: -2rem;
+}
+
+.welcome-qotd blockquote:after {
+	content: '”';
+	right: -5rem;
+	bottom: 1rem;
+}
+
+.welcome-qotd cite {
+	line-height: 3;
+	text-align: left;
 }
 
 /* --- Quote Cards --- */
