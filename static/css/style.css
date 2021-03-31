@@ -3,6 +3,16 @@ h2{
     color: var(--accent-color);
 }
 
+.reset{
+        background-color: #CC6F76;
+}
+
+@media screen and (max-width:570px) {
+    .reset{
+        margin-bottom: 5px;
+}
+}
+
 /* --- Welcome image --  */
 
 @import url('https://fonts.googleapis.com/css?family=Special+Elite');
