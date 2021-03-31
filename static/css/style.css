@@ -55,7 +55,7 @@
 	text-align: left;
 }
 
-/* --- Quote Cards --- */
+/* --- Desktop Quote Cards --- */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Vollkorn:ital,wght@0,600;1,500&display=swap');
 
 :root {
@@ -163,3 +163,51 @@
 	}
 }
 
+/* --- Mobile Quote Cards --- */
+.animated-border-quote {
+  display:inline-block;
+  margin:1em;
+  max-width:20em;
+  overflow:hidden;}
+  .animated-border-quote blockquote {
+    background-color:#fff;
+    border: solid 2px #757575;
+    display: inline-block;
+    margin: 0;
+    padding: 1em;
+    position: relative;
+    &:before {
+      animation:clockwise 30s infinite linear;
+      background-color: #fff;
+      bottom:10%;
+      content: "";
+      left: 0;
+      opacity:.5;
+      position: absolute;
+      right: 0;
+      top:10%;}
+
+    &:after {
+      animation:counter 30s infinite linear;
+      background-color: $bg;
+      bottom:10%;
+      content: "";
+      left: 0;
+      opacity:.5;
+      position: absolute;
+      right: 0;
+      top:10%;
+    }}
+    .animated-border-quote cite {
+      display: block;
+      font-style: italic;
+      text-align: right;
+      &:before {
+        content: "- ";
+      }
+    
+     > * {
+      position: relative;
+      z-index: 1;
+    }
+  }
