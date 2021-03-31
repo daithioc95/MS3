@@ -202,7 +202,7 @@ h2{
     margin: 0;
     padding: 1em;
     position: relative;}
-    .animated-border-quote:before {
+    /* .animated-border-quote:before {
       animation:clockwise 30s infinite linear;
       background-color: #fff;
       bottom:10%;
@@ -212,8 +212,8 @@ h2{
       position: absolute;
       right: 0;
       top:10%;
-    }
-    .animated-border-quote:after {
+    } */
+    /* .animated-border-quote:after {
       animation:counter 30s infinite linear;
       background-color: #fff;
       bottom:10%;
@@ -223,7 +223,7 @@ h2{
       position: absolute;
       right: 0;
       top:10%;
-    }
+    } */
     .animated-border-quote cite {
       display: block;
       font-style: italic;
@@ -244,7 +244,7 @@ h2{
     top: 0;
 }
 
-@keyframes clockwise {
+/* @keyframes clockwise {
   0% {
     transform:rotate(0);
   }
@@ -260,7 +260,7 @@ h2{
   100% {
     transform:rotate(-360deg);
   }
-}
+} */
 
   /* ---Fav star --- */
   label {
