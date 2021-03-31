@@ -27,6 +27,12 @@ def get_quotes():
     return render_template("quotes.html", quotes=quotes, qotd=qotd) 
 
 
+@app.route("/get_authors")
+def get_authors():
+    authors = mongo.db.quotes.find().sort("Popularity", -1).limit(5)
+    return render_template("authors.html", authors=authors) 
+
+
 @app.route("/search", methods=["GET", "POST"])
 def search():
     qotd = mongo.db.quotes.find_one()

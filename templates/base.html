@@ -28,7 +28,7 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('get_quotes') }}">Home</a></li>
                     <li><a href="#">Mood</a></li>
-                    <li><a href="#">Authors</a></li>
+                    <li><a href="{{ url_for('get_authors') }}">Authors</a></li>
                     <li><a href="#">Books</a></li>
                     {% if session.user %}
                     <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
@@ -44,7 +44,7 @@
         <ul class="sidenav" id="mobile-demo">
             <li><a href="{{ url_for('get_quotes') }}">Home</a></li>
             <li><a href="#">Mood</a></li>
-            <li><a href="#">Authors</a></li>
+            <li><a href="{{ url_for('get_authors') }}">Authors</a></li>
             <li><a href="#">Books</a></li>
             {% if session.user %}
             <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>

@@ -195,14 +195,14 @@ h2{
   margin:1em;
   max-width:20em;
   overflow:hidden;}
-  .animated-border-quote blockquote {
+ .animated-border-quote blockquote {
     background-color:#fff;
     border: solid 2px #757575;
     display: inline-block;
     margin: 0;
     padding: 1em;
-    position: relative;
-    &:before {
+    position: relative;}
+    .animated-border-quote:before {
       animation:clockwise 30s infinite linear;
       background-color: #fff;
       bottom:10%;
@@ -211,11 +211,11 @@ h2{
       opacity:.5;
       position: absolute;
       right: 0;
-      top:10%;}
-
-    &:after {
+      top:10%;
+    }
+    .animated-border-quote:after {
       animation:counter 30s infinite linear;
-      background-color: $bg;
+      background-color: #fff;
       bottom:10%;
       content: "";
       left: 0;
@@ -223,20 +223,17 @@ h2{
       position: absolute;
       right: 0;
       top:10%;
-    }}
+    }
     .animated-border-quote cite {
       display: block;
       font-style: italic;
       text-align: right;
-      &:before {
-        content: "- ";
-      }
-    
-     > * {
+    }
+    .animated-border-quote > * {
       position: relative;
       z-index: 1;
     }
-  }
+
 
 .animated-border-quote p{
         margin-right: 35px;
@@ -245,6 +242,24 @@ h2{
     position: absolute;
     right: 0;
     top: 0;
+}
+
+@keyframes clockwise {
+  0% {
+    transform:rotate(0);
+  }
+  100% {
+    transform:rotate(360deg);
+  }
+}
+
+@keyframes counter {
+  0% {
+    transform:rotate(0);
+  }
+  100% {
+    transform:rotate(-360deg);
+  }
 }
 
   /* ---Fav star --- */

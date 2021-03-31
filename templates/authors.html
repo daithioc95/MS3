@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="welcome-image-text">
+            <img src="assets/images/authors_welcome_image.jpg" id="authors-welcome-img" alt="Library">
+            <h3>
+                Quotes by Author
+            </h3>
+        </div>
+{% for author in authors %}
+        {{ author.Author }}
+{% endfor %}
+{% endblock %}
