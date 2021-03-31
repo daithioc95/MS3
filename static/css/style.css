@@ -165,7 +165,7 @@ h2{
 	border-bottom-left-radius: var(--border-rad);
 }
 
-.star{
+.hide-on-small-only .star{
     position: absolute;
     right: 4%;
     top: 0;
@@ -235,6 +235,15 @@ h2{
       z-index: 1;
     }
   }
+
+.animated-border-quote p{
+        margin-right: 35px;
+}
+.animated-border-quote .star{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
 
   /* ---Fav star --- */
   label {

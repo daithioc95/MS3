@@ -43,14 +43,13 @@
             style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
         </div>
         <div class="star">
-            <label for="id-of-input" class="indigo lighten-2 custom-checkbox">
-                <input type="checkbox" id="id-of-input" />
+            <label for="id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
+                <input type="checkbox" id="id-of-input{{ quote._id }}" />
                 <i class="glyphicon glyphicon-star-empty"></i>
                 <i class="glyphicon glyphicon-star"></i>
             </label>
         </div>
     </blockquote>
-
 </article>
 
 <!-- https://codepen.io/chris22smith/pen/oQWavL -->
@@ -59,6 +58,13 @@
     <blockquote>
         <p>{{ quote.Quote }}</p>
         <cite>{{ quote.Author }}</cite>
+        <div class="star">
+            <label for="mobile-id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
+                <input type="checkbox" id="mobile-id-of-input{{ quote._id }}" />
+                <i class="glyphicon glyphicon-star-empty"></i>
+                <i class="glyphicon glyphicon-star"></i>
+            </label>
+        </div>
     </blockquote>
 </div>
 
