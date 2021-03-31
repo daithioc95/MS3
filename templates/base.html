@@ -19,6 +19,7 @@
 
 <body>
     <header>
+        <div class="navbar-fixed">
         <nav class="indigo lighten-2">
             <div class="nav-wrapper">
                 <a href="{{ url_for('get_quotes') }}" class="brand-logo">Quotes</a>
@@ -39,6 +40,7 @@
                 </ul>
             </div>
         </nav>
+        </div>
         <ul class="sidenav" id="mobile-demo">
             <li><a href="{{ url_for('get_quotes') }}">Home</a></li>
             <li><a href="#">Mood</a></li>
@@ -52,6 +54,7 @@
             <li><a href="{{ url_for('register') }}">Register</a></li>
             {% endif %}
         </ul>
+        
     </header>
 
     <section>
