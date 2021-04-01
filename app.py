@@ -23,13 +23,13 @@ mongo = PyMongo(app)
 @app.route("/get_quotes")
 def get_quotes():
     qotd = mongo.db.quotes.find_one()
-    quotes = mongo.db.quotes.find().sort("Popularity", -1).limit(10)
+    quotes = mongo.db.quotes.find().sort("Popularity", -1)
     return render_template("quotes.html", quotes=quotes, qotd=qotd) 
 
 
 @app.route("/get_authors")
 def get_authors():
-    authors = mongo.db.quotes.find().sort("Popularity", -1).limit(5)
+    authors = list(mongo.db.quotes.find().sort("Popularity", -1))
     return render_template("authors.html", authors=authors) 
 
 
