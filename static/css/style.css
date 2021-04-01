@@ -339,9 +339,9 @@ label input[type="checkbox"] {
   display: flex;
 }
 
-.searchTerm {
+#searchTerm {
   width: 100%;
-  border: 3px solid #00B4CC;
+    border: 1px solid #fff;
   border-right: none;
   padding: 5px;
   height: 20px;
@@ -351,15 +351,15 @@ label input[type="checkbox"] {
   background-color: #fff;
 }
 
-.searchTerm:focus{
-  color: #00B4CC;
+#searchTerm:focus{
+  color: var(--accent-color);
 }
 
 .searchButton {
   width: 40px;
-  height: 36px;
-  border: 1px solid #00B4CC;
-  background: #00B4CC;
+  height: 32px;
+  border: 1px solid var(--accent-color);
+  background: var(--accent-color);
   text-align: center;
   color: #fff;
   border-radius: 0 5px 5px 0;
@@ -375,3 +375,6 @@ label input[type="checkbox"] {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@media screen and (max-width:570px) {
+.wrap{top: 35%;}}
