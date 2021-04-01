@@ -167,7 +167,7 @@ h2{
 	border-bottom-left-radius: var(--border-rad);
 }
 
-.hide-on-small-only .star{
+.article .star{
     position: absolute;
     right: 4%;
     top: 0;
@@ -378,3 +378,8 @@ label input[type="checkbox"] {
 
 @media screen and (max-width:570px) {
 .wrap{top: 35%;}}
+
+/* Author Card */
+.author-card cite{
+    margin: 15px;
+}

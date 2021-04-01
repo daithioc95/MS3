@@ -35,7 +35,23 @@
 
 <main class="container">
 {% for author in authors %}
-        {{ author.Author }}
+<!-- https://codepen.io/tiggr/pen/MWyJJEz -->
+<article class="s12 m8 left-align article author-card">
+    <blockquote>
+        <cite>{{ author.Author }}</cite>
+        <div class="blockquote-author-image"
+            style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
+        </div>
+        <div class="star">
+            <label for="id-of-input{{ author._id }}" class="indigo lighten-2 custom-checkbox">
+                <input type="checkbox" id="id-of-input{{ author._id }}" />
+                <i class="glyphicon glyphicon-star-empty"></i>
+                <i class="glyphicon glyphicon-star"></i>
+            </label>
+        </div>
+    </blockquote>
+</article>
+        
 {% endfor %}
 </main>
 {% endblock %}
