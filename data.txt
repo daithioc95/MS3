@@ -7,7 +7,8 @@
             "life "
         ],
         "Popularity": 0.08772108772108772,
-        "Category": "humor"
+        "Category": "humor",
+        "Book": ""
     },
     {
         "Quote": "Be the change that you wish to see in the world.",
@@ -20,7 +21,8 @@
             "wish "
         ],
         "Popularity": 0.08524808524808525,
-        "Category": "philosophy"
+        "Category": "philosophy",
+        "Book": ""
     },
     {
         "Quote": "In three words I can sum up everything I've learned about life: it goes on.",
@@ -30,7 +32,8 @@
             "Learned"
         ],
         "Popularity": 0.002898002898002898,
-        "Category": "life"
+        "Category": "life",
+        "Book": ""
     },
     {
         "Quote": "Friendship ... is born at the moment when one man says to another \"What! You too? I thought that no one but myself . . .",
@@ -39,7 +42,8 @@
             "friendship "
         ],
         "Popularity": 0.07332207332207333,
-        "Category": ""
+        "Category": "",
+        "Book": ""
     },
     {
         "Quote": "If you want to know what a man's like, take a good look at how he treats his inferiors, not his equals.",
@@ -49,7 +53,8 @@
             "misattributed-j-k-rowling "
         ],
         "Popularity": 0.07218607218607219,
-        "Category": ""
+        "Category": "",
+        "Book": ""
     },
     {
         "Quote": "Don\u2019t walk in front of me\u2026 I may not followDon\u2019t walk behind me\u2026 I may not leadWalk beside me\u2026 just be my friend",
@@ -60,7 +65,8 @@
             "misattributed-albert-camus "
         ],
         "Popularity": 0.07155007155007155,
-        "Category": ""
+        "Category": "",
+        "Book": ""
     },
     {
         "Quote": "No one can make you feel inferior without your consent.",
@@ -71,7 +77,8 @@
             "wisdom "
         ],
         "Popularity": 0.06906506906506907,
-        "Category": "wisdom"
+        "Category": "wisdom",
+        "Book": ""
     },
     {
         "Quote": "If you tell the truth, you don't have to remember anything.",
@@ -83,7 +90,8 @@
             "truth "
         ],
         "Popularity": 0.06795206795206796,
-        "Category": "truth"
+        "Category": "truth",
+        "Book": ""
     },
     {
         "Quote": "A friend is someone who knows all about you and still loves you.",
@@ -95,7 +103,8 @@
             "love "
         ],
         "Popularity": 0.0661000661000661,
-        "Category": "knowledge"
+        "Category": "knowledge",
+        "Book": ""
     },
     {
         "Quote": "Always forgive your enemies; nothing annoys them so much.",
@@ -107,6 +116,7 @@
             "strategy "
         ],
         "Popularity": 0.061497061497061495,
-        "Category": ""
+        "Category": "",
+        "Book": ""
     }
 ]

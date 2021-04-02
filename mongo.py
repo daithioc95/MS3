@@ -22,43 +22,22 @@ coll2 = conn[DATABASE][COLLECTION_AUTHORS]
 documents_authors = coll1.find({},{ "_id": 0, "Author": 1})
 # documents = coll1
 
-# with open('data.txt', 'r') as reader, open('data_copy.txt', 'w') as writer:
-#     for listitem in reader:
-#         # writer.listitem.add({"Book":"None"})
-#         print(listitem)
+# *** Delete all documents
+coll1.delete_many({})
 
-# with open('data.txt', 'r') as reader:
-#     dog_breeds = reader.readlines()
-# with open('data_copy.txt', 'w') as writer:
-#     for listitem in dog_breeds:
-#         writer.write(listitem.add({"Book":"None"}))
+# ***Adding category to entire list
+# with open('data.txt') as json_file:
+#     data = json.load(json_file)
+#     store_list = []
+#     for p in data:
+#         p['Book'] = ''
+#         store_list.append(p)
+#         # print(p)
+# with open('data_copy.txt', 'w') as filehandle:
+#     json.dump(store_list, filehandle)
+#     # p.add({"Book":"None"})
 
-# with open('quotes_test.json', 'w') as file:
-#     for listitem in file:
-#         listitem.add({"Book":"None"})
-#         print(listitem)
-
-# ***Adding categor to entire list
-with open('data.txt') as json_file:
-    data = json.load(json_file)
-    store_list = []
-    for p in data:
-        p['Book'] = ''
-        store_list.append(p)
-        # print(p)
-with open('data_copy.txt', 'w') as filehandle:
-    json.dump(store_list, filehandle)
-    # p.add({"Book":"None"})
-
-# create "book" key for all dictionary values
-# for doc in documents:
-#     doc.update_one({"Quote": coll1.find_one()},{$set:{"Book": 1}})
-#     print(doc)
-# ({},{$set:{"StudentAge":23}},{upsert:true});
-# use below line to extract unique author values
-# documents = coll1.distinct("Author")
-
-# To split and update the Author and Books fields
+# ****To split and update the Author and Books fields
 # for doc in documents_authors:
 #     k = doc["Author"].split(",")
 #     # print(k[0])
@@ -73,10 +52,10 @@ with open('data_copy.txt', 'w') as filehandle:
 # Upload quotes from data.txt to quotes collection
 
 # *****To insert data.txt content to collection
-# with open('data.txt') as json_file:
-#     data = json.load(json_file)
-#     for p in data:
-#         coll.insert_one(p)
+with open('data.txt') as json_file:
+    data = json.load(json_file)
+    for p in data:
+        coll1.insert_one(p)
 
 # Remove Dupes
 # coll.ensureIndex( { "Quote":1 }, { unique:true, dropDups:true } )
