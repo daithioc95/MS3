@@ -29,7 +29,7 @@ def get_quotes():
 
 @app.route("/get_authors")
 def get_authors():
-    authors = list(mongo.db.quotes.find().sort("Popularity", -1))
+    authors = mongo.db.authors.find()
     return render_template("authors.html", authors=authors) 
 
 

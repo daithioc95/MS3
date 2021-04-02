@@ -39,6 +39,11 @@
 <article class="s12 m8 left-align article author-card">
     <blockquote>
         <cite>{{ author.Author }}</cite>
+            {% if author.Books[0] != '' %}
+                <p>Books: {% for item in author.Books %}
+                    {{ item }}</p>
+                {% endfor %}
+            {% endif %}
         <div class="blockquote-author-image"
             style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
         </div>
