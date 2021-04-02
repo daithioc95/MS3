@@ -20,17 +20,41 @@ coll2 = conn[DATABASE][COLLECTION_AUTHORS]
 
 
 documents_authors = coll1.find({},{ "_id": 0, "Author": 1})
-# documents = coll1
+documents = coll1.find()
+
+# coll2.update_one({"Author":"C.S. Lewis"},{"$set": {"Books": k[1]}})
+
+# write all books & authors to author db -- Tested
+store_authors = []
+coll2.delete_many({})
+for doc in documents:
+    if doc["Author"] not in store_authors:
+        store_authors.append(doc["Author"])
+        coll2.insert_one({"Author":doc["Author"]})
+        coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Books":doc["Book"]}})
+        coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Categories":doc["Category"]}})
+    else:
+        coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Books":doc["Book"]}})
+        coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Categories":doc["Category"]}})
+# print(store_authors)
+
+# write all unique authors to author db (not necessarily needed) -- Tested
+# store_authors = []
+# coll2.delete_many({})
+# for doc in documents:
+#     if doc["Author"] not in store_authors:
+#         coll2.insert_one({"Author":doc["Author"], "Books": doc["Book"]})
+# print(store_authors)
 
 
 # ****To split and update the Author and Books fields --tested
-for doc in documents_authors:
-    k = doc["Author"].split(",")
-    try:
-        coll1.update_one({"Author":doc["Author"]},{"$set": {"Book": k[1]}})
-        coll1.update_one({"Author":doc["Author"]},{"$set": {"Author": k[0]}})
-    except:
-        pass
+# for doc in documents_authors:
+#     k = doc["Author"].split(",")
+#     try:
+#         coll1.update_one({"Author":doc["Author"]},{"$set": {"Book": k[1]}})
+#         coll1.update_one({"Author":doc["Author"]},{"$set": {"Author": k[0]}})
+#     except:
+#         pass
 
 # ***Adding category to entire list --tested
 # with open('data.txt') as json_file:
