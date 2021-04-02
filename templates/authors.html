@@ -34,13 +34,16 @@
 </div>
 
 <main class="container">
-{% for author in authors %}
+
+<h3>Popular Authors</h3>
+{% for author in authors1 %}
 <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
 <article class="s12 m8 left-align article author-card">
     <blockquote>
         <cite>{{ author.Author }}</cite>
             {% if author.Books[0] != '' %}
-                <p>Books: {% for item in author.Books %}
+                <p>Books: 
+                    {% for item in author.Books %}
                     {{ item }}</p>
                 {% endfor %}
             {% endif %}
@@ -56,7 +59,29 @@
         </div>
     </blockquote>
 </article>
-        
+
 {% endfor %}
+
+<!-- Author index -->
+<div class="row">
+    <div class="s12 left-align">
+        {% for author in authors2 %}
+            {% if (loop.index/authors2.count()) <= 1/3  %}
+                <p>{{ author.Author }}</p>
+        </div>
+        <div class="s12 center-align">
+            {% elif (loop.index/authors2.count()) <= 2/3  %}
+                <p>{{ author.Author }}</p>
+        </div>
+        <div class="s12 right-align">
+            {% else  %}
+                <p>{{ author.Author }}</p>
+            {% endif %}
+        {% endfor %}
+        </div>
+</div>
+
+
+
 </main>
 {% endblock %}

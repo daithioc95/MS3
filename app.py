@@ -29,8 +29,9 @@ def get_quotes():
 
 @app.route("/get_authors")
 def get_authors():
-    authors = mongo.db.authors.find()
-    return render_template("authors.html", authors=authors) 
+    authors1 = mongo.db.authors.find()
+    authors2 = mongo.db.authors.find().sort("Author")
+    return render_template("authors.html", authors1=authors1, authors2=authors2) 
 
 
 @app.route("/search", methods=["GET", "POST"])
