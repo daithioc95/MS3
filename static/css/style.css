@@ -383,3 +383,9 @@ label input[type="checkbox"] {
 .author-card cite{
     margin: 15px;
 }
+
+.author-index{
+    column-count: 3;
+  height: 100px;
+  column-fill: balance;
+}

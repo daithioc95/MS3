@@ -63,20 +63,10 @@
 {% endfor %}
 
 <!-- Author index -->
-<div class="row">
+<div class="row author-index">
     <div class="s12 left-align">
         {% for author in authors2 %}
-            {% if (loop.index/authors2.count()) <= 1/3  %}
                 <p>{{ author.Author }}</p>
-        </div>
-        <div class="s12 center-align">
-            {% elif (loop.index/authors2.count()) <= 2/3  %}
-                <p>{{ author.Author }}</p>
-        </div>
-        <div class="s12 right-align">
-            {% else  %}
-                <p>{{ author.Author }}</p>
-            {% endif %}
         {% endfor %}
         </div>
 </div>
