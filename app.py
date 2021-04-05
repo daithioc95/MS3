@@ -1,7 +1,7 @@
 import os
 from flask import (
     Flask, flash, render_template,
-    redirect, request, session, url_for)
+    redirect, request, session, url_for, request)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -21,9 +21,17 @@ mongo = PyMongo(app)
 
 @app.route("/")
 @app.route("/get_quotes")
+# def get_quotes():
+#     qotd = mongo.db.quotes.find_one()
+#     quotes = mongo.db.quotes.find().sort("Popularity", -1)
+#     return render_template("quotes.html", quotes=quotes, qotd=qotd) 
+
+
 def get_quotes():
     qotd = mongo.db.quotes.find_one()
-    quotes = mongo.db.quotes.find().sort("Popularity", -1)
+    page = request.args.get('page', 1, type=int)
+    skips = 5 * (page - 1)
+    quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(5)
     return render_template("quotes.html", quotes=quotes, qotd=qotd) 
 
 

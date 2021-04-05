@@ -72,12 +72,10 @@
 
 {% endfor %}
 
-<p>{{ output }} {{ next_url }} {{ prev_url }}</p>
-
 <ul class="pagination center-align">
     <li class="disabled"><a href="#!"><i class="fas fa-arrow-left"></i></a></li>
     <li class="active"><a href="#!">1</a></li>
-    <li class="waves-effect"><a href="#!">2</a></li>
+    <li class="waves-effect"><a href="{{ url_for('get_quotes', page = 2) }}">2</a></li>
     <li class="waves-effect"><a href="#!">3</a></li>
     <li class="waves-effect"><a href="#!">4</a></li>
     <li class="waves-effect"><a href="#!">5</a></li>
