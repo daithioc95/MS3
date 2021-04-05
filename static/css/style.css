@@ -389,3 +389,9 @@ label input[type="checkbox"] {
   height: 100px;
   column-fill: balance;
 }
+
+.pagination{
+    align-items: center;
+    justify-content: center;
+        display: block;
+}

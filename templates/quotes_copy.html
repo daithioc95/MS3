@@ -31,14 +31,11 @@
 
 <h2>Popular Quotes</h2>
 
-{% if quotes.count() > 0 %}
-{% for quote in quotes %}
-
-<!-- https://codepen.io/tiggr/pen/MWyJJEz -->
-<article class="hide-on-small-only article">
+{% for post in posts.items %}
+    <article class="hide-on-small-only article">
     <blockquote>
-        <p>{{ quote.Quote }}</p>
-        <cite>{{ quote.Author }}</cite>
+        <p>{{ post.Quote }}</p>
+        <cite>{{ post.Author }}</cite>
         <!-- <cite>{{ quote.Tags[1] }} </cite> -->
         <div class="blockquote-author-image"
             style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
@@ -52,27 +49,7 @@
         </div>
     </blockquote>
 </article>
-
-<!-- https://codepen.io/chris22smith/pen/oQWavL -->
-
-<div class="hide-on-med-and-up animated-border-quote">
-    <blockquote>
-        <p>{{ quote.Quote }}</p>
-        <cite>{{ quote.Author }}</cite>
-        <div class="star">
-            <label for="mobile-id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
-                <input type="checkbox" id="mobile-id-of-input{{ quote._id }}" />
-                <i class="glyphicon glyphicon-star-empty"></i>
-                <i class="glyphicon glyphicon-star"></i>
-            </label>
-        </div>
-    </blockquote>
-</div>
-
-
 {% endfor %}
-
-<p>{{ output }} {{ next_url }} {{ prev_url }}</p>
 
 <ul class="pagination center-align">
     <li class="disabled"><a href="#!"><i class="fas fa-arrow-left"></i></a></li>

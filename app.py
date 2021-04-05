@@ -27,6 +27,16 @@ def get_quotes():
     return render_template("quotes.html", quotes=quotes, qotd=qotd) 
 
 
+# @app.route("/get_quotes2")
+# def get_quotes2():
+#     qotd = mongo.db.quotes.find_one()
+#     # quotes = mongo.db.quotes.find().sort("Popularity", -1)
+#     # https://www.youtube.com/watch?v=PSWf2TjTGNY
+#     page = request.args.get('page',1,type=int)
+#     posts = Post.query.paginate(page=page, per_page=5)
+#     return render_template("quotes_copy.html", posts=posts, qotd=qotd) 
+
+
 @app.route("/get_authors")
 def get_authors():
     authors1 = mongo.db.authors.find()
