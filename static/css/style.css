@@ -386,8 +386,9 @@ label input[type="checkbox"] {
 
 .author-index{
     column-count: 3;
-  height: 100px;
-  column-fill: balance;
+  /* height: 100px; */
+    column-fill: auto;
+  /* column-fill: balance; */
 }
 
 .pagination{
