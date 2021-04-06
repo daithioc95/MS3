@@ -29,6 +29,7 @@ mongo = PyMongo(app)
 
 
 def get_quotes():
+    #     # https://www.youtube.com/watch?v=PSWf2TjTGNY
     qotd = mongo.db.quotes.find_one()
     page = request.args.get('page', 1, type=int)
     skips = 5 * (page - 1)
