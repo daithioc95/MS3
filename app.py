@@ -44,7 +44,8 @@ def get_quotes():
         pages=pages,
         # maximum=maximum,
         limit=limit, 
-        qotd=qotd
+        qotd=qotd,
+        final_page=final_page
     )
 
 # def get_quotes():

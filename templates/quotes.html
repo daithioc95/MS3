@@ -84,18 +84,19 @@
 
 <!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
 <ul class="pagination center-align">
-{% for p in pages %}
-<!-- <li class="disabled"><a href="{% if  p > 1  %} active{% endif %}{{ url_for('get_quotes', page = p-1) }}"><i class="fas fa-arrow-left"></i></a></li> -->
-    {% if  p == page  %}
-    <li class="active">
-        <a href="{{ url_for('get_quotes', page = p) }}">{{ p }}</a>
-    </li>
-    {% else %}
-    <li class="">
-        <a href="{{ url_for('get_quotes', page = p) }}">{{ p }}</a>
-    </li>
-    {% endif %}
-{% endfor %}
+    <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('get_quotes', page = page - 1) }}"><i class="fas fa-arrow-left"></i></a></li>
+        {% for p in pages %}
+            {% if  p == page  %}
+            <li class="active">
+                <a href="{{ url_for('get_quotes', page = p) }}">{{ p }}</a>
+            </li>
+            {% else %}
+            <li class="">
+                <a href="{{ url_for('get_quotes', page = p) }}">{{ p }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+    <li class="{% if  page > final_page %}disabled{% endif %}"><a href="{{ url_for('get_quotes', page = page + 1) }}"><i class="fas fa-arrow-right"></i></a></li>
 </ul>
   
 {% else %}
