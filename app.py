@@ -35,7 +35,6 @@ def get_quotes():
     # maximum = math.floor( (mongo.db.quotes.count_documents({})) / limit - 1)
     final_page = (mongo.db.quotes.count_documents({}))/(limit-1)
     pages = range(1, int(final_page + 2))
-    print(pages)
     quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(limit)
     return render_template(
         'quotes.html', 
@@ -78,8 +77,20 @@ def get_authors():
 def search():
     qotd = mongo.db.quotes.find_one()
     query = request.form.get("query")
-    quotes = mongo.db.quotes.find({"$text": {"$search":query }})
-    return render_template("quotes.html", quotes=quotes, qotd=qotd)
+    page = request.args.get('page', 1, type=int)
+    limit=int(5)
+    skips = limit * (page - 1)
+    # maximum = math.floor( (mongo.db.quotes.count_documents({})) / limit - 1)
+    final_page = (mongo.db.quotes.count_documents({"$text": {"$search":query }}))/(limit-1)
+    pages = range(1, int(final_page + 2))
+    quotes = mongo.db.quotes.find({"$text": {"$search":query }}).skip(skips).limit(limit)
+    return render_template('quotes.html', 
+        quotes=quotes,
+        page=page,
+        pages=pages,
+        limit=limit, 
+        qotd=qotd,
+        final_page=final_page)
 
 
 @app.route("/register", methods=["GET", "POST"])
