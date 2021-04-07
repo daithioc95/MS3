@@ -22,6 +22,8 @@ coll2 = conn[DATABASE][COLLECTION_AUTHORS]
 documents_authors = coll1.find({},{ "_id": 0, "Author": 1})
 documents = coll1.find()
 
+# mongo.db.authors.create_index([("Author", "text")])
+
 # coll2.update_one({"Author":"C.S. Lewis"},{"$set": {"Books": k[1]}})
 
 # write all books & authors to author db -- Tested

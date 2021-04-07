@@ -73,8 +73,8 @@ def get_authors():
     return render_template("authors.html", authors1=authors1, authors2=authors2) 
 
 
-@app.route("/search", methods=["GET", "POST"])
-def search():
+@app.route("/search_quotes", methods=["GET", "POST"])
+def search_quotes():
     qotd = mongo.db.quotes.find_one()
     query = request.form.get("query")
     page = request.args.get('page', 1, type=int)
@@ -91,6 +91,15 @@ def search():
         limit=limit, 
         qotd=qotd,
         final_page=final_page)
+
+
+# @app.route("/search_authors", methods=["GET", "POST"])
+# def search_authors():
+#     query = request.form.get("query_author")
+#     # maximum = math.floor( (mongo.db.quotes.count_documents({})) / limit - 1)
+#     authors = mongo.db.authors.find({"$text": {"$search":query }})
+#     return render_template('authors.html', 
+#         authors=authors)
 
 
 @app.route("/register", methods=["GET", "POST"])
