@@ -6,6 +6,7 @@ from flask_pymongo import PyMongo
 from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+import math
 if os.path.exists("env.py"):
     import env
 
@@ -26,15 +27,33 @@ mongo = PyMongo(app)
 #     qotd = mongo.db.quotes.find_one()
 #     quotes = mongo.db.quotes.find().sort("Popularity", -1)
 #     return render_template("quotes.html", quotes=quotes, qotd=qotd) 
-
-
 def get_quotes():
-    #     # https://www.youtube.com/watch?v=PSWf2TjTGNY
     qotd = mongo.db.quotes.find_one()
     page = request.args.get('page', 1, type=int)
-    skips = 5 * (page - 1)
-    quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(5)
-    return render_template("quotes.html", quotes=quotes, qotd=qotd) 
+    limit=int(5)
+    skips = limit * (page - 1)
+    # maximum = math.floor( (mongo.db.quotes.count_documents({})) / limit - 1)
+    final_page = (mongo.db.quotes.count_documents({}))/(limit-1)
+    pages = range(1, int(final_page + 2))
+    print(pages)
+    quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(limit)
+    return render_template(
+        'quotes.html', 
+        quotes=quotes,
+        page=page,
+        pages=pages,
+        # maximum=maximum,
+        limit=limit, 
+        qotd=qotd
+    )
+
+# def get_quotes():
+#     #     # https://www.youtube.com/watch?v=PSWf2TjTGNY
+#     qotd = mongo.db.quotes.find_one()
+#     page = request.args.get('page', 1, type=int)
+#     skips = 5 * (page - 1)
+#     quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(5)
+#     return render_template("quotes.html", quotes=quotes, qotd=qotd, page=page) 
 
 
 # @app.route("/get_quotes2")
