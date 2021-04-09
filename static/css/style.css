@@ -339,7 +339,7 @@ label input[type="checkbox"] {
   display: flex;
 }
 
-#searchTerm {
+#query_author {
   width: 100%;
     border: 1px solid #fff;
   border-right: none;

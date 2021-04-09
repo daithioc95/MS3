@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- Reduce height of welcome image -->
 <div class="welcome-image-text">
     <img src="static/images/authors_welcome_image.jpg" id="authors-welcome-img" alt="Library">
     <div class="text">
@@ -24,18 +25,37 @@
         </div>
     </form>
 </div> -->
-<div class="authors-search wrap">
-   <div class="search">
-      <input type="text" id="searchTerm" placeholder="Search by Author">
-      <button type="submit" class="searchButton">
-        <i class="fa fa-search"></i>
-     </button>
-   </div>
-</div>
+<form action="{{ url_for('search_authors') }}" method="POST" class="col s12">
+    <div class="authors-search wrap">
+    <div class="search">
+        <input type="text"  name="query_author" id="query_author" placeholder="Search by Author">
+        <button type="submit" class="searchButton">
+            <i class="fa fa-search"></i>
+        </button>
+    </div>
+    </div>
+</form>
+    
+        <!-- <div class="row valign-wrapper center-align">
+            <div class="input-field col s12 m8">
+                <i class="fas fa-search prefix light-blue-text text-darken-4"></i>
+                <input type="text"id="query" minlength="3" class="validate" required>
+                <label class="hide-on-small-only" for="query">Search quotes</label>
+                <label class="hide-on-med-and-up" for="query">Search</label>
+            </div>
+            <div class="col s8 m4">
+                <a href="{{ url_for('get_quotes') }}" class="reset btn text-shadow">Reset</a>
+                <button type="submit" class="indigo lighten-2 btn text-shadow">
+                    <i class="fas fa-search-left"></i> Search
+                </button>
+            </div>
+        </div>
+    </form> -->
 
 <main class="container">
 
 <h3>Popular Authors</h3>
+{% if authors1.count() > 0 %}
 {% for author in authors1 %}
 <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
 <article class="s12 m8 left-align article author-card">
@@ -62,6 +82,9 @@
 
 {% endfor %}
 
+{% else %}
+<h3 class="red-text text-darken-4 center-align">No Results Found</h3>
+{% endif %}
 <!-- Author index -->
 <!-- https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_column-fill -->
 <div class="row author-index">
