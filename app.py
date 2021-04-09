@@ -116,7 +116,10 @@ def register():
 
         register = {
             "username": request.form.get("username").lower(),
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
+            "fav_quote_ids": [],
+            "fav_author_ids": [],
+            "fav_book_ids": []
         }
         mongo.db.users.insert_one(register)
 
