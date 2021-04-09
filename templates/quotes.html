@@ -31,9 +31,18 @@
 
 <h2>Popular Quotes</h2>
 
+<form action="{{ url_for('add_fav_quote') }}" method="POST">
+    <label for="test_quote_star" class="indigo lighten-2 custom-checkbox">
+        <input type="checkbox" id="test_quote_star" name="test_quote_star"/>
+        <i class="glyphicon glyphicon-star-empty"></i>
+        <i class="glyphicon glyphicon-star"></i>
+    </label>
+</form>
+
 {% if quotes.count() > 0 %}
 {% for quote in quotes %}
 
+<!-- https://stackoverflow.com/questions/36674846/how-can-i-check-if-some-checkboxes-in-html-are-checked -->
 <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
 <article class="hide-on-small-only article">
     <blockquote>
@@ -44,11 +53,13 @@
             style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
         </div>
         <div class="star">
-            <label for="id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
-                <input type="checkbox" id="id-of-input{{ quote._id }}" />
-                <i class="glyphicon glyphicon-star-empty"></i>
-                <i class="glyphicon glyphicon-star"></i>
-            </label>
+            <form>
+                <label for="id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
+                    <input type="checkbox" id="id-of-input{{ quote._id }}" name="id-of-input{{ quote._id }}"/>
+                    <i class="glyphicon glyphicon-star-empty"></i>
+                    <i class="glyphicon glyphicon-star"></i>
+                </label>
+            </form>
         </div>
     </blockquote>
 </article>
@@ -61,7 +72,7 @@
         <cite>{{ quote.Author }}</cite>
         <div class="star">
             <label for="mobile-id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
-                <input type="checkbox" id="mobile-id-of-input{{ quote._id }}" />
+                <input type="checkbox" id="mobile-id-of-input{{ quote._id }}" name="quote_star"/>
                 <i class="glyphicon glyphicon-star-empty"></i>
                 <i class="glyphicon glyphicon-star"></i>
             </label>
