@@ -53,7 +53,7 @@ def get_quotes():
 @app.route("/add_fav_quote", methods=["GET", "POST"])        # is "Get" necessary?
 def add_fav_quote():
     if request.method == "POST":
-        print("Py Post")
+        print(request.form['Checkbox'])
     return "hi"
     # return render_template("quotes.html")
     # fav_quote = request.form.get('test_quote_star')
