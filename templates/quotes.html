@@ -33,21 +33,21 @@
 
 <!-- Option4 -->
 <!-- https://stackoverflow.com/questions/52665707/how-do-i-implement-a-like-button-function-to-posts-in-python-flask -->
-    <label for="test_quote_star" class="indigo lighten-2 custom-checkbox">
+    <!-- <label for="test_quote_star" class="indigo lighten-2 custom-checkbox">
         <a href="{{ url_for('add_fav_quote') }}">
         <i class="glyphicon glyphicon-star-empty"></i>
         <i class="glyphicon glyphicon-star"></i>
         </a>
-    </label>
+    </label> -->
 
     <!-- Option 1 -->
-<!-- <form action="{{ url_for('add_fav_quote') }}" method="POST">
+<!-- <form action="{{ url_for('add_fav_quote') }}" method="POST"> -->
     <label for="test_quote_star" class="indigo lighten-2 custom-checkbox">
         <input type="checkbox" id="test_quote_star" name="test_quote_star"/>
         <i class="glyphicon glyphicon-star-empty"></i>
         <i class="glyphicon glyphicon-star"></i>
     </label>
-</form> -->
+<!-- </form> -->
 
 {% if quotes.count() > 0 %}
 {% for quote in quotes %}
@@ -125,4 +125,26 @@
 {% endif %}
 
 </main>
+{% endblock %}
+{% block scripts %}
+<script>
+$('input[name=test_quote_star]').change(function(e) {
+  if ($(this).is(':checked')) {
+        console.log("JS Post");
+        $.ajax({
+            url:"{{ url_for('add_fav_quote') }}",
+            type: "POST",        // type or method?
+            data: "Hi",
+            success: function(response) { 
+                console.log("AJAX Post") 
+      }, 
+      error: function(request, status, error) { 
+                console.log("Error: " + error) 
+      } 
+    }
+    );
+}
+e.preventDefault();
+});
+</script>
 {% endblock %}

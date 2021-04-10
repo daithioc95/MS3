@@ -48,20 +48,22 @@ def get_quotes():
     )
 
 
-@app.route("/add_fav_quote", methods=["GET", "POST"])        # is "Get" necessary?
-def add_fav_quote():
-        print("Py Post")
-
-
 # https://www.youtube.com/watch?v=XYx5sIbU8B4
 # https://www.youtube.com/watch?v=v2TSTKlrPwo
-# @app.route("/add_fav_quote", methods=["GET", "POST"])        # is "Get" necessary?
-# def add_fav_quote():
-#     if request.method == "POST":
-#         print("Py Post")
-#     return render_template("quotes.html")
+@app.route("/add_fav_quote", methods=["GET", "POST"])        # is "Get" necessary?
+def add_fav_quote():
+    if request.method == "POST":
+        print("Py Post")
+    # return render_template("quotes.html")
     # fav_quote = request.form.get('test_quote_star')
     # if fav_quote:
+
+
+# @app.route("/add_fav_quote")
+# def add_fav_quote():
+#     print("Py Post")
+#     return redirect(request.referrer)
+
 
 # def get_quotes():
 #     #     # https://www.youtube.com/watch?v=PSWf2TjTGNY
