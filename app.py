@@ -83,7 +83,8 @@ def add_fav_quote():
             print("end of function")
         # else (box is unchecked)
         else:
-            print(request.form['Status'])
+            mongo.db.users.update_one({"username": user},{ "$pull": { "fav_quote_ids": {quote_id}}})
+            print("Pulled")
             # Remove quote if from users db
         # print(request.form['Checkbox'].split('_')[1])
         # print(request.form['Checkbox'][11:])
