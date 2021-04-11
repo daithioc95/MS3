@@ -64,11 +64,19 @@
         </div>
         <div class="star">
             <form>
-                <label for="id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
-                    <input type="checkbox" id="id-of-input{{ quote._id }}" name="id-of-input{{ quote._id }}" category ="quote-input"/>
+                {% if session.user %}
+                <label for="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" class="indigo lighten-2 custom-checkbox">
+                    <input type="checkbox" id="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" name="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" category ="logged-in-quote-input"/>
                     <i class="glyphicon glyphicon-star-empty"></i>
                     <i class="glyphicon glyphicon-star"></i>
                 </label>
+                {% else %}
+                <label for="dsk-id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
+                    <input type="checkbox" id="dsk-id-of-input{{ quote._id }}" name="dsk-id-of-input{{ quote._id }}" category ="logged-out-quote-input"/>
+                    <i class="glyphicon glyphicon-star-empty"></i>
+                    <i class="glyphicon glyphicon-star"></i>
+                </label>
+                {% endif %}
             </form>
         </div>
     </blockquote>
@@ -81,11 +89,19 @@
         <p>{{ quote.Quote }}</p>
         <cite>{{ quote.Author }}</cite>
         <div class="star">
-            <label for="mobile-id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
-                <input type="checkbox" id="mobile-id-of-input{{ quote._id }}" name="quote_star"/>
-                <i class="glyphicon glyphicon-star-empty"></i>
-                <i class="glyphicon glyphicon-star"></i>
-            </label>
+                {% if session.user %}
+                <label for="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" class="indigo lighten-2 custom-checkbox">
+                    <input type="checkbox" id="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" name="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" category ="logged-in-quote-input"/>
+                    <i class="glyphicon glyphicon-star-empty"></i>
+                    <i class="glyphicon glyphicon-star"></i>
+                </label>
+                {% else %}
+                <label for="mob-id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
+                    <input type="checkbox" id="mob-id-of-input{{ quote._id }}" name="mob-id-of-input{{ quote._id }}" category ="logged-out-quote-input"/>
+                    <i class="glyphicon glyphicon-star-empty"></i>
+                    <i class="glyphicon glyphicon-star"></i>
+                </label>
+                {% endif %}
         </div>
     </blockquote>
 </div>
@@ -128,14 +144,16 @@
 {% endblock %}
 {% block scripts %}
 <script>
-    $('input[category=quote-input]').change(function (e) {
+    $('input[category=logged-in-quote-input]').change(function () {
         var checkbox_id = $(this).attr("id");
-        if ($(this).is(':checked')) {
+        // if ($(this).is(':checked')) {
             console.log("JS Post");
             $.ajax({
                 url: "{{ url_for('add_fav_quote') }}",
                 type: "POST",
-                data: {'Checkbox': checkbox_id},
+                data: {'Checkbox': checkbox_id,
+                        'Status': $(this).prop("checked")
+                    },
                 success: function (response) {
                     console.log(checkbox_id)
                 },
@@ -144,8 +162,7 @@
                 }
             }
             );
-        }
-        e.preventDefault();
+        // }
 });
 </script>
 {% endblock %}
