@@ -80,11 +80,11 @@ def add_fav_quote():
             quote_id = request.form['Checkbox'].split('_')[0][15:]
             user = request.form['Checkbox'].split('_')[1]
             mongo.db.users.update_one({"username": user},{ "$addToSet": { "fav_quote_ids": quote_id}})
-            print("end of function")
+            print("1" + request.form['Status'])
         # else (box is unchecked)
         else:
-            mongo.db.users.update_one({"username": user},{ "$pull": { "fav_quote_ids": {quote_id}}})
-            print("Pulled")
+            # mongo.db.users.update_one({"username": user},{ "$pull": { "fav_quote_ids": {quote_id}}})
+            print("2" + request.form['Status'])
             # Remove quote if from users db
         # print(request.form['Checkbox'].split('_')[1])
         # print(request.form['Checkbox'][11:])
