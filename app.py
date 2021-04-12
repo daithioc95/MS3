@@ -57,6 +57,14 @@ def get_quotes():
     final_page = (mongo.db.quotes.count_documents({}))/(limit-1)
     pages = range(1, int(final_page + 2))
     quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(limit)
+    if session["user"]:
+        fav_quotes1 = []
+        users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
+        for x in users_fav_quotes:
+            # need to put this in JSON format
+            fav_quotes1.append(mongo.db.quotes.find({"_id": x}))
+        print(fav_quotes1)
+        print(quotes)
     return render_template(
         'quotes.html', 
         quotes=quotes,
@@ -65,7 +73,8 @@ def get_quotes():
         # maximum=maximum,
         limit=limit, 
         qotd=qotd,
-        final_page=final_page
+        final_page=final_page,
+        fav_quotes1=fav_quotes1
     )
 
 
@@ -118,19 +127,21 @@ def search_quotes():
     qotd = mongo.db.quotes.find_one()
     query = request.form.get("query")
     page = request.args.get('page', 1, type=int)
-    limit=int(5)
+    limit = int(5)
     skips = limit * (page - 1)
     # maximum = math.floor( (mongo.db.quotes.count_documents({})) / limit - 1)
-    final_page = (mongo.db.quotes.count_documents({"$text": {"$search":query }}))/(limit-1)
+    final_page = (mongo.db.quotes.count_documents(
+        {"$text": {"$search": query}}))/(limit-1)
     pages = range(1, int(final_page + 2))
-    quotes = mongo.db.quotes.find({"$text": {"$search":query }}).skip(skips).limit(limit)
-    return render_template('quotes.html', 
-        quotes=quotes,
-        page=page,
-        pages=pages,
-        limit=limit, 
-        qotd=qotd,
-        final_page=final_page)
+    quotes = mongo.db.quotes.find(
+        {"$text": {"$search": query}}).skip(skips).limit(limit)
+    return render_template('quotes.html',
+                           quotes=quotes,
+                           page=page,
+                           pages=pages,
+                           limit=limit,
+                           qotd=qotd,
+                           final_page=final_page)
 
 
 @app.route("/search_authors", methods=["GET", "POST"])
