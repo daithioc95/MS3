@@ -1,6 +1,7 @@
 import os
 import pymongo
 import json
+import requests
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for, request)
@@ -39,16 +40,27 @@ def get_quotes():
     pages = range(1, int(final_page + 2))
     quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(limit)
     try:
+        
         if session["user"]:
-            fav_quotes1 = []
+            # Option2 https://www.tutorialspoint.com/can-i-retrieve-multiple-documents-from-mongodb-by-id
             users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
-            for x in users_fav_quotes:
-                # need to put this in JSON format
-                fav_quotes1.append(mongo.db.quotes.find({"_id": x}))
-            # fav_quotes2 = json.dumps(fav_quotes1)
-            print(fav_quotes1)
+            fav_quotes = mongo.db.quotes.find({"_id": {"$in": users_fav_quotes}})
+            # for item in fav_quotes:
+            #     print(item)
+            print(fav_quotes)
             print(quotes)
-    except:
+            
+            # Option1 https://stackoverflow.com/questions/48189684/how-to-parse-json-array-of-objects-in-python
+            # fav_quotes1 = []
+            # users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
+            # # users_fav_quotes = json.loads(str(data))
+            # for x in users_fav_quotes:
+            #     # need to put this in JSON format
+            #     fav_quotes1.append(mongo.db.quotes.find({"_id": x}))
+            #     # json.dumps(mongo.db.quotes.find({"_id": x}))
+            # print(fav_quotes1)
+            # print(quotes)
+    except KeyError:
         pass
     return render_template(
         'quotes.html', 
@@ -59,7 +71,7 @@ def get_quotes():
         limit=limit, 
         qotd=qotd,
         final_page=final_page,
-        # fav_quotes1=fav_quotes1
+        fav_quotes=fav_quotes
     )
 
 
