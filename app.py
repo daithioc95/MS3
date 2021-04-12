@@ -14,26 +14,7 @@ if os.path.exists("env.py"):
 
 
 app = Flask(__name__)
-# MONGO_URI = os.environ.get("MONGO_URI")
-# DATABASE = "ms3_quotes"
-# COLLECTION_QUTOES = "quotes"
-# COLLECTION_AUTHORS = "authors"
-# COLLECTION_USERS = "users"
-# def mongo_connect(url):
-#     try:
-#         conn = pymongo.MongoClient(url)
-#         print("Mongo is connected to app.py")
-#         return conn
-#     except pymongo.errors.ConnectionFailure as e:
-#         print("Could not connect to MongoDB: %s") % e
-# conn = mongo_connect(MONGO_URI)
-# coll1 = conn[DATABASE][COLLECTION_QUTOES]
-# coll2 = conn[DATABASE][COLLECTION_AUTHORS]
-# coll3 = conn[DATABASE][COLLECTION_USERS]
 
-
-# documents_authors = coll1.find({},{ "_id": 0, "Author": 1})
-# documents = coll1.find()
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
@@ -57,14 +38,18 @@ def get_quotes():
     final_page = (mongo.db.quotes.count_documents({}))/(limit-1)
     pages = range(1, int(final_page + 2))
     quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(limit)
-    if session["user"]:
-        fav_quotes1 = []
-        users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
-        for x in users_fav_quotes:
-            # need to put this in JSON format
-            fav_quotes1.append(mongo.db.quotes.find({"_id": x}))
-        print(fav_quotes1)
-        print(quotes)
+    try:
+        if session["user"]:
+            fav_quotes1 = []
+            users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
+            for x in users_fav_quotes:
+                # need to put this in JSON format
+                fav_quotes1.append(mongo.db.quotes.find({"_id": x}))
+            # fav_quotes2 = json.dumps(fav_quotes1)
+            print(fav_quotes1)
+            print(quotes)
+    except:
+        pass
     return render_template(
         'quotes.html', 
         quotes=quotes,
@@ -74,7 +59,7 @@ def get_quotes():
         limit=limit, 
         qotd=qotd,
         final_page=final_page,
-        fav_quotes1=fav_quotes1
+        # fav_quotes1=fav_quotes1
     )
 
 
