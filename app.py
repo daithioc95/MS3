@@ -14,26 +14,26 @@ if os.path.exists("env.py"):
 
 
 app = Flask(__name__)
-MONGO_URI = os.environ.get("MONGO_URI")
-DATABASE = "ms3_quotes"
-COLLECTION_QUTOES = "quotes"
-COLLECTION_AUTHORS = "authors"
-COLLECTION_USERS = "users"
-def mongo_connect(url):
-    try:
-        conn = pymongo.MongoClient(url)
-        print("Mongo is connected to app.py")
-        return conn
-    except pymongo.errors.ConnectionFailure as e:
-        print("Could not connect to MongoDB: %s") % e
-conn = mongo_connect(MONGO_URI)
-coll1 = conn[DATABASE][COLLECTION_QUTOES]
-coll2 = conn[DATABASE][COLLECTION_AUTHORS]
-coll3 = conn[DATABASE][COLLECTION_USERS]
+# MONGO_URI = os.environ.get("MONGO_URI")
+# DATABASE = "ms3_quotes"
+# COLLECTION_QUTOES = "quotes"
+# COLLECTION_AUTHORS = "authors"
+# COLLECTION_USERS = "users"
+# def mongo_connect(url):
+#     try:
+#         conn = pymongo.MongoClient(url)
+#         print("Mongo is connected to app.py")
+#         return conn
+#     except pymongo.errors.ConnectionFailure as e:
+#         print("Could not connect to MongoDB: %s") % e
+# conn = mongo_connect(MONGO_URI)
+# coll1 = conn[DATABASE][COLLECTION_QUTOES]
+# coll2 = conn[DATABASE][COLLECTION_AUTHORS]
+# coll3 = conn[DATABASE][COLLECTION_USERS]
 
 
-documents_authors = coll1.find({},{ "_id": 0, "Author": 1})
-documents = coll1.find()
+# documents_authors = coll1.find({},{ "_id": 0, "Author": 1})
+# documents = coll1.find()
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
@@ -73,31 +73,18 @@ def get_quotes():
 # https://www.youtube.com/watch?v=v2TSTKlrPwo
 @app.route("/add_fav_quote", methods=["GET", "POST"])        # is "Get" necessary?
 def add_fav_quote():
+    quote_id = request.form['Checkbox'].split('_')[0][15:]
+    user = request.form['Checkbox'].split('_')[1]
     if request.method == "POST":
         # if check box is checked
-        if request.form['Status']:
+        if request.form['Status'] == 'true':
             # Add quote id to users db
-            quote_id = request.form['Checkbox'].split('_')[0][15:]
-            user = request.form['Checkbox'].split('_')[1]
             mongo.db.users.update_one({"username": user},{ "$addToSet": { "fav_quote_ids": quote_id}})
-            print("1" + request.form['Status'])
         # else (box is unchecked)
         else:
-            # mongo.db.users.update_one({"username": user},{ "$pull": { "fav_quote_ids": {quote_id}}})
-            print("2" + request.form['Status'])
             # Remove quote if from users db
-        # print(request.form['Checkbox'].split('_')[1])
-        # print(request.form['Checkbox'][11:])
+            mongo.db.users.update_one({"username": user},{ "$pull": { "fav_quote_ids": quote_id}})
     return "hi"
-    # return render_template("quotes.html")
-    # fav_quote = request.form.get('test_quote_star')
-    # if fav_quote:
-
-
-# @app.route("/add_fav_quote")
-# def add_fav_quote():
-#     print("Py Post")
-#     return redirect(request.referrer)
 
 
 # def get_quotes():
