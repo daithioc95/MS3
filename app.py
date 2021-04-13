@@ -31,6 +31,7 @@ mongo = PyMongo(app)
 #     quotes = mongo.db.quotes.find().sort("Popularity", -1)
 #     return render_template("quotes.html", quotes=quotes, qotd=qotd) 
 def get_quotes():
+    popular = True
     qotd = mongo.db.quotes.find_one()
     page = request.args.get('page', 1, type=int)
     limit=int(5)
@@ -40,18 +41,35 @@ def get_quotes():
     pages = range(1, int(final_page + 2))
     quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(limit)
     try:
+        # if user logged in 
         if session["user"]:
             # Option2 https://www.tutorialspoint.com/can-i-retrieve-multiple-documents-from-mongodb-by-id
             # docys = [ObjectId("60670b51eb5e43904f7dd711"), ObjectId("60670b51eb5e43904f7dd715")]
+            # get array of id's for users favourite quotes
+            username=session["user"]
             users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
             fav_quotes1 = []
+            fav_quotes2 = []
             for x in users_fav_quotes:
-                fav_quotes1.append(ObjectId(x))
+                try:
+                    # add all favourite quotes in object id format to fav_quotes1
+                    fav_quotes1.append(ObjectId(x))
+                    fav_quotes2.append(x)
+                # if not in object id format, pass
+                except:
+                    pass
+            # if user has favourite quotes
             if fav_quotes1:
-                quotes = mongo.db.quotes.find({"_id": {"$in":  fav_quotes1}})
+                # update the quotes and pages with users favourites
+                fav_quotes = mongo.db.quotes.find({"_id": {"$in":  fav_quotes1}})
+                quotes = fav_quotes
+                popular = False
                 # maximum = math.floor( (mongo.db.quotes.count_documents({})) / limit - 1)
                 final_page = (quotes.count())/(limit-1)
                 pages = range(1, int(final_page + 2))
+    except KeyError:
+        username=None
+        fav_quotes2 = []
             # for item in fav_quotes:
             #     print(item)
             # print(list(fav_quotes))
@@ -67,8 +85,6 @@ def get_quotes():
             #     # json.dumps(mongo.db.quotes.find({"_id": x}))
             # print(fav_quotes1)
             # print(quotes)
-    except KeyError:
-        pass
     return render_template(
         'quotes.html', 
         quotes=quotes,
@@ -77,9 +93,13 @@ def get_quotes():
         # maximum=maximum,
         limit=limit, 
         qotd=qotd,
-        final_page=final_page
+        final_page=final_page,
         # fav_quotes=fav_quotes
+        popular=popular,
+        username=username,
+        fav_quotes2=fav_quotes2
     )
+
 
 
 # https://www.youtube.com/watch?v=XYx5sIbU8B4
@@ -131,6 +151,7 @@ def get_authors():
 
 @app.route("/search_quotes", methods=["GET", "POST"])
 def search_quotes():
+    popular = True
     qotd = mongo.db.quotes.find_one()
     query = request.form.get("query")
     page = request.args.get('page', 1, type=int)
@@ -142,13 +163,33 @@ def search_quotes():
     pages = range(1, int(final_page + 2))
     quotes = mongo.db.quotes.find(
         {"$text": {"$search": query}}).skip(skips).limit(limit)
+    # feed through favoutite id's so only favourites are checked
+    try:
+        # if user logged in 
+        if session["user"]:
+            username=session["user"]
+            popular = False
+            users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
+            fav_quotes2 = []
+            for x in users_fav_quotes:
+                try:
+                    fav_quotes2.append(x)
+                except:
+                    pass
+    except KeyError:
+        username=None
+        popular = True
+        fav_quotes2 = []
     return render_template('quotes.html',
                            quotes=quotes,
                            page=page,
                            pages=pages,
                            limit=limit,
                            qotd=qotd,
-                           final_page=final_page)
+                           final_page=final_page,
+                           username=username,
+                           fav_quotes2=fav_quotes2,
+                           popular = popular)
 
 
 @app.route("/search_authors", methods=["GET", "POST"])

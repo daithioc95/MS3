@@ -29,7 +29,7 @@
     </form>
 </div>
 
-<h2>Popular Quotes</h2>
+<h2>{% if popular %}Popular {% else %}{{ username }}'s Favourite{% endif %}Quotes</h2>
 
 {% if quotes.count() > 0 %}
 {% for quote in quotes %}
@@ -38,7 +38,8 @@
 <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
 <article class="hide-on-small-only article">
     <blockquote>
-        <p>{{ quote.Quote }}</p>
+        <p>{{ quote.Quote }}
+        </p>
         <cite>{{ quote.Author }}</cite>
         <!-- <cite>{{ quote.Tags[1] }} </cite> -->
         <div class="blockquote-author-image"
@@ -48,7 +49,7 @@
             <form>
                 {% if session.user %}
                 <label for="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" class="indigo lighten-2 custom-checkbox">
-                    <input type="checkbox" id="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" name="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" category ="logged-in-quote-input"/>
+                    <input type="checkbox" id="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" name="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" category ="logged-in-quote-input" {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %} unchecked {% endfor %}/>
                     <i class="glyphicon glyphicon-star-empty"></i>
                     <i class="glyphicon glyphicon-star"></i>
                 </label>
@@ -73,7 +74,7 @@
         <div class="star">
                 {% if session.user %}
                 <label for="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" class="indigo lighten-2 custom-checkbox">
-                    <input type="checkbox" id="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" name="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" category ="logged-in-quote-input"/>
+                    <input type="checkbox" id="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" name="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" category ="logged-in-quote-input"  {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %} unchecked {% endfor %}/>
                     <i class="glyphicon glyphicon-star-empty"></i>
                     <i class="glyphicon glyphicon-star"></i>
                 </label>
