@@ -39,17 +39,19 @@ def get_quotes():
     final_page = (mongo.db.quotes.count_documents({}))/(limit-1)
     pages = range(1, int(final_page + 2))
     quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(limit)
-    # print(list(quotes))
     try:
         if session["user"]:
             # Option2 https://www.tutorialspoint.com/can-i-retrieve-multiple-documents-from-mongodb-by-id
-            docys = [ObjectId("60670b51eb5e43904f7dd711"), ObjectId("60670b51eb5e43904f7dd715")]
+            # docys = [ObjectId("60670b51eb5e43904f7dd711"), ObjectId("60670b51eb5e43904f7dd715")]
             users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
             fav_quotes1 = []
             for x in users_fav_quotes:
                 fav_quotes1.append(ObjectId(x))
-            print(fav_quotes1)
-            fav_quotes = mongo.db.quotes.find({"_id": {"$in":  fav_quotes1}})
+            if fav_quotes1:
+                quotes = mongo.db.quotes.find({"_id": {"$in":  fav_quotes1}})
+                # maximum = math.floor( (mongo.db.quotes.count_documents({})) / limit - 1)
+                final_page = (quotes.count())/(limit-1)
+                pages = range(1, int(final_page + 2))
             # for item in fav_quotes:
             #     print(item)
             # print(list(fav_quotes))
@@ -75,8 +77,8 @@ def get_quotes():
         # maximum=maximum,
         limit=limit, 
         qotd=qotd,
-        final_page=final_page,
-        fav_quotes=fav_quotes
+        final_page=final_page
+        # fav_quotes=fav_quotes
     )
 
 
