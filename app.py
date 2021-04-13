@@ -39,16 +39,21 @@ def get_quotes():
     final_page = (mongo.db.quotes.count_documents({}))/(limit-1)
     pages = range(1, int(final_page + 2))
     quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(limit)
+    # print(list(quotes))
     try:
-        
         if session["user"]:
             # Option2 https://www.tutorialspoint.com/can-i-retrieve-multiple-documents-from-mongodb-by-id
+            docys = [ObjectId("60670b51eb5e43904f7dd711"), ObjectId("60670b51eb5e43904f7dd715")]
             users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
-            fav_quotes = mongo.db.quotes.find({"_id": {"$in": users_fav_quotes}})
+            fav_quotes1 = []
+            for x in users_fav_quotes:
+                fav_quotes1.append(ObjectId(x))
+            print(fav_quotes1)
+            fav_quotes = mongo.db.quotes.find({"_id": {"$in":  fav_quotes1}})
             # for item in fav_quotes:
             #     print(item)
-            print(fav_quotes)
-            print(quotes)
+            # print(list(fav_quotes))
+            # print(quotes)
             
             # Option1 https://stackoverflow.com/questions/48189684/how-to-parse-json-array-of-objects-in-python
             # fav_quotes1 = []
@@ -81,11 +86,14 @@ def get_quotes():
 def add_fav_quote():
     quote_id = request.form['Checkbox'].split('_')[0][15:]
     user = request.form['Checkbox'].split('_')[1]
+    print(quote_id)
+    print(user)
     if request.method == "POST":
         # if check box is checked
         if request.form['Status'] == 'true':
             # Add quote id to users db
             mongo.db.users.update_one({"username": user},{ "$addToSet": { "fav_quote_ids": quote_id}})
+            print(quote_id)
         # else (box is unchecked)
         else:
             # Remove quote if from users db
