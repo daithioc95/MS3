@@ -120,7 +120,6 @@
 <script>
     $('input[category=logged-in-quote-input]').change(function () {
         var checkbox_id = $(this).attr("id");
-        // if ($(this).is(':checked')) {
             console.log("JS Post");
             $.ajax({
                 url: "{{ url_for('add_fav_quote') }}",
@@ -136,7 +135,6 @@
                 }
             }
             );
-        // }
 });
 </script>
 {% endblock %}

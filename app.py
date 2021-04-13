@@ -1,7 +1,6 @@
 import os
 import pymongo
 import json
-import requests
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for, request)
@@ -74,7 +73,6 @@ def get_quotes():
             #     print(item)
             # print(list(fav_quotes))
             # print(quotes)
-            
             # Option1 https://stackoverflow.com/questions/48189684/how-to-parse-json-array-of-objects-in-python
             # fav_quotes1 = []
             # users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
