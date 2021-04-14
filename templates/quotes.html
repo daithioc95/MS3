@@ -32,7 +32,7 @@
 
 
 {% if session.user and url_for(request.endpoint) != url_for('get_all_quotes') %}
-    <h2>{{ username }}'s Favourite Quotes</h2>
+    <h2>{{ session['user'] }}'s Favourite Quotes</h2>
     <h3><a href="{{ url_for('get_all_quotes') }}">Discover quotes here</a></h3>
 {% else %}
     <h2>Popular Quotes</h2>
@@ -140,11 +140,11 @@
 {% endif %}
 
 <!-- Remove below modal if not used -->
-  <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+  <!-- Modal Trigger
+  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> -->
 
   <!-- Modal Structure -->
-  <div id="modal1" class="modal">
+  <!-- <div id="modal1" class="modal">
     <div class="modal-content">
       <h4>Modal Header</h4>
       <p>A bunch of text</p>
@@ -152,7 +152,7 @@
     <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
-  </div>
+  </div> -->
 
 </main>
 {% endblock %}

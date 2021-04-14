@@ -154,11 +154,66 @@ def add_fav_quote():
 @app.route("/get_authors")
 # Function to get authors
 def get_authors():
+    page = request.args.get('page', 1, type=int)
+    limit = int(5)
+    skips = limit * (page - 1)
+    final_page = (mongo.db.authors.count_documents({}))/(limit-1)
+    pages = range(1, int(final_page + 2))
     # find authors for display box
-    authors1 = mongo.db.authors.find()
+    authors1 = mongo.db.authors.find().skip(skips).limit(limit)
     # Find authors for index
     authors2 = mongo.db.authors.find().sort("Author")
-    return render_template("authors.html", authors1=authors1, authors2=authors2) 
+    try:
+        # if user logged in 
+        if session["user"]:
+            # get array of id's for users favourite quotes
+            users_fav_authors = mongo.db.users.find_one({"username": session["user"]})["fav_author_ids"]
+            fav_authors2 = []
+            # Extract author id's and append to list
+            for x in users_fav_authors:
+                try:
+                    fav_authors2.append(x)
+                # if not in object id format, pass
+                except:
+                    pass
+    # if session["user"] not recognised, user is logged out
+    except KeyError:
+        fav_authors2 = []
+    return render_template("authors.html", 
+        authors1=authors1, 
+        authors2=authors2,
+        page=page,
+        pages=pages,
+        limit=limit,
+        final_page=final_page,
+        fav_authors2=fav_authors2)
+
+
+@app.route("/get_all_authors")
+# Function to get authors
+def get_all_authors():
+    return None
+
+
+@app.route("/add_fav_author", methods=["GET", "POST"])        # is "Get" necessary?
+# funciton to update db with favourite authors when star is checked
+def add_fav_author():
+    # extract author id from checkbox id
+    author_id = request.form['Checkbox'].split('_')[0][15:]
+    # extract username from checkbox id
+    user = request.form['Checkbox'].split('_')[1]
+    # if the request is recieved
+    if request.method == "POST":
+        # if check box is checked
+        if request.form['Status'] == 'true':
+            # Add author id to users db
+            mongo.db.users.update_one({"username": user},{ "$addToSet": { "fav_author_ids": author_id}})
+        # else (box is unchecked)
+        else:
+            # Remove author if from users db
+            mongo.db.users.update_one({"username": user},{ "$pull": { "fav_author_ids": author_id}})
+    # Get 505 error when return None?
+    return "hi"    
 
 
 @app.route("/search_quotes", methods=["GET", "POST"])

@@ -21,7 +21,13 @@
 
 <main class="container">
 
-<h3>Popular Authors</h3>
+{% if session.user and url_for(request.endpoint) != url_for('get_all_authors') %}
+    <h2>{{ session['user'] }}'s Favourite authors</h2>
+    <h3><a href="{{ url_for('get_all_authors') }}">Discover authors here</a></h3>
+{% else %}
+    <h2>Popular authors</h2>
+{% endif %}
+
 {% if authors1.count() > 0 %}
 {% for author in authors1 %}
 <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
@@ -38,16 +44,41 @@
             style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
         </div>
         <div class="star">
-            <label for="id-of-input{{ author._id }}" class="indigo lighten-2 custom-checkbox">
-                <input type="checkbox" id="id-of-input{{ author._id }}" />
-                <i class="glyphicon glyphicon-star-empty"></i>
-                <i class="glyphicon glyphicon-star"></i>
-            </label>
+            <form>
+                {% if session.user %}
+                <label for="dsk-id-of-input{{ author._id }}_{{ session['user'] }}" class="indigo lighten-2 custom-checkbox">
+                    <input type="checkbox" id="dsk-id-of-input{{ author._id }}_{{ session['user'] }}" name="dsk-id-of-input{{ author._id }}_{{ session['user'] }}" category ="logged-in-author-input"/>
+                    <i class="glyphicon glyphicon-star-empty"></i>
+                    <i class="glyphicon glyphicon-star"></i>
+                </label>
+                {% else %}
+                <label for="dsk-id-of-input{{ author._id }}" class="indigo lighten-2 custom-checkbox">
+                    <input type="checkbox" id="dsk-id-of-input{{ author._id }}" name="dsk-id-of-input{{ author._id }}" category ="logged-out-author-input"/>
+                    <i class="glyphicon glyphicon-star-empty"></i>
+                    <i class="glyphicon glyphicon-star"></i>
+                </label>
+                {% endif %}
+            </form>
         </div>
     </blockquote>
 </article>
 
 {% endfor %}
+<ul class="pagination center-align">
+    <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('get_authors', page = page - 1) }}"><i class="fas fa-arrow-left"></i></a></li>
+        {% for p in pages %}
+            {% if  p == page  %}
+            <li class="active">
+                <a href="{{ url_for('get_authors', page = p) }}">{{ p }}</a>
+            </li>
+            {% else %}
+            <li class="">
+                <a href="{{ url_for('get_authors', page = p) }}">{{ p }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+    <li class="{% if  page > final_page %}disabled{% endif %}"><a href="{{ url_for('get_authors', page = page + 1) }}"><i class="fas fa-arrow-right"></i></a></li>
+</ul>
 
 {% else %}
 <h3 class="red-text text-darken-4 center-align">No Results Found</h3>
@@ -62,4 +93,32 @@
     </div>
 </div>
 </main>
+{% endblock %}
+{% block scripts %}
+<script>
+    $('input[category=logged-in-author-input]').change(function () {
+        var checkbox_id = $(this).attr("id");
+            console.log("JS Post");
+            $.ajax({
+                url: "{{ url_for('add_fav_author') }}",
+                type: "POST",
+                data: {'Checkbox': checkbox_id,
+                        'Status': $(this).prop("checked")
+                    },
+                success: function (response) {
+                    console.log(checkbox_id)
+                },
+                error: function (request, status, error) {
+                    console.log("Error: " + error)
+                }
+            }
+            );
+});
+$('input[category=logged-out-author-input]').change(function (e) {
+            console.log("logged out fav");
+            if(e.target.checked){
+                alert("Please login or register to save favourites");
+            }
+    });
+</script>
 {% endblock %}
