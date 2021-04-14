@@ -81,7 +81,52 @@ def get_quotes():
         fav_quotes2=fav_quotes2
     )
 
-
+# function to return all quotes for logged in users
+@app.route("/get_all_quotes")
+def get_all_quotes():
+    popular = True
+    qotd = mongo.db.quotes.find_one()
+    page = request.args.get('page', 1, type=int)
+    limit = int(5)
+    skips = limit * (page - 1)
+    final_page = (mongo.db.quotes.count_documents({}))/(limit-1)
+    pages = range(1, int(final_page + 2))
+    quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(limit)
+    # feed through favoutite id's so only favourite stars are checked
+    try:
+        # if user logged in 
+        if session["user"]:
+            # set username value
+            username=session["user"]
+            # So HTML can identify user is logged in
+            popular = False
+            # get array of id's for users favourite quotes
+            users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
+            fav_quotes2 = []
+            # Extract quote id's and append to list
+            for x in users_fav_quotes:
+                try:
+                    fav_quotes2.append(x)
+                # if not in object id format, pass
+                except:
+                    pass
+    # if session["user"] not recognised, user is logged out
+    except KeyError:
+        username=None
+        popular = True
+        fav_quotes2 = []
+    return render_template(
+        'quotes.html', 
+        quotes=quotes,
+        page=page,
+        pages=pages,
+        limit=limit, 
+        qotd=qotd,
+        final_page=final_page,
+        popular=popular,
+        username=username,
+        fav_quotes2=fav_quotes2
+    )
 
 # https://www.youtube.com/watch?v=XYx5sIbU8B4
 # https://www.youtube.com/watch?v=v2TSTKlrPwo

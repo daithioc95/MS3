@@ -29,7 +29,14 @@
     </form>
 </div>
 
-<h2>{% if popular %}Popular {% else %}{{ username }}'s Favourite{% endif %}Quotes</h2>
+
+
+{% if session.user and url_for(request.endpoint) != url_for('get_all_quotes') %}
+    <h2>{{ username }}'s Favourite Quotes</h2>
+    <h3><a href="{{ url_for('get_all_quotes') }}">See popular quotes here</a></h3>
+{% else %}
+    <h2>Popular Quotes</h2>
+{% endif %}
 
 {% if quotes.count() > 0 %}
 {% for quote in quotes %}
@@ -92,7 +99,24 @@
 
 {% endfor %}
 
-
+{% if url_for(request.endpoint) == url_for('get_all_quotes') %}
+<!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
+<ul class="pagination center-align">
+    <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('get_all_quotes', page = page - 1) }}"><i class="fas fa-arrow-left"></i></a></li>
+        {% for p in pages %}
+            {% if  p == page  %}
+            <li class="active">
+                <a href="{{ url_for('get_all_quotes', page = p) }}">{{ p }}</a>
+            </li>
+            {% else %}
+            <li class="">
+                <a href="{{ url_for('get_all_quotes', page = p) }}">{{ p }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+    <li class="{% if  page > final_page %}disabled{% endif %}"><a href="{{ url_for('get_all_quotes', page = page + 1) }}"><i class="fas fa-arrow-right"></i></a></li>
+</ul>
+{% else %}
 <!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
 <ul class="pagination center-align">
     <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('get_quotes', page = page - 1) }}"><i class="fas fa-arrow-left"></i></a></li>
@@ -109,7 +133,8 @@
         {% endfor %}
     <li class="{% if  page > final_page %}disabled{% endif %}"><a href="{{ url_for('get_quotes', page = page + 1) }}"><i class="fas fa-arrow-right"></i></a></li>
 </ul>
-  
+{% endif %}
+
 {% else %}
 <h3 class="red-text text-darken-4 center-align">No Results Found</h3>
 {% endif %}
