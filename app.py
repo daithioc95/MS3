@@ -166,18 +166,31 @@ def get_authors():
     try:
         # if user logged in 
         if session["user"]:
-            # get array of id's for users favourite quotes
+            # get array of id's for users favourite authors
             users_fav_authors = mongo.db.users.find_one({"username": session["user"]})["fav_author_ids"]
+            fav_authors1 = []
             fav_authors2 = []
-            # Extract author id's and append to list
             for x in users_fav_authors:
                 try:
+                    # add all favourite authors in object id format to fav_authors1
+                    fav_authors1.append(ObjectId(x))
+                    # Store all favourited authors for comparison
                     fav_authors2.append(x)
                 # if not in object id format, pass
                 except:
                     pass
+            # if user has favourite authors
+            if fav_authors1:
+                # update the authors and pages with users favourites
+                fav_authors = mongo.db.authors.find({"_id": {"$in":  fav_authors1}})
+                # update the authors documents
+                authors1 = fav_authors
+                # Update pagitation for updated quotes
+                final_page = (authors1.count())/(limit-1)
+                pages = range(1, int(final_page + 2))
     # if session["user"] not recognised, user is logged out
     except KeyError:
+        username=None
         fav_authors2 = []
     return render_template("authors.html", 
         authors1=authors1, 
@@ -192,7 +205,40 @@ def get_authors():
 @app.route("/get_all_authors")
 # Function to get authors
 def get_all_authors():
-    return None
+    page = request.args.get('page', 1, type=int)
+    limit = int(5)
+    skips = limit * (page - 1)
+    final_page = (mongo.db.quotes.count_documents({}))/(limit-1)
+    pages = range(1, int(final_page + 2))
+    # find authors for display box
+    authors1 = mongo.db.authors.find().skip(skips).limit(limit)
+    # feed through favoutite id's so only favourite stars are checked
+    try:
+        # if user logged in 
+        if session["user"]:
+            # set username value
+            # get array of id's for users favourite quotes
+            users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
+            fav_quotes2 = []
+            # Extract quote id's and append to list
+            for x in users_fav_quotes:
+                try:
+                    fav_quotes2.append(x)
+                # if not in object id format, pass
+                except:
+                    pass
+    # if session["user"] not recognised, user is logged out
+    except KeyError:
+        fav_quotes2 = []
+    return render_template(
+        'authors.html', 
+        authors1=authors1, 
+        page=page,
+        pages=pages,
+        limit=limit,
+        final_page=final_page,
+        fav_quotes2=fav_quotes2
+    )
 
 
 @app.route("/add_fav_author", methods=["GET", "POST"])        # is "Get" necessary?
