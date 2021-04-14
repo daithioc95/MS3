@@ -33,7 +33,7 @@
 
 {% if session.user and url_for(request.endpoint) != url_for('get_all_quotes') %}
     <h2>{{ username }}'s Favourite Quotes</h2>
-    <h3><a href="{{ url_for('get_all_quotes') }}">See popular quotes here</a></h3>
+    <h3><a href="{{ url_for('get_all_quotes') }}">Discover quotes here</a></h3>
 {% else %}
     <h2>Popular Quotes</h2>
 {% endif %}
@@ -139,6 +139,21 @@
 <h3 class="red-text text-darken-4 center-align">No Results Found</h3>
 {% endif %}
 
+<!-- Remove below modal if not used -->
+  <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+
 </main>
 {% endblock %}
 {% block scripts %}
@@ -161,5 +176,11 @@
             }
             );
 });
+$('input[category=logged-out-quote-input]').change(function (e) {
+            console.log("logged out fav");
+            if(e.target.checked){
+                alert("Please login or register to save favourites");
+            }
+    });
 </script>
 {% endblock %}
