@@ -396,3 +396,9 @@ label input[type="checkbox"] {
     justify-content: center;
         display: block;
 }
+
+/* ---Mood Board--- */
+.mood-button{
+    border: 2px solid black;
+    width: 25%;
+}
