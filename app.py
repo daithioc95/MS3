@@ -24,28 +24,23 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
+# Function to get quotes
 @app.route("/get_quotes")
-# def get_quotes():
-#     qotd = mongo.db.quotes.find_one()
-#     quotes = mongo.db.quotes.find().sort("Popularity", -1)
-#     return render_template("quotes.html", quotes=quotes, qotd=qotd) 
 def get_quotes():
     popular = True
     qotd = mongo.db.quotes.find_one()
     page = request.args.get('page', 1, type=int)
-    limit=int(5)
+    limit = int(5)
     skips = limit * (page - 1)
-    # maximum = math.floor( (mongo.db.quotes.count_documents({})) / limit - 1)
     final_page = (mongo.db.quotes.count_documents({}))/(limit-1)
     pages = range(1, int(final_page + 2))
     quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(limit)
     try:
         # if user logged in 
         if session["user"]:
-            # Option2 https://www.tutorialspoint.com/can-i-retrieve-multiple-documents-from-mongodb-by-id
-            # docys = [ObjectId("60670b51eb5e43904f7dd711"), ObjectId("60670b51eb5e43904f7dd715")]
+            # set username value
+            username = session["user"]
             # get array of id's for users favourite quotes
-            username=session["user"]
             users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
             fav_quotes1 = []
             fav_quotes2 = []
@@ -53,6 +48,7 @@ def get_quotes():
                 try:
                     # add all favourite quotes in object id format to fav_quotes1
                     fav_quotes1.append(ObjectId(x))
+                    # Store all favourited quotes for comparison
                     fav_quotes2.append(x)
                 # if not in object id format, pass
                 except:
@@ -61,38 +57,25 @@ def get_quotes():
             if fav_quotes1:
                 # update the quotes and pages with users favourites
                 fav_quotes = mongo.db.quotes.find({"_id": {"$in":  fav_quotes1}})
+                # update the quotes documents
                 quotes = fav_quotes
+                # So HTML can identify user is logged in
                 popular = False
-                # maximum = math.floor( (mongo.db.quotes.count_documents({})) / limit - 1)
+                # Update pagitation for updated quotes
                 final_page = (quotes.count())/(limit-1)
                 pages = range(1, int(final_page + 2))
+    # if session["user"] not recognised, user is logged out
     except KeyError:
         username=None
         fav_quotes2 = []
-            # for item in fav_quotes:
-            #     print(item)
-            # print(list(fav_quotes))
-            # print(quotes)
-            # Option1 https://stackoverflow.com/questions/48189684/how-to-parse-json-array-of-objects-in-python
-            # fav_quotes1 = []
-            # users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
-            # # users_fav_quotes = json.loads(str(data))
-            # for x in users_fav_quotes:
-            #     # need to put this in JSON format
-            #     fav_quotes1.append(mongo.db.quotes.find({"_id": x}))
-            #     # json.dumps(mongo.db.quotes.find({"_id": x}))
-            # print(fav_quotes1)
-            # print(quotes)
     return render_template(
         'quotes.html', 
         quotes=quotes,
         page=page,
         pages=pages,
-        # maximum=maximum,
         limit=limit, 
         qotd=qotd,
         final_page=final_page,
-        # fav_quotes=fav_quotes
         popular=popular,
         username=username,
         fav_quotes2=fav_quotes2
@@ -103,51 +86,38 @@ def get_quotes():
 # https://www.youtube.com/watch?v=XYx5sIbU8B4
 # https://www.youtube.com/watch?v=v2TSTKlrPwo
 @app.route("/add_fav_quote", methods=["GET", "POST"])        # is "Get" necessary?
+# funciton to update db with favourite quotes when star is checked
 def add_fav_quote():
+    # extract quote id from checkbox id
     quote_id = request.form['Checkbox'].split('_')[0][15:]
+    # extract username from checkbox id
     user = request.form['Checkbox'].split('_')[1]
-    print(quote_id)
-    print(user)
+    # if the request is recieved
     if request.method == "POST":
         # if check box is checked
         if request.form['Status'] == 'true':
             # Add quote id to users db
             mongo.db.users.update_one({"username": user},{ "$addToSet": { "fav_quote_ids": quote_id}})
-            print(quote_id)
         # else (box is unchecked)
         else:
             # Remove quote if from users db
             mongo.db.users.update_one({"username": user},{ "$pull": { "fav_quote_ids": quote_id}})
+    # Get 505 error when return None?
     return "hi"
-
-
-# def get_quotes():
-#     #     # https://www.youtube.com/watch?v=PSWf2TjTGNY
-#     qotd = mongo.db.quotes.find_one()
-#     page = request.args.get('page', 1, type=int)
-#     skips = 5 * (page - 1)
-#     quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(5)
-#     return render_template("quotes.html", quotes=quotes, qotd=qotd, page=page) 
-
-
-# @app.route("/get_quotes2")
-# def get_quotes2():
-#     qotd = mongo.db.quotes.find_one()
-#     # quotes = mongo.db.quotes.find().sort("Popularity", -1)
-#     # https://www.youtube.com/watch?v=PSWf2TjTGNY
-#     page = request.args.get('page',1,type=int)
-#     posts = Post.query.paginate(page=page, per_page=5)
-#     return render_template("quotes_copy.html", posts=posts, qotd=qotd) 
-
+    
 
 @app.route("/get_authors")
+# Function to get authors
 def get_authors():
+    # find authors for display box
     authors1 = mongo.db.authors.find()
+    # Find authors for index
     authors2 = mongo.db.authors.find().sort("Author")
     return render_template("authors.html", authors1=authors1, authors2=authors2) 
 
 
 @app.route("/search_quotes", methods=["GET", "POST"])
+# Function to search quotes
 def search_quotes():
     popular = True
     qotd = mongo.db.quotes.find_one()
@@ -155,25 +125,30 @@ def search_quotes():
     page = request.args.get('page', 1, type=int)
     limit = int(5)
     skips = limit * (page - 1)
-    # maximum = math.floor( (mongo.db.quotes.count_documents({})) / limit - 1)
     final_page = (mongo.db.quotes.count_documents(
         {"$text": {"$search": query}}))/(limit-1)
     pages = range(1, int(final_page + 2))
     quotes = mongo.db.quotes.find(
         {"$text": {"$search": query}}).skip(skips).limit(limit)
-    # feed through favoutite id's so only favourites are checked
+    # feed through favoutite id's so only favourite stars are checked
     try:
         # if user logged in 
         if session["user"]:
+            # set username value
             username=session["user"]
+            # So HTML can identify user is logged in
             popular = False
+            # get array of id's for users favourite quotes
             users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
             fav_quotes2 = []
+            # Extract quote id's and append to list
             for x in users_fav_quotes:
                 try:
                     fav_quotes2.append(x)
+                # if not in object id format, pass
                 except:
                     pass
+    # if session["user"] not recognised, user is logged out
     except KeyError:
         username=None
         popular = True
@@ -191,10 +166,11 @@ def search_quotes():
 
 
 @app.route("/search_authors", methods=["GET", "POST"])
+# Function to search authors
 def search_authors():
+    # get searched query
     searchTerm = request.form.get("query_author")
-    print(mongo.db.authors.find({"$text": {"$search":searchTerm }}))
-    # maximum = math.floor( (mongo.db.quotes.count_documents({})) / limit - 1)
+    # search query to index
     authors1 = mongo.db.authors.find({"$text": {"$search":searchTerm }})
     return render_template('authors.html', 
         authors1=authors1)
