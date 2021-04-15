@@ -1,7 +1,12 @@
 $(document).ready(function () {
     $('.sidenav').sidenav({ edge: "right" });
     $('.collapsible').collapsible();
+    $(".mood-button").click(function () {
+        $(this).addClass('button-clicked');
     });
+});
+
+
 
     // Moved to quotes.html
 // $('input[name=test_quote_star]').change(function(e) {
