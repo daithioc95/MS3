@@ -2,21 +2,53 @@
 {% block content %}
 
     <h2>Mood Board</h2>
-
-    <div class="row">
-      <button id = "mood-button1" class="col 4 mood-button">friendship</button>
-      <button id = "mood-button2" class="col 4 mood-button">inspirational</button>
-      <button id = "mood-button3"  class="col 4 mood-button">truth</button>
-      <button id = "mood-button4"  class="col 4 mood-button">knowledge</button>
-    </div>
-
-    <div class="row">
-      <button id = "mood-button5"  class="col 4 mood-button">love</button>
-      <button id = "mood-button6"  class="col 4 mood-button">forgiveness</button>
-      <button id = "mood-button7"  class="col 4 mood-button">strategy </button>
-      <button id = "mood-button8"  class="col 4 mood-button">art</button>
-    </div>
-
-<h3>Generating Quotes</h3>
     
+        <div class="row">
+            <button id = "mood-button1_friendship" class="col 4 mood-button">friendship</button>
+            <button id = "mood-button2_inspirational" class="col 4 mood-button">inspirational</button>
+            <button id = "mood-button3_truth"  class="col 4 mood-button">truth</button>
+            <button id = "mood-button4_knowledge"  class="col 4 mood-button">knowledge</button>
+        </div>
+
+        <div class="row">
+        <button id = "mood-button5_love"  class="col 4 mood-button">love</button>
+        <button id = "mood-button6_forgiveness"  class="col 4 mood-button">forgiveness</button>
+        <button id = "mood-button7_strategy"  class="col 4 mood-button">strategy</button>
+        <button id = "mood-button8_art"  class="col 4 mood-button">art</button>
+        </div>
+
+    <h3>Generating Quotes</h3>
+    <button id="generate-moods" class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+    </button>
+
+{% endblock %}
+{% block scripts %}
+<script>
+$(".mood-button").click(function () {
+        $(this).toggleClass('button-clicked');
+        var arr = [];
+        arr.push($(this).attr("id") + "_" +$(this).css('background-color'));
+        console.log(arr)
+$("#generate-moods").on('click', function(event){
+
+    });
+        console.log(arr)
+        $.ajax({
+                url: "{{ url_for('get_mood_quotes') }}",
+                type: "POST",
+                data: {'Button': arr
+                    },
+                success: function (response) {
+                    console.log(arr)
+                },
+                error: function (request, status, error) {
+                    console.log("Error: " + error)
+                }
+            });
+        });
+
+// unchecked rgb(255, 255, 0)
+// checked rgba(0, 0, 0, 0)
+</script>
 {% endblock %}

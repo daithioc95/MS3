@@ -73,6 +73,7 @@ def get_quotes():
         fav_quotes2=fav_quotes2
     )
 
+
 # function to return all quotes for logged in users
 @app.route("/get_all_quotes")
 def get_all_quotes():
@@ -384,7 +385,6 @@ def profile(username):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-
     if session["user"]:
         return render_template("profile.html", username=username)
 
@@ -399,9 +399,25 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/mood")
+@app.route("/get_mood", methods=["GET", "POST"])
 def get_mood():
+    # extract author id from checkbox id
+    # print(request.form)
+    # extract username from checkbox id
+    # user = request.form['Checkbox'].split('_')[1]
+    # searchTerms = request.form.get("query_author")
+    # mood_quotes = mongo.db.authors.find({"$text": {"$search":searchTerm }})
     return render_template("mood.html")
+
+
+@app.route("/get_mood_quotes", methods=["GET", "POST"])
+def get_mood_quotes():
+    mood_tags = []
+    ajax_data = list(request.form)
+    print(ajax_data)
+    # mood_tags.append(ObjectId(x))
+    return "hi"
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
