@@ -27,7 +27,6 @@ mongo = PyMongo(app)
 # Function to get quotes
 @app.route("/get_quotes")
 def get_quotes():
-    popular = True
     qotd = mongo.db.quotes.find_one()
     page = request.args.get('page', 1, type=int)
     limit = int(5)
@@ -38,8 +37,6 @@ def get_quotes():
     try:
         # if user logged in 
         if session["user"]:
-            # set username value
-            username = session["user"]
             # get array of id's for users favourite quotes
             users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
             fav_quotes1 = []
@@ -59,14 +56,11 @@ def get_quotes():
                 fav_quotes = mongo.db.quotes.find({"_id": {"$in":  fav_quotes1}})
                 # update the quotes documents
                 quotes = fav_quotes
-                # So HTML can identify user is logged in
-                popular = False
                 # Update pagitation for updated quotes
                 final_page = (quotes.count())/(limit-1)
                 pages = range(1, int(final_page + 2))
     # if session["user"] not recognised, user is logged out
     except KeyError:
-        username=None
         fav_quotes2 = []
     return render_template(
         'quotes.html', 
@@ -76,15 +70,12 @@ def get_quotes():
         limit=limit, 
         qotd=qotd,
         final_page=final_page,
-        popular=popular,
-        username=username,
         fav_quotes2=fav_quotes2
     )
 
 # function to return all quotes for logged in users
 @app.route("/get_all_quotes")
 def get_all_quotes():
-    popular = True
     qotd = mongo.db.quotes.find_one()
     page = request.args.get('page', 1, type=int)
     limit = int(5)
@@ -96,10 +87,6 @@ def get_all_quotes():
     try:
         # if user logged in 
         if session["user"]:
-            # set username value
-            username=session["user"]
-            # So HTML can identify user is logged in
-            popular = False
             # get array of id's for users favourite quotes
             users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
             fav_quotes2 = []
@@ -112,8 +99,6 @@ def get_all_quotes():
                     pass
     # if session["user"] not recognised, user is logged out
     except KeyError:
-        username=None
-        popular = True
         fav_quotes2 = []
     return render_template(
         'quotes.html', 
@@ -123,8 +108,6 @@ def get_all_quotes():
         limit=limit, 
         qotd=qotd,
         final_page=final_page,
-        popular=popular,
-        username=username,
         fav_quotes2=fav_quotes2
     )
 
@@ -190,7 +173,6 @@ def get_authors():
                 pages = range(1, int(final_page + 2))
     # if session["user"] not recognised, user is logged out
     except KeyError:
-        username=None
         fav_authors2 = []
     return render_template("authors.html", 
         authors1=authors1, 
@@ -265,7 +247,6 @@ def add_fav_author():
 @app.route("/search_quotes", methods=["GET", "POST"])
 # Function to search quotes
 def search_quotes():
-    popular = True
     qotd = mongo.db.quotes.find_one()
     query = request.form.get("query")
     page = request.args.get('page', 1, type=int)
@@ -280,10 +261,6 @@ def search_quotes():
     try:
         # if user logged in 
         if session["user"]:
-            # set username value
-            username=session["user"]
-            # So HTML can identify user is logged in
-            popular = False
             # get array of id's for users favourite quotes
             users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
             fav_quotes2 = []
@@ -296,8 +273,6 @@ def search_quotes():
                     pass
     # if session["user"] not recognised, user is logged out
     except KeyError:
-        username=None
-        popular = True
         fav_quotes2 = []
     return render_template('quotes.html',
                            quotes=quotes,
@@ -306,9 +281,7 @@ def search_quotes():
                            limit=limit,
                            qotd=qotd,
                            final_page=final_page,
-                           username=username,
-                           fav_quotes2=fav_quotes2,
-                           popular = popular)
+                           fav_quotes2=fav_quotes2)
 
 
 @app.route("/search_authors", methods=["GET", "POST"])
