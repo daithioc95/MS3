@@ -413,9 +413,14 @@ def get_mood():
 @app.route("/get_mood_quotes", methods=["GET", "POST"])
 def get_mood_quotes():
     mood_tags = []
-    ajax_data = list(request.form)
-    print(ajax_data)
-    # mood_tags.append(ObjectId(x))
+    # ajax_data = request.form.to_dict(flat=False).get('Button')
+    # ajax_data = request.form['Button']
+    # mood_tags.append(ajax_data)
+    searchterm = request.form['Button'].split('_')[1]
+    color = request.form['Button'].split('_')[2]
+    if color == "rgb(255, 255, 0)":
+        mood_tags.append(searchterm)
+    print(mood_tags)
     return "hi"
 
 

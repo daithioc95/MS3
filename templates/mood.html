@@ -27,20 +27,20 @@
 <script>
 $(".mood-button").click(function () {
         $(this).toggleClass('button-clicked');
-        var arr = [];
-        arr.push($(this).attr("id") + "_" +$(this).css('background-color'));
-        console.log(arr)
-$("#generate-moods").on('click', function(event){
+            // var arr = [];
+            // arr.push($(this).attr("id") + "_" +$(this).css('background-color'));
+            // console.log(arr)
+            button_info = $(this).attr("id") + "_" +$(this).css('background-color')
+// $("#generate-moods").on('click', function(event){
 
-    });
-        console.log(arr)
+//     });
         $.ajax({
                 url: "{{ url_for('get_mood_quotes') }}",
                 type: "POST",
-                data: {'Button': arr
+                data: {'Button': button_info
                     },
                 success: function (response) {
-                    console.log(arr)
+                    console.log(button_info)
                 },
                 error: function (request, status, error) {
                     console.log("Error: " + error)

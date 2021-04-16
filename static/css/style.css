@@ -405,12 +405,12 @@ label input[type="checkbox"] {
 }
 
 .mood-button:focus{
-    background-color: transparent; !important
+    background-color: transparent;
 }
 
 .button-clicked {
-  background-color: yellow; !important
+  background-color: yellow;
 }
 .button-clicked:focus {
-  background-color: yellow; !important
+  background-color: yellow;
 }
