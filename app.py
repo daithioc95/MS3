@@ -198,7 +198,6 @@ def get_all_authors():
     try:
         # if user logged in 
         if session["user"]:
-            # set username value
             # get array of id's for users favourite authors
             users_fav_authors = mongo.db.users.find_one({"username": session["user"]})["fav_author_ids"]
             fav_authors2 = []
@@ -287,12 +286,40 @@ def search_quotes():
 @app.route("/search_authors", methods=["GET", "POST"])
 # Function to search authors
 def search_authors():
+    page = request.args.get('page', 1, type=int)
+    limit = int(5)
+    skips = limit * (page - 1)
     # get searched query
     searchTerm = request.form.get("query_author")
+    final_page = (mongo.db.authors.count_documents(
+        {"$text": {"$search": searchTerm}}))/(limit-1)
+    pages = range(1, int(final_page + 2))
     # search query to index
     authors1 = mongo.db.authors.find({"$text": {"$search":searchTerm }})
+    # feed through favoutite id's so only favourite stars are checked
+    try:
+        # if user logged in 
+        if session["user"]:
+            # get array of id's for users favourite authors
+            users_fav_authors = mongo.db.users.find_one({"username": session["user"]})["fav_author_ids"]
+            fav_authors2 = []
+            # Extract author id's and append to list
+            for x in users_fav_authors:
+                try:
+                    fav_authors2.append(x)
+                # if not in object id format, pass
+                except:
+                    pass
+    # if session["user"] not recognised, user is logged out
+    except KeyError:
+        fav_authors2 = []
     return render_template('authors.html', 
-        authors1=authors1)
+                            authors1=authors1, 
+                            page=page, 
+                            pages=pages,
+                            limit=limit,
+                            final_page=final_page,
+                            fav_authors2=fav_authors2)
 
 
 @app.route("/register", methods=["GET", "POST"])
