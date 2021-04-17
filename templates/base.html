@@ -27,7 +27,7 @@
                             class="fas fa-bars"></i></i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('get_quotes') }}">Home</a></li>
-                    <li><a href="{{ url_for('get_mood') }}">Mood</a></li>
+                    <li><a href="{{ url_for('mood') }}">Mood</a></li>
                     <li><a href="{{ url_for('get_authors') }}">Authors</a></li>
                     <li><a href="#">Books</a></li>
                     {% if session.user %}
@@ -43,7 +43,7 @@
         </div>
         <ul class="sidenav" id="mobile-demo">
             <li><a href="{{ url_for('get_quotes') }}">Home</a></li>
-            <li><a href="{{ url_for('get_mood') }}">Mood</a></li>
+            <li><a href="{{ url_for('mood') }}">Mood</a></li>
             <li><a href="{{ url_for('get_authors') }}">Authors</a></li>
             <li><a href="#">Books</a></li>
             {% if session.user %}

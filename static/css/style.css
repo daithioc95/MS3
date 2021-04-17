@@ -398,7 +398,7 @@ label input[type="checkbox"] {
 }
 
 /* ---Mood Board--- */
-.mood-button{
+/* .mood-button{
     border: 2px solid black;
     width: 25%;
     height: 40px;
@@ -412,5 +412,25 @@ label input[type="checkbox"] {
   background-color: yellow;
 }
 .button-clicked:focus {
+  background-color: yellow;
+} */
+
+.hidden {position:absolute;visibility:hidden;opacity:0;}
+input[type=checkbox] + label {
+  color: #ccc;
+  /* font-style: italic; */
+    width: 20%;
+    /* height: 40px; */
+    margin: 5px;
+    /* display: table-cell; */
+    display: inline-table;
+    border: 2px solid black;
+    border: 10px;
+    text-align: center;
+        font-size: 32px;
+} 
+input[type=checkbox]:checked + label {
+  /* color: #f00; */
+  /* font-style: normal; */
   background-color: yellow;
 }

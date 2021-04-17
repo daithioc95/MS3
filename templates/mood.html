@@ -1,52 +1,83 @@
 {% extends "base.html" %}
 {% block content %}
-
+<main class="container">
     <h2>Mood Board</h2>
     
-        <div class="row">
-            <button id = "mood-button1_friendship" class="col 4 mood-button">friendship</button>
-            <button id = "mood-button2_inspirational" class="col 4 mood-button">inspirational</button>
-            <button id = "mood-button3_truth"  class="col 4 mood-button">truth</button>
-            <button id = "mood-button4_knowledge"  class="col 4 mood-button">knowledge</button>
+        <!-- <div class="row">
+            <button id="mood-button1_friendship" class="col 4 mood-button">friendship</button>
+            <button id="mood-button2_inspirational" class="col 4 mood-button">inspirational</button>
+            <button id="mood-button3_truth" class="col 4 mood-button">truth</button>
+            <button id="mood-button4_knowledge" class="col 4 mood-button">knowledge</button>
         </div>
+        
+        <div class="row">
+            <button id="mood-button5_love" class="col 4 mood-button">love</button>
+            <button id="mood-button6_forgiveness" class="col 4 mood-button">forgiveness</button>
+            <button id="mood-button7_strategy" class="col 4 mood-button">strategy</button>
+            <button id="mood-button8_art" class="col 4 mood-button">art</button>
+        </div> -->
 
+    <form>
         <div class="row">
-        <button id = "mood-button5_love"  class="col 4 mood-button">love</button>
-        <button id = "mood-button6_forgiveness"  class="col 4 mood-button">forgiveness</button>
-        <button id = "mood-button7_strategy"  class="col 4 mood-button">strategy</button>
-        <button id = "mood-button8_art"  class="col 4 mood-button">art</button>
+            <input type="checkbox" class="col 4 hidden" name="mood-button1_friendship" id="mood-button1_friendship"><label for="mood-button1_friendship">friendship</label>
+            <input type="checkbox" class="col 4 hidden" name="mood-button2_inspirational" id="mood-button2_inspirational"><label for="mood-button2_inspirational">inspirational</label>
+            <input type="checkbox" class="col 4 hidden" name="mood-button3_truth" id="mood-button3_truth"><label for="mood-button3_truth">truth</label>
+            <input type="checkbox" class="col 4 hidden" name="mood-button4_knowledge" id="mood-button4_knowledge"><label for="mood-button4_knowledge">knowledge</label>
         </div>
+        <div class="row">
+            <input type="checkbox" class="col 4 hidden" name="mood-button5_love" id="mood-button5_love"><label for="mood-button5_love">love</label>
+            <input type="checkbox" class="col 4 hidden" name="mood-button6_forgiveness" id="mood-button6_forgiveness"><label for="mood-button6_forgiveness">forgiveness</label>
+            <input type="checkbox" class="col 4 hidden" name="mood-button7_strategy" id="mood-button7_strategy"><label for="mood-button7_strategy">strategy</label>
+            <input type="checkbox" class="col 4 hidden" name="mood-button8_art" id="mood-button8_art"><label for="mood-button8_art">art</label>
+        </div>
+        
+        <button id="generate-moods" class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+
+    </button>
+    </form>
 
     <h3>Generating Quotes</h3>
-    <button id="generate-moods" class="btn waves-effect waves-light" type="submit" name="action">Submit
-        <i class="material-icons right">send</i>
-    </button>
-
+</main>
 {% endblock %}
 {% block scripts %}
 <script>
-$(".mood-button").click(function () {
-        $(this).toggleClass('button-clicked');
-            // var arr = [];
-            // arr.push($(this).attr("id") + "_" +$(this).css('background-color'));
-            // console.log(arr)
-            button_info = $(this).attr("id") + "_" +$(this).css('background-color')
-// $("#generate-moods").on('click', function(event){
 
+// $(".mood-button").click(function () {
+//         $(this).toggleClass('button-clicked');
+//             // var arr = [];
+//             // arr.push($(this).attr("id") + "_" +$(this).css('background-color'));
+//             // console.log(arr)
+//             button_info = $(this).attr("id") + "_" +$(this).css('background-color')
+//         $.ajax({
+//                 url: "{{ url_for('get_mood_quotes') }}",
+//                 type: "POST",
+//                 data: {'Button': button_info
+//                     },
+//                 success: function (response) {
+//                     console.log(button_info)
+//                 },
+//                 error: function (request, status, error) {
+//                     console.log("Error: " + error)
+//                 }
+//             });
+//         });
+
+
+// $("#generate-moods").on('click', function(event){
+//             $.ajax({
+//                 url: "{{ url_for('get_mood_quotes') }}",
+//                 type: "POST",
+//                 data: {'generate': true
+//                     },
+//                 success: function (response) {
+//                     console.log(button_info)
+//                 },
+//                 error: function (request, status, error) {
+//                     console.log("Error: " + error)
+//                 }
+//             });
 //     });
-        $.ajax({
-                url: "{{ url_for('get_mood_quotes') }}",
-                type: "POST",
-                data: {'Button': button_info
-                    },
-                success: function (response) {
-                    console.log(button_info)
-                },
-                error: function (request, status, error) {
-                    console.log("Error: " + error)
-                }
-            });
-        });
 
 // unchecked rgb(255, 255, 0)
 // checked rgba(0, 0, 0, 0)
