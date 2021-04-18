@@ -401,30 +401,26 @@ def logout():
 
 @app.route("/mood", methods=["GET", "POST"])
 def mood():
-    print(request.form.get)
-    # extract author id from checkbox id
-    # print(request.form)
-    # extract username from checkbox id
-    # user = request.form['Checkbox'].split('_')[1]
-    # searchTerms = request.form.get("query_author")
-    # mood_quotes = mongo.db.authors.find({"$text": {"$search":searchTerm }})
+    if request.method == 'POST':
+        search_tags = request.form.getlist('mood-button')
+        print(search_tags)
     return render_template("mood.html")
 
 
-@app.route("/get_mood_quotes", methods=["GET", "POST"])
-def get_mood_quotes():
-    mood_tags = []
-    generate = False
-    # ajax_data = request.form.to_dict(flat=False).get('Button')
-    # ajax_data = request.form['Button']
-    # mood_tags.append(ajax_data)
-    searchterm = request.form['Button'].split('_')[1]
-    color = request.form['Button'].split('_')[2]
-    if color == "rgb(255, 255, 0)":
-        mood_tags.append(searchterm)
-    if generate == True:
-        print(mood_tags)
-    return "hi"
+# @app.route("/get_mood_quotes", methods=["GET", "POST"])
+# def get_mood_quotes():
+#     mood_tags = []
+#     generate = False
+#     # ajax_data = request.form.to_dict(flat=False).get('Button')
+#     # ajax_data = request.form['Button']
+#     # mood_tags.append(ajax_data)
+#     searchterm = request.form['Button'].split('_')[1]
+#     color = request.form['Button'].split('_')[2]
+#     if color == "rgb(255, 255, 0)":
+#         mood_tags.append(searchterm)
+#     if generate == True:
+#         print(mood_tags)
+#     return "hi"
 
 
 if __name__ == "__main__":
