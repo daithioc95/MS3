@@ -2,22 +2,8 @@
 {% block content %}
 <main class="container">
     <h2>Mood Board</h2>
-    
-        <!-- <div class="row">
-            <button id="mood-button1_friendship" class="col 4 mood-button">friendship</button>
-            <button id="mood-button2_inspirational" class="col 4 mood-button">inspirational</button>
-            <button id="mood-button3_truth" class="col 4 mood-button">truth</button>
-            <button id="mood-button4_knowledge" class="col 4 mood-button">knowledge</button>
-        </div>
-        
-        <div class="row">
-            <button id="mood-button5_love" class="col 4 mood-button">love</button>
-            <button id="mood-button6_forgiveness" class="col 4 mood-button">forgiveness</button>
-            <button id="mood-button7_strategy" class="col 4 mood-button">strategy</button>
-            <button id="mood-button8_art" class="col 4 mood-button">art</button>
-        </div> -->
 
-    <form method="POST"  action="{{ url_for('mood') }}">
+    <form method="POST"  action="{{ url_for('get_mood') }}">
         <div class="row">
             <input type="checkbox" class="col 4 hidden" name="mood-button" value="friendship" id="mood-button1_friendship"><label for="mood-button1_friendship">friendship</label>
             <input type="checkbox" class="col 4 hidden" name="mood-button" value="inspirational" id="mood-button2_inspirational"><label for="mood-button2_inspirational">inspirational</label>
@@ -38,48 +24,93 @@
     </form>
 
     <h3>Generating Quotes</h3>
+
+{% for quote in quotes %}
+
+<!-- https://stackoverflow.com/questions/36674846/how-can-i-check-if-some-checkboxes-in-html-are-checked -->
+<!-- https://codepen.io/tiggr/pen/MWyJJEz -->
+<article class="hide-on-small-only article">
+    <blockquote>
+        <p>{{ quote.Quote }}
+        </p>
+        <cite>{{ quote.Author }}</cite>
+        <!-- <cite>{{ quote.Tags[1] }} </cite> -->
+        <div class="blockquote-author-image"
+            style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
+        </div>
+        <div class="star">
+            <form>
+                {% if session.user %}
+                <label for="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" class="indigo lighten-2 custom-checkbox">
+                    <input type="checkbox" id="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" name="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" category ="logged-in-quote-input" {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %} unchecked {% endfor %}/>
+                    <i class="glyphicon glyphicon-star-empty"></i>
+                    <i class="glyphicon glyphicon-star"></i>
+                </label>
+                {% else %}
+                <label for="dsk-id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
+                    <input type="checkbox" id="dsk-id-of-input{{ quote._id }}" name="dsk-id-of-input{{ quote._id }}" category ="logged-out-quote-input"/>
+                    <i class="glyphicon glyphicon-star-empty"></i>
+                    <i class="glyphicon glyphicon-star"></i>
+                </label>
+                {% endif %}
+            </form>
+        </div>
+    </blockquote>
+</article>
+
+<!-- https://codepen.io/chris22smith/pen/oQWavL -->
+
+<div class="hide-on-med-and-up animated-border-quote">
+    <blockquote>
+        <p>{{ quote.Quote }}</p>
+        <cite>{{ quote.Author }}</cite>
+        <div class="star">
+                {% if session.user %}
+                <label for="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" class="indigo lighten-2 custom-checkbox">
+                    <input type="checkbox" id="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" name="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" category ="logged-in-quote-input"  {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %} unchecked {% endfor %}/>
+                    <i class="glyphicon glyphicon-star-empty"></i>
+                    <i class="glyphicon glyphicon-star"></i>
+                </label>
+                {% else %}
+                <label for="mob-id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
+                    <input type="checkbox" id="mob-id-of-input{{ quote._id }}" name="mob-id-of-input{{ quote._id }}" category ="logged-out-quote-input"/>
+                    <i class="glyphicon glyphicon-star-empty"></i>
+                    <i class="glyphicon glyphicon-star"></i>
+                </label>
+                {% endif %}
+        </div>
+    </blockquote>
+</div>
+
+{% endfor %}
+
 </main>
 {% endblock %}
 {% block scripts %}
 <script>
-
-// {#$(".mood-button").click(function () {
-//         $(this).toggleClass('button-clicked');
-//             // var arr = [];
-//             // arr.push($(this).attr("id") + "_" +$(this).css('background-color'));
-//             // console.log(arr)
-//             button_info = $(this).attr("id") + "_" +$(this).css('background-color')
-//         $.ajax({
-//                 url: "{{ url_for('get_mood_quotes') }}",
-//                 type: "POST",
-//                 data: {'Button': button_info
-//                     },
-//                 success: function (response) {
-//                     console.log(button_info)
-//                 },
-//                 error: function (request, status, error) {
-//                     console.log("Error: " + error)
-//                 }
-//             });
-//         });
-
-
-// $("#generate-moods").on('click', function(event){
-//             $.ajax({
-//                 url: "{{ url_for('get_mood_quotes') }}",
-//                 type: "POST",
-//                 data: {'generate': true
-//                     },
-//                 success: function (response) {
-//                     console.log(button_info)
-//                 },
-//                 error: function (request, status, error) {
-//                     console.log("Error: " + error)
-//                 }
-//             });
-//     });
-
-// unchecked rgb(255, 255, 0)
-// checked rgba(0, 0, 0, 0) #}
+    $('input[category=logged-in-quote-input]').change(function () {
+        var checkbox_id = $(this).attr("id");
+            console.log("JS Post");
+            $.ajax({
+                url: "{{ url_for('add_fav_quote') }}",
+                type: "POST",
+                data: {'Checkbox': checkbox_id,
+                        'Status': $(this).prop("checked")
+                    },
+                success: function (response) {
+                    console.log(checkbox_id)
+                },
+                error: function (request, status, error) {
+                    console.log("Error: " + error)
+                }
+            }
+            );
+});
+$('input[category=logged-out-quote-input]').change(function (e) {
+            console.log("logged out fav");
+            if(e.target.checked){
+                alert("Please login or register to save favourites");
+            }
+    });
 </script>
 {% endblock %}

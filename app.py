@@ -399,29 +399,14 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/mood", methods=["GET", "POST"])
-def mood():
+@app.route("/get_mood", methods=["GET", "POST"])
+def get_mood():
+    quotes = {}
     if request.method == 'POST':
-        search_tags = request.form.getlist('mood-button')
-        print(search_tags)
-    return render_template("mood.html")
-
-
-# @app.route("/get_mood_quotes", methods=["GET", "POST"])
-# def get_mood_quotes():
-#     mood_tags = []
-#     generate = False
-#     # ajax_data = request.form.to_dict(flat=False).get('Button')
-#     # ajax_data = request.form['Button']
-#     # mood_tags.append(ajax_data)
-#     searchterm = request.form['Button'].split('_')[1]
-#     color = request.form['Button'].split('_')[2]
-#     if color == "rgb(255, 255, 0)":
-#         mood_tags.append(searchterm)
-#     if generate == True:
-#         print(mood_tags)
-#     return "hi"
-
+        search_tags = str(request.form.getlist('mood-button'))
+        # is this an appropriate way to search an array?
+        quotes = list(mongo.db.quotes.find({"$text": {"$search": search_tags}}))
+    return render_template("mood.html", quotes=quotes)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
