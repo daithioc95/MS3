@@ -31,11 +31,14 @@
 
 
 
-{% if session.user %}
+{% if session.user and get_fav == None %}
     <h2>{{ session['user'] }}'s Favourite Quotes</h2>
     <h3><a href="{{ url_for('get_quotes', get_fav = "No") }}">Discover quotes here</a></h3>
-{% else %}
+{% elif not session.user or get_fav == "No" %}
     <h2>Popular Quotes</h2>
+    {% if session.user %}
+        <h3><a href="{{ url_for('get_quotes') }}">Users Favourite Quotes</a></h3>
+    {% endif %}
 {% endif %}
 
 {% if quotes.count() > 0 %}

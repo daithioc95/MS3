@@ -130,7 +130,6 @@ def get_authors():
                     pass
             # if user has favourite authors
             if fav_authors1 and get_fav != "No":
-                print(get_fav)
                 # update the authors and pages with users favourites
                 fav_authors = mongo.db.authors.find({"_id": {"$in":  fav_authors1}}).skip(skips).limit(limit)
                 # update the authors documents

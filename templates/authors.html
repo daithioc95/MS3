@@ -21,11 +21,14 @@
 
 <main class="container">
 
-{% if session.user %}
+{% if session.user and get_fav == None %}
     <h2>{{ session['user'] }}'s Favourite authors</h2>
     <h3><a href="{{ url_for('get_authors', get_fav = "No") }}">Discover authors here</a></h3>
-{% else %}
+{% elif not session.user or get_fav == "No" %}
     <h2>Popular authors</h2>
+    {% if session.user %}
+        <h3><a href="{{ url_for('get_quotes') }}">Users Favourite Authors</a></h3>
+    {% endif %}
 {% endif %}
 
 {% if authors1.count() > 0 %}
