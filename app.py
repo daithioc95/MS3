@@ -330,8 +330,11 @@ def profile(username):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
+    fav_quotes1 = get_favourites(session["user"], "quote")
+    quotes = mongo.db.quotes.find({"_id": {"$in":  fav_quotes1}})
+    fav_quotes2 = get_starred(session["user"], "quote")
     if session["user"]:
-        return render_template("profile.html", username=username)
+        return render_template("profile.html", username=username, quotes=quotes, fav_quotes2=fav_quotes2)
 
     return redirect(url_for("login"))
 
