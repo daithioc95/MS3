@@ -434,3 +434,19 @@ input[type=checkbox]:checked + label {
   /* font-style: normal; */
   background-color: yellow;
 }
+
+/* -----Profile----- */
+.profile-image{
+    background: url("https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg") no-repeat center center;
+    height: 120px;
+    width: 100%;
+    background-size: cover;
+}
+
+@media screen and (min-width:570px) {
+    .profile-image{
+height: 160px;
+    }}
+.user-details{
+    /* margin-left: 20% !important; */
+}

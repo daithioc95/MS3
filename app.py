@@ -39,19 +39,9 @@ def get_quotes():
         # if user logged in 
         if session["user"]:
             # get array of id's for users favourite quotes
-            users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
-            fav_quotes1 = []
-            fav_quotes2 = []
-            for x in users_fav_quotes:
-                try:
-                    # add all favourite quotes in object id format to fav_quotes1
-                    fav_quotes1.append(ObjectId(x))
-                    # Store all favourited quotes for comparison
-                    fav_quotes2.append(x)
-                # if not in object id format, pass
-                except:
-                    pass
-            # if user has favourite quotes
+            # get array of id's for users favourite authors
+            fav_quotes1 = get_favourites(session["user"], "quote")
+            fav_quotes2 = get_starred(session["user"], "quote")
             if fav_quotes1 and get_fav != "No":
                 # update the quotes and pages with users favourites
                 fav_quotes = mongo.db.quotes.find({"_id": {"$in":  fav_quotes1}}).skip(skips).limit(limit)
@@ -116,19 +106,8 @@ def get_authors():
         # if user logged in 
         if session["user"]:
             # get array of id's for users favourite authors
-            users_fav_authors = mongo.db.users.find_one({"username": session["user"]})["fav_author_ids"]
-            fav_authors1 = []
-            fav_authors2 = []
-            for x in users_fav_authors:
-                try:
-                    # add all favourite authors in object id format to fav_authors1
-                    fav_authors1.append(ObjectId(x))
-                    # Store all favourited authors for check/unchecked stars
-                    fav_authors2.append(x)
-                # if not in object id format, pass
-                except:
-                    pass
-            # if user has favourite authors
+            fav_authors1 = get_favourites(session["user"], "author")
+            fav_authors2 = get_starred(session["user"], "author")
             if fav_authors1 and get_fav != "No":
                 # update the authors and pages with users favourites
                 fav_authors = mongo.db.authors.find({"_id": {"$in":  fav_authors1}}).skip(skips).limit(limit)
@@ -188,6 +167,24 @@ def get_starred(username, category):
         except:
             pass
     return (starred)
+
+
+def get_favourites(username, category):
+        # can we pass the below as a function to get fav_authors2?
+    # get array of id's for users favourite authors
+    if category == "author":
+        users_fav = mongo.db.users.find_one({"username": username})["fav_author_ids"]
+    if category == "quote":
+        users_fav = mongo.db.users.find_one({"username": username})["fav_quote_ids"]
+    favourites = []
+    # Extract author id's and append to list
+    for x in users_fav:
+        try:
+            favourites.append(ObjectId(x))
+        # if not in object id format, pass
+        except:
+            pass
+    return (favourites)
 
 
 @app.route("/search_quotes", methods=["GET", "POST"])
