@@ -101,6 +101,58 @@
 
 
     </div>
+
+    <div class="row">
+        <div class="col s12 m8 offset-m2">
+            <h2>{{ username }}'s Favourite Authors</h2>
+        </div>
+    </div>
+
+{% if authors.count() > 0 %}
+<div class="row">
+{% for author in authors %}
+<div class="col l6">
+<!-- https://codepen.io/tiggr/pen/MWyJJEz -->
+<article class="left-align article author-card">
+    <blockquote>
+        <cite>{{ author.Author }}</cite>
+            {% if author.Books[0] != '' %}
+                <p>Books: 
+                    {% for item in author.Books %}
+                    {{ item }}</p>
+                {% endfor %}
+            {% endif %}
+        <div class="blockquote-author-image"
+            style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
+        </div>
+        <div class="star">
+            <form>
+                {% if session.user %}
+                <label for="dsk-id-of-input{{ author._id }}_{{ session['user'] }}" class="indigo lighten-2 custom-checkbox">
+                    <input type="checkbox" id="dsk-id-of-input{{ author._id }}_{{ session['user'] }}" name="dsk-id-of-input{{ author._id }}_{{ session['user'] }}" category ="logged-in-author-input" {% for x in fav_authors2 if x|string == author._id|string %} checked {% else %} unchecked {% endfor %}/>
+                    <i class="glyphicon glyphicon-star-empty"></i>
+                    <i class="glyphicon glyphicon-star"></i>
+                </label>
+                {% else %}
+                <label for="dsk-id-of-input{{ author._id }}" class="indigo lighten-2 custom-checkbox">
+                    <input type="checkbox" id="dsk-id-of-input{{ author._id }}" name="dsk-id-of-input{{ author._id }}" category ="logged-out-author-input"/>
+                    <i class="glyphicon glyphicon-star-empty"></i>
+                    <i class="glyphicon glyphicon-star"></i>
+                </label>
+                {% endif %}
+            </form>
+        </div>
+    </blockquote>
+</article>
+</div>
+{% endfor %}
+
+</div>
+{% else %}
+<h3 class="red-text text-darken-4 center-align">No Favourites Found</h3>
+{% endif %}
+
+
 </main>
 {% endblock %}
 {% block scripts %}

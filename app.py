@@ -333,8 +333,11 @@ def profile(username):
     fav_quotes1 = get_favourites(session["user"], "quote")
     quotes = mongo.db.quotes.find({"_id": {"$in":  fav_quotes1}})
     fav_quotes2 = get_starred(session["user"], "quote")
+    fav_authors1 = get_favourites(session["user"], "author")
+    authors = mongo.db.authors.find({"_id": {"$in":  fav_authors1}})
+    fav_authors2 = get_starred(session["user"], "author")
     if session["user"]:
-        return render_template("profile.html", username=username, quotes=quotes, fav_quotes2=fav_quotes2)
+        return render_template("profile.html", username=username, quotes=quotes, fav_quotes2=fav_quotes2, authors=authors, fav_authors2=fav_authors2)
 
     return redirect(url_for("login"))
 
