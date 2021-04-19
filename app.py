@@ -210,6 +210,24 @@ def add_fav_author():
     return "hi"    
 
 
+def get_starred(username, category):
+    # can we pass the below as a function to get fav_authors2?
+    # get array of id's for users favourite authors
+    if category == "author":
+        users_fav = mongo.db.users.find_one({"username": username})["fav_author_ids"]
+    if category == "quote":
+        users_fav = mongo.db.users.find_one({"username": username})["fav_quote_ids"]
+    starred = []
+    # Extract author id's and append to list
+    for x in users_fav:
+        try:
+            starred.append(x)
+        # if not in object id format, pass
+        except:
+            pass
+    return (starred)
+
+
 @app.route("/search_quotes", methods=["GET", "POST"])
 # Function to search quotes
 def search_quotes():
@@ -228,15 +246,7 @@ def search_quotes():
         # if user logged in 
         if session["user"]:
             # get array of id's for users favourite quotes
-            users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
-            fav_quotes2 = []
-            # Extract quote id's and append to list
-            for x in users_fav_quotes:
-                try:
-                    fav_quotes2.append(x)
-                # if not in object id format, pass
-                except:
-                    pass
+            starred = get_starred(session["user"], "quote")
     # if session["user"] not recognised, user is logged out
     except KeyError:
         fav_quotes2 = []
@@ -247,25 +257,7 @@ def search_quotes():
                            limit=limit,
                            qotd=qotd,
                            final_page=final_page,
-                           fav_quotes2=fav_quotes2)
-
-
-def get_stared(username, category):
-    # can we pass the below as a function to get fav_authors2?
-    # get array of id's for users favourite authors
-    if category == "author":
-        users_fav_authors = mongo.db.users.find_one({"username": username})["fav_author_ids"]
-    if category == "quote":
-        users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
-    starred = []
-    # Extract author id's and append to list
-    for x in users_fav_authors:
-        try:
-            starred.append(x)
-        # if not in object id format, pass
-        except:
-            pass
-    return (starred)
+                           fav_quotes2=starred)
 
 
 @app.route("/search_authors", methods=["GET", "POST"])
@@ -285,7 +277,7 @@ def search_authors():
     try:
         # if user logged in 
         if session["user"]:
-            starred = get_stared(session["user"], "author")
+            starred = get_starred(session["user"], "author")
     # if session["user"] not recognised, user is logged out
     except KeyError:
         starred = []
