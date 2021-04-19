@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="container">
+    <div class="row">
+        <div class="col s12 m8 offset-m2">
+            <!-- <div class="card-panel"> -->
+                <h2>{{ author.Author }}</h2>
+                <!-- <h3 class="center-align light-blue-text text-darken-4">
+                    {{ username }}'s Profile
+                </h3> -->
+            <!-- </div> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s1">
+        </div>
+        <div class="col s4 m2 offset-m1">
+            <div class="profile-image">
+            </div>
+        </div>
+        <div class="col s1 m2">
+        </div>
+        <div class="user-details col s5">
+            <p>Name: {{ author.Author }}<br/></p>
+            <p>Books: {{ author.Books }}</p>
+        </div>
+        <div class="col s1">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m8 offset-m2">
+            <h2>{{ author.Author }}'s Quotes</h2>
+        </div>
+    </div>
+</main>
+{% endblock %}
+{% block scripts %}
+<script>
+    $('input[category=logged-in-quote-input]').change(function () {
+        var checkbox_id = $(this).attr("id");
+            console.log("JS Post");
+            $.ajax({
+                url: "{{ url_for('add_fav_quote') }}",
+                type: "POST",
+                data: {'Checkbox': checkbox_id,
+                        'Status': $(this).prop("checked")
+                    },
+                success: function (response) {
+                    console.log(checkbox_id)
+                },
+                error: function (request, status, error) {
+                    console.log("Error: " + error)
+                }
+            }
+            );
+});
+$('input[category=logged-out-quote-input]').change(function (e) {
+            console.log("logged out fav");
+            if(e.target.checked){
+                alert("Please login or register to save favourites");
+            }
+    });
+</script>
+{% endblock %}

@@ -249,6 +249,14 @@ def search_authors():
                             fav_authors2=starred)
 
 
+@app.route("/author_profile/<Author>", methods=["GET", "POST"])
+def author_profile(Author):
+    author = mongo.db.authors.find_one(
+        {"Author": Author})
+    return render_template("indiv_author.html",
+                            author=author)
+
+
 @app.route("/get_mood", methods=["GET", "POST"])
 def get_mood():
     quotes = {}
@@ -337,7 +345,12 @@ def profile(username):
     authors = mongo.db.authors.find({"_id": {"$in":  fav_authors1}})
     fav_authors2 = get_starred(session["user"], "author")
     if session["user"]:
-        return render_template("profile.html", username=username, quotes=quotes, fav_quotes2=fav_quotes2, authors=authors, fav_authors2=fav_authors2)
+        return render_template("profile.html", 
+                                username=username, 
+                                quotes=quotes, 
+                                fav_quotes2=fav_quotes2, 
+                                authors=authors, 
+                                fav_authors2=fav_authors2)
 
     return redirect(url_for("login"))
 

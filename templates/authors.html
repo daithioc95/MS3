@@ -36,7 +36,7 @@
 <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
 <article class="s12 m8 left-align article author-card">
     <blockquote>
-        <cite>{{ author.Author }}</cite>
+        <cite><a href="{{ url_for('author_profile', Author=author.Author) }}">{{ author.Author }}</a></cite>
             {% if author.Books[0] != '' %}
                 <p>Books: 
                     {% for item in author.Books %}
