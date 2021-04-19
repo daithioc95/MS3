@@ -21,9 +21,9 @@
 
 <main class="container">
 
-{% if session.user and url_for(request.endpoint) != url_for('get_all_authors') %}
+{% if session.user %}
     <h2>{{ session['user'] }}'s Favourite authors</h2>
-    <h3><a href="{{ url_for('get_all_authors') }}">Discover authors here</a></h3>
+    <h3><a href="{{ url_for('get_authors', get_fav = "No") }}">Discover authors here</a></h3>
 {% else %}
     <h2>Popular authors</h2>
 {% endif %}
@@ -65,25 +65,7 @@
 
 {% endfor %}
 
-
-{% if url_for(request.endpoint) == url_for('get_all_authors') %}
-<!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
-<ul class="pagination center-align">
-    <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('get_all_authors', page = page - 1) }}"><i class="fas fa-arrow-left"></i></a></li>
-        {% for p in pages %}
-            {% if  p == page  %}
-            <li class="active">
-                <a href="{{ url_for('get_all_authors', page = p) }}">{{ p }}</a>
-            </li>
-            {% else %}
-            <li class="">
-                <a href="{{ url_for('get_all_authors', page = p) }}">{{ p }}</a>
-            </li>
-            {% endif %}
-        {% endfor %}
-    <li class="{% if  page > final_page %}disabled{% endif %}"><a href="{{ url_for('get_all_authors', page = page + 1) }}"><i class="fas fa-arrow-right"></i></a></li>
-</ul>
-{% else %}
+{% if get_fav == None %}
 <!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
 <ul class="pagination center-align">
     <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('get_authors', page = page - 1) }}"><i class="fas fa-arrow-left"></i></a></li>
@@ -99,6 +81,22 @@
             {% endif %}
         {% endfor %}
     <li class="{% if  page > final_page %}disabled{% endif %}"><a href="{{ url_for('get_authors', page = page + 1) }}"><i class="fas fa-arrow-right"></i></a></li>
+</ul>
+{% else %}
+<ul class="pagination center-align">
+    <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('get_authors', page = page - 1) }}"><i class="fas fa-arrow-left"></i></a></li>
+        {% for p in pages %}
+            {% if  p == page  %}
+            <li class="active">
+                <a href="{{ url_for('get_authors', get_fav = "No", page = p) }}">{{ p }}</a>
+            </li>
+            {% else %}
+            <li class="">
+                <a href="{{ url_for('get_authors', get_fav = "No", page = p) }}">{{ p }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+    <li class="{% if  page > final_page %}disabled{% endif %}"><a href="{{ url_for('get_authors', get_fav = "No", page = page + 1) }}"><i class="fas fa-arrow-right"></i></a></li>
 </ul>
 {% endif %}
 

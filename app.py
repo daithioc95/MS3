@@ -135,9 +135,11 @@ def add_fav_quote():
     return "hi"
     
 
-@app.route("/get_authors")
+@app.route("/get_authors", methods=["GET"])
 # Function to get authors
 def get_authors():
+    get_fav = request.args.get('get_fav')
+    print(get_fav)
     page = request.args.get('page', 1, type=int)
     limit = int(5)
     skips = limit * (page - 1)
@@ -164,9 +166,10 @@ def get_authors():
                 except:
                     pass
             # if user has favourite authors
-            if fav_authors1:
+            if fav_authors1 and get_fav != "No":
+                print(get_fav)
                 # update the authors and pages with users favourites
-                fav_authors = mongo.db.authors.find({"_id": {"$in":  fav_authors1}})
+                fav_authors = mongo.db.authors.find({"_id": {"$in":  fav_authors1}}).skip(skips).limit(limit)
                 # update the authors documents
                 authors1 = fav_authors
                 # Update pagitation for updated quotes
@@ -182,45 +185,8 @@ def get_authors():
         pages=pages,
         limit=limit,
         final_page=final_page,
-        fav_authors2=fav_authors2)
-
-
-@app.route("/get_all_authors")
-# Function to get authors
-def get_all_authors():
-    page = request.args.get('page', 1, type=int)
-    limit = int(5)
-    skips = limit * (page - 1)
-    final_page = (mongo.db.authors.count_documents({}))/(limit-1)
-    pages = range(1, int(final_page + 2))
-    # find authors for display box
-    authors1 = mongo.db.authors.find().skip(skips).limit(limit)
-    # feed through favoutite id's so only favourite stars are checked
-    try:
-        # if user logged in 
-        if session["user"]:
-            # get array of id's for users favourite authors
-            users_fav_authors = mongo.db.users.find_one({"username": session["user"]})["fav_author_ids"]
-            fav_authors2 = []
-            # Extract author id's and append to list
-            for x in users_fav_authors:
-                try:
-                    fav_authors2.append(x)
-                # if not in object id format, pass
-                except:
-                    pass
-    # if session["user"] not recognised, user is logged out
-    except KeyError:
-        fav_authors2 = []
-    return render_template(
-        'authors.html', 
-        authors1=authors1, 
-        page=page,
-        pages=pages,
-        limit=limit,
-        final_page=final_page,
-        fav_authors2=fav_authors2
-    )
+        fav_authors2=fav_authors2,
+        get_fav=get_fav)
 
 
 @app.route("/add_fav_author", methods=["GET", "POST"])        # is "Get" necessary?
@@ -284,6 +250,24 @@ def search_quotes():
                            fav_quotes2=fav_quotes2)
 
 
+def get_stared(username, category):
+    # can we pass the below as a function to get fav_authors2?
+    # get array of id's for users favourite authors
+    if category == "author":
+        users_fav_authors = mongo.db.users.find_one({"username": username})["fav_author_ids"]
+    if category == "quote":
+        users_fav_quotes = mongo.db.users.find_one({"username": session["user"]})["fav_quote_ids"]
+    starred = []
+    # Extract author id's and append to list
+    for x in users_fav_authors:
+        try:
+            starred.append(x)
+        # if not in object id format, pass
+        except:
+            pass
+    return (starred)
+
+
 @app.route("/search_authors", methods=["GET", "POST"])
 # Function to search authors
 def search_authors():
@@ -301,26 +285,17 @@ def search_authors():
     try:
         # if user logged in 
         if session["user"]:
-            # get array of id's for users favourite authors
-            users_fav_authors = mongo.db.users.find_one({"username": session["user"]})["fav_author_ids"]
-            fav_authors2 = []
-            # Extract author id's and append to list
-            for x in users_fav_authors:
-                try:
-                    fav_authors2.append(x)
-                # if not in object id format, pass
-                except:
-                    pass
+            starred = get_stared(session["user"], "author")
     # if session["user"] not recognised, user is logged out
     except KeyError:
-        fav_authors2 = []
+        starred = []
     return render_template('authors.html', 
                             authors1=authors1, 
                             page=page, 
                             pages=pages,
                             limit=limit,
                             final_page=final_page,
-                            fav_authors2=fav_authors2)
+                            fav_authors2=starred)
 
 
 @app.route("/register", methods=["GET", "POST"])
