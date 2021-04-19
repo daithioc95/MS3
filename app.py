@@ -252,6 +252,25 @@ def search_authors():
                             fav_authors2=starred)
 
 
+@app.route("/get_mood", methods=["GET", "POST"])
+def get_mood():
+    quotes = {}
+    if request.method == 'POST':
+        search_tags = str(request.form.getlist('mood-button'))
+        # is this an appropriate way to search an array?
+        quotes = list(mongo.db.quotes.find({"$text": {"$search": search_tags}}))
+        # feed through favoutite id's so only favourite stars are checked
+    try:
+        # if user logged in 
+        if session["user"]:
+            # get array of id's for users favourite quotes
+            starred = get_starred(session["user"], "quote")
+    # if session["user"] not recognised, user is logged out
+    except KeyError:
+        starred = []
+    return render_template("mood.html", quotes=quotes, fav_quotes2=starred)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -327,15 +346,6 @@ def logout():
     session.pop("user")
     return redirect(url_for("login"))
 
-
-@app.route("/get_mood", methods=["GET", "POST"])
-def get_mood():
-    quotes = {}
-    if request.method == 'POST':
-        search_tags = str(request.form.getlist('mood-button'))
-        # is this an appropriate way to search an array?
-        quotes = list(mongo.db.quotes.find({"$text": {"$search": search_tags}}))
-    return render_template("mood.html", quotes=quotes)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
