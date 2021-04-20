@@ -107,11 +107,11 @@ h3{
 }
 
 
-/* .article,
+.article,
 .article::before,
 .article::after {
 	box-sizing: border-box;
-} */
+}
 
 .article {
 	max-width: 900px;
@@ -123,7 +123,8 @@ h3{
 	position: relative;
 	margin: 40px 0;
 	padding: 1.6em 2.4em .7em calc(1.4em + var(--quote-image-width));
-	font: italic 1.2rem var(--type-quote);
+    /* font: italic 1.2rem var(--type-quote); */
+    font-style: italic;
 	background: var(--quote-bg) no-repeat left / var(--quote-image-width);
 	border-radius: var(--border-rad);
 	border: 2px solid white;
@@ -131,13 +132,13 @@ h3{
 	text-indent: 1.6em;
 }
 
-/* @media (min-width: 768px) {
+@media (min-width: 768px) {
 	.article blockquote {
 		margin: 40px 60px;
 	}
-} */
+} 
 
-/* .article blockquote::before {
+ .article blockquote::before {
 	content: "";
 	pointer-events: none;
 	position: absolute;
@@ -150,9 +151,9 @@ h3{
 	box-shadow:
 		inset -2px -2px 1px hsl(0 0% 100%),
 		inset 2px 2px 4px hsl(0 0% 0% / 20%);
-} */
+} 
 
-/* .article blockquote::after {
+ .article blockquote::after {
 	content: "❝";
 	position: absolute;
 	z-index: 1;
@@ -171,7 +172,7 @@ h3{
 	font-size: 36px;
 	font-style: normal;
 	text-indent: 0;
-} */
+}
 
 .blockquote-author-image {
 	position: absolute;
@@ -226,9 +227,9 @@ h3{
     padding: 1em;
     position: relative;
     border-radius: 0.5em;}
-    /* .animated-border-quote:before {
+     .animated-border-quote:before {
       animation:clockwise 30s infinite linear;
-      background-color: #fff;
+      
       bottom:10%;
       content: "";
       left: 0;
@@ -237,9 +238,9 @@ h3{
       right: 0;
       top:10%;
     } */
-    /* .animated-border-quote:after {
+     .animated-border-quote:after {
       animation:counter 30s infinite linear;
-      background-color: #fff;
+      
       bottom:10%;
       content: "";
       left: 0;
@@ -247,7 +248,7 @@ h3{
       position: absolute;
       right: 0;
       top:10%;
-    } */
+    } 
     .animated-border-quote cite {
       display: block;
       font-style: italic;
