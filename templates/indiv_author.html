@@ -117,7 +117,7 @@
         <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
         <article class="left-align article author-card">
             <blockquote>
-                <cite>{{ similar_author.Author }}</cite>
+                <cite><a href="{{ url_for('author_profile', Author=similar_author.Author) }}">{{ similar_author.Author }}</a></cite>
                     {% if similar_author.Books[0] != '' %}
                         <p>Books: 
                             {% for item in similar_author.Books %}

@@ -33,7 +33,7 @@
     <blockquote>
         <p>{{ quote.Quote }}
         </p>
-        <cite>{{ quote.Author }}</cite>
+        <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
         <!-- <cite>{{ quote.Tags[1] }} </cite> -->
         <div class="blockquote-author-image"
             style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
@@ -63,7 +63,7 @@
 <div class="hide-on-med-and-up animated-border-quote">
     <blockquote>
         <p>{{ quote.Quote }}</p>
-        <cite>{{ quote.Author }}</cite>
+        <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
         <div class="star">
                 {% if session.user %}
                 <label for="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" class="indigo lighten-2 custom-checkbox">
