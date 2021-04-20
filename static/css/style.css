@@ -60,16 +60,21 @@ h3{
 	padding: .5rem;
 }
 
-.welcome-qotd blockquote:before,
+@media screen and (min-width:570px) {
+.welcome-qotd blockquote {
+	font-size: 40px;
+}}
+
+/* .welcome-qotd blockquote:before,
 .welcome-qotd blockquote:after {
 	position: absolute;
 	color: #f1efe6;
 	font-size: 8rem;
 	width: 4rem;
 	height: 4rem;
-}
+} */
 
-@media screen and (min-width:570px) {
+/* @media screen and (min-width:570px) {
  .welcome-qotd blockquote:before {
 	content: '“';
 	left: -5rem;
@@ -81,7 +86,7 @@ h3{
 	right: -5rem;
 	bottom: 1rem;
 }
-}
+} */
 
 .welcome-qotd cite {
 	line-height: 3;
@@ -102,11 +107,11 @@ h3{
 }
 
 
-.article,
+/* .article,
 .article::before,
 .article::after {
 	box-sizing: border-box;
-}
+} */
 
 .article {
 	max-width: 900px;
@@ -126,13 +131,13 @@ h3{
 	text-indent: 1.6em;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
 	.article blockquote {
 		margin: 40px 60px;
 	}
-}
+} */
 
-.article blockquote::before {
+/* .article blockquote::before {
 	content: "";
 	pointer-events: none;
 	position: absolute;
@@ -145,9 +150,9 @@ h3{
 	box-shadow:
 		inset -2px -2px 1px hsl(0 0% 100%),
 		inset 2px 2px 4px hsl(0 0% 0% / 20%);
-}
+} */
 
-.article blockquote::after {
+/* .article blockquote::after {
 	content: "❝";
 	position: absolute;
 	z-index: 1;
@@ -166,7 +171,7 @@ h3{
 	font-size: 36px;
 	font-style: normal;
 	text-indent: 0;
-}
+} */
 
 .blockquote-author-image {
 	position: absolute;
@@ -212,13 +217,15 @@ h3{
   margin:1em;
   max-width:20em;
   overflow:hidden;}
- .animated-border-quote blockquote {
-    background-color:#F7F8FF;
-    border: solid 2px #757575;
+
+    .animated-border-quote blockquote {
+    background-color: #F7F8FF;
+    border: solid 1px #6B8BF5;
     display: inline-block;
     margin: 0;
     padding: 1em;
-    position: relative;}
+    position: relative;
+    border-radius: 0.5em;}
     /* .animated-border-quote:before {
       animation:clockwise 30s infinite linear;
       background-color: #fff;
@@ -254,6 +261,7 @@ h3{
 
 .animated-border-quote p{
         margin-right: 35px;
+        font-style: italic;
 }
 .animated-border-quote .star{
     position: absolute;
@@ -471,4 +479,7 @@ height: 160px;
     }}
 .user-details{
     /* margin-left: 20% !important; */
+}
+.link-heading{
+    font-weight: bold;
 }
