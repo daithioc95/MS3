@@ -325,8 +325,12 @@ label input[type="checkbox"] {
     font-style: italic; 
 }
 
-/* ---Author Welcomoe Search--- */
+/* ---Author & Quotes Welcomoe Search--- */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+.quotes-search-form{
+    position: relative;
+}
 
 .authors-seach body{
   background: #f2f2f2;
@@ -339,9 +343,9 @@ label input[type="checkbox"] {
   display: flex;
 }
 
-#query_author {
+#query_author, #query_quote {
   width: 100%;
-    border: 1px solid #fff;
+border: 1px solid #fff;
   border-right: none;
   padding: 5px;
   height: 20px;

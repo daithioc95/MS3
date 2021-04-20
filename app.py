@@ -191,7 +191,7 @@ def get_favourites(username, category):
 # Function to search quotes
 def search_quotes():
     qotd = mongo.db.quotes.find_one()
-    query = request.form.get("query")
+    query = request.form.get("query_quote")
     page = request.args.get('page', 1, type=int)
     limit = int(5)
     skips = limit * (page - 1)
