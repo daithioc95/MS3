@@ -483,3 +483,19 @@ height: 160px;
 .link-heading{
     font-weight: bold;
 }
+
+#toast-container {
+  top: auto !important;
+  right: auto !important;
+  bottom: 90%;
+  left:40%;  
+}
+
+@media screen and (max-width:570px) {
+#toast-container {
+  top: auto !important;
+  right: auto !important;
+  bottom: 50%;
+  left:20% !important;  
+  min-width: 10%;
+}}

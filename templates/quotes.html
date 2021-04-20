@@ -177,7 +177,16 @@
 {% endblock %}
 {% block scripts %}
 <script>
+    // https://materializecss.com/toasts.html
+    // https://www.tutorialrepublic.com/faq/how-to-check-a-checkbox-is-checked-or-not-using-jquery.php
+    // https://stackoverflow.com/questions/33566041/materialize-css-change-position-of-toast-dialog
     $('input[category=logged-in-quote-input]').change(function () {
+        if($(this).prop("checked") == true){
+            M.toast({html: 'Added to Favourites'});
+            }
+        else if($(this).prop("checked") == false){
+            M.toast({html: 'Removed from Favourites'});
+            }
         var checkbox_id = $(this).attr("id");
             console.log("JS Post");
             $.ajax({

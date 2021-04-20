@@ -89,6 +89,12 @@
 {% block scripts %}
 <script>
     $('input[category=logged-in-quote-input]').change(function () {
+        if($(this).prop("checked") == true){
+            M.toast({html: 'Added to Favourites'});
+            }
+        else if($(this).prop("checked") == false){
+            M.toast({html: 'Removed from Favourites'});
+            }
         var checkbox_id = $(this).attr("id");
             console.log("JS Post");
             $.ajax({
@@ -99,6 +105,12 @@
                     },
                 success: function (response) {
                     console.log(checkbox_id)
+                    if($(this).prop("checked") == true){
+            M.toast({html: 'Added to Favourites'});
+            }
+        else if($(this).prop("checked") == false){
+            M.toast({html: 'Removed from Favourites'});
+            }
                 },
                 error: function (request, status, error) {
                     console.log("Error: " + error)
