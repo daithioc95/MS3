@@ -1,9 +1,23 @@
 /* --- Fonts --  */
-h2{
-    color: var(--accent-color);
+
+/* color pallet: https://mycolor.space/?hex=%237986CB&sub=1
+https://coolors.co/7986cb #7CA4FF #E6F4F1 #00225A*/
+
+body{
+    background-color: #E6F4F1;
 }
 
-.reset{
+h2{
+    color: #2F4381;
+    font-size: 30px;
+}
+
+h3{
+    color: #7CA4FF;
+    font-size: 20px;
+}
+
+/* .reset{
         background-color: #CC6F76;
 }
 
@@ -11,7 +25,7 @@ h2{
     .reset{
         margin-bottom: 5px;
 }
-}
+} */
 
 /* --- Welcome image --  */
 
@@ -20,6 +34,7 @@ h2{
 .welcome-qotd html, .welcome-qotd body {
 	height: 100%;
     margin: 0;
+    text-align: center;
 }
 
 .welcome-qotd {
@@ -28,7 +43,8 @@ h2{
 	color: #3f3f5a;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+    align-items: center;
+    text-align: center;
     justify-content: center;
     margin-top: 25px;
 }
@@ -81,7 +97,8 @@ h2{
 	--quote-image-width: 140px;
 	--border-rad: 7px;
 	--accent-color: #7986cb;
-    --quote-bg: hsl(0 0% 97%);
+    /* --quote-bg: hsl(0 0% 97%); */
+    --quote-bg: #F7F8FF;
 }
 
 
@@ -196,7 +213,7 @@ h2{
   max-width:20em;
   overflow:hidden;}
  .animated-border-quote blockquote {
-    background-color:#fff;
+    background-color:#F7F8FF;
     border: solid 2px #757575;
     display: inline-block;
     margin: 0;
@@ -381,7 +398,8 @@ border: 1px solid #fff;
 }
 
 @media screen and (max-width:570px) {
-.wrap{top: 35%;}}
+.wrap{top: 35%;
+        width: 50%;}}
 
 /* Author Card */
 .author-card cite{

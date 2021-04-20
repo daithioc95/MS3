@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-<main class="container">
-
-<!-- embed https://codepen.io/JoeHastings/pen/MOdRVm -->
 <div class="row">
     <div class="welcome-qotd">
         <blockquote class="qotd">{{ qotd.Quote }}</blockquote>
         <cite class="qotd">{{ qotd.Author }}</cite>
     </div>
 </div>
+<main class="container">
+
+<!-- embed https://codepen.io/JoeHastings/pen/MOdRVm -->
+
 
 <!-- <div class="row card-panel grey lighten-5">
     <form action="{{ url_for('search_quotes') }}" method="POST" class="col s12">
@@ -43,12 +44,12 @@
 
 <div class="row">
 {% if session.user and get_fav == None and fav_quotes2 %}
-    <h2>{{ session['user'] }}'s Favourite quotes</h2>
+    <h2>{{ session['user'] }}'s favourite quotes</h2>
     <h3><a href="{{ url_for('get_quotes', get_fav = "No") }}">Discover quotes here</a></h3>
 {% elif not session.user or get_fav == "No" or not fav_quotes2 %}
     <h2>Popular quotes</h2>
     {% if session.user and fav_quotes2 %}
-        <h3><a href="{{ url_for('get_quotes') }}">{{ session['user'] }}'s Favourite quotes</a></h3>
+        <h3><a href="{{ url_for('get_quotes') }}">{{ session['user'] }}'s favourite quotes</a></h3>
     {% endif %}
 {% elif url_for(request.endpoint) == url_for('search_quotes') %}
     <h2>Results</h2>
