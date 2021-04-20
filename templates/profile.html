@@ -2,14 +2,14 @@
 {% block content %}
 <main class="container">
     <div class="row">
-        <div class="col s12 m8 offset-m2">
+        <!-- <div class="col s12 m8 offset-m2"> -->
             <!-- <div class="card-panel"> -->
                 <h2>{{ username }}'s Profile</h2>
                 <!-- <h3 class="center-align light-blue-text text-darken-4">
                     {{ username }}'s Profile
                 </h3> -->
             <!-- </div> -->
-        </div>
+        <!-- </div> -->
     </div>
     <div class="row">
         <div class="col s1">
@@ -28,9 +28,9 @@
         </div>
     </div>
     <div class="row">
-        <div class="col s12 m8 offset-m2">
+        <!-- <div class="col s12 m8 offset-m2"> -->
             <h2>{{ username }}'s Favourite Quotes</h2>
-        </div>
+        <!-- </div> -->
     </div>
     <div class="row">
 
@@ -103,9 +103,9 @@
     </div>
 
     <div class="row">
-        <div class="col s12 m8 offset-m2">
+        <!-- <div class="col s12 m8 offset-m2"> -->
             <h2>{{ username }}'s Favourite Authors</h2>
-        </div>
+        <!-- </div> -->
     </div>
 
 {% if authors.count() > 0 %}
@@ -176,6 +176,30 @@
             );
 });
 $('input[category=logged-out-quote-input]').change(function (e) {
+            console.log("logged out fav");
+            if(e.target.checked){
+                alert("Please login or register to save favourites");
+            }
+    });
+    $('input[category=logged-in-author-input]').change(function () {
+        var checkbox_id = $(this).attr("id");
+            console.log("JS Post");
+            $.ajax({
+                url: "{{ url_for('add_fav_author') }}",
+                type: "POST",
+                data: {'Checkbox': checkbox_id,
+                        'Status': $(this).prop("checked")
+                    },
+                success: function (response) {
+                    console.log(checkbox_id)
+                },
+                error: function (request, status, error) {
+                    console.log("Error: " + error)
+                }
+            }
+            );
+});
+$('input[category=logged-out-author-input]').change(function (e) {
             console.log("logged out fav");
             if(e.target.checked){
                 alert("Please login or register to save favourites");

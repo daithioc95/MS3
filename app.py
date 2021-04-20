@@ -253,8 +253,24 @@ def search_authors():
 def author_profile(Author):
     author = mongo.db.authors.find_one(
         {"Author": Author})
+    quotes = mongo.db.quotes.find({"Author": Author})
+    Categories = mongo.db.authors.find_one({"Author": Author})["Categories"]
+    similar_authors = mongo.db.authors.find({"Categories": {"$in":  Categories}})
+    try:
+        # if user logged in 
+        if session["user"]:
+            fav_quotes2 = get_starred(session["user"], "quote")
+            fav_authors2 = get_starred(session["user"], "author")
+    # if session["user"] not recognised, user is logged out
+    except KeyError:
+        fav_quotes2 = []
+        fav_authors2 = []
     return render_template("indiv_author.html",
-                            author=author)
+                            author=author, 
+                            quotes=quotes, 
+                            fav_quotes2=fav_quotes2, 
+                            similar_authors=similar_authors,
+                            fav_authors2=fav_authors2)
 
 
 @app.route("/get_mood", methods=["GET", "POST"])
