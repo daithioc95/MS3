@@ -42,7 +42,7 @@
 </form>
 </div>
 
-<div class="row">
+<!-- <div class="row"> -->
 {% if session.user and get_fav == None and fav_quotes2 %}
     <h2>{{ session['user'] }}'s favourite quotes</h2>
     <h3 class="link-heading"><a href="{{ url_for('get_quotes', get_fav = "No") }}">Discover quotes here</a></h3>
@@ -54,7 +54,7 @@
 {% elif url_for(request.endpoint) == url_for('search_quotes') %}
     <h2>Results</h2>
 {% endif %}
-</div>
+<!-- </div> -->
 
 {% if quotes.count() > 0 %}
 {% for quote in quotes %}
