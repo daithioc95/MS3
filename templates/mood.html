@@ -3,7 +3,7 @@
 <main class="container">
     <h2>Mood Board</h2>
 
-    <form method="POST"  action="{{ url_for('get_mood') }}">
+    <form method="POST"  action="{{ url_for('generate_mood', generated = "yes") }}">
         <div class="row">
             <input type="checkbox" class="col 4 hidden" name="mood-button" value="friendship" id="mood-button1_friendship"><label for="mood-button1_friendship">friendship</label>
             <input type="checkbox" class="col 4 hidden" name="mood-button" value="inspirational" id="mood-button2_inspirational"><label for="mood-button2_inspirational">inspirational</label>
@@ -83,6 +83,24 @@
 </div>
 
 {% endfor %}
+
+{% if generated and search_tags %}
+<ul class="pagination center-align">
+    <li class="{% if  page < 1 %}disabled{% endif %}"><a href="{{ url_for('generate_mood', page = page - 1, search_tags=search_tags ) }}"><i class="fas fa-arrow-left"></i></a></li>
+        {% for p in pages %}
+            {% if  p == page  %}
+            <li class="active">
+                <a href="{{ url_for('generate_mood', page = p, search_tags=search_tags) }}">{{ p }}</a>
+            </li>
+            {% else %}
+            <li class="">
+                <a href="{{ url_for('generate_mood', page = p, search_tags=search_tags) }}">{{ p }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+    <li class="{% if  page > final_page %}disabled{% endif %}"><a href="{{ url_for('generate_mood', page = page + 1, search_tags=search_tags ) }}"><i class="fas fa-arrow-right"></i></a></li>
+</ul>
+{% endif %}
 
 </main>
 {% endblock %}

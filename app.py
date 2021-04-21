@@ -50,6 +50,10 @@ def get_quotes():
                 # Update pagitation for updated quotes
                 final_page = (quotes.count())/(limit-1)
                 pages = range(1, int(final_page + 2))
+                print(skips)
+                print(final_page)
+                print(quotes.count())
+                print(pages)
     # if session["user"] not recognised, user is logged out
     except KeyError:
         fav_quotes2 = []
@@ -94,7 +98,7 @@ def add_fav_quote():
 def get_authors():
     get_fav = request.args.get('get_fav')
     page = request.args.get('page', 1, type=int)
-    limit = int(5)
+    limit = int(6)
     skips = limit * (page - 1)
     final_page = (mongo.db.authors.count_documents({}))/(limit-1)
     pages = range(1, int(final_page + 2))
@@ -223,7 +227,7 @@ def search_quotes():
 # Function to search authors
 def search_authors():
     page = request.args.get('page', 1, type=int)
-    limit = int(5)
+    limit = int(6)
     skips = limit * (page - 1)
     # get searched query
     searchTerm = request.form.get("query_author")
@@ -273,14 +277,24 @@ def author_profile(Author):
                             fav_authors2=fav_authors2)
 
 
-@app.route("/get_mood", methods=["GET", "POST"])
+@app.route("/get_mood")
 def get_mood():
-    quotes = {}
-    if request.method == 'POST':
+    return render_template("mood.html")
+
+@app.route("/generate_mood", methods=["GET", "POST"])
+def generate_mood():
+    page = request.args.get('page', 1, type=int)
+    limit = int(5)
+    skips = limit * (page - 1)
+    generated = request.args.get('generated')
+    if generated == "yes":
         search_tags = str(request.form.getlist('mood-button'))
-        # is this an appropriate way to search an array?
-        quotes = list(mongo.db.quotes.find({"$text": {"$search": search_tags}}))
-        # feed through favoutite id's so only favourite stars are checked
+    else:
+        search_tags = request.args.get('search_tags')
+    final_page = (mongo.db.quotes.count_documents({"$text": {"$search": search_tags}}))/(limit-1)
+    pages = range(1, int(final_page + 2))
+    quotes = mongo.db.quotes.find({"$text": {"$search": search_tags}}).skip(skips).limit(limit)
+    generated = True
     try:
         # if user logged in 
         if session["user"]:
@@ -289,7 +303,14 @@ def get_mood():
     # if session["user"] not recognised, user is logged out
     except KeyError:
         starred = []
-    return render_template("mood.html", quotes=quotes, fav_quotes2=starred)
+    return render_template("mood.html", 
+                            quotes=quotes, 
+                            fav_quotes2=starred, 
+                            page=page, 
+                            pages=pages, 
+                            final_page=final_page, 
+                            generated=generated,
+                            search_tags=search_tags)
 
 
 @app.route("/register", methods=["GET", "POST"])

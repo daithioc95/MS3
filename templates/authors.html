@@ -89,7 +89,7 @@
             </li>
             {% endif %}
         {% endfor %}
-    <li class="{% if  page > final_page %}disabled{% endif %}"><a href="{{ url_for('get_authors', page = page + 1) }}"><i class="fas fa-arrow-right"></i></a></li>
+    <li class="{% if  page >= final_page %}disabled{% endif %}"><a href="{{ url_for('get_authors', page = page + 1) }}"><i class="fas fa-arrow-right"></i></a></li>
 </ul>
 {% else %}
 <ul class="pagination center-align">
@@ -105,7 +105,7 @@
             </li>
             {% endif %}
         {% endfor %}
-    <li class="{% if  page > final_page %}disabled{% endif %}"><a href="{{ url_for('get_authors', get_fav = "No", page = page + 1) }}"><i class="fas fa-arrow-right"></i></a></li>
+    <li class="{% if  page >= final_page %}disabled{% endif %}"><a href="{{ url_for('get_authors', get_fav = "No", page = page + 1) }}"><i class="fas fa-arrow-right"></i></a></li>
 </ul>
 {% endif %}
 
