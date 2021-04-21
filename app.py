@@ -32,8 +32,8 @@ def get_quotes():
     page = request.args.get('page', 1, type=int)
     limit = int(5)
     skips = limit * (page - 1)
-    final_page = (mongo.db.quotes.count_documents({}))/(limit-1)
-    pages = range(1, int(final_page + 2))
+    final_page = math.ceil((mongo.db.quotes.count_documents({}))/(limit))
+    pages = range(1, int(final_page + 1))
     quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(limit)
     try:
         # if user logged in 
@@ -48,12 +48,8 @@ def get_quotes():
                 # update the quotes documents
                 quotes = fav_quotes
                 # Update pagitation for updated quotes
-                final_page = (quotes.count())/(limit-1)
-                pages = range(1, int(final_page + 2))
-                print(skips)
-                print(final_page)
-                print(quotes.count())
-                print(pages)
+                final_page = math.ceil((quotes.count())/(limit))
+                pages = range(1, int(final_page + 1))
     # if session["user"] not recognised, user is logged out
     except KeyError:
         fav_quotes2 = []
@@ -100,8 +96,8 @@ def get_authors():
     page = request.args.get('page', 1, type=int)
     limit = int(6)
     skips = limit * (page - 1)
-    final_page = (mongo.db.authors.count_documents({}))/(limit-1)
-    pages = range(1, int(final_page + 2))
+    final_page = math.ceil((mongo.db.authors.count_documents({}))/(limit))
+    pages = range(1, int(final_page + 1))
     # find authors for display box
     authors1 = mongo.db.authors.find().skip(skips).limit(limit)
     # Find authors for index
@@ -118,8 +114,8 @@ def get_authors():
                 # update the authors documents
                 authors1 = fav_authors
                 # Update pagitation for updated quotes
-                final_page = (authors1.count())/(limit-1)
-                pages = range(1, int(final_page + 2))
+                final_page = math.ceil((authors1.count())/(limit))
+                pages = range(1, int(final_page + 1))
     # if session["user"] not recognised, user is logged out
     except KeyError:
         fav_authors2 = []
@@ -199,9 +195,9 @@ def search_quotes():
     page = request.args.get('page', 1, type=int)
     limit = int(5)
     skips = limit * (page - 1)
-    final_page = (mongo.db.quotes.count_documents(
-        {"$text": {"$search": query}}))/(limit-1)
-    pages = range(1, int(final_page + 2))
+    final_page = math.ceil((mongo.db.quotes.count_documents(
+        {"$text": {"$search": query}}))/(limit))
+    pages = range(1, int(final_page + 1))
     quotes = mongo.db.quotes.find(
         {"$text": {"$search": query}}).skip(skips).limit(limit)
     # feed through favoutite id's so only favourite stars are checked
@@ -231,9 +227,9 @@ def search_authors():
     skips = limit * (page - 1)
     # get searched query
     searchTerm = request.form.get("query_author")
-    final_page = (mongo.db.authors.count_documents(
-        {"$text": {"$search": searchTerm}}))/(limit-1)
-    pages = range(1, int(final_page + 2))
+    final_page = math.ceil((mongo.db.authors.count_documents(
+        {"$text": {"$search": searchTerm}}))/(limit-1))
+    pages = range(1, int(final_page + 1))
     # search query to index
     authors1 = mongo.db.authors.find({"$text": {"$search":searchTerm }})
     # feed through favoutite id's so only favourite stars are checked
@@ -291,8 +287,8 @@ def generate_mood():
         search_tags = str(request.form.getlist('mood-button'))
     else:
         search_tags = request.args.get('search_tags')
-    final_page = (mongo.db.quotes.count_documents({"$text": {"$search": search_tags}}))/(limit-1)
-    pages = range(1, int(final_page + 2))
+    final_page = math.ceil((mongo.db.quotes.count_documents({"$text": {"$search": search_tags}}))/(limit))
+    pages = range(1, int(final_page + 1))
     quotes = mongo.db.quotes.find({"$text": {"$search": search_tags}}).skip(skips).limit(limit)
     generated = True
     try:
