@@ -190,8 +190,12 @@ def get_favourites(username, category):
 @app.route("/search_quotes", methods=["GET", "POST"])
 # Function to search quotes
 def search_quotes():
+    generated = request.args.get('generated')
+    if generated == "yes":
+        query = request.form.get("query_quote")
+    else:
+        query = request.args.get('query_quote')
     qotd = mongo.db.quotes.find_one()
-    query = request.form.get("query_quote")
     page = request.args.get('page', 1, type=int)
     limit = int(5)
     skips = limit * (page - 1)
@@ -201,6 +205,7 @@ def search_quotes():
     quotes = mongo.db.quotes.find(
         {"$text": {"$search": query}}).skip(skips).limit(limit)
     # feed through favoutite id's so only favourite stars are checked
+    searched = True
     try:
         # if user logged in 
         if session["user"]:
@@ -216,23 +221,30 @@ def search_quotes():
                            limit=limit,
                            qotd=qotd,
                            final_page=final_page,
-                           fav_quotes2=starred)
+                           fav_quotes2=starred,
+                           query_quote = query,
+                           searched=searched)
 
 
 @app.route("/search_authors", methods=["GET", "POST"])
 # Function to search authors
 def search_authors():
+    generated = request.args.get('generated')
+    if generated == "yes":
+        searchTerm = request.form.get("query_author")
+    else:
+        searchTerm = request.args.get('query_author')
     page = request.args.get('page', 1, type=int)
     limit = int(6)
     skips = limit * (page - 1)
     # get searched query
-    searchTerm = request.form.get("query_author")
     final_page = math.ceil((mongo.db.authors.count_documents(
         {"$text": {"$search": searchTerm}}))/(limit-1))
     pages = range(1, int(final_page + 1))
     # search query to index
-    authors1 = mongo.db.authors.find({"$text": {"$search":searchTerm }})
+    authors1 = mongo.db.authors.find({"$text": {"$search":searchTerm }}).skip(skips).limit(limit)
     # feed through favoutite id's so only favourite stars are checked
+    searched = True
     try:
         # if user logged in 
         if session["user"]:
@@ -246,7 +258,9 @@ def search_authors():
                             pages=pages,
                             limit=limit,
                             final_page=final_page,
-                            fav_authors2=starred)
+                            fav_authors2=starred,
+                            query_author = searchTerm,
+                            searched=searched)
 
 
 @app.route("/author_profile/<Author>", methods=["GET", "POST"])
@@ -290,6 +304,7 @@ def generate_mood():
     final_page = math.ceil((mongo.db.quotes.count_documents({"$text": {"$search": search_tags}}))/(limit))
     pages = range(1, int(final_page + 1))
     quotes = mongo.db.quotes.find({"$text": {"$search": search_tags}}).skip(skips).limit(limit)
+    # rename to avoid confustion?
     generated = True
     try:
         # if user logged in 

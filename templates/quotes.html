@@ -30,7 +30,7 @@
     </form>
 </div> -->
 <div class="row quotes-search-form">
-<form action="{{ url_for('search_quotes') }}" method="POST" class="col s12">
+<form action="{{ url_for('search_quotes', generated = "yes") }}" method="POST" class="col s12">
     <div class="authors-search wrap">
     <div class="search">
         <input type="text"  name="query_quote" id="query_quote" placeholder="Search" minlength="3" class="validate" required>
@@ -136,9 +136,26 @@
         {% endfor %}
     <li class="{% if  page >= final_page %}disabled{% endif %}"><a href="{{ url_for('get_quotes', page = page + 1) }}"><i class="fas fa-arrow-right"></i></a></li>
 </ul>
+{% elif searched %}
+<!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
+<ul class="pagination center-align">
+    <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('search_authors', page = page - 1, query_quote=query_quote) }}"><i class="fas fa-arrow-left"></i></a></li>
+        {% for p in pages %}
+            {% if  p == page  %}
+            <li class="active">
+                <a href="{{ url_for('search_quotes', page = p, query_quote=query_quote) }}">{{ p }}</a>
+            </li>
+            {% else %}
+            <li class="">
+                <a href="{{ url_for('search_quotes', page = p, query_quote=query_quote) }}">{{ p }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+    <li class="{% if  page >= final_page %}disabled{% endif %}"><a href="{{ url_for('search_quotes', page = page + 1, query_quote=query_quote) }}"><i class="fas fa-arrow-right"></i></a></li>
+</ul>
 {% else %}
 <ul class="pagination center-align">
-    <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('get_quotes', page = page - 1) }}"><i class="fas fa-arrow-left"></i></a></li>
+    <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('get_quotes', get_fav = "No", page = page - 1) }}"><i class="fas fa-arrow-left"></i></a></li>
         {% for p in pages %}
             {% if  p == page  %}
             <li class="active">
