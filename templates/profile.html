@@ -2,14 +2,7 @@
 {% block content %}
 <main class="container">
     <div class="row">
-        <!-- <div class="col s12 m8 offset-m2"> -->
-            <!-- <div class="card-panel"> -->
-                <h2>{{ username }}'s Profile</h2>
-                <!-- <h3 class="center-align light-blue-text text-darken-4">
-                    {{ username }}'s Profile
-                </h3> -->
-            <!-- </div> -->
-        <!-- </div> -->
+        <h2>{{ username }}'s Profile</h2>
     </div>
     <div class="row">
         <div class="col s1">
@@ -21,7 +14,7 @@
         <div class="col s1 m2">
         </div>
         <div class="user-details col s5">
-            <p>username: {{ username }}<br/></p>
+            <p>username: {{ username }}<br /></p>
             <p>email: Joebloggs@hotmail.com</p>
         </div>
         <div class="col s1">
@@ -29,128 +22,139 @@
     </div>
     <div class="row">
         <!-- <div class="col s12 m8 offset-m2"> -->
-            <h2>{{ username }}'s Favourite Quotes</h2>
+        <h2>{{ username }}'s Favourite Quotes</h2>
         <!-- </div> -->
     </div>
     <div class="row">
 
-{% if quotes.count() > 0 %}
-{% for quote in quotes %}
+        {% if quotes.count() > 0 %}
+        {% for quote in quotes %}
 
-<!-- https://stackoverflow.com/questions/36674846/how-can-i-check-if-some-checkboxes-in-html-are-checked -->
-<!-- https://codepen.io/tiggr/pen/MWyJJEz -->
-<article class="hide-on-small-only article">
-    <blockquote>
-        <p>{{ quote.Quote }}
-        </p>
-        <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
-        <div class="blockquote-author-image"
-            style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
+        <!-- https://stackoverflow.com/questions/36674846/how-can-i-check-if-some-checkboxes-in-html-are-checked -->
+        <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
+        <article class="hide-on-small-only article">
+            <blockquote class="quote-blockquote">
+                <p>{{ quote.Quote }}
+                </p>
+                <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
+                <div class="blockquote-author-image"
+                    style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
+                </div>
+                <div class="star">
+                    <form>
+                        {% if session.user %}
+                        <label for="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
+                            class="indigo lighten-2 custom-checkbox">
+                            <input type="checkbox" id="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
+                                name="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
+                                category="logged-in-quote-input"
+                                {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %} unchecked
+                                {% endfor %} />
+                            <i class="glyphicon glyphicon-star-empty"></i>
+                            <i class="glyphicon glyphicon-star"></i>
+                        </label>
+                        {% else %}
+                        <label for="dsk-id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
+                            <input type="checkbox" id="dsk-id-of-input{{ quote._id }}"
+                                name="dsk-id-of-input{{ quote._id }}" category="logged-out-quote-input" />
+                            <i class="glyphicon glyphicon-star-empty"></i>
+                            <i class="glyphicon glyphicon-star"></i>
+                        </label>
+                        {% endif %}
+                    </form>
+                </div>
+            </blockquote>
+        </article>
+
+        <!-- https://codepen.io/chris22smith/pen/oQWavL -->
+
+        <div class="hide-on-med-and-up animated-border-quote">
+            <blockquote>
+                <p>{{ quote.Quote }}</p>
+                <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
+                <div class="star">
+                    {% if session.user %}
+                    <label for="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
+                        class="indigo lighten-2 custom-checkbox">
+                        <input type="checkbox" id="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
+                            name="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" category="logged-in-quote-input"
+                            {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %} unchecked
+                            {% endfor %} />
+                        <i class="glyphicon glyphicon-star-empty"></i>
+                        <i class="glyphicon glyphicon-star"></i>
+                    </label>
+                    {% else %}
+                    <label for="mob-id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
+                        <input type="checkbox" id="mob-id-of-input{{ quote._id }}" name="mob-id-of-input{{ quote._id }}"
+                            category="logged-out-quote-input" />
+                        <i class="glyphicon glyphicon-star-empty"></i>
+                        <i class="glyphicon glyphicon-star"></i>
+                    </label>
+                    {% endif %}
+                </div>
+            </blockquote>
         </div>
-        <div class="star">
-            <form>
-                {% if session.user %}
-                <label for="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" class="indigo lighten-2 custom-checkbox">
-                    <input type="checkbox" id="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" name="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" category ="logged-in-quote-input" {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %} unchecked {% endfor %}/>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                </label>
-                {% else %}
-                <label for="dsk-id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
-                    <input type="checkbox" id="dsk-id-of-input{{ quote._id }}" name="dsk-id-of-input{{ quote._id }}" category ="logged-out-quote-input"/>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                </label>
-                {% endif %}
-            </form>
-        </div>
-    </blockquote>
-</article>
-
-<!-- https://codepen.io/chris22smith/pen/oQWavL -->
-
-<div class="hide-on-med-and-up animated-border-quote">
-    <blockquote>
-        <p>{{ quote.Quote }}</p>
-        <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
-        <div class="star">
-                {% if session.user %}
-                <label for="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" class="indigo lighten-2 custom-checkbox">
-                    <input type="checkbox" id="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" name="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" category ="logged-in-quote-input"  {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %} unchecked {% endfor %}/>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                </label>
-                {% else %}
-                <label for="mob-id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
-                    <input type="checkbox" id="mob-id-of-input{{ quote._id }}" name="mob-id-of-input{{ quote._id }}" category ="logged-out-quote-input"/>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                </label>
-                {% endif %}
-        </div>
-    </blockquote>
-</div>
 
 
-{% endfor %}
+        {% endfor %}
 
 
-{% else %}
-<h3 class="red-text text-darken-4 center-align">No Favourites Found</h3>
-{% endif %}
+        {% else %}
+        <h3 class="red-text text-darken-4 center-align">No Favourites Found</h3>
+        {% endif %}
 
 
     </div>
 
     <div class="row">
         <!-- <div class="col s12 m8 offset-m2"> -->
-            <h2>{{ username }}'s Favourite Authors</h2>
+        <h2>{{ username }}'s Favourite Authors</h2>
         <!-- </div> -->
     </div>
 
-{% if authors.count() > 0 %}
-<div class="row">
-{% for author in authors %}
-<div class="col s12 l6 m6">
-<!-- https://codepen.io/tiggr/pen/MWyJJEz -->
-<article class="left-align article author-card">
-    <blockquote>
-        <cite><a href="{{ url_for('author_profile', Author=author.Author) }}">{{ author.Author }}</a></cite>
-            <!-- {% if author.Books[0] != '' %}
-                <p>Books: 
-                    {% for item in author.Books %}
-                    {{ item }}</p>
-                {% endfor %}
-            {% endif %} -->
-        <div class="blockquote-author-image"
-            style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
+    {% if authors.count() > 0 %}
+    <div class="row">
+        {% for author in authors %}
+        <div class="col s12 l6 m6">
+            <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
+            <article class="left-align article author-card">
+                <blockquote class="author-blockquote">
+                    <cite><a href="{{ url_for('author_profile', Author=author.Author) }}">{{ author.Author }}</a></cite>
+                    <div class="blockquote-author-image"
+                        style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
+                    </div>
+                    <div class="star">
+                        <form>
+                            {% if session.user %}
+                            <label for="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
+                                class="indigo lighten-2 custom-checkbox">
+                                <input type="checkbox" id="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
+                                    name="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
+                                    category="logged-in-author-input"
+                                    {% for x in fav_authors2 if x|string == author._id|string %} checked {% else %}
+                                    unchecked {% endfor %} />
+                                <i class="glyphicon glyphicon-star-empty"></i>
+                                <i class="glyphicon glyphicon-star"></i>
+                            </label>
+                            {% else %}
+                            <label for="dsk-id-of-input{{ author._id }}" class="indigo lighten-2 custom-checkbox">
+                                <input type="checkbox" id="dsk-id-of-input{{ author._id }}"
+                                    name="dsk-id-of-input{{ author._id }}" category="logged-out-author-input" />
+                                <i class="glyphicon glyphicon-star-empty"></i>
+                                <i class="glyphicon glyphicon-star"></i>
+                            </label>
+                            {% endif %}
+                        </form>
+                    </div>
+                </blockquote>
+            </article>
         </div>
-        <div class="star">
-            <form>
-                {% if session.user %}
-                <label for="dsk-id-of-input{{ author._id }}_{{ session['user'] }}" class="indigo lighten-2 custom-checkbox">
-                    <input type="checkbox" id="dsk-id-of-input{{ author._id }}_{{ session['user'] }}" name="dsk-id-of-input{{ author._id }}_{{ session['user'] }}" category ="logged-in-author-input" {% for x in fav_authors2 if x|string == author._id|string %} checked {% else %} unchecked {% endfor %}/>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                </label>
-                {% else %}
-                <label for="dsk-id-of-input{{ author._id }}" class="indigo lighten-2 custom-checkbox">
-                    <input type="checkbox" id="dsk-id-of-input{{ author._id }}" name="dsk-id-of-input{{ author._id }}" category ="logged-out-author-input"/>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                </label>
-                {% endif %}
-            </form>
-        </div>
-    </blockquote>
-</article>
-</div>
-{% endfor %}
+        {% endfor %}
 
-</div>
-{% else %}
-<h3 class="red-text text-darken-4 center-align">No Favourites Found</h3>
-{% endif %}
+    </div>
+    {% else %}
+    <h3 class="red-text text-darken-4 center-align">No Favourites Found</h3>
+    {% endif %}
 
 
 </main>
@@ -158,64 +162,66 @@
 {% block scripts %}
 <script>
     $('input[category=logged-in-quote-input]').change(function () {
-        if($(this).prop("checked") == true){
-            M.toast({html: 'Added to Favourites'});
-            }
-        else if($(this).prop("checked") == false){
-            M.toast({html: 'Removed from Favourites'});
-            }
+        if ($(this).prop("checked") == true) {
+            M.toast({ html: 'Added to Favourites' });
+        }
+        else if ($(this).prop("checked") == false) {
+            M.toast({ html: 'Removed from Favourites' });
+        }
         var checkbox_id = $(this).attr("id");
-            console.log("JS Post");
-            $.ajax({
-                url: "{{ url_for('add_fav_quote') }}",
-                type: "POST",
-                data: {'Checkbox': checkbox_id,
-                        'Status': $(this).prop("checked")
-                    },
-                success: function (response) {
-                    console.log(checkbox_id)
-                },
-                error: function (request, status, error) {
-                    console.log("Error: " + error)
-                }
+        console.log("JS Post");
+        $.ajax({
+            url: "{{ url_for('add_fav_quote') }}",
+            type: "POST",
+            data: {
+                'Checkbox': checkbox_id,
+                'Status': $(this).prop("checked")
+            },
+            success: function (response) {
+                console.log(checkbox_id)
+            },
+            error: function (request, status, error) {
+                console.log("Error: " + error)
             }
-            );
-});
-$('input[category=logged-out-quote-input]').change(function (e) {
-            console.log("logged out fav");
-            if(e.target.checked){
-                alert("Please login or register to save favourites");
-            }
+        }
+        );
+    });
+    $('input[category=logged-out-quote-input]').change(function (e) {
+        console.log("logged out fav");
+        if (e.target.checked) {
+            alert("Please login or register to save favourites");
+        }
     });
     $('input[category=logged-in-author-input]').change(function () {
-        if($(this).prop("checked") == true){
-            M.toast({html: 'Added to Favourites'});
-            }
-        else if($(this).prop("checked") == false){
-            M.toast({html: 'Removed from Favourites'});
-            }
+        if ($(this).prop("checked") == true) {
+            M.toast({ html: 'Added to Favourites' });
+        }
+        else if ($(this).prop("checked") == false) {
+            M.toast({ html: 'Removed from Favourites' });
+        }
         var checkbox_id = $(this).attr("id");
-            console.log("JS Post");
-            $.ajax({
-                url: "{{ url_for('add_fav_author') }}",
-                type: "POST",
-                data: {'Checkbox': checkbox_id,
-                        'Status': $(this).prop("checked")
-                    },
-                success: function (response) {
-                    console.log(checkbox_id)
-                },
-                error: function (request, status, error) {
-                    console.log("Error: " + error)
-                }
+        console.log("JS Post");
+        $.ajax({
+            url: "{{ url_for('add_fav_author') }}",
+            type: "POST",
+            data: {
+                'Checkbox': checkbox_id,
+                'Status': $(this).prop("checked")
+            },
+            success: function (response) {
+                console.log(checkbox_id)
+            },
+            error: function (request, status, error) {
+                console.log("Error: " + error)
             }
-            );
-});
-$('input[category=logged-out-author-input]').change(function (e) {
-            console.log("logged out fav");
-            if(e.target.checked){
-                alert("Please login or register to save favourites");
-            }
+        }
+        );
+    });
+    $('input[category=logged-out-author-input]').change(function (e) {
+        console.log("logged out fav");
+        if (e.target.checked) {
+            alert("Please login or register to save favourites");
+        }
     });
 </script>
 {% endblock %}

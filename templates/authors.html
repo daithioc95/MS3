@@ -6,171 +6,182 @@
     <img src="static/images/authors_welcome_image.jpg" id="authors-welcome-img" alt="Library">
     <div class="text">
         Quotes by Author
-</div>
+    </div>
 </div>
 
 <div class="row authors-search-form">
-<form action="{{ url_for('search_authors', generated = "yes") }}" method="POST" class="col s12">
-    <div class="authors-search wrap">
-    <div class="search">
-        <input type="text"  name="query_author" id="query_author" placeholder="Search by Author">
-        <button type="submit" class="searchButton">
-            <i class="fa fa-search"></i>
-        </button>
-    </div>
-    </div>
-</form>
+    <form action="{{ url_for('search_authors', generated = "yes") }}" method="POST" class="col s12">
+        <div class="authors-search wrap">
+            <div class="search">
+                <input type="text" name="query_author" id="query_author" placeholder="Search by Author">
+                <button type="submit" class="searchButton">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
 </div>
 
 <main class="container">
 
-{% if session.user and get_fav == None and fav_authors2 %}
-    <h2>{{ session['user'] }}'s Favourite authors</h2>
-    <h3 class="link-heading"><a href="{{ url_for('get_authors', get_fav = "No") }}">Discover authors here</a></h3>
-{% elif not session.user or get_fav == "No" or not fav_authors2 %}
-    <h2>Popular authors</h2>
-    {% if session.user and fav_authors2 %}
-        <h3 class="link-heading"><a href="{{ url_for('get_authors') }}">{{ session['user'] }}'s Favourite Authors</a></h3>
+    {% if session.user and get_fav == None and fav_authors2 %}
+        <h2>{{ session['user'] }}'s Favourite authors</h2>
+        <h3 class="link-heading"><a href="{{ url_for('get_authors', get_fav = "No") }}">Discover authors here</a></h3>
+    {% elif not session.user or get_fav == "No" or not fav_authors2 %}
+        <h2>Popular authors</h2>
+        {% if session.user and fav_authors2 %}
+            <h3 class="link-heading"><a href="{{ url_for('get_authors') }}">{{ session['user'] }}'s Favourite Authors</a></h3>
+        {% endif %}
     {% endif %}
-{% endif %}
 
-{% if authors1.count() > 0 %}
-<div class="row">
-{% for author in authors1 %}
-<!-- https://codepen.io/tiggr/pen/MWyJJEz -->
-<div class="col s12 l6 m6">
-<article class="s12 m8 left-align article author-card">
-    <blockquote>
-        <cite><a href="{{ url_for('author_profile', Author=author.Author) }}">{{ author.Author }}</a></cite>
-            <!-- {% if author.Books[0] != '' %}
-                <p>Books: 
-                    {% for item in author.Books %}
-                    {{ item }}</p>
-                {% endfor %}
-            {% endif %} -->
-        <div class="blockquote-author-image"
-            style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
+    {% if authors1.count() > 0 %}
+    <div class="row">
+        {% for author in authors1 %}
+        <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
+        <div class="col s12 l6 m6">
+            <article class="s12 m8 left-align article author-card">
+                <blockquote class="author-blockquote">
+                    <cite><a href="{{ url_for('author_profile', Author=author.Author) }}">{{ author.Author }}</a></cite>
+                    <div class="blockquote-author-image"
+                        style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
+                    </div>
+                    <div class="star">
+                        <form>
+                            {% if session.user %}
+                            <label for="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
+                                class="indigo lighten-2 custom-checkbox">
+                                <input type="checkbox" id="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
+                                    name="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
+                                    category="logged-in-author-input"
+                                    {% for x in fav_authors2 if x|string == author._id|string %} checked {% else %}
+                                    unchecked {% endfor %} />
+                                <i class="glyphicon glyphicon-star-empty"></i>
+                                <i class="glyphicon glyphicon-star"></i>
+                            </label>
+                            {% else %}
+                            <label for="dsk-id-of-input{{ author._id }}" class="indigo lighten-2 custom-checkbox">
+                                <input type="checkbox" id="dsk-id-of-input{{ author._id }}"
+                                    name="dsk-id-of-input{{ author._id }}" category="logged-out-author-input" />
+                                <i class="glyphicon glyphicon-star-empty"></i>
+                                <i class="glyphicon glyphicon-star"></i>
+                            </label>
+                            {% endif %}
+                        </form>
+                    </div>
+                </blockquote>
+            </article>
         </div>
-        <div class="star">
-            <form>
-                {% if session.user %}
-                <label for="dsk-id-of-input{{ author._id }}_{{ session['user'] }}" class="indigo lighten-2 custom-checkbox">
-                    <input type="checkbox" id="dsk-id-of-input{{ author._id }}_{{ session['user'] }}" name="dsk-id-of-input{{ author._id }}_{{ session['user'] }}" category ="logged-in-author-input" {% for x in fav_authors2 if x|string == author._id|string %} checked {% else %} unchecked {% endfor %}/>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                </label>
-                {% else %}
-                <label for="dsk-id-of-input{{ author._id }}" class="indigo lighten-2 custom-checkbox">
-                    <input type="checkbox" id="dsk-id-of-input{{ author._id }}" name="dsk-id-of-input{{ author._id }}" category ="logged-out-author-input"/>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                </label>
-                {% endif %}
-            </form>
-        </div>
-    </blockquote>
-</article>
-</div>
 
-{% endfor %}
-</div>
-{% if get_fav == None %}
-<!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
-<ul class="pagination center-align">
-    <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('get_authors', page = page - 1) }}"><i class="fas fa-arrow-left"></i></a></li>
-        {% for p in pages %}
-            {% if  p == page  %}
-            <li class="active">
-                <a href="{{ url_for('get_authors', page = p) }}">{{ p }}</a>
-            </li>
-            {% else %}
-            <li class="">
-                <a href="{{ url_for('get_authors', page = p) }}">{{ p }}</a>
-            </li>
-            {% endif %}
-        {% endfor %}
-    <li class="{% if  page >= final_page %}disabled{% endif %}"><a href="{{ url_for('get_authors', page = page + 1) }}"><i class="fas fa-arrow-right"></i></a></li>
-</ul>
-{% elif searched %}
-<!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
-<ul class="pagination center-align">
-    <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('search_authors', page = page - 1, query_author=query_author) }}"><i class="fas fa-arrow-left"></i></a></li>
-        {% for p in pages %}
-            {% if  p == page  %}
-            <li class="active">
-                <a href="{{ url_for('search_authors', page = p, query_author=query_author) }}">{{ p }}</a>
-            </li>
-            {% else %}
-            <li class="">
-                <a href="{{ url_for('search_authors', page = p, query_author=query_author) }}">{{ p }}</a>
-            </li>
-            {% endif %}
-        {% endfor %}
-    <li class="{% if  page >= final_page %}disabled{% endif %}"><a href="{{ url_for('search_authors', page = page + 1, query_author=query_author) }}"><i class="fas fa-arrow-right"></i></a></li>
-</ul>
-{% else %}
-<ul class="pagination center-align">
-    <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('get_authors', get_fav = "No", page = page - 1) }}"><i class="fas fa-arrow-left"></i></a></li>
-        {% for p in pages %}
-            {% if  p == page  %}
-            <li class="active">
-                <a href="{{ url_for('get_authors', get_fav = "No", page = p) }}">{{ p }}</a>
-            </li>
-            {% else %}
-            <li class="">
-                <a href="{{ url_for('get_authors', get_fav = "No", page = p) }}">{{ p }}</a>
-            </li>
-            {% endif %}
-        {% endfor %}
-    <li class="{% if  page >= final_page %}disabled{% endif %}"><a href="{{ url_for('get_authors', get_fav = "No", page = page + 1) }}"><i class="fas fa-arrow-right"></i></a></li>
-</ul>
-{% endif %}
-
-{% else %}
-<h3 class="red-text text-darken-4 center-align">No Results Found</h3>
-{% endif %}
-<!-- Author index -->
-<!-- https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_column-fill -->
-<div class="row author-index">
-    <div class="s12 center-align">
-        {% for author in authors2 %}
-                <p>{{ author.Author }}</p>
         {% endfor %}
     </div>
-</div>
+    {% if get_fav == None %}
+    <!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
+    <ul class="pagination center-align">
+        <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('get_authors', page = page - 1) }}"><i
+                    class="fas fa-arrow-left"></i></a></li>
+        {% for p in pages %}
+        {% if  p == page  %}
+        <li class="active">
+            <a href="{{ url_for('get_authors', page = p) }}">{{ p }}</a>
+        </li>
+        {% else %}
+        <li class="">
+            <a href="{{ url_for('get_authors', page = p) }}">{{ p }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+        <li class="{% if  page >= final_page %}disabled{% endif %}"><a
+                href="{{ url_for('get_authors', page = page + 1) }}"><i class="fas fa-arrow-right"></i></a></li>
+    </ul>
+    {% elif searched %}
+    <!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
+    <ul class="pagination center-align">
+        <li class="{% if  page < 2 %}disabled{% endif %}"><a
+                href="{{ url_for('search_authors', page = page - 1, query_author=query_author) }}"><i
+                    class="fas fa-arrow-left"></i></a></li>
+        {% for p in pages %}
+            {% if  p == page  %}
+            <li class="active">
+                <a href="{{ url_for('search_authors', page = p, query_author=query_author) }}">{{ p }}</a>
+            </li>
+            {% else %}
+            <li class="">
+                <a href="{{ url_for('search_authors', page = p, query_author=query_author) }}">{{ p }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+        <li class="{% if  page >= final_page %}disabled{% endif %}"><a
+                href="{{ url_for('search_authors', page = page + 1, query_author=query_author) }}"><i
+                    class="fas fa-arrow-right"></i></a></li>
+    </ul>
+    {% else %}
+    <ul class="pagination center-align">
+        <li class="{% if  page < 2 %}disabled{% endif %}"><a
+                href="{{ url_for('get_authors', get_fav = "No", page = page - 1) }}"><i
+                    class="fas fa-arrow-left"></i></a></li>
+        {% for p in pages %}
+            {% if  p == page  %}
+            <li class="active">
+                <a href="{{ url_for('get_authors', get_fav = "No", page = p) }}">{{ p }}</a>
+            </li>
+            {% else %}
+            <li class="">
+                <a href="{{ url_for('get_authors', get_fav = "No", page = p) }}">{{ p }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+        <li class="{% if  page >= final_page %}disabled{% endif %}"><a
+                href="{{ url_for('get_authors', get_fav = "No", page = page + 1) }}"><i
+                    class="fas fa-arrow-right"></i></a></li>
+    </ul>
+    {% endif %}
+
+    {% else %}
+        <h3 class="red-text text-darken-4 center-align">No Results Found</h3>
+    {% endif %}
+    <!-- Author index -->
+    <!-- https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_column-fill -->
+    <div class="row author-index">
+        <div class="s12 center-align">
+            {% for author in authors2 %}
+                <p>{{ author.Author }}</p>
+            {% endfor %}
+        </div>
+    </div>
 </main>
 {% endblock %}
 {% block scripts %}
 <script>
     $('input[category=logged-in-author-input]').change(function () {
-        if($(this).prop("checked") == true){
-            M.toast({html: 'Added to Favourites'});
-            }
-        else if($(this).prop("checked") == false){
-            M.toast({html: 'Removed from Favourites'});
-            }
+        if ($(this).prop("checked") == true) {
+            M.toast({ html: 'Added to Favourites' });
+        }
+        else if ($(this).prop("checked") == false) {
+            M.toast({ html: 'Removed from Favourites' });
+        }
         var checkbox_id = $(this).attr("id");
-            console.log("JS Post");
-            $.ajax({
-                url: "{{ url_for('add_fav_author') }}",
-                type: "POST",
-                data: {'Checkbox': checkbox_id,
-                        'Status': $(this).prop("checked")
-                    },
-                success: function (response) {
-                    console.log(checkbox_id)
-                },
-                error: function (request, status, error) {
-                    console.log("Error: " + error)
-                }
+        console.log("JS Post");
+        $.ajax({
+            url: "{{ url_for('add_fav_author') }}",
+            type: "POST",
+            data: {
+                'Checkbox': checkbox_id,
+                'Status': $(this).prop("checked")
+            },
+            success: function (response) {
+                console.log(checkbox_id)
+            },
+            error: function (request, status, error) {
+                console.log("Error: " + error)
             }
-            );
-});
-$('input[category=logged-out-author-input]').change(function (e) {
-            console.log("logged out fav");
-            if(e.target.checked){
-                alert("Please login or register to save favourites");
-            }
+        }
+        );
+    });
+    $('input[category=logged-out-author-input]').change(function (e) {
+        console.log("logged out fav");
+        if (e.target.checked) {
+            alert("Please login or register to save favourites");
+        }
     });
 </script>
 {% endblock %}

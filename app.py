@@ -86,7 +86,7 @@ def add_fav_quote():
             # Remove quote if from users db
             mongo.db.users.update_one({"username": user},{ "$pull": { "fav_quote_ids": quote_id}})
     # Get 505 error when return None?
-    return "hi"
+    return "Method not supported"
     
 
 @app.route("/get_authors", methods=["GET"])
@@ -148,7 +148,7 @@ def add_fav_author():
             # Remove author if from users db
             mongo.db.users.update_one({"username": user},{ "$pull": { "fav_author_ids": author_id}})
     # Get 505 error when return None?
-    return "hi"    
+    return "Method not supported"  
 
 
 def get_starred(username, category):
@@ -213,7 +213,7 @@ def search_quotes():
             starred = get_starred(session["user"], "quote")
     # if session["user"] not recognised, user is logged out
     except KeyError:
-        fav_quotes2 = []
+        starred = []
     return render_template('quotes.html',
                            quotes=quotes,
                            page=page,
@@ -297,8 +297,10 @@ def generate_mood():
     limit = int(5)
     skips = limit * (page - 1)
     generated = request.args.get('generated')
+    # if form initialised get list from for
     if generated == "yes":
         search_tags = str(request.form.getlist('mood-button'))
+    # if form on next pages pass previously initialised tags
     else:
         search_tags = request.args.get('search_tags')
     final_page = math.ceil((mongo.db.quotes.count_documents({"$text": {"$search": search_tags}}))/(limit))
