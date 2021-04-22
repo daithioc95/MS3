@@ -10,13 +10,23 @@ body{
 h2{
     color: #2F4381;
     font-size: 30px;
+    /* text-align: -webkit-center; */
 }
 
 h3{
     color: #7CA4FF;
     font-size: 20px;
+    /* text-align: -webkit-center; */
 }
 
+/* @media (min-width: 1333px){
+h2, h3 {
+    text-align: -webkit-center;
+}} */
+
+nav{
+    padding: 0rem 1rem;
+}
 /* .reset{
         background-color: #CC6F76;
 }
@@ -26,6 +36,14 @@ h3{
         margin-bottom: 5px;
 }
 } */
+
+.page-footer{
+    margin-top: 20px
+}
+
+#generate-moods{
+    background-color: #7986CB;
+}
 
 /* --- Welcome image --  */
 
@@ -136,10 +154,14 @@ h3{
 }
 
 @media (min-width: 768px) {
-	.article blockquote {
+	blockquote.author-blockquote {
 		margin: 40px 60px;
 	}
 } 
+
+blockquote.quote-blockquote{}
+
+blockquote.author-blockquote{}
 
  .article blockquote::before {
 	content: "";
@@ -391,6 +413,7 @@ border: 1px solid #fff;
   outline: none;
   color: #9DBFAF;
   background-color: #fff;
+    font-size: 20px;
 }
 
 #searchTerm:focus{
