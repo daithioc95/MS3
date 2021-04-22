@@ -378,6 +378,7 @@ label input[type="checkbox"] {
   width: 100%;
   position: relative;
   display: flex;
+  margin-top: 20px;
 }
 
 #query_author, #query_quote {
@@ -385,7 +386,7 @@ label input[type="checkbox"] {
 border: 1px solid #fff;
   border-right: none;
   padding: 5px;
-  height: 20px;
+  height: 30px;
   border-radius: 5px 0 0 5px;
   outline: none;
   color: #9DBFAF;
@@ -397,8 +398,8 @@ border: 1px solid #fff;
 }
 
 .searchButton {
-  width: 40px;
-  height: 32px;
+      width: 42px;
+    height: 42px;
   border: 1px solid var(--accent-color);
   background: var(--accent-color);
   text-align: center;
