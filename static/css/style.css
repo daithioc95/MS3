@@ -534,27 +534,50 @@ border: 1px solid #fff;
   background-color: yellow;
 } */
 
+/* blob button: https://codepen.io/hilwat/pen/BeemVX */
+/* https://codepen.io/russgossett/pen/grNAOQ?editors=1100 */
+
+
 .hidden {position:absolute;visibility:hidden;opacity:0;}
 input[type=checkbox] + label {
   color: #ccc;
   /* font-style: italic; */
-    width: 20%;
+    /* width: 20%; */
     /* height: 40px; */
     margin: 5px;
     /* display: table-cell; */
-    display: inline-table;
+    /* display: inline-table; */
     background-color: #F7F8FF;
     border: solid 1px #6B8BF5;
     text-align: center;
     font-size: 32px;
     border-radius: 0.5em;
-} 
+  }
 
 
-input[type=checkbox]:checked + label {
+input[type=checkbox]:hover + label {
   /* color: #f00; */
   /* font-style: normal; */
-  background-color: yellow;
+  background-position: 100% 50%;
+  border-color: pink;
+  color: white;
+}
+
+.btnFillup {
+  display: inline-block;
+  padding: 16px;
+  overflow: hidden;
+  color: pink;
+  text-decoration: none;
+  border: 1px solid pink;
+  border-radius: 3px;
+  background-position: 0 -100%;
+  background-repeat: repeat-x;
+  transition: background-position .8s ease;
+}
+
+.liquidbg {
+  background-image: url('/workspace/MS3/static/images/liquid.svg');
 }
 
 /* -----Profile----- */
