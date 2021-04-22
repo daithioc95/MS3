@@ -21,12 +21,21 @@ h3{
 
 /* @media (min-width: 1333px){
 h2, h3 {
-    text-align: -webkit-center;
+    float: right;
 }} */
+
+.initial-h2{
+        margin-top: 35px;
+    margin-bottom: 0;
+}
 
 nav{
     padding: 0rem 1rem;
 }
+
+
+/* https://codepen.io/maheshambure21/pen/QwXaRw */
+
 /* .reset{
         background-color: #CC6F76;
 }
@@ -41,8 +50,24 @@ nav{
     margin-top: 20px
 }
 
+.page-footer a:hover{
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+    background-color: rgba(0,0,0,0.1);
+}
+
 #generate-moods{
     background-color: #7986CB;
+}
+
+#generate-moods:hover{
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+    background:  #2F4381 ;
 }
 
 /* --- Welcome image --  */
@@ -441,6 +466,10 @@ border: 1px solid #fff;
   transform: translate(-50%, -50%);
 }
 
+.authors-search wrap{
+    margin-top: 15px;
+}
+
 @media screen and (max-width:570px) {
 .wrap{top: 35%;
         width: 50%;}}
@@ -461,6 +490,30 @@ border: 1px solid #fff;
     align-items: center;
     justify-content: center;
         display: block;
+}
+
+.pagination .active a{
+    background-color: var(--accent-color);
+}
+
+.pagination li:not(.disabled):not(.active) a:hover
+  {
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+    background-color: rgba(0,0,0,0.1);
+}
+
+
+
+.searchButton:hover{
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+    background:  #2F4381 ;
+    /* #2F4381 */
 }
 
 /* ---Mood Board--- */
@@ -535,3 +588,17 @@ height: 160px;
   left:20% !important;  
   min-width: 10%;
 }}
+
+/* extracted from bootstrap min */
+.glyphicon{position:relative;
+    top:1px;
+    display:inline-block;
+    font-family:'Glyphicons Halflings';
+    -webkit-font-smoothing:antialiased;
+    font-style:normal;
+    font-weight:normal;
+    line-height:1}
+
+.glyphicon-star-empty:before{content:"\e007"}
+
+.glyphicon-star:before{content:"\e006"}

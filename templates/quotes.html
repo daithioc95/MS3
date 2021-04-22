@@ -122,8 +122,8 @@
     {% if get_fav == None %}
     <!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
     <ul class="pagination center-align">
-        <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('get_quotes', page = page - 1) }}"><i
-                    class="fas fa-arrow-left"></i></a></li>
+        <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{% if  page < 2 %}{% else %}{{ url_for('get_quotes', page = page - 1) }}{% endif %}"><i
+                    class="material-icons">chevron_left</i></a></li>
         {% for p in pages %}
         {% if  p == page  %}
         <li class="active">
@@ -136,14 +136,14 @@
         {% endif %}
         {% endfor %}
         <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{{ url_for('get_quotes', page = page + 1) }}"><i class="fas fa-arrow-right"></i></a></li>
+                href="{% if  page >= final_page %}{% else %}{{ url_for('get_quotes', page = page + 1) }}{% endif %}"><i class="material-icons">chevron_right</i></a></li>
     </ul>
     {% elif searched %}
     <!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
     <ul class="pagination center-align">
         <li class="{% if  page < 2 %}disabled{% endif %}"><a
-                href="{{ url_for('search_authors', page = page - 1, query_quote=query_quote) }}"><i
-                    class="fas fa-arrow-left"></i></a></li>
+                href="{% if  page < 2 %}{% else %}{{ url_for('search_authors', page = page - 1, query_quote=query_quote) }}{% endif %}"><i
+                    class="material-icons">chevron_left</i></a></li>
         {% for p in pages %}
         {% if  p == page  %}
         <li class="active">
@@ -156,14 +156,14 @@
         {% endif %}
         {% endfor %}
         <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{{ url_for('search_quotes', page = page + 1, query_quote=query_quote) }}"><i
-                    class="fas fa-arrow-right"></i></a></li>
+                href="{% if  page >= final_page %}{% else %}{{ url_for('search_quotes', page = page + 1, query_quote=query_quote) }}{% endif %}"><i
+                    class="material-icons">chevron_right</i></a></li>
     </ul>
     {% else %}
     <ul class="pagination center-align">
         <li class="{% if  page < 2 %}disabled{% endif %}"><a
-                href="{{ url_for('get_quotes', get_fav = "No", page = page - 1) }}"><i
-                    class="fas fa-arrow-left"></i></a></li>
+                href="{% if  page < 2 %}{% else %}{{ url_for('get_quotes', get_fav = "No", page = page - 1) }}{% endif %}"><i
+                    class="material-icons">chevron_left</i></a></li>
         {% for p in pages %}
         {% if  p == page  %}
         <li class="active">
@@ -176,8 +176,8 @@
         {% endif %}
         {% endfor %}
         <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{{ url_for('get_quotes', get_fav = "No", page = page + 1) }}"><i
-                    class="fas fa-arrow-right"></i></a></li>
+                href="{% if  page >= final_page %}{% else %}{{ url_for('get_quotes', get_fav = "No", page = page + 1) }}{% endif %}"><i
+                    class="material-icons">chevron_right</i></a></li>
     </ul>
     {% endif %}
 

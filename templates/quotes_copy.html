@@ -67,3 +67,40 @@
 
 </main>
 {% endblock %}
+
+    {% if session.user and get_fav == None and fav_quotes2 %}
+    <div class="row initial-h2">
+        <div class="col xl2"></div>
+        <div class="col m12 l8 xl5">
+            <h2>{{ session['user'] }}'s favourite quotes</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col xl2"></div>
+        <div class="col m12 l8 xl4">
+            <h3 class="link-heading"><a href="{{ url_for('get_quotes', get_fav = "No") }}">Discover quotes here</a></h3>
+        </div>
+    </div>
+    {% elif url_for(request.endpoint) == url_for('search_quotes') %}
+    <div class="row initial-h2">
+        <div class="col xl2"></div>
+        <div class="col m12 l8 xl5">
+            <h2>Results</h2>
+        </div>
+    </div>
+    {% elif get_fav == "No" or not fav_quotes2 %}
+    <div class="row initial-h2">
+        <div class="col xl2"></div>
+        <div class="col m12 l8 xl5">
+            <h2>Popular quotes</h2>
+        </div>
+    </div>
+    {% if session.user and fav_quotes2 %}
+    <div class="row">
+        <div class="col xl2"></div>
+        <div class="col m12 l8 xl4">
+            <h3 class="link-heading"><a href="{{ url_for('get_quotes') }}">{{ session['user'] }}'s favourite quotes</a></h3>
+        </div>
+    </div>
+    {% endif %}
+    {% endif %}
