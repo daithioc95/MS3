@@ -539,12 +539,15 @@ border: 1px solid #fff;
 
 
 .hidden {position:absolute;visibility:hidden;opacity:0;}
+
 input[type=checkbox] + label {
-  color: #ccc;
+    cursor: pointer;
+    /* color: #ccc; */
+  color: #23C197;
   /* font-style: italic; */
-    /* width: 20%; */
+    /* width: 20px; */
     /* height: 40px; */
-    margin: 5px;
+    margin: 10px;
     /* display: table-cell; */
     /* display: inline-table; */
     background-color: #F7F8FF;
@@ -554,31 +557,99 @@ input[type=checkbox] + label {
     border-radius: 0.5em;
   }
 
+@media screen and (max-width:570px) {
+  input[type=checkbox] + label {
+      font-size: 22px;
+    height: 50px;
+    margin: 10px;
+    padding: 10px 0 !important;}}
 
+ /* input[type=checkbox]:checked + label {
+  background: #2098D1;
+  color: white;
+} */
+
+/* color change for each option */
+input[type=checkbox]:checked + label, .hvr-radial-out:hover, .hvr-radial-out:focus, .hvr-radial-out:active, .hvr-radial-out:checked + label {
+  color: #2F4381;
+}
+
+input[type=checkbox]:checked + label#label_friendship, #label_friendship:before {
+    background: #2098D1;
+}
+
+input[type=checkbox]:checked + label#label_inspirational, #label_inspirational:before {
+    background: #CC6F76;
+}
+input[type=checkbox]:checked + label#label_truth, #label_truth:before {
+    background: #FFCB6F;
+}
+input[type=checkbox]:checked + label#label_knowledge, #label_knowledge:before {
+    background: #F9F871;
+}
+input[type=checkbox]:checked + label#label_love, #label_love:before {
+    background: #A63B81;
+}
+input[type=checkbox]:checked + label#label_forgiveness, #label_forgiveness:before {
+    background: #B0BBFF;
+}
+input[type=checkbox]:checked + label#label_strategy, #label_strategy:before {
+    background: #857555;
+}
+input[type=checkbox]:checked + label#label_art, #label_art:before {
+    background: #007A79;
+}
+
+/*
 input[type=checkbox]:hover + label {
-  /* color: #f00; */
-  /* font-style: normal; */
   background-position: 100% 50%;
   border-color: pink;
   color: white;
-}
+  background-color: violet;
+} */
 
-.btnFillup {
+
+/* Radial Out */
+/* https://ianlunn.github.io/Hover/#effects */
+.hvr-radial-out {
   display: inline-block;
-  padding: 16px;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
   overflow: hidden;
-  color: pink;
-  text-decoration: none;
-  border: 1px solid pink;
-  border-radius: 3px;
-  background-position: 0 -100%;
-  background-repeat: repeat-x;
-  transition: background-position .8s ease;
+  background: #e1e1e1;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.hvr-radial-out:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background: #2098D1; */
+  border-radius: 100%;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
 }
 
-.liquidbg {
-  background-image: url('/workspace/MS3/static/images/liquid.svg');
+.hvr-radial-out:hover:before, .hvr-radial-out:focus:before, .hvr-radial-out:active:before {
+  -webkit-transform: scale(2);
+  transform: scale(2);
 }
+
 
 /* -----Profile----- */
 .profile-image{

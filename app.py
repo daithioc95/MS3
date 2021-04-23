@@ -299,10 +299,13 @@ def generate_mood():
     generated = request.args.get('generated')
     # if form initialised get list from for
     if generated == "yes":
+        checked_buttons = list(request.form.getlist('mood-button'))
         search_tags = str(request.form.getlist('mood-button'))
     # if form on next pages pass previously initialised tags
     else:
+        checked_buttons = list(request.args.get('search_tags'))
         search_tags = request.args.get('search_tags')
+    print(checked_buttons)
     final_page = math.ceil((mongo.db.quotes.count_documents({"$text": {"$search": search_tags}}))/(limit))
     pages = range(1, int(final_page + 1))
     quotes = mongo.db.quotes.find({"$text": {"$search": search_tags}}).skip(skips).limit(limit)
@@ -323,7 +326,8 @@ def generate_mood():
                             pages=pages, 
                             final_page=final_page, 
                             generated=generated,
-                            search_tags=search_tags)
+                            search_tags=search_tags,
+                            checked_buttons=checked_buttons)
 
 
 @app.route("/register", methods=["GET", "POST"])
