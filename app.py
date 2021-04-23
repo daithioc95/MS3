@@ -205,8 +205,11 @@ def search_quotes():
     page = request.args.get('page', 1, type=int)
     limit = int(5)
     skips = limit * (page - 1)
-    final_page = math.ceil((mongo.db.quotes.count_documents(
-        {"$text": {"$search": query}}))/(limit))
+    # final_page = math.ceil((mongo.db.quotes.count_documents(
+    #     {"$text": {"$search": query}}))/(limit))
+    # pages = range(1, int(final_page + 1))
+    # Limit pages with updated db
+    final_page = 10
     pages = range(1, int(final_page + 1))
     quotes = mongo.db.quotes.find(
         {"$text": {"$search": query}}).skip(skips).limit(limit)
@@ -244,8 +247,11 @@ def search_authors():
     limit = int(6)
     skips = limit * (page - 1)
     # get searched query
-    final_page = math.ceil((mongo.db.authors.count_documents(
-        {"$text": {"$search": searchTerm}}))/(limit-1))
+    # final_page = math.ceil((mongo.db.authors.count_documents(
+    #     {"$text": {"$search": searchTerm}}))/(limit-1))
+    # pages = range(1, int(final_page + 1))
+    # Limit pages with updated db
+    final_page = 10
     pages = range(1, int(final_page + 1))
     # search query to index
     authors1 = mongo.db.authors.find({"$text": {"$search":searchTerm }}).skip(skips).limit(limit)
@@ -312,7 +318,10 @@ def generate_mood():
         checked_buttons = list(request.args.get('search_tags'))
         search_tags = request.args.get('search_tags')
     print(checked_buttons)
-    final_page = math.ceil((mongo.db.quotes.count_documents({"$text": {"$search": search_tags}}))/(limit))
+    # final_page = math.ceil((mongo.db.quotes.count_documents({"$text": {"$search": search_tags}}))/(limit))
+    # pages = range(1, int(final_page + 1))
+    # Limit pages with updated db
+    final_page = 10
     pages = range(1, int(final_page + 1))
     quotes = mongo.db.quotes.find({"$text": {"$search": search_tags}}).skip(skips).limit(limit)
     # rename to avoid confustion?

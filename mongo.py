@@ -34,25 +34,25 @@ documents2 = coll2.find()
 # coll2.update_one({"Author":"C.S. Lewis"},{"$set": {"Books": k[1]}})
 
 # write all books & authors & Categories to author db -- Tested
-# store_authors = []
-# # coll2.delete_many({})
-# for doc in documents:
-#     if doc["Author"] not in store_authors:
-#         store_authors.append(doc["Author"])
-#         coll2.insert_one({"Author":doc["Author"]})
-#         try:
-#             coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Books":doc["Book"]}})
-#             coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Categories":doc["Category"]}})
-#         except:
-#             coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Books":[]}})
-#             coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Categories":[]}})
-#     else:
-#         try:
-#             coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Books":doc["Book"]}})
-#             coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Categories":doc["Category"]}})
-#         except:
-#             coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Books":[]}})
-#             coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Categories":[]}})
+store_authors = []
+coll2.delete_many({})
+for doc in documents:
+    if doc["Author"] not in store_authors:
+        store_authors.append(doc["Author"])
+        coll2.insert_one({"Author":doc["Author"]})
+        try:
+            coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Books":doc["Book"]}})
+            coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Categories":doc["Category"]}})
+        except:
+            coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Books":[]}})
+            coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Categories":[]}})
+    else:
+        try:
+            coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Books":doc["Book"]}})
+            coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Categories":doc["Category"]}})
+        except:
+            coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Books":[]}})
+            coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Categories":[]}})
 
 
 # delete "Array" entries
