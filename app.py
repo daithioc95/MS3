@@ -32,7 +32,10 @@ def get_quotes():
     page = request.args.get('page', 1, type=int)
     limit = int(5)
     skips = limit * (page - 1)
-    final_page = math.ceil((mongo.db.quotes.count_documents({}))/(limit))
+    # final_page = math.ceil((mongo.db.quotes.count_documents({}))/(limit))
+    # pages = range(1, int(final_page + 1))
+    # Limit pages with updated db
+    final_page = 10
     pages = range(1, int(final_page + 1))
     quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(limit)
     try:
@@ -96,7 +99,10 @@ def get_authors():
     page = request.args.get('page', 1, type=int)
     limit = int(6)
     skips = limit * (page - 1)
-    final_page = math.ceil((mongo.db.authors.count_documents({}))/(limit))
+    # final_page = math.ceil((mongo.db.authors.count_documents({}))/(limit))
+    # pages = range(1, int(final_page + 1))
+    # Limit pages with updated db
+    final_page = 10
     pages = range(1, int(final_page + 1))
     # find authors for display box
     authors1 = mongo.db.authors.find().skip(skips).limit(limit)

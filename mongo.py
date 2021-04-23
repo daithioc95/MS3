@@ -30,18 +30,18 @@ documents = coll1.find()
 
 # coll2.update_one({"Author":"C.S. Lewis"},{"$set": {"Books": k[1]}})
 
-# write all books & authors to author db -- Tested
-# store_authors = []
+# write all books & authors & Categories to author db -- Tested
+store_authors = []
 # coll2.delete_many({})
-# for doc in documents:
-#     if doc["Author"] not in store_authors:
-#         store_authors.append(doc["Author"])
-#         coll2.insert_one({"Author":doc["Author"]})
-#         coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Books":doc["Book"]}})
-#         coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Categories":doc["Category"]}})
-#     else:
-#         coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Books":doc["Book"]}})
-#         coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Categories":doc["Category"]}})
+for doc in documents:
+    if doc["Author"] not in store_authors:
+        store_authors.append(doc["Author"])
+        coll2.insert_one({"Author":doc["Author"]})
+        coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Books":doc["Book"]}})
+        coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Categories":doc["Category"]}})
+    else:
+        coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Books":doc["Book"]}})
+        coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Categories":doc["Category"]}})
 
 # write all unique authors to author db (not necessarily needed) -- Tested
 # store_authors = []
