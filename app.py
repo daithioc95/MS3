@@ -277,11 +277,17 @@ def search_authors():
 
 @app.route("/author_profile/<Author>", methods=["GET", "POST"])
 def author_profile(Author):
+    limit = int(6)
+    page = request.args.get('page', 1, type=int)
+    skips = limit * (page - 1)
     author = mongo.db.authors.find_one(
         {"Author": Author})
-    quotes = mongo.db.quotes.find({"Author": Author})
+    quotes = mongo.db.quotes.find({"Author": Author}).skip(skips).limit(limit)
+    final_page = math.ceil((mongo.db.quotes.count_documents({"Author": Author}))/(limit))
+    # final_page = math.ceil((mongo.db.quotes.find({"Author": Author}))/(limit-1))
+    pages = range(1, int(final_page + 1))
     Categories = mongo.db.authors.find_one({"Author": Author})["Categories"]
-    similar_authors = mongo.db.authors.find({"Categories": {"$in":  Categories}})
+    similar_authors = mongo.db.authors.find({"Categories": {"$in":  Categories}}).limit(10)
     try:
         # if user logged in 
         if session["user"]:
@@ -296,7 +302,11 @@ def author_profile(Author):
                             quotes=quotes, 
                             fav_quotes2=fav_quotes2, 
                             similar_authors=similar_authors,
-                            fav_authors2=fav_authors2)
+                            fav_authors2=fav_authors2,
+                            page=page, 
+                            pages=pages,
+                            limit=limit,
+                            final_page=final_page,)
 
 
 @app.route("/get_mood")

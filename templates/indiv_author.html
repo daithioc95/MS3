@@ -115,6 +115,25 @@
 
 
     {% endfor %}
+
+        <ul class="pagination center-align">
+        <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{% if  page < 2 %}{% else %}{{ url_for('author_profile', Author=author.Author, page = page - 1) }}{% endif %}"><i
+                    class="material-icons">chevron_left</i></a></li>
+        {% for p in pages %}
+        {% if  p == page  %}
+        <li class="active">
+            <a href="{{ url_for('author_profile', Author=author.Author, page = p) }}">{{ p }}</a>
+        </li>
+        {% else %}
+        <li class="">
+            <a href="{{ url_for('author_profile', Author=author.Author, page = p) }}">{{ p }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+        <li class="{% if  page >= final_page %}disabled{% endif %}"><a
+                href="{% if  page >= final_page %}{% else %}{{ url_for('author_profile', Author=author.Author, page = page + 1) }}{% endif %}"><i class="material-icons">chevron_right</i></a></li>
+    </ul>
+
     <div class="row">
         <h2>Similar Authors</h2>
     </div>
