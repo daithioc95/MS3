@@ -577,9 +577,13 @@ input[type=checkbox]:checked + label, .hvr-radial-out:hover, .hvr-radial-out:foc
   color: #2F4381;
 }
 
-input[type=checkbox]:checked + label#label_friendship, #label_friendship:before {
+input[type=checkbox]:checked + label#label_friendship {
     background: #2098D1;
 }
+@media screen and (min-width:570px) {
+#label_friendship:before {
+    background: #2098D1;
+}}
 
 input[type=checkbox]:checked + label#label_inspirational, #label_inspirational:before {
     background: #CC6F76;
@@ -648,10 +652,11 @@ input[type=checkbox]:hover + label {
   transition-timing-function: ease-out;
 }
 
+@media screen and (min-width:570px) {
 .hvr-radial-out:hover:before, .hvr-radial-out:focus:before, .hvr-radial-out:active:before {
   -webkit-transform: scale(2);
   transform: scale(2);
-}
+}}
 
 
 /* -----Profile----- */
@@ -690,6 +695,13 @@ height: 160px;
 }}
 
 /* extracted from bootstrap min */
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+
 .glyphicon{position:relative;
     top:1px;
     display:inline-block;

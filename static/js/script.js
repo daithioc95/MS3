@@ -1,8 +1,12 @@
 $(document).ready(function () {
     $('.sidenav').sidenav({ edge: "right" });
     $('.collapsible').collapsible();
+    
 });
 
+// $(.mood-button).change(function(e) {
+//     if ($(this).is(':not(:checked)')) {
+//             $(this).addClass( "input[type=checkbox] + label" );}
 
     // Moved to quotes.html
 // $('input[name=test_quote_star]').change(function(e) {
