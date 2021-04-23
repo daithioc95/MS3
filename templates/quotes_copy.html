@@ -104,3 +104,54 @@
     </div>
     {% endif %}
     {% endif %}
+
+    <!-- works on large but not small -->
+
+        <form method="POST" action="{{ url_for('generate_mood', generated = "yes") }}">
+        <div class="row">
+            <div class="hide-on-med-and-up col s1"></div>
+            <input type="checkbox" class="hidden" name="mood-button" value="friendship" id="mood-button1_friendship"
+                {% for x in checked_buttons if x|string == "friendship" %}checked{% else %}unchecked{% endfor %}><label
+                id="label_friendship" class="hvr-radial-out col s5 l3" for="mood-button1_friendship">
+                friendship</label>
+            <input type="checkbox" class="hidden" name="mood-button" value="inspirational"
+                id="mood-button2_inspirational"
+                {% for x in checked_buttons if x|string == "inspirational" %}checked{% else %}unchecked{% endfor %}><label
+                id="label_inspirational" class="hvr-radial-out col s5 l3"
+                for="mood-button2_inspirational">inspirational</label>
+            <div class="hide-on-med-and-up col s1"></div>
+            <input type="checkbox" class="hidden" name="mood-button" value="truth" id="mood-button3_truth"
+                {% for x in checked_buttons if x|string == "truth" %}checked{% else %}unchecked{% endfor %}><label
+                id="label_truth" class="hvr-radial-out col s5 l3" for="mood-button3_truth">truth</label>
+        </div>
+                <div class="row">
+                <div class="col l2"></div>
+                
+            <input type="checkbox" class="hidden" name="mood-button" value="knowledge" id="mood-button4_knowledge"
+                {% for x in checked_buttons if x|string == "knowledge" %}checked{% else %}unchecked{% endfor %}><label
+                id="label_knowledge" class="hvr-radial-out col s5 l3" for="mood-button4_knowledge">knowledge</label>
+            <div class="hide-on-med-and-up col s1"></div><input type="checkbox" class="hidden" name="mood-button"
+                value="love" id="mood-button5_love"
+                {% for x in checked_buttons if x|string == "love" %}checked{% else %}unchecked{% endfor %}><label
+                id="label_love" class="hvr-radial-out col s5 l3" for="mood-button5_love">love</label>
+                <div class="col l2"></div>
+            </div>
+            <div class="row">
+            <input type="checkbox" class="hidden" name="mood-button" value="forgiveness" id="mood-button6_forgiveness"
+                {% for x in checked_buttons if x|string == "forgiveness" %}checked{% else %}unchecked{% endfor %}><label
+                id="label_forgiveness" class="hvr-radial-out col s5 l3"
+                for="mood-button6_forgiveness">forgiveness</label>
+            <div class="hide-on-med-and-up col s1"></div><input type="checkbox" class="hidden" name="mood-button"
+                value="strategy" id="mood-button7_strategy"
+                {% for x in checked_buttons if x|string == "strategy" %}checked{% else %}unchecked{% endfor %}><label
+                id="label_strategy" class="hvr-radial-out col s5 l3" for="mood-button7_strategy">strategy</label>
+            <input type="checkbox" class="hidden" name="mood-button" value="art" id="mood-button8_art"
+                {% for x in checked_buttons if x|string == "art" %}checked{% else %}unchecked{% endfor %}><label
+                id="label_art" class="hvr-radial-out col s5 l3" for="mood-button8_art">art</label>
+        </div>
+
+        <button id="generate-moods" class="btn waves-effect waves-light" type="submit" name="action">Generate Quotes
+            <i class="material-icons right">sync</i>
+            <!-- update track_changes sync -->
+        </button>
+    </form>

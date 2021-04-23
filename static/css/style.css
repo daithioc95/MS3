@@ -547,7 +547,6 @@ input[type=checkbox] + label {
   /* font-style: italic; */
     /* width: 20px; */
     /* height: 40px; */
-    margin: 10px;
     /* display: table-cell; */
     /* display: inline-table; */
     background-color: #F7F8FF;
@@ -555,6 +554,10 @@ input[type=checkbox] + label {
     text-align: center;
     font-size: 32px;
     border-radius: 0.5em;
+    height: 60px;
+    margin-right: 4%;
+    margin-bottom: 4%;
+    padding: 5px 0 !important;
   }
 
 @media screen and (max-width:570px) {
