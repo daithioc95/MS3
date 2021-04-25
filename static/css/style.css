@@ -264,10 +264,15 @@ blockquote.author-blockquote{}
 
 /* --- Mobile Quote Cards --- */
 .animated-border-quote {
-  display:inline-block;
+  /* display:inline-block; */
   margin:1em;
   max-width:20em;
-  overflow:hidden;}
+  overflow:hidden;
+    /* centre align */
+margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
 
 .animated-border-quote blockquote {
     background-color: #F7F8FF;
@@ -662,16 +667,35 @@ input[type=checkbox]:hover + label {
 /* -----Profile----- */
 .profile-image{
     background: url("https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg") no-repeat center center;
-    height: 120px;
+    /* height: 120px;
     width: 100%;
+    background-size: cover; */
+    height: 100%;
     background-size: cover;
+    border-radius: 50%;
 }
 
-@media screen and (min-width:570px) {
+#circle-container{
+    width: 300px;
+    height: 300px;
+    padding: 30px;
+    margin: 0 auto;
+}
+
+.fa-book{
+    display: block;
+    margin-bottom: 10px;
+}
+
+.author-book-entries{
+    text-align: center;
+}
+
+/* @media screen and (min-width:570px) {
     .profile-image{
 height: 160px;
-    }}
-.user-details{
+    }} */
+.user-details-mob{
     /* margin-left: 20% !important; */
 }
 .link-heading{
@@ -716,3 +740,18 @@ height: 160px;
 .glyphicon-star:before{content:"\e006"}
 
 .custom-checkbox{display: inline-block;}
+
+/* individual authors page */
+.user-details-mob{
+    font-size: 20px;
+}
+
+.mobile-author-details{
+    text-align: center;
+}
+
+.user-details-dsk{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
