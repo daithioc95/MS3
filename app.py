@@ -287,7 +287,7 @@ def author_profile(Author):
     # final_page = math.ceil((mongo.db.quotes.find({"Author": Author}))/(limit-1))
     pages = range(1, int(final_page + 1))
     Categories = mongo.db.authors.find_one({"Author": Author})["Categories"]
-    similar_authors = mongo.db.authors.find({"Categories": {"$in":  Categories}}).limit(10)
+    similar_authors = mongo.db.authors.find({"Categories": {"$in":  Categories}}).limit(8)
     try:
         # if user logged in 
         if session["user"]:
