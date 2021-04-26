@@ -309,6 +309,47 @@ def author_profile(Author):
                             final_page=final_page,)
 
 
+@app.route("/book_profile/<Book>", methods=["GET", "POST"])
+def book_profile(Book):
+    limit = int(6)
+    page = request.args.get('page', 1, type=int)
+    skips = limit * (page - 1)
+    book = Book
+    author = mongo.db.quotes.find_one({"Book": Book})["Author"]
+    quotes = mongo.db.quotes.find({"Book": Book}).skip(skips).limit(limit)
+    # author = mongo.db.quotes.find({"Book": Book})["Author"]
+    final_page = math.ceil((mongo.db.quotes.count_documents({"Book": Book}))/(limit))
+    # final_page = math.ceil((mongo.db.quotes.find({"Author": Author}))/(limit-1))
+    pages = range(1, int(final_page + 1))
+    # Categories = mongo.db.quotes.find_one({"Book": Book})["Category"]
+    categories = mongo.db.quotes.find_one({"Book": Book})["Category"]
+    authors_books = mongo.db.authors.find_one({"Author": author})["Books"]
+    try:
+        # if user logged in 
+        if session["user"]:
+            fav_quotes2 = get_starred(session["user"], "quote")
+            fav_authors2 = get_starred(session["user"], "author")
+    # if session["user"] not recognised, user is logged out
+    except KeyError:
+        fav_quotes2 = []
+        fav_authors2 = []
+    return render_template("indiv_book.html",
+                            # author=author, 
+                            book=book,
+                            quotes=quotes, 
+                            categories=categories,
+                            author=author,
+                            authors_books=authors_books,
+                            # fav_quotes2=fav_quotes2, 
+                            # authors_books=authors_books,
+                            # fav_authors2=fav_authors2,
+                            page=page, 
+                            pages=pages,
+                            limit=limit,
+                            final_page=final_page
+                            )
+
+
 @app.route("/get_mood")
 def get_mood():
     return render_template("mood.html")

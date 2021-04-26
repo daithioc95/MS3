@@ -755,3 +755,43 @@ height: 160px;
     margin-bottom: 20px;
 }
 
+ .book-title{
+     height: 60px;
+        /* display: inline-block; */
+    }   
+
+.book-heading{
+    margin-bottom: 40px;
+}
+
+.blue-book {
+    color: #2098d1;
+}
+
+.red-book {
+    color: #CC6F76;
+}
+
+.orange-book {
+    color: #FFCB6F;
+}
+
+.teal-book {
+    color: #6DFACD;
+}
+
+.purple-book {
+    color: #A63B81;
+}
+
+.lavender-book {
+    color: #B0BBFF;
+}
+
+.brown-book {
+    color: #857555;
+}
+
+.green-book {
+    color: #007A79;
+}

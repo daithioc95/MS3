@@ -1,10 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
 <main class="container">
-    <div class="desktop-author-details hide-on-small-only">
+    <p>quotes</p>
+    
+    <p>books</p>
+    
+    <p>Categories</p>
+    
+    <p>books</p>
+    {{ authors_books }}
+    <p>author</p>
+    {{ author }}
+
+<div class="desktop-author-details hide-on-small-only">
         <div class="row">
             <div class="col l2">
-                <h2>{{ author.Author }}</h2>
+                <h2>{{ book }}</h2>
             </div>
             <div class="col l2 indiv-author-star">
                 <form>
@@ -33,26 +44,25 @@
         <div class="row">
             <div class="col l3">
                 <div id="circle-container">
-                    <div class="profile-image">
-                    </div>
+                    <i class="fas fa-book fa-5x"></i>
                 </div>
             </div>
             <!-- no categories https://8080-blue-guppy-lje8d91l.ws-eu03.gitpod.io/author_profile/Debasish%20Mridha -->
             <div class="col l1"></div>
-            {% if author.Categories %}
+            {% if categories %}
             <div class="col l8 user-details-dsk">
                  <h3><b>Categories:</b></h3>
-                <p>{% for category in author.Categories %}{{ category }}, {% endfor %}</p>
+                <p>{{ category }}</p>
             </div>
             {% endif %}
-            {% if author.Books %}
+            {% if authors_books %}
             <div class="col l1"></div>
             <h3 class="book-heading"><b>Books:</b></h3>
             {% endif %}
             <div class="row">
                 <div class="col l1"></div>
                 
-            {% for book in author.Books %}<div class="col l2 author-book-entries"><a href="{{ url_for('book_profile', Book= book) }}"><i class="fas fa-book fa-5x {% if loop.index % 8 == 0 %}teal-book{% elif loop.index % 7 == 0 %}red-book{% elif loop.index % 6 == 0 %}orange-book{% elif loop.index % 5 == 0 %}green-book{% elif loop.index % 4 == 0 %}purple-book{% elif loop.index % 3 == 0 %}lavender-book{% elif loop.index % 2 == 0 %}brown-book{% elif loop.index % 1 == 0 %}blue-book{% endif %}"></i></a>
+            {% for book in authors_books %}<div class="col l2 author-book-entries"><a href="{{ url_for('book_profile', Book= book) }}"><i class="fas fa-book fa-5x {% if loop.index % 8 == 0 %}teal-book{% elif loop.index % 7 == 0 %}red-book{% elif loop.index % 6 == 0 %}orange-book{% elif loop.index % 5 == 0 %}green-book{% elif loop.index % 4 == 0 %}purple-book{% elif loop.index % 3 == 0 %}lavender-book{% elif loop.index % 2 == 0 %}brown-book{% elif loop.index % 1 == 0 %}blue-book{% endif %}"></i></a>
 
                 <p class="book-title">{{ book }}</p>
             </div>{% endfor %}
@@ -60,11 +70,12 @@
         </div>
 
     </div>
-    <div class="row mobile-author-details hide-on-med-and-up">
+
+<div class="row mobile-author-details hide-on-med-and-up">
         <div class="flexbox">
             <div class="col s3"></div>
             <div class="col s6">
-                <h2>{{ author.Author }}</h2>
+                <h2>{{ book }}</h2>
             </div>
             <div class="col s3 indiv-author-star">
                 <form>
@@ -99,19 +110,20 @@
             </div>
             <div class="user-details-mob col s12">
                 <h3><b>Name:</b></h3>
-                <p>{{ author.Author }}<br /></p>
+                <p>{{ author }}<br /></p>
                 <h3><b>Books:</b></h3>
                 <p>
-                <ul>{% for book in author.Books %}<li>{{ book }}</li>{% endfor %}</ul>
+                <ul>{% for book in authors_books %}<li>{{ book }}</li>{% endfor %}</ul>
                 </p>
                 <h3><b>Categories:</b></h3>
                 <p>{% for category in author.Categories %}{{ category }}, {% endfor %}</p>
             </div>
         </div>
     </div>
+
     <div class="row">
         <!-- <div class="col s12 m8 offset-m2"> -->
-        <h2>{{ author.Author }}'s Quotes</h2>
+        <h2>{{ book }}'s Quotes</h2>
         <!-- </div> -->
     </div>
     <div class="row">
@@ -189,83 +201,26 @@
             {% endfor %}
         </div>
     </div>
+
     <ul class="pagination center-align">
         <li class="{% if  page < 2 %}disabled{% endif %}"><a
-                href="{% if  page < 2 %}{% else %}{{ url_for('author_profile', Author=author.Author, page = page - 1) }}{% endif %}"><i
+                href="{% if  page < 2 %}{% else %}{{ url_for('book_profile', Book= book, page = page - 1) }}{% endif %}"><i
                     class="material-icons">chevron_left</i></a></li>
         {% for p in pages %}
         {% if  p == page  %}
         <li class="active">
-            <a href="{{ url_for('author_profile', Author=author.Author, page = p) }}">{{ p }}</a>
+            <a href="{{ url_for('book_profile', Book= book, page = p) }}">{{ p }}</a>
         </li>
         {% else %}
         <li class="">
-            <a href="{{ url_for('author_profile', Author=author.Author, page = p) }}">{{ p }}</a>
+            <a href="{{ url_for('book_profile', Book= book, page = p) }}">{{ p }}</a>
         </li>
         {% endif %}
         {% endfor %}
         <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{% if  page >= final_page %}{% else %}{{ url_for('author_profile', Author=author.Author, page = page + 1) }}{% endif %}"><i
+                href="{% if  page >= final_page %}{% else %}{{ url_for('book_profile', Book= book, page = page + 1) }}{% endif %}"><i
                     class="material-icons">chevron_right</i></a></li>
     </ul>
-
-    <div class="row">
-        <h2>Similar Authors</h2>
-    </div>
-
-    <div class="row">
-        {% for similar_author in similar_authors %}
-        {% if similar_author.Author != author.Author %}
-        <div class="col l6 s12 m8">
-            <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
-            <article class="left-align article author-card">
-                <blockquote class="author-blockquote">
-                    <cite><a
-                            href="{{ url_for('author_profile', Author=similar_author.Author) }}">{{ similar_author.Author }}</a></cite>
-                    <!-- {% if similar_author.Books[0] != '' %}
-                        <p>Books: 
-                            {% for item in similar_author.Books %}
-                            {{ item }}</p>
-                        {% endfor %}
-                    {% endif %} -->
-                    <div class="blockquote-author-image"
-                        style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
-                    </div>
-                    <div class="star">
-                        <form>
-                            {% if session.user %}
-                            <label for="dsk-id-of-input{{ similar_author._id }}_{{ session['user'] }}"
-                                class="indigo lighten-2 custom-checkbox">
-                                <input type="checkbox"
-                                    id="dsk-id-of-input{{ similar_author._id }}_{{ session['user'] }}"
-                                    name="dsk-id-of-input{{ similar_author._id }}_{{ session['user'] }}"
-                                    category="logged-in-author-input"
-                                    {% for x in fav_authors2 if x|string == similar_author._id|string %} checked
-                                    {% else %} unchecked {% endfor %} />
-                                <i class="glyphicon glyphicon-star-empty"></i>
-                                <i class="glyphicon glyphicon-star"></i>
-                            </label>
-                            {% else %}
-                            <label for="dsk-id-of-input{{ similar_author._id }}"
-                                class="indigo lighten-2 custom-checkbox">
-                                <input type="checkbox" id="dsk-id-of-input{{ similar_author._id }}"
-                                    name="dsk-id-of-input{{ similar_author._id }}" category="logged-out-author-input" />
-                                <i class="glyphicon glyphicon-star-empty"></i>
-                                <i class="glyphicon glyphicon-star"></i>
-                            </label>
-                            {% endif %}
-                        </form>
-                    </div>
-                </blockquote>
-            </article>
-        </div>
-        {% endif %}
-        {% endfor %}
-    </div>
-
-    <div class="row">
-        <h2>Comments</h2>
-    </div>
 
 </main>
 {% endblock %}
