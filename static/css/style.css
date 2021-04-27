@@ -756,7 +756,8 @@ height: 160px;
 }
 
  .book-title{
-     height: 60px;
+     height: 80px;
+     /* height: fit-content; */
         /* display: inline-block; */
     }   
 
@@ -794,4 +795,8 @@ height: 160px;
 
 .green-book {
     color: #007A79;
+}
+
+.book-star-row{
+    display: flex;
 }

@@ -7,6 +7,7 @@ MONGO_URI = os.environ.get("MONGO_URI")
 DATABASE = "ms3_quotes"
 COLLECTION_QUTOES = "quotes"
 COLLECTION_AUTHORS = "authors"
+COLLECTION_BOOKS = "books"
 def mongo_connect(url):
     try:
         conn = pymongo.MongoClient(url)
@@ -17,6 +18,7 @@ def mongo_connect(url):
 conn = mongo_connect(MONGO_URI)
 coll1 = conn[DATABASE][COLLECTION_QUTOES]
 coll2 = conn[DATABASE][COLLECTION_AUTHORS]
+coll3 = conn[DATABASE][COLLECTION_BOOKS]
 
 # mongo "mongodb+srv://myfirstcluster.jvdhi.mongodb.net/ms3_quotes" --username mongoDBlearning
 
@@ -71,6 +73,25 @@ documents2 = coll2.find()
 #         except:
 #             coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Books":[]}})
 #             coll2.update_one({"Author":doc["Author"]}, { "$addToSet": { "Categories":[]}})
+
+
+# write all books & authors & Categories to books db -- 
+# store_books = []
+# for doc in documents:
+#     if doc["Book"]:
+#         if doc["Book"] not in store_books:
+#             store_books.append(doc["Book"])
+#             coll3.insert_one({"Book":doc["Book"]})
+#             coll3.update_one({"Book":doc["Book"]},{"Author":doc["Author"]})  # fix this to $something
+#             try:
+#                 coll3.update_one({"Book":doc["Book"]}, { "$addToSet": { "Categories":doc["Category"]}})
+#             except:
+#                 coll3.update_one({"Book":doc["Book"]}, { "$addToSet": { "Categories":[]}})
+#         else:
+#             try:
+#                 coll3.update_one({"Book":doc["Book"]}, { "$addToSet": { "Categories":doc["Category"]}})
+#             except:
+#                 coll3.update_one({"Book":doc["Book"]}, { "$addToSet": { "Books":[]}})
 
 
 # delete "Array" entries
