@@ -25,6 +25,7 @@ coll3 = conn[DATABASE][COLLECTION_BOOKS]
 documents_authors = coll1.find({},{ "_id": 0, "Author": 1})
 documents = coll1.find()
 documents2 = coll2.find()
+documents3 = coll3.find()
 
 # Remove empty array elements for books
 # for doc in documents2:
@@ -77,25 +78,38 @@ documents2 = coll2.find()
 
 # write all books & authors & Categories to books db -- 
 # store_books = []
+# coll3.delete_many({})
 # for doc in documents:
-#     if doc["Book"]:
-#         if doc["Book"] not in store_books:
-#             store_books.append(doc["Book"])
-#             coll3.insert_one({"Book":doc["Book"]})
-#             coll3.update_one({"Book":doc["Book"]},{"Author":doc["Author"]})  # fix this to $something
-#             try:
+#     try:
+#         if doc["Book"] != "":
+#             if doc["Book"] not in store_books:
+#                 store_books.append(doc["Book"])
+#                 # print(doc["Author"])
+#                 coll3.insert_one({"Book":doc["Book"], "Author": doc["Author"]})
 #                 coll3.update_one({"Book":doc["Book"]}, { "$addToSet": { "Categories":doc["Category"]}})
-#             except:
-#                 coll3.update_one({"Book":doc["Book"]}, { "$addToSet": { "Categories":[]}})
-#         else:
-#             try:
+#             else:
 #                 coll3.update_one({"Book":doc["Book"]}, { "$addToSet": { "Categories":doc["Category"]}})
-#             except:
-#                 coll3.update_one({"Book":doc["Book"]}, { "$addToSet": { "Books":[]}})
+#     except:
+#         pass
+
+# Remove empty array elements for categories
+# for doc in documents3:
+#     list1 = doc["Categories"]
+#     for item in list1:
+#         if item == "":
+#             coll3.update_one({"Book":doc["Book"]}, { "$pull": { "Categories":""}})
+#         if item == []:
+#             coll3.update_one({"Book":doc["Book"]}, { "$pull": { "Categories":[]}})
+#         if item == "books":
+#             coll3.update_one({"Book":doc["Book"]}, { "$pull": { "Categories":"books"}})
 
 
 # delete "Array" entries
+# coll2.update_many({"Categories": []},{ "$pull": {"$size" : 0}})
+
+# delete "Array" entries
 # coll2.update_many({"Books": []},{ "$pull": {"$size" : 0}})
+
 
 # write all unique authors to author db (not necessarily needed) -- Tested
 # store_authors = []
