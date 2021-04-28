@@ -226,7 +226,7 @@
     <div class="row">
         {% for similar_author in similar_authors %}
         {% if similar_author.Author != author.Author %}
-        <div class="col l6 s12 m12">
+        <div class="col l5 s12 m12">
             <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
             <article class="left-align article author-card">
                 <blockquote class="author-blockquote">
@@ -269,7 +269,11 @@
                 </blockquote>
             </article>
         </div>
+        {% if loop.index % 2 != 0 %}
+                <div class="hide-on-small-only col l1"></div>
         {% endif %}
+        {% endif %}
+        
         {% endfor %}
     </div>
 

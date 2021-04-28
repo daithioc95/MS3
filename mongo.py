@@ -51,6 +51,8 @@ documents3 = coll3.find()
 # mongo.db.authors.create_index([("Author", "text")])
 # Tags Index
 # mongo.db.quotes.create_index([("Tags", "text")])
+# Books index
+# coll3.create_index([("Book", "text")])
 
 # coll2.update_one({"Author":"C.S. Lewis"},{"$set": {"Books": k[1]}})
 

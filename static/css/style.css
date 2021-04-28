@@ -89,24 +89,30 @@ nav{
     align-items: center;
     text-align: center;
     justify-content: center;
-    margin-top: 25px;
 }
 
 .welcome-qotd blockquote {
     border-left: none;
 	font-weight: 100;
 	font-size: 2rem;
-	max-width: 600px;
-	line-height: 1.4;
+    /* max-width: 600px; */
+    
+	/* line-height: 1.4; */
 	position: relative;
-	margin: 0;
+	/* margin: 30px 0; */
 	padding: .5rem;
 }
 
 @media screen and (min-width:570px) {
 .welcome-qotd blockquote {
-	font-size: 40px;
-}}
+    font-size: 60px;
+    max-width: 60%;
+}
+
+.welcome-qotd {
+    margin: 25px 0;
+}
+}
 
 /* .welcome-qotd blockquote:before,
 .welcome-qotd blockquote:after {
@@ -132,7 +138,7 @@ nav{
 } */
 
 .welcome-qotd cite {
-	line-height: 3;
+	/* line-height: 3; is this causing the phone issue? */
 	text-align: center;
 }
 /* font-family: "Font Awesome 5 Free";
@@ -160,21 +166,21 @@ nav{
 }
 
 .article {
-	max-width: 900px;
+	/* max-width: 900px; */
 	margin: auto;
 }
 
 
-.article blockquote {
-    font-size: 20px;
+.article blockquote p {
+    font-size: 25px;
+    text-align: center;
 }
+
 
 
 .article blockquote {
 	position: relative;
-	margin: 40px 0;
-    /* padding: 1.6em 2.4em .7em calc(1.4em + var(--quote-image-width)); */
-    padding: 1.6em 4em .7em calc(1.4em + var(--quote-image-width));
+	margin: 50px 0;
     /* font: italic 1.2rem var(--type-quote); */
     font-style: italic;
 	background: var(--quote-bg) no-repeat left / var(--quote-image-width);
@@ -184,11 +190,19 @@ nav{
 	text-indent: 1.6em;
 }
 
-@media (min-width: 768px) {
+.quote-blockquote{
+    padding: 1.6em 11em .7em calc(1.4em + var(--quote-image-width));
+}
+
+.author-blockquote{
+    padding: 1.6em 2.4em .7em calc(1.4em + var(--quote-image-width));
+}
+
+/* @media (min-width: 768px) {
 	blockquote.author-blockquote {
 		margin: 40px 60px;
 	}
-} 
+}  */
 
 blockquote.quote-blockquote{}
 
@@ -262,11 +276,11 @@ blockquote.author-blockquote{}
 	color: hsl(0 0% 20%);
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
 	.article cite {
 		margin-left: calc(1rem - var(--quote-image-width));
 	}
-}
+} */
 
 /* --- Mobile Quote Cards --- */
 .animated-border-quote {
@@ -476,7 +490,7 @@ border: 1px solid #fff;
 .wrap{
   width: 30%;
   position: absolute;
-  top: 50%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -756,7 +770,7 @@ height: 160px;
     font-size: 20px;
 }
 
-.mobile-author-details{
+.mobile-author-details, .mobile-user-details{
     text-align: center;
 }
 
@@ -813,7 +827,7 @@ height: 160px;
 
 .share-quote{
     font-weight: 900;
-    margin-left: 100%;
+    margin-left: 109%;
     color: #7986cb;
 }
 

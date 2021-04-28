@@ -27,6 +27,8 @@
     {% if session.user and get_fav == None and fav_authors2 %}
         <h2>{{ session['user'] }}'s Favourite authors</h2>
         <h3 class="link-heading"><a href="{{ url_for('get_authors', get_fav = "No") }}">Discover authors here</a></h3>
+    {% elif url_for(request.endpoint) == url_for('search_authors') %}
+        <h2>Results</h2>
     {% elif not session.user or get_fav == "No" or not fav_authors2 %}
         <h2>Popular authors</h2>
         {% if session.user and fav_authors2 %}
@@ -34,12 +36,13 @@
         {% endif %}
     {% endif %}
 
+
     {% if authors1.count() > 0 %}
     <div class="row">
         {% for author in authors1 %}
         <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
-        <div class="col s12 l6 m6">
-            <article class="s12 m8 left-align article author-card">
+        <div class="col s12 l5 m12">
+            <article class="left-align article author-card">
                 <blockquote class="author-blockquote">
                     <cite><a href="{{ url_for('author_profile', Author=author.Author) }}">{{ author.Author }}</a></cite>
                     <div class="blockquote-author-image"
@@ -71,7 +74,9 @@
                 </blockquote>
             </article>
         </div>
-
+        {% if loop.index % 2 != 0 %}
+                <div class="hide-on-small-only col l1"></div>
+        {% endif %}
         {% endfor %}
     </div>
     {% if get_fav == None %}
@@ -141,7 +146,7 @@
     {% endif %}
     <!-- Author index -->
     <!-- https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_column-fill -->
-    
+
     <!-- <div class="row author-index">
         <div class="s12 center-align">
             {% for author in authors2 %}

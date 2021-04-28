@@ -27,6 +27,8 @@
     {% if session.user and get_fav == None and fav_books2 %}
         <h2>{{ session['user'] }}'s Favourite books</h2>
         <h3 class="link-heading"><a href="{{ url_for('get_books', get_fav = "No") }}">Discover books here</a></h3>
+    {% elif url_for(request.endpoint) == url_for('search_books') %}
+        <h2>Results</h2>
     {% elif not session.user or get_fav == "No" or not fav_books2 %}
         <h2>Popular books</h2>
         {% if session.user and fav_books2 %}

@@ -312,7 +312,7 @@ def author_profile(Author):
     # final_page = math.ceil((mongo.db.quotes.find({"Author": Author}))/(limit-1))
     pages = range(1, int(final_page + 1))
     Categories = mongo.db.authors.find_one({"Author": Author})["Categories"]
-    similar_authors = mongo.db.authors.find({"Categories": {"$in":  Categories}}).limit(8)
+    similar_authors = mongo.db.authors.find({"Categories": {"$in":  Categories}}).limit(6)
     try:
         # if user logged in 
         if session["user"]:
@@ -380,46 +380,43 @@ def get_books():
 
 
 @app.route("/search_books", methods=["GET", "POST"])
-# Function to search quotes
+# Function to search books
 def search_books():
-    # generated = request.args.get('generated')
-    # if generated == "yes":
-    #     query = request.form.get("query_quote")
-    # else:
-    #     query = request.args.get('query_quote')
-    # qotd = mongo.db.quotes.find_one()
+    generated = request.args.get('generated')
+    if generated == "yes":
+        searchTerm = request.form.get("query_book")
+    else:
+        searchTerm = request.args.get('query_book')
     # page = request.args.get('page', 1, type=int)
-    # limit = int(5)
+    # limit = int(6)
     # skips = limit * (page - 1)
-    # # final_page = math.ceil((mongo.db.quotes.count_documents(
-    # #     {"$text": {"$search": query}}))/(limit))
-    # # pages = range(1, int(final_page + 1))
-    # # Limit pages with updated db
+    # get searched query
+    # final_page = math.ceil((mongo.db.authors.count_documents(
+    #     {"$text": {"$search": searchTerm}}))/(limit-1))
+    # pages = range(1, int(final_page + 1))
+    # Limit pages with updated db
     # final_page = 10
     # pages = range(1, int(final_page + 1))
-    # quotes = mongo.db.quotes.find(
-    #     {"$text": {"$search": query}}).skip(skips).limit(limit)
-    # # feed through favoutite id's so only favourite stars are checked
-    # searched = True
-    # try:
-    #     # if user logged in 
-    #     if session["user"]:
-    #         # get array of id's for users favourite quotes
-    #         starred = get_starred(session["user"], "quote")
-    # # if session["user"] not recognised, user is logged out
-    # except KeyError:
-    #     starred = []
-    return render_template('books.html',
-                        #    quotes=quotes,
-                        #    page=page,
-                        #    pages=pages,
-                        #    limit=limit,
-                        #    qotd=qotd,
-                        #    final_page=final_page,
-                        #    fav_quotes2=starred,
-                        #    query_quote = query,
-                        #    searched=searched
-                        )
+    # search query to index
+    books = mongo.db.books.find({"$text": {"$search":searchTerm }}).limit(30)
+    # feed through favoutite id's so only favourite stars are checked
+    searched = True
+    try:
+        # if user logged in 
+        if session["user"]:
+            starred = get_starred(session["user"], "book")
+    # if session["user"] not recognised, user is logged out
+    except KeyError:
+        starred = []
+    return render_template('books.html', 
+                            books=books, 
+                            # page=page, 
+                            # pages=pages,
+                            # limit=limit,
+                            # final_page=final_page,
+                            fav_books2=starred,
+                            query_book = searchTerm,
+                            searched=searched)
 
 
 @app.route("/book_profile/<Book>", methods=["GET", "POST"])
@@ -578,13 +575,16 @@ def profile(username):
     fav_authors1 = get_favourites(session["user"], "author")
     authors = mongo.db.authors.find({"_id": {"$in":  fav_authors1}})
     fav_authors2 = get_starred(session["user"], "author")
+    fav_books = get_favourites(session["user"], "book")
+    books = mongo.db.books.find({"_id": {"$in":  fav_books}})
     if session["user"]:
         return render_template("profile.html", 
                                 username=username, 
                                 quotes=quotes, 
                                 fav_quotes2=fav_quotes2, 
                                 authors=authors, 
-                                fav_authors2=fav_authors2)
+                                fav_authors2=fav_authors2,
+                                books=books)
 
     return redirect(url_for("login"))
 
