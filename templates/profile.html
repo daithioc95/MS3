@@ -36,6 +36,7 @@
             <blockquote class="quote-blockquote">
                 <p>{{ quote.Quote }}
                 </p>
+                <i class="share-quote fas fa-link"></i>
                 <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
                 <div class="blockquote-author-image"
                     style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
@@ -44,7 +45,7 @@
                     <form>
                         {% if session.user %}
                         <label for="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
-                            class="indigo lighten-2 custom-checkbox">
+                            class="custom-checkbox">
                             <input type="checkbox" id="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
                                 name="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
                                 category="logged-in-quote-input"
@@ -54,7 +55,7 @@
                             <i class="glyphicon glyphicon-star"></i>
                         </label>
                         {% else %}
-                        <label for="dsk-id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
+                        <label for="dsk-id-of-input{{ quote._id }}" class="custom-checkbox">
                             <input type="checkbox" id="dsk-id-of-input{{ quote._id }}"
                                 name="dsk-id-of-input{{ quote._id }}" category="logged-out-quote-input" />
                             <i class="glyphicon glyphicon-star-empty"></i>
@@ -72,10 +73,11 @@
             <blockquote>
                 <p>{{ quote.Quote }}</p>
                 <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
+                <i class="share-quote-mob share-quote fas fa-link"></i>
                 <div class="star">
                     {% if session.user %}
                     <label for="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
-                        class="indigo lighten-2 custom-checkbox">
+                        class="custom-checkbox">
                         <input type="checkbox" id="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
                             name="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" category="logged-in-quote-input"
                             {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %} unchecked
@@ -84,7 +86,7 @@
                         <i class="glyphicon glyphicon-star"></i>
                     </label>
                     {% else %}
-                    <label for="mob-id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
+                    <label for="mob-id-of-input{{ quote._id }}" class="custom-checkbox">
                         <input type="checkbox" id="mob-id-of-input{{ quote._id }}" name="mob-id-of-input{{ quote._id }}"
                             category="logged-out-quote-input" />
                         <i class="glyphicon glyphicon-star-empty"></i>
@@ -127,7 +129,7 @@
                         <form>
                             {% if session.user %}
                             <label for="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
-                                class="indigo lighten-2 custom-checkbox">
+                                class="custom-checkbox">
                                 <input type="checkbox" id="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
                                     name="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
                                     category="logged-in-author-input"
@@ -137,7 +139,7 @@
                                 <i class="glyphicon glyphicon-star"></i>
                             </label>
                             {% else %}
-                            <label for="dsk-id-of-input{{ author._id }}" class="indigo lighten-2 custom-checkbox">
+                            <label for="dsk-id-of-input{{ author._id }}" class="custom-checkbox">
                                 <input type="checkbox" id="dsk-id-of-input{{ author._id }}"
                                     name="dsk-id-of-input{{ author._id }}" category="logged-out-author-input" />
                                 <i class="glyphicon glyphicon-star-empty"></i>

@@ -2,27 +2,27 @@
 {% block content %}
 <main class="container">
 
-    <div class="desktop-author-details hide-on-small-only">
+    <div class="desktop-book-details hide-on-small-only">
         <div class="row">
             <div class="col l6 book-star-row">
-                <h2>{{ book }}</h2>
-                <div class="indiv-author-star">
+                <h2>{{ book.Book }}</h2>
+                <div class="indiv-book-star">
                     <form>
                         {% if session.user %}
-                        <label for="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
-                            class="indigo lighten-2 custom-checkbox">
-                            <input type="checkbox" id="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
-                                name="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
-                                category="logged-in-author-input"
-                                {% for x in fav_authors2 if x|string == author._id|string %} checked {% else %}
+                        <label for="dsk-id-of-input{{ book._id }}_{{ session['user'] }}"
+                            class="custom-checkbox">
+                            <input type="checkbox" id="dsk-id-of-input{{ book._id }}_{{ session['user'] }}"
+                                name="dsk-id-of-input{{ book._id }}_{{ session['user'] }}"
+                                category="logged-in-book-input"
+                                {% for x in fav_books2 if x|string == book._id|string %} checked {% else %}
                                 unchecked {% endfor %} />
                             <i class="glyphicon glyphicon-star-empty"></i>
                             <i class="glyphicon glyphicon-star"></i>
                         </label>
                         {% else %}
-                        <label for="dsk-id-of-input{{ author._id }}" class="indigo lighten-2 custom-checkbox">
-                            <input type="checkbox" id="dsk-id-of-input{{ author._id }}"
-                                name="dsk-id-of-input{{ author._id }}" category="logged-out-author-input" />
+                        <label for="dsk-id-of-input{{ book._id }}" class="custom-checkbox">
+                            <input type="checkbox" id="dsk-id-of-input{{ book._id }}"
+                                name="dsk-id-of-input{{ book._id }}" category="logged-out-book-input" />
                             <i class="glyphicon glyphicon-star-empty"></i>
                             <i class="glyphicon glyphicon-star"></i>
                         </label>
@@ -42,14 +42,14 @@
             </div>
             <div class="col l8 user-details-dsk">
                 <h3><b>Author:</b></h3>
-                <p><a href="{{ url_for('author_profile', Author=author) }}">{{ author }}</a></p>
-                {% if categories %}
+                <p><a href="{{ url_for('author_profile', Author=book.Author) }}">{{ book.Author }}</a></p>
+                {% if book.Categories %}
 
                 <h3><b>Categories:</b></h3>
-                <p>{{ categories }}</p>
+                <p>{% for category in book.Categories %}{{ category }}, {% endfor %}</p>
+            
+                 {% endif %}
             </div>
-            {% endif %}
-
         </div>
     </div>
 
@@ -58,25 +58,25 @@
         <div class="flexbox">
             <div class="col s3"></div>
             <div class="col s6">
-                <h2>{{ book }}</h2>
+                <h2>{{ book.Book }}</h2>
             </div>
-            <div class="col s3 indiv-author-star">
+            <div class="col s3 indiv-book-star">
                 <form>
                     {% if session.user %}
-                    <label for="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
-                        class="indigo lighten-2 custom-checkbox">
-                        <input type="checkbox" id="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
-                            name="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
-                            category="logged-in-author-input"
-                            {% for x in fav_authors2 if x|string == author._id|string %} checked {% else %} unchecked
+                    <label for="dsk-id-of-input{{ book._id }}_{{ session['user'] }}"
+                        class="custom-checkbox">
+                        <input type="checkbox" id="dsk-id-of-input{{ book._id }}_{{ session['user'] }}"
+                            name="dsk-id-of-input{{ book._id }}_{{ session['user'] }}"
+                            category="logged-in-book-input"
+                            {% for x in fav_books2 if x|string == book._id|string %} checked {% else %} unchecked
                             {% endfor %} />
                         <i class="glyphicon glyphicon-star-empty"></i>
                         <i class="glyphicon glyphicon-star"></i>
                     </label>
                     {% else %}
-                    <label for="dsk-id-of-input{{ author._id }}" class="indigo lighten-2 custom-checkbox">
-                        <input type="checkbox" id="dsk-id-of-input{{ author._id }}"
-                            name="dsk-id-of-input{{ author._id }}" category="logged-out-author-input" />
+                    <label for="dsk-id-of-input{{ book._id }}" class="custom-checkbox">
+                        <input type="checkbox" id="dsk-id-of-input{{ book._id }}"
+                            name="dsk-id-of-input{{ book._id }}" category="logged-out-book-input" />
                         <i class="glyphicon glyphicon-star-empty"></i>
                         <i class="glyphicon glyphicon-star"></i>
                     </label>
@@ -92,18 +92,18 @@
             </div>
             <div class="user-details-mob col s12">
                 <h3><b>Author:</b></h3>
-                <p><a href="{{ url_for('author_profile', Author=author) }}">{{ author }}</a></p>
-                {% if categories %}
+                <p><a href="{{ url_for('author_profile', Author=book.Author) }}">{{ book.Author }}</a></p>
+                {% if book.Categories %}
                 <h3><b>Categories:</b></h3>
-                <p>{{ categories }}</p>
-            </div>
+                <p>{% for category in book.Categories %}{{ category }}, {% endfor %}</p>
             {% endif %}
+            </div>
         </div>
     </div>
 
     <div class="row">
         <!-- <div class="col s12 m8 offset-m2"> -->
-        <h2>{{ book }}'s Quotes</h2>
+        <h2>{{ book.Book }}'s Quotes</h2>
         <!-- </div> -->
     </div>
     <div class="row">
@@ -117,6 +117,7 @@
                 <blockquote class="quote-blockquote">
                     <p>{{ quote.Quote }}
                     </p>
+                    <i class="share-quote fas fa-link"></i>
                     <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
                     <div class="blockquote-author-image"
                         style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
@@ -125,7 +126,7 @@
                         <form>
                             {% if session.user %}
                             <label for="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
-                                class="indigo lighten-2 custom-checkbox">
+                                class="custom-checkbox">
                                 <input type="checkbox" id="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
                                     name="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
                                     category="logged-in-quote-input"
@@ -135,7 +136,7 @@
                                 <i class="glyphicon glyphicon-star"></i>
                             </label>
                             {% else %}
-                            <label for="dsk-id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
+                            <label for="dsk-id-of-input{{ quote._id }}" class="custom-checkbox">
                                 <input type="checkbox" id="dsk-id-of-input{{ quote._id }}"
                                     name="dsk-id-of-input{{ quote._id }}" category="logged-out-quote-input" />
                                 <i class="glyphicon glyphicon-star-empty"></i>
@@ -153,10 +154,11 @@
                 <blockquote>
                     <p>{{ quote.Quote }}</p>
                     <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
+                    <i class="share-quote-mob share-quote fas fa-link"></i>
                     <div class="star">
                         {% if session.user %}
                         <label for="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
-                            class="indigo lighten-2 custom-checkbox">
+                            class="custom-checkbox">
                             <input type="checkbox" id="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
                                 name="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
                                 category="logged-in-quote-input"
@@ -166,7 +168,7 @@
                             <i class="glyphicon glyphicon-star"></i>
                         </label>
                         {% else %}
-                        <label for="mob-id-of-input{{ quote._id }}" class="indigo lighten-2 custom-checkbox">
+                        <label for="mob-id-of-input{{ quote._id }}" class="custom-checkbox">
                             <input type="checkbox" id="mob-id-of-input{{ quote._id }}"
                                 name="mob-id-of-input{{ quote._id }}" category="logged-out-quote-input" />
                             <i class="glyphicon glyphicon-star-empty"></i>
@@ -204,7 +206,7 @@
     <!-- no categories https://8080-blue-guppy-lje8d91l.ws-eu03.gitpod.io/author_profile/Debasish%20Mridha -->
 
     {% if authors_books %}
-    <h3 class="book-heading"><b>Books:</b></h3>
+    <h3 class="book-heading"><b>Other books from this author</b></h3>
     {% endif %}
     <div class="row">
 
@@ -254,7 +256,7 @@
             alert("Please login or register to save favourites");
         }
     });
-    $('input[category=logged-in-author-input]').change(function () {
+    $('input[category=logged-in-book-input]').change(function () {
         if ($(this).prop("checked") == true) {
             M.toast({ html: 'Added to Favourites' });
         }
@@ -264,7 +266,7 @@
         var checkbox_id = $(this).attr("id");
         console.log("JS Post");
         $.ajax({
-            url: "{{ url_for('add_fav_author') }}",
+            url: "{{ url_for('add_fav_book') }}",
             type: "POST",
             data: {
                 'Checkbox': checkbox_id,
@@ -279,7 +281,7 @@
         }
         );
     });
-    $('input[category=logged-out-author-input]').change(function (e) {
+    $('input[category=logged-out-book-input]').change(function (e) {
         console.log("logged out fav");
         if (e.target.checked) {
             alert("Please login or register to save favourites");

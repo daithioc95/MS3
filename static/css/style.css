@@ -166,9 +166,15 @@ nav{
 
 
 .article blockquote {
+    font-size: 20px;
+}
+
+
+.article blockquote {
 	position: relative;
 	margin: 40px 0;
-	padding: 1.6em 2.4em .7em calc(1.4em + var(--quote-image-width));
+    /* padding: 1.6em 2.4em .7em calc(1.4em + var(--quote-image-width)); */
+    padding: 1.6em 4em .7em calc(1.4em + var(--quote-image-width));
     /* font: italic 1.2rem var(--type-quote); */
     font-style: italic;
 	background: var(--quote-bg) no-repeat left / var(--quote-image-width);
@@ -367,8 +373,12 @@ label input[type="checkbox"] {
   color: gold;
   position: absolute;
   top: 0.4em;
-  left: -1.25em;
+  left: -1.4em;
   font-size: 0.75em;
+}
+
+.author-blockquote .custom-checkbox .glyphicon {
+    left: -1.5em;
 }
 
 .custom-checkbox .glyphicon-star-empty {
@@ -433,7 +443,7 @@ label input[type="checkbox"] {
   margin-top: 20px;
 }
 
-#query_author, #query_quote {
+#query_author, #query_quote, #query_book {
   width: 100%;
 border: 1px solid #fff;
   border-right: none;
@@ -799,4 +809,14 @@ height: 160px;
 
 .book-star-row{
     display: flex;
+}
+
+.share-quote{
+    font-weight: 900;
+    margin-left: 100%;
+    color: #7986cb;
+}
+
+.share-quote-mob{
+    margin-left: 90%;
 }

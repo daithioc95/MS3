@@ -49,7 +49,7 @@
                         <form>
                             {% if session.user %}
                             <label for="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
-                                class="indigo lighten-2 custom-checkbox">
+                                class="custom-checkbox">
                                 <input type="checkbox" id="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
                                     name="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
                                     category="logged-in-author-input"
@@ -59,7 +59,7 @@
                                 <i class="glyphicon glyphicon-star"></i>
                             </label>
                             {% else %}
-                            <label for="dsk-id-of-input{{ author._id }}" class="indigo lighten-2 custom-checkbox">
+                            <label for="dsk-id-of-input{{ author._id }}" class="custom-checkbox">
                                 <input type="checkbox" id="dsk-id-of-input{{ author._id }}"
                                     name="dsk-id-of-input{{ author._id }}" category="logged-out-author-input" />
                                 <i class="glyphicon glyphicon-star-empty"></i>
@@ -141,13 +141,14 @@
     {% endif %}
     <!-- Author index -->
     <!-- https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_column-fill -->
-    <div class="row author-index">
+    
+    <!-- <div class="row author-index">
         <div class="s12 center-align">
             {% for author in authors2 %}
                 <p>{{ author.Author }}</p>
             {% endfor %}
         </div>
-    </div>
+    </div> -->
 </main>
 {% endblock %}
 {% block scripts %}

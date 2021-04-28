@@ -157,6 +157,27 @@ def add_fav_author():
     return "Method not supported"  
 
 
+@app.route("/add_fav_book", methods=["GET", "POST"])        # is "Get" necessary?
+# funciton to update db with favourite books when star is checked
+def add_fav_book():
+    # extract book id from checkbox id
+    book_id = request.form['Checkbox'].split('_')[0][15:]
+    # extract username from checkbox id
+    user = request.form['Checkbox'].split('_')[1]
+    # if the request is recieved
+    if request.method == "POST":
+        # if check box is checked
+        if request.form['Status'] == 'true':
+            # Add book id to users db
+            mongo.db.users.update_one({"username": user},{ "$addToSet": { "fav_book_ids": book_id}})
+        # else (box is unchecked)
+        else:
+            # Remove book if from users db
+            mongo.db.users.update_one({"username": user},{ "$pull": { "fav_book_ids": book_id}})
+    # Get 505 error when return None?
+    return "Method not supported"  
+
+
 def get_starred(username, category):
     # can we pass the below as a function to get fav_authors2?
     # get array of id's for users favourite authors
@@ -164,6 +185,8 @@ def get_starred(username, category):
         users_fav = mongo.db.users.find_one({"username": username})["fav_author_ids"]
     if category == "quote":
         users_fav = mongo.db.users.find_one({"username": username})["fav_quote_ids"]
+    if category == "book":
+        users_fav = mongo.db.users.find_one({"username": username})["fav_book_ids"]
     starred = []
     # Extract author id's and append to list
     for x in users_fav:
@@ -182,6 +205,8 @@ def get_favourites(username, category):
         users_fav = mongo.db.users.find_one({"username": username})["fav_author_ids"]
     if category == "quote":
         users_fav = mongo.db.users.find_one({"username": username})["fav_quote_ids"]
+    if category == "book":
+        users_fav = mongo.db.users.find_one({"username": username})["fav_book_ids"]
     favourites = []
     # Extract author id's and append to list
     for x in users_fav:
@@ -309,38 +334,127 @@ def author_profile(Author):
                             final_page=final_page,)
 
 
+@app.route("/get_books", methods=["GET"])
+# Function to get books
+def get_books():
+    get_fav = request.args.get('get_fav')
+    # page = request.args.get('page', 1, type=int)
+    # limit = int(6)
+    # skips = limit * (page - 1)
+    # final_page = math.ceil((mongo.db.authors.count_documents({}))/(limit))
+    # pages = range(1, int(final_page + 1))
+    # Limit pages with updated db
+    # final_page = 10
+    # pages = range(1, int(final_page + 1))
+    # find authors for display box
+    # authors1 = mongo.db.authors.find().skip(skips).limit(limit)
+    # Find authors for index
+    books = mongo.db.books.find().limit(30)
+    try:
+        # if user logged in 
+        if session["user"]:
+            # get array of id's for users favourite authors
+            fav_books1 = get_favourites(session["user"], "book")
+            fav_books2 = get_starred(session["user"], "book")
+            if fav_books1 and get_fav != "No":
+                # update the books and pages with users favourites
+                fav_books = mongo.db.books.find({"_id": {"$in":  fav_books1}}).limit(30)
+                # update the books documents
+                books = fav_books
+                # Update pagitation for updated quotes
+                # final_page = math.ceil((authors1.count())/(limit))
+                # pages = range(1, int(final_page + 1))
+    # if session["user"] not recognised, user is logged out
+    except KeyError:
+        fav_books2 = []
+    return render_template("books.html", 
+        books=books, 
+        # authors2=authors2,
+        # page=page,
+        # pages=pages,
+        # limit=limit,
+        # final_page=final_page,
+        # fav_authors2=fav_authors2,
+        fav_books2=fav_books2,
+        get_fav=get_fav)
+
+
+@app.route("/search_books", methods=["GET", "POST"])
+# Function to search quotes
+def search_books():
+    # generated = request.args.get('generated')
+    # if generated == "yes":
+    #     query = request.form.get("query_quote")
+    # else:
+    #     query = request.args.get('query_quote')
+    # qotd = mongo.db.quotes.find_one()
+    # page = request.args.get('page', 1, type=int)
+    # limit = int(5)
+    # skips = limit * (page - 1)
+    # # final_page = math.ceil((mongo.db.quotes.count_documents(
+    # #     {"$text": {"$search": query}}))/(limit))
+    # # pages = range(1, int(final_page + 1))
+    # # Limit pages with updated db
+    # final_page = 10
+    # pages = range(1, int(final_page + 1))
+    # quotes = mongo.db.quotes.find(
+    #     {"$text": {"$search": query}}).skip(skips).limit(limit)
+    # # feed through favoutite id's so only favourite stars are checked
+    # searched = True
+    # try:
+    #     # if user logged in 
+    #     if session["user"]:
+    #         # get array of id's for users favourite quotes
+    #         starred = get_starred(session["user"], "quote")
+    # # if session["user"] not recognised, user is logged out
+    # except KeyError:
+    #     starred = []
+    return render_template('books.html',
+                        #    quotes=quotes,
+                        #    page=page,
+                        #    pages=pages,
+                        #    limit=limit,
+                        #    qotd=qotd,
+                        #    final_page=final_page,
+                        #    fav_quotes2=starred,
+                        #    query_quote = query,
+                        #    searched=searched
+                        )
+
+
 @app.route("/book_profile/<Book>", methods=["GET", "POST"])
 def book_profile(Book):
     limit = int(6)
     page = request.args.get('page', 1, type=int)
     skips = limit * (page - 1)
-    book = Book
-    author = mongo.db.quotes.find_one({"Book": Book})["Author"]
+    book = mongo.db.books.find_one({"Book": Book})
     quotes = mongo.db.quotes.find({"Book": Book}).skip(skips).limit(limit)
     # author = mongo.db.quotes.find({"Book": Book})["Author"]
     final_page = math.ceil((mongo.db.quotes.count_documents({"Book": Book}))/(limit))
     # final_page = math.ceil((mongo.db.quotes.find({"Author": Author}))/(limit-1))
     pages = range(1, int(final_page + 1))
     # Categories = mongo.db.quotes.find_one({"Book": Book})["Category"]
-    categories = mongo.db.quotes.find_one({"Book": Book})["Category"]
+    # categories = mongo.db.books.find_one({"Book": Book})["Categories"]
+    author = mongo.db.books.find_one({"Book": Book})["Author"]
     authors_books = mongo.db.authors.find_one({"Author": author})["Books"]
     try:
         # if user logged in 
         if session["user"]:
             fav_quotes2 = get_starred(session["user"], "quote")
             fav_authors2 = get_starred(session["user"], "author")
+            fav_books2 = get_starred(session["user"], "book")
     # if session["user"] not recognised, user is logged out
     except KeyError:
         fav_quotes2 = []
         fav_authors2 = []
+        fav_books2 = []
     return render_template("indiv_book.html",
                             # author=author, 
                             book=book,
                             quotes=quotes, 
-                            categories=categories,
-                            author=author,
                             authors_books=authors_books,
-                            # fav_quotes2=fav_quotes2, 
+                            fav_quotes2=fav_quotes2, 
+                            fav_books2=fav_books2, 
                             # authors_books=authors_books,
                             # fav_authors2=fav_authors2,
                             page=page, 

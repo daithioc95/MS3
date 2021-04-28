@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Reduce height of welcome image -->
+<div class="welcome-image-text">
+    <img src="static/images/authors_welcome_image.jpg" id="authors-welcome-img" alt="Library">
+    <div class="text">
+        Books
+    </div>
+</div>
+
+<div class="row authors-search-form">
+    <form action="{{ url_for('search_books', generated = "yes") }}" method="POST" class="col s12">
+        <div class="authors-search wrap">
+            <div class="search">
+                <input type="text" name="query_book" id="query_book" placeholder="Search Books">
+                <button type="submit" class="searchButton">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<main class="container">
+
+    {% if session.user and get_fav == None and fav_books2 %}
+        <h2>{{ session['user'] }}'s Favourite books</h2>
+        <h3 class="link-heading"><a href="{{ url_for('get_books', get_fav = "No") }}">Discover books here</a></h3>
+    {% elif not session.user or get_fav == "No" or not fav_books2 %}
+        <h2>Popular books</h2>
+        {% if session.user and fav_books2 %}
+            <h3 class="link-heading"><a href="{{ url_for('get_books') }}">{{ session['user'] }}'s Favourite books</a></h3>
+        {% endif %}
+    {% endif %}
+
+    {% if books.count() > 0 %}
+    <div class="row">
+
+        {% for book in books %}<div class="col l2 s4 author-book-entries"><a
+                href="{{ url_for('book_profile', Book= book.Book) }}"><i
+                    class="fas fa-book fa-5x {% if loop.index % 8 == 0 %}teal-book{% elif loop.index % 7 == 0 %}red-book{% elif loop.index % 6 == 0 %}orange-book{% elif loop.index % 5 == 0 %}green-book{% elif loop.index % 4 == 0 %}purple-book{% elif loop.index % 3 == 0 %}lavender-book{% elif loop.index % 2 == 0 %}brown-book{% elif loop.index % 1 == 0 %}blue-book{% endif %}"></i>
+
+                <p class="book-title">{{ book.Book }}</p>
+            </a>
+        </div>{% endfor %}
+    </div>
+
+
+    {% else %}
+        <h3 class="red-text text-darken-4 center-align">No Results Found</h3>
+    {% endif %}
+    <!-- Author index -->
+    <!-- https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_column-fill -->
+    
+    <!-- <div class="row author-index">
+        <div class="s12 center-align">
+            {% for author in authors2 %}
+                <p>{{ author.Author }}</p>
+            {% endfor %}
+        </div>
+    </div> -->
+</main>
+{% endblock %}
+{% block scripts %}
+<script>
+    $('input[category=logged-in-author-input]').change(function () {
+        if ($(this).prop("checked") == true) {
+            M.toast({ html: 'Added to Favourites' });
+        }
+        else if ($(this).prop("checked") == false) {
+            M.toast({ html: 'Removed from Favourites' });
+        }
+        var checkbox_id = $(this).attr("id");
+        console.log("JS Post");
+        $.ajax({
+            url: "{{ url_for('add_fav_author') }}",
+            type: "POST",
+            data: {
+                'Checkbox': checkbox_id,
+                'Status': $(this).prop("checked")
+            },
+            success: function (response) {
+                console.log(checkbox_id)
+            },
+            error: function (request, status, error) {
+                console.log("Error: " + error)
+            }
+        }
+        );
+    });
+    $('input[category=logged-out-author-input]').change(function (e) {
+        console.log("logged out fav");
+        if (e.target.checked) {
+            alert("Please login or register to save favourites");
+        }
+    });
+</script>
+{% endblock %}

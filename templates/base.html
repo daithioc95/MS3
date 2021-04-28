@@ -32,7 +32,7 @@
                         <li {% if request.path == url_for('get_quotes') or request.path == url_for('search_quotes') %} class = "active"{% endif %}><a href="{{ url_for('get_quotes') }}">Home</a></li>
                         <li {% if request.path == url_for('get_mood') or request.path == url_for('generate_mood') %} class = "active"{% endif %}><a href="{{ url_for('get_mood') }}">Mood</a></li>
                         <li {% if request.path == url_for('get_authors') or request.path == url_for('search_authors') %} class = "active"{% endif %}><a href="{{ url_for('get_authors') }}">Authors</a></li>
-                        <li><a href="#">Books</a></li>
+                        <li {% if request.path == url_for('get_books') or request.path == url_for('search_books') %} class = "active"{% endif %}><a href="{{ url_for('get_books') }}"">Books</a></li>
                         {% if session.user %}
                         <li {% if request.path == url_for('profile', username=session['user']) %} class = "active"{% endif %}><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                         <li {% if request.path == url_for('logout') %} class = "active"{% endif %}><a href="{{ url_for('logout') }}">Log Out</a></li>
