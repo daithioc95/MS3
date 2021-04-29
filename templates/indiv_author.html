@@ -224,6 +224,7 @@
     </div>
 
     <div class="row">
+        {% set count = [] %}
         {% for similar_author in similar_authors %}
         {% if similar_author.Author != author.Author %}
         <div class="col l5 s12 m12">
@@ -231,7 +232,7 @@
             <article class="left-align article author-card">
                 <blockquote class="author-blockquote">
                     <cite><a
-                            href="{{ url_for('author_profile', Author=similar_author.Author) }}">{{ similar_author.Author }}</a></cite>
+                            href="{{ url_for('author_profile', Author=similar_author.Author) }}">{{ similar_author.Author }}{{ count|length }}</a></cite>
                     <!-- {% if similar_author.Books[0] != '' %}
                         <p>Books: 
                             {% for item in similar_author.Books %}
@@ -269,11 +270,14 @@
                 </blockquote>
             </article>
         </div>
-        {% if loop.index % 2 != 0 %}
-                <div class="hide-on-small-only col l1"></div>
-        {% endif %}
-        {% endif %}
         
+  
+   {% set __ = count.append(1) %}
+   {% if count|length % 2 != 0 %}
+   <div class="hide-on-small-only col l2"></div>
+    {% endif %}
+        {% endif %}
+        {% else %}
         {% endfor %}
     </div>
 

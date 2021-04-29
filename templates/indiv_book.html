@@ -61,10 +61,10 @@
             <div class="col s3 indiv-book-star">
                 <form>
                     {% if session.user %}
-                    <label for="dsk-id-of-input{{ book._id }}_{{ session['user'] }}"
+                    <label for="mob-id-of-input{{ book._id }}_{{ session['user'] }}"
                         class="custom-checkbox">
-                        <input type="checkbox" id="dsk-id-of-input{{ book._id }}_{{ session['user'] }}"
-                            name="dsk-id-of-input{{ book._id }}_{{ session['user'] }}"
+                        <input type="checkbox" id="mob-id-of-input{{ book._id }}_{{ session['user'] }}"
+                            name="mob-id-of-input{{ book._id }}_{{ session['user'] }}"
                             category="logged-in-book-input"
                             {% for x in fav_books2 if x|string == book._id|string %} checked {% else %} unchecked
                             {% endfor %} />
@@ -72,9 +72,9 @@
                         <i class="glyphicon glyphicon-star"></i>
                     </label>
                     {% else %}
-                    <label for="dsk-id-of-input{{ book._id }}" class="custom-checkbox">
-                        <input type="checkbox" id="dsk-id-of-input{{ book._id }}"
-                            name="dsk-id-of-input{{ book._id }}" category="logged-out-book-input" />
+                    <label for="mob-id-of-input{{ book._id }}" class="custom-checkbox">
+                        <input type="checkbox" id="mob-id-of-input{{ book._id }}"
+                            name="mob-id-of-input{{ book._id }}" category="logged-out-book-input" />
                         <i class="glyphicon glyphicon-star-empty"></i>
                         <i class="glyphicon glyphicon-star"></i>
                     </label>
@@ -201,20 +201,21 @@
     </ul>
     <!-- no categories https://8080-blue-guppy-lje8d91l.ws-eu03.gitpod.io/author_profile/Debasish%20Mridha -->
 
-    {% if authors_books %}
+    {% if authors_books|count > 1 %}
     <h3 class="book-heading"><b>Other books from this author</b></h3>
-    {% endif %}
+    
     <div class="row">
 
-        {% for book in authors_books %}<div class="col l2 s4 author-book-entries"><a
+        {% for book in authors_books %}
+        {% if book != book.Book %}<div class="col l2 s4 author-book-entries"><a
                 href="{{ url_for('book_profile', Book= book) }}"><i
                     class="fas fa-book fa-5x {% if loop.index % 8 == 0 %}teal-book{% elif loop.index % 7 == 0 %}red-book{% elif loop.index % 6 == 0 %}orange-book{% elif loop.index % 5 == 0 %}green-book{% elif loop.index % 4 == 0 %}purple-book{% elif loop.index % 3 == 0 %}lavender-book{% elif loop.index % 2 == 0 %}brown-book{% elif loop.index % 1 == 0 %}blue-book{% endif %}"></i>
 
                 <p class="book-title">{{ book }}</p>
             </a>
-        </div>{% endfor %}
+        </div>{% endif %}{% endfor %}
     </div>
-
+    {% endif %}
 
 
 </main>
