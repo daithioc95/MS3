@@ -281,6 +281,8 @@ blockquote.author-blockquote{}
     font-family: 'EB Garamond';
 }
 
+
+
 /* @media (min-width: 768px) {
 	.article cite {
 		margin-left: calc(1rem - var(--quote-image-width));

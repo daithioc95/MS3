@@ -134,7 +134,8 @@
                     <p>{{ quote.Quote }}
                     </p>
                     <cite>{{ quote.Author }}</cite>
-                    <i class="share-quote fas fa-link"></i>
+                    <div id="{{ quote._id }}" onclick="shareQuote(this.id)">
+                    <i class="share-quote fas fa-link"></i></div>
                     <div class="blockquote-author-image"
                         style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
                     </div>
@@ -169,7 +170,8 @@
             <div class="hide-on-med-and-up animated-border-quote">
                 <blockquote>
                     <p>{{ quote.Quote }}</p>
-                    <i class="share-quote-mob share-quote fas fa-link"></i>
+                    <div id="{{ quote._id }}" onclick="shareQuote(this.id)">
+                    <i class="share-quote-mob share-quote fas fa-link"></i></div>
                     <cite>{{ quote.Author }}</cite>
                     <div class="star">
                         {% if session.user %}
@@ -271,7 +273,7 @@
             </article>
         </div>
         
-  
+  <!-- https://stackoverflow.com/questions/7537439/how-to-increment-a-variable-on-a-for-loop-in-jinja-template -->
    {% set __ = count.append(1) %}
    {% if count|length % 2 != 0 %}
    <div class="hide-on-small-only col l2"></div>
