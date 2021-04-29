@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Special+Elite');
+@import url(https://fonts.googleapis.com/css?family=EB+Garamond|Droid+Serif|Playfair+Display|Open+Sans+Condensed:300);
 /* --- Fonts --  */
 
 /* color pallet: https://mycolor.space/?hex=%237986CB&sub=1
@@ -72,7 +74,7 @@ nav{
 
 /* --- Welcome image --  */
 
-@import url('https://fonts.googleapis.com/css?family=Special+Elite');
+
 
 .welcome-qotd html, .welcome-qotd body {
 	height: 100%;
@@ -81,7 +83,8 @@ nav{
 }
 
 .welcome-qotd {
-	font-family: 'Special Elite', cursive;
+    /* font-family: 'Special Elite', cursive; */
+    font-family: 'EB Garamond';
 	/* background: #fffdf5; */
 	color: #3f3f5a;
 	display: flex;
@@ -187,7 +190,8 @@ nav{
 	border-radius: var(--border-rad);
 	border: 2px solid white;
 	box-shadow: 2px 2px 4px hsl(0 0% 0% / 20%);
-	text-indent: 1.6em;
+    text-indent: 1.6em;
+    font-family: 'EB Garamond';
 }
 
 .quote-blockquote{
@@ -273,7 +277,8 @@ blockquote.author-blockquote{}
 	text-align: center;
 	font: bold .9rem var(--type-body);
 	text-transform: uppercase;
-	color: hsl(0 0% 20%);
+    color: hsl(0 0% 20%);
+    font-family: 'EB Garamond';
 }
 
 /* @media (min-width: 768px) {
@@ -341,6 +346,7 @@ margin-left: auto;
       display: block;
       font-style: italic;
       text-align: right;
+      font-family: 'EB Garamond';
     }
     .animated-border-quote > * {
       position: relative;
@@ -350,7 +356,10 @@ margin-left: auto;
 
 .animated-border-quote p{
         margin-right: 35px;
-        font-style: italic;
+        font-size: 20px;
+        /* font-style: italic; */
+        /* font-family: 'Special Elite', cursive; */
+    font-family: 'EB Garamond';
 }
 .animated-border-quote .star{
     position: absolute;
@@ -720,6 +729,11 @@ input[type=checkbox]:hover + label {
 .fa-book{
     display: block;
     margin-bottom: 10px;
+}
+
+a .fa-book:hover, .author-book-entries a:hover {
+    filter: brightness(200%);
+    text-decoration: underline;
 }
 
 .author-book-entries{
