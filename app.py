@@ -507,6 +507,14 @@ def generate_mood():
                             checked_buttons=checked_buttons)
 
 
+@app.route("/share_quote/<_id>", methods=["GET", "POST"])
+def share_quote(_id):
+    quote = mongo.db.quotes.find_one({"_id": ObjectId(_id)})
+    print(quote)
+    return render_template("share_quote.html",
+                        quote=quote)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
