@@ -1,7 +1,10 @@
 $(document).ready(function () {
     $('.sidenav').sidenav({ edge: "right" });
     $('.collapsible').collapsible();
-    
+    $('.carousel.carousel-slider').carousel({
+        fullWidth: true,
+        indicators: true
+  });
 });
 
 // https://stackoverflow.com/questions/63033012/copy-the-text-to-the-clipboard-without-using-any-input

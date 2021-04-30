@@ -447,6 +447,8 @@ label input[type="checkbox"] {
   opacity: 1;
 }
 
+
+
 /* ---Author Welcomoe Image--- */
 #authors-welcome-img {
         width: 100%;
@@ -641,33 +643,42 @@ input[type=checkbox]:checked + label, .hvr-radial-out:hover, .hvr-radial-out:foc
   color: #2F4381;
 }
 
-input[type=checkbox]:checked + label#label_friendship {
+input[type=checkbox]:checked + label#label_friendship,
+input[type=checkbox]:checked + label#label_humor {
     background: #2098D1;
 }
 @media screen and (min-width:570px) {
-#label_friendship:before {
+#label_friendship:before,
+#label_humor:before {
     background: #2098D1;
 }}
 
-input[type=checkbox]:checked + label#label_inspirational, #label_inspirational:before {
+input[type=checkbox]:checked + label#label_inspirational, #label_inspirational:before,
+input[type=checkbox]:checked + label#label_life, #label_life:before {
     background: #CC6F76;
 }
-input[type=checkbox]:checked + label#label_truth, #label_truth:before {
+input[type=checkbox]:checked + label#label_truth, #label_truth:before,
+input[type=checkbox]:checked + label#label_philosophy, #label_philosophy:before {
     background: #FFCB6F;
 }
-input[type=checkbox]:checked + label#label_knowledge, #label_knowledge:before {
+input[type=checkbox]:checked + label#label_knowledge, #label_knowledge:before,
+input[type=checkbox]:checked + label#label_poetry, #label_poetry:before {
     background: #F9F871;
 }
-input[type=checkbox]:checked + label#label_love, #label_love:before {
+input[type=checkbox]:checked + label#label_love, #label_love:before,
+input[type=checkbox]:checked + label#label_writing, #label_writing:before {
     background: #A63B81;
 }
-input[type=checkbox]:checked + label#label_forgiveness, #label_forgiveness:before {
+input[type=checkbox]:checked + label#label_forgiveness, #label_forgiveness:before,
+input[type=checkbox]:checked + label#label_religion, #label_religion:before {
     background: #B0BBFF;
 }
-input[type=checkbox]:checked + label#label_strategy, #label_strategy:before {
+input[type=checkbox]:checked + label#label_strategy, #label_strategy:before,
+input[type=checkbox]:checked + label#label_happiness, #label_happiness:before {
     background: #857555;
 }
-input[type=checkbox]:checked + label#label_art, #label_art:before {
+input[type=checkbox]:checked + label#label_art, #label_art:before,
+input[type=checkbox]:checked + label#label_relationships, #label_relationships:before {
     background: #007A79;
 }
 
@@ -870,6 +881,10 @@ height: 160px;
     margin-left: 109%;
     color: #7986cb;
 }
+.share-quote:hover{
+    cursor: pointer;
+}
+
 
 .share-quote-mob{
     margin-left: 90%;
@@ -880,3 +895,7 @@ height: 160px;
 .container{
     width: 80%;
 }}
+
+.carousel{
+    min-height: 600px
+}

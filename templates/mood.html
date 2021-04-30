@@ -2,65 +2,132 @@
 {% block content %}
 <main class="container">
     <h2>Mood Board</h2>
-
+    <p>{{ search_tags }}</p>
+    <p>{{ search_tags }}</p>
+    
     <form method="POST" action="{{ url_for('generate_mood', generated = "yes") }}">
-        <div class="row">
-            <div class="col l12 mood-buttons">
-            <!-- <div class="hide-on-med-and-up col s1"></div>  -->
-            <input type="checkbox" class="hidden mood-button" name="mood-button" value="friendship" id="mood-button1_friendship"
-                {% for x in checked_buttons if x|string == "friendship" %}checked{% else %}unchecked{% endfor %}><label
-                id="label_friendship" class="hvr-radial-out col s5 l3" for="mood-button1_friendship">
-                friendship</label>
-                <div class="col s2 l1"></div>
-            <input type="checkbox" class="hidden mood-button" name="mood-button" value="inspirational"
-                id="mood-button2_inspirational"
-                {% for x in checked_buttons if x|string == "inspirational" %}checked{% else %}unchecked{% endfor %}><label
-                id="label_inspirational" class="hvr-radial-out col s5 l3"
-                for="mood-button2_inspirational">inspirational</label>
-                <div class="col hide-on-med-and-down l1"></div>
-            <!-- <div class="hide-on-med-and-up col s1"></div> -->
-            <input type="checkbox" class="hidden mood-button" name="mood-button" value="truth" id="mood-button3_truth"
-                {% for x in checked_buttons if x|string == "truth" %}checked{% else %}unchecked{% endfor %}><label
-                id="label_truth" class="hvr-radial-out col s5 l3" for="mood-button3_truth">truth</label>
-      
-                <div class="col l2 s2"></div>
-                
-            <input type="checkbox" class="hidden mood-button" name="mood-button" value="knowledge" id="mood-button4_knowledge"
-                {% for x in checked_buttons if x|string == "knowledge" %}checked{% else %}unchecked{% endfor %}><label
-                id="label_knowledge" class="hvr-radial-out col s5 l3" for="mood-button4_knowledge">knowledge</label>
-                <div class="col hide-on-med-and-down l1"></div>
-            <!-- <div class="hide-on-med-and-up col s1"></div> -->
-            <input type="checkbox" class="hidden mood-button" name="mood-button"
-                value="love" id="mood-button5_love"
-                {% for x in checked_buttons if x|string == "love" %}checked{% else %}unchecked{% endfor %}><label
-                id="label_love" class="hvr-radial-out col s5 l3" for="mood-button5_love">love</label>
-                <div class="col hide-on-med-and-down l1"></div>
-                <div class="col l2 s2"></div>
-        
-            <input type="checkbox" class="hidden mood-button" name="mood-button" value="forgiveness" id="mood-button6_forgiveness"
-                {% for x in checked_buttons if x|string == "forgiveness" %}checked{% else %}unchecked{% endfor %}><label
-                id="label_forgiveness" class="hvr-radial-out col s5 l3"
-                for="mood-button6_forgiveness">forgiveness</label>
-                <div class="col hide-on-med-and-down l1"></div>
-            <!-- <div class="hide-on-med-and-up col s1"></div> -->
-            <input type="checkbox" class="hidden mood-button" name="mood-button"
-                value="strategy" id="mood-button7_strategy"
-                {% for x in checked_buttons if x|string == "strategy" %}checked{% else %}unchecked{% endfor %}><label
-                id="label_strategy" class="hvr-radial-out col s5 l3" for="mood-button7_strategy">strategy</label>
-                <div class="col l1 s2"></div>
-            <input type="checkbox" class="hidden mood-button" name="mood-button" value="art" id="mood-button8_art"
-                {% for x in checked_buttons if x|string == "art" %}checked{% else %}unchecked{% endfor %}><label
-                id="label_art" class="hvr-radial-out col s5 l3" for="mood-button8_art">art</label>
+    <div class="carousel carousel-slider center">
+        <div class="carousel-fixed-item center">
+            <button id="generate-moods" class="btn waves-effect waves-light" type="submit" name="action">Generate Quotes
+                <i class="material-icons right">sync</i>
+            </button>
         </div>
+        <div class="carousel-item white-text" href="#one!">
 
-        <button id="generate-moods" class="btn waves-effect waves-light" type="submit" name="action">Generate Quotes
-            <i class="material-icons right">sync</i>
-            <!-- update track_changes sync -->
-        </button>
+            <div class="row">
+                <div class="col l12 mood-buttons">
+                    <!-- <div class="hide-on-med-and-up col s1"></div>  -->
+                    <input type="checkbox" class="hidden mood-button" name="mood-button" value="friendship"
+                        id="mood-button1_friendship"
+                        {% for x in search_tags if x|string == "friendship" %}checked{% else %}unchecked{% endfor %}><label
+                        id="label_friendship" class="hvr-radial-out col s5 l3" for="mood-button1_friendship">
+                        friendship</label>
+                    <div class="col s2 l1"></div>
+                    <input type="checkbox" class="hidden mood-button" name="mood-button" value="inspirational"
+                        id="mood-button2_inspirational"
+                        {% for x in search_tags if x|string == "inspirational" %}checked{% else %}unchecked{% endfor %}><label
+                        id="label_inspirational" class="hvr-radial-out col s5 l3"
+                        for="mood-button2_inspirational">inspirational</label>
+                    <div class="col hide-on-med-and-down l1"></div>
+                    <!-- <div class="hide-on-med-and-up col s1"></div> -->
+                    <input type="checkbox" class="hidden mood-button" name="mood-button" value="truth"
+                        id="mood-button3_truth"
+                        {% for x in search_tags if x|string == "truth" %}checked{% else %}unchecked{% endfor %}><label
+                        id="label_truth" class="hvr-radial-out col s5 l3" for="mood-button3_truth">truth</label>
+
+                    <div class="col l2 s2"></div>
+
+                    <input type="checkbox" class="hidden mood-button" name="mood-button" value="knowledge"
+                        id="mood-button4_knowledge"
+                        {% for x in search_tags if x|string == "knowledge" %}checked{% else %}unchecked{% endfor %}><label
+                        id="label_knowledge" class="hvr-radial-out col s5 l3"
+                        for="mood-button4_knowledge">knowledge</label>
+                    <div class="col hide-on-med-and-down l1"></div>
+                    <!-- <div class="hide-on-med-and-up col s1"></div> -->
+                    <input type="checkbox" class="hidden mood-button" name="mood-button" value="love"
+                        id="mood-button5_love"
+                        {% for x in search_tags if x|string == "love" %}checked{% else %}unchecked{% endfor %}><label
+                        id="label_love" class="hvr-radial-out col s5 l3" for="mood-button5_love">love</label>
+                    <div class="col hide-on-med-and-down l1"></div>
+                    <div class="col l2 s2"></div>
+
+                    <input type="checkbox" class="hidden mood-button" name="mood-button" value="forgiveness"
+                        id="mood-button6_forgiveness"
+                        {% for x in search_tags if x|string == "forgiveness" %}checked{% else %}unchecked{% endfor %}><label
+                        id="label_forgiveness" class="hvr-radial-out col s5 l3"
+                        for="mood-button6_forgiveness">forgiveness</label>
+                    <div class="col hide-on-med-and-down l1"></div>
+                    <!-- <div class="hide-on-med-and-up col s1"></div> -->
+                    <input type="checkbox" class="hidden mood-button" name="mood-button" value="strategy"
+                        id="mood-button7_strategy"
+                        {% for x in search_tags if x|string == "strategy" %}checked{% else %}unchecked{% endfor %}><label
+                        id="label_strategy" class="hvr-radial-out col s5 l3"
+                        for="mood-button7_strategy">strategy</label>
+                    <div class="col l1 s2"></div>
+                    <input type="checkbox" class="hidden mood-button" name="mood-button" value="art"
+                        id="mood-button8_art"
+                        {% for x in search_tags if x|string == "art" %}checked{% else %}unchecked{% endfor %}><label
+                        id="label_art" class="hvr-radial-out col s5 l3" for="mood-button8_art">art</label>
+                </div>
+            </div>
+
         </div>
+        <div class="carousel-item white-text" href="#two!">
+            <div class="row">
+                <div class="col l12 mood-buttons">
+                    <input type="checkbox" class="hidden mood-button" name="mood-button" value="humour"
+                        id="mood-button1_humour"
+                        {% for x in search_tags if x|string == "humour" %}checked{% else %}unchecked{% endfor %}><label
+                        id="label_humour" class="hvr-radial-out col s5 l3" for="mood-button1_humour">
+                        humour</label>
+                    <div class="col s2 l1"></div>
+                    <input type="checkbox" class="hidden mood-button" name="mood-button" value="life"
+                        id="mood-button2_life"
+                        {% for x in search_tags if x|string == "life" %}checked{% else %}unchecked{% endfor %}><label
+                        id="label_life" class="hvr-radial-out col s5 l3"
+                        for="mood-button2_life">life</label>
+                    <div class="col hide-on-med-and-down l1"></div>
+                    <input type="checkbox" class="hidden mood-button" name="mood-button" value="philosophy"
+                        id="mood-button3_philosophy"
+                        {% for x in search_tags if x|string == "philosophy" %}checked{% else %}unchecked{% endfor %}><label
+                        id="label_philosophy" class="hvr-radial-out col s5 l3" for="mood-button3_philosophy">philosophy</label>
+
+                    <div class="col l2 s2"></div>
+
+                    <input type="checkbox" class="hidden mood-button" name="mood-button" value="poetry"
+                        id="mood-button4_poetry"
+                        {% for x in search_tags if x|string == "poetry" %}checked{% else %}unchecked{% endfor %}><label
+                        id="label_poetry" class="hvr-radial-out col s5 l3"
+                        for="mood-button4_poetry">poetry</label>
+                    <div class="col hide-on-med-and-down l1"></div>
+                    <input type="checkbox" class="hidden mood-button" name="mood-button" value="writing"
+                        id="mood-button5_writing"
+                        {% for x in search_tags if x|string == "writing" %}checked{% else %}unchecked{% endfor %}><label
+                        id="label_writing" class="hvr-radial-out col s5 l3" for="mood-button5_writing">writing</label>
+                    <div class="col hide-on-med-and-down l1"></div>
+                    <div class="col l2 s2"></div>
+
+                    <input type="checkbox" class="hidden mood-button" name="mood-button" value="religion"
+                        id="mood-button6_religion"
+                        {% for x in search_tags if x|string == "religion" %}checked{% else %}unchecked{% endfor %}><label
+                        id="label_religion" class="hvr-radial-out col s5 l3"
+                        for="mood-button6_religion">religion</label>
+                    <div class="col hide-on-med-and-down l1"></div>
+                    <input type="checkbox" class="hidden mood-button" name="mood-button" value="happiness"
+                        id="mood-button7_happiness"
+                        {% for x in search_tags if x|string == "happiness" %}checked{% else %}unchecked{% endfor %}><label
+                        id="label_happiness" class="hvr-radial-out col s5 l3"
+                        for="mood-button7_happiness">happiness</label>
+                    <div class="col l1 s2"></div>
+                    <input type="checkbox" class="hidden mood-button" name="mood-button" value="relationships"
+                        id="mood-button8_relationships"
+                        {% for x in search_tags if x|string == "relationships" %}checked{% else %}unchecked{% endfor %}><label
+                        id="label_relationships" class="hvr-radial-out col s5 l3" for="mood-button8_relationships">relationships</label>
+                </div>
+            </div>
+        </div>
+    </div>
     </form>
-
-
     {% for quote in quotes %}
 
     <!-- https://stackoverflow.com/questions/36674846/how-can-i-check-if-some-checkboxes-in-html-are-checked -->
@@ -71,7 +138,7 @@
             </p>
             <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
             <div id="{{ quote._id }}" onclick="shareQuote(this.id)">
-            <i class="share-quote fas fa-link"></i></div>
+                <i class="share-quote fas fa-link"></i></div>
             <!-- <cite>{{ quote.Tags[1] }} </cite> -->
             <div class="blockquote-author-image"
                 style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
@@ -79,8 +146,7 @@
             <div class="star">
                 <form>
                     {% if session.user %}
-                    <label for="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
-                        class="custom-checkbox">
+                    <label for="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" class="custom-checkbox">
                         <input type="checkbox" id="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
                             name="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" category="logged-in-quote-input"
                             {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %} unchecked
@@ -107,12 +173,11 @@
         <blockquote>
             <p>{{ quote.Quote }}</p>
             <div id="{{ quote._id }}" onclick="shareQuote(this.id)">
-            <i class="share-quote-mob share-quote fas fa-link"></i></div>
+                <i class="share-quote-mob share-quote fas fa-link"></i></div>
             <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
             <div class="star">
                 {% if session.user %}
-                <label for="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
-                    class="custom-checkbox">
+                <label for="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" class="custom-checkbox">
                     <input type="checkbox" id="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
                         name="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" category="logged-in-quote-input"
                         {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %} unchecked
@@ -151,7 +216,7 @@
         {% endif %}
         {% endfor %}
         <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{{ url_for('generate_mood', page = page + 1, search_tags=search_tags ) }}"><i
+                href="{{ url_for('generate_mood', page = page + 1, search_tags=search_tags) }}"><i
                     class="fas fa-arrow-right"></i></a></li>
     </ul>
     {% endif %}
