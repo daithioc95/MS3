@@ -26,12 +26,8 @@
 
     <div class="row heading-row">
     {% if session.user and get_fav == None and fav_quotes2 %}
-        <div class="col m12 l8">
             <h2>{{ session['user'] }}'s favourite quotes</h2>
-        </div>
-        <div class="col m12 l8">
             <h3 class="link-heading"><a href="{{ url_for('get_quotes', get_fav = "No") }}">Discover quotes here</a></h3>
-        </div>
     {% elif url_for(request.endpoint) == url_for('search_quotes') %}
         <h2>Results</h2>
     {% elif get_fav == "No" or not fav_quotes2 %}
