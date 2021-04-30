@@ -24,16 +24,14 @@
         </form>
     </div>
 
-    
+    <div class="row heading-row">
     {% if session.user and get_fav == None and fav_quotes2 %}
-    <div class="row">
         <div class="col m12 l8">
             <h2>{{ session['user'] }}'s favourite quotes</h2>
         </div>
         <div class="col m12 l8">
             <h3 class="link-heading"><a href="{{ url_for('get_quotes', get_fav = "No") }}">Discover quotes here</a></h3>
         </div>
-    </div>  
     {% elif url_for(request.endpoint) == url_for('search_quotes') %}
         <h2>Results</h2>
     {% elif get_fav == "No" or not fav_quotes2 %}
@@ -42,14 +40,14 @@
         <h3 class="link-heading"><a href="{{ url_for('get_quotes') }}">{{ session['user'] }}'s favourite quotes</a></h3>
         {% endif %}
     {% endif %}
-
+    </div>  
     {% if quotes.count() > 0 %}
     <div class="row">
     {% for quote in quotes %}
 
     <!-- https://stackoverflow.com/questions/36674846/how-can-i-check-if-some-checkboxes-in-html-are-checked -->
     <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
-<div class="col l12 m12"></div>
+<div class="hide-on-small-only col l12 m12"></div>
     <article class="hide-on-small-only article">
         
         <blockquote class="quote-blockquote">
