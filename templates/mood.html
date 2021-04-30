@@ -2,11 +2,20 @@
 {% block content %}
 <main class="container">
     <h2>Mood Board</h2>
-    <p>{{ search_tags }}</p>
-    <p>{{ search_tags }}</p>
     
+    <!-- https://materializecss.com/carousel.html#two! -->
+    <!-- https://codepen.io/Paco_Cervantes/pen/ZLxKpj -->
     <form method="POST" action="{{ url_for('generate_mood', generated = "yes") }}">
     <div class="carousel carousel-slider center">
+        <div class="carousel-fixed-item center middle-indicator">
+     <div class="left">
+      <a href="Previo" class="movePrevCarousel middle-indicator-text waves-effect waves-light content-indicator"><i class="material-icons left  middle-indicator-text">chevron_left</i></a>
+     </div>
+     
+     <div class="right">
+     <a href="Siguiente" class=" moveNextCarousel middle-indicator-text waves-effect waves-light content-indicator"><i class="material-icons right middle-indicator-text">chevron_right</i></a>
+     </div>
+    </div>
         <div class="carousel-fixed-item center">
             <button id="generate-moods" class="btn waves-effect waves-light" type="submit" name="action">Generate Quotes
                 <i class="material-icons right">sync</i>
@@ -42,14 +51,17 @@
                         {% for x in search_tags if x|string == "knowledge" %}checked{% else %}unchecked{% endfor %}><label
                         id="label_knowledge" class="hvr-radial-out col s5 l3"
                         for="mood-button4_knowledge">knowledge</label>
-                    <div class="col hide-on-med-and-down l1"></div>
+
+                    <div class="col hide-on-med-and-down l2"></div>
+
                     <!-- <div class="hide-on-med-and-up col s1"></div> -->
                     <input type="checkbox" class="hidden mood-button" name="mood-button" value="love"
                         id="mood-button5_love"
                         {% for x in search_tags if x|string == "love" %}checked{% else %}unchecked{% endfor %}><label
                         id="label_love" class="hvr-radial-out col s5 l3" for="mood-button5_love">love</label>
-                    <div class="col hide-on-med-and-down l1"></div>
-                    <div class="col l2 s2"></div>
+
+                    <div class="col s2 l2"></div>
+                    <!-- <div class="col l2 s2"></div> -->
 
                     <input type="checkbox" class="hidden mood-button" name="mood-button" value="forgiveness"
                         id="mood-button6_forgiveness"
@@ -125,9 +137,13 @@
                         id="label_relationships" class="hvr-radial-out col s5 l3" for="mood-button8_relationships">relationships</label>
                 </div>
             </div>
+            
+
         </div>
+    
     </div>
     </form>
+    
     {% for quote in quotes %}
 
     <!-- https://stackoverflow.com/questions/36674846/how-can-i-check-if-some-checkboxes-in-html-are-checked -->

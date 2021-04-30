@@ -78,6 +78,7 @@ nav{
     display: flex;
     flex-wrap: wrap;
     list-style: none;
+    width: 99% !important;
 }
 
 /* --- Welcome image --  */
@@ -896,6 +897,83 @@ height: 160px;
     width: 80%;
 }}
 
+@media screen and (min-width:600px) {
 .carousel{
     min-height: 600px
 }
+}
+
+
+li.indicator-item {
+    background-color: #7986cb !important;
+    border: none;
+}
+
+li.indicator-item.active {
+    background-color: #fff !important;
+    border: .5px solid black;
+}
+/* https://codepen.io/Paco_Cervantes/pen/ZLxKpj */
+/* just for jsfiddle */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v18/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -moz-font-feature-settings: 'liga';
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.middle-indicator{
+   position:absolute;
+   top: 25%;
+   }
+
+   @media (max-width: 600px){
+      .middle-indicator{
+   top: 70%;
+   } 
+      /* push down for mobile */
+   .carousel.carousel-slider .carousel-fixed-item.with-indicators {
+        bottom: 0
+   }
+   }
+
+
+
+
+  .middle-indicator-text{
+   font-size: 4.2rem;
+  }
+  a.middle-indicator-text{
+    color:#7986cb !important;
+  }
+.content-indicator{
+    width: 64px;
+    height: 64px;
+    background: none;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px; 
+  }
+    .indicators{
+  	visibility: hidden;
+  }
+
+  .carousel-fixed-item.center.middle-indicator.with-indicators{
+      height: 0;
+  }

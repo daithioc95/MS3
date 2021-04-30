@@ -5,6 +5,27 @@ $(document).ready(function () {
         fullWidth: true,
         indicators: true
   });
+//   https://codepen.io/Paco_Cervantes/pen/ZLxKpj
+  // start carrousel
+   $('.carousel.carousel-slider').carousel({
+      fullWidth: true,
+      indicators: false
+   });
+
+
+   // move next carousel
+   $('.moveNextCarousel').click(function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      $('.carousel').carousel('next');
+   });
+
+   // move prev carousel
+   $('.movePrevCarousel').click(function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      $('.carousel').carousel('prev');
+   });
 });
 
 // https://stackoverflow.com/questions/63033012/copy-the-text-to-the-clipboard-without-using-any-input
