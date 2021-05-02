@@ -225,6 +225,7 @@ nav{
 blockquote.quote-blockquote{}
 
 blockquote.author-blockquote{
+    /* To stop long names affecting rendering */
     height: 100px;
 }
 

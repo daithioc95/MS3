@@ -161,11 +161,11 @@
         <!-- </div> -->
     </div>
 
-    {% if authors.count() > 0 %}
+        {% if authors.count() > 0 %}
     <div class="row">
         {% for author in authors %}
-        <div class="col s12 l6 m6">
-            <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
+        <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
+        <div class="col s12 l5 m12">
             <article class="left-align article author-card">
                 <blockquote class="author-blockquote">
                     <cite><a href="{{ url_for('author_profile', Author=author.Author) }}">{{ author.Author }}</a></cite>
@@ -198,6 +198,9 @@
                 </blockquote>
             </article>
         </div>
+        {% if loop.index % 2 != 0 %}
+                <div class="hide-on-small-only col l2"></div>
+        {% endif %}
         {% endfor %}
 
     </div>
