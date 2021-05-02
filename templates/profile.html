@@ -4,7 +4,7 @@
 
     <div class="desktop-author-details hide-on-small-only">
         <div class="row">
-                <h2>{{ username }}'s Profile</h2>
+                <h2>{{ user.username }}'s Profile</h2>
         </div>
         <div class="row">
             <div class="col l3">
@@ -17,9 +17,11 @@
             <div class="col l1"></div>
             <div class="col l8 user-details-dsk">
                  <h3><b>Name:</b></h3>
-                <p>{{ username }}<br /></p>
-                <h3><b>email:</b></h3>
-                <p>Joebloggs@hotmail.com<br /></p>
+                <p>{{ user.username }}<br /></p>
+                {% if user.email %}
+                    <h3><b>email:</b></h3>
+                    <p>{{ user.email }}<br /></p>
+                {% endif %}
             </div>
         </div>
 
@@ -28,7 +30,7 @@
 
 
     <div class="row mobile-user-details hide-on-med-and-up">
-                <h2>{{ username }}'s Profile</h2>
+                <h2>{{ user.username }}'s Profile</h2>
         <div class="row">
             <div class="col s12">
                 <div id="circle-container">
@@ -39,7 +41,7 @@
         </div> 
             <div class="user-details-mob col s12">
                 <h3><b>Name:</b></h3>
-                <p>{{ username }}<br /></p>
+                <p>{{ user.username }}<br /></p>
                 <h3><b>email:</b></h3>
                 <p>Joebloggs@hotmail.com<br /></p>
             </div>
@@ -65,7 +67,7 @@
     </div> -->
     <div class="row">
         <!-- <div class="col s12 m8 offset-m2"> -->
-        <h2>{{ username }}'s Favourite Quotes</h2>
+        <h2>{{ user.username }}'s Favourite Quotes</h2>
         <!-- </div> -->
     </div>
     <div class="row">
@@ -155,7 +157,7 @@
 
     <div class="row">
         <!-- <div class="col s12 m8 offset-m2"> -->
-        <h2>{{ username }}'s Favourite Authors</h2>
+        <h2>{{ user.username }}'s Favourite Authors</h2>
         <!-- </div> -->
     </div>
 
@@ -206,7 +208,7 @@
 <div class="row">
 
     {% if books %}
-        <h2>{{ username }}'s Favourite Books</h2>
+        <h2>{{ user.username }}'s Favourite Books</h2>
     {% endif %}
 
     {% for book in books %}<div class="col s4 l2 author-book-entries"><a

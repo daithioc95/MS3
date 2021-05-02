@@ -150,8 +150,9 @@
             <div class="hide-on-med-and-up animated-border-quote">
                 <blockquote>
                     <p>{{ quote.Quote }}</p>
+                    <div id="{{ quote._id }}" onclick="shareQuote(this.id)">
+                    <i class="share-quote-mob share-quote fas fa-link"></i></div>
                     <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
-                    <i class="share-quote-mob share-quote fas fa-link"></i>
                     <div class="star">
                         {% if session.user %}
                         <label for="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"

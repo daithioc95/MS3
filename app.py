@@ -510,7 +510,6 @@ def generate_mood():
 @app.route("/share_quote/<_id>", methods=["GET", "POST"])
 def share_quote(_id):
     quote = mongo.db.quotes.find_one({"_id": ObjectId(_id)})
-    print(quote)
     return render_template("share_quote.html",
                         quote=quote)
 
@@ -575,8 +574,8 @@ def login():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # grab the session user's username from db
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
+    user = mongo.db.users.find_one(
+        {"username": session["user"]})
     fav_quotes1 = get_favourites(session["user"], "quote")
     quotes = mongo.db.quotes.find({"_id": {"$in":  fav_quotes1}})
     fav_quotes2 = get_starred(session["user"], "quote")
@@ -587,7 +586,7 @@ def profile(username):
     books = mongo.db.books.find({"_id": {"$in":  fav_books}})
     if session["user"]:
         return render_template("profile.html", 
-                                username=username, 
+                                user=user,
                                 quotes=quotes, 
                                 fav_quotes2=fav_quotes2, 
                                 authors=authors, 

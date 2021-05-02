@@ -27,17 +27,17 @@ documents = coll1.find()
 documents2 = coll2.find()
 documents3 = coll3.find()
 
-tags=[]
-frequent = []
-for doc in documents:
-    list = doc["Tags"]
-    for item in list:
-        tags.append(item)
-for x in tags:
-    if tags.count(x) > 500 and x not in frequent:
-        frequent.append(x)
+# tags=[]
+# frequent = []
+# for doc in documents:
+#     list = doc["Tags"]
+#     for item in list:
+#         tags.append(item)
+# for x in tags:
+#     if tags.count(x) > 500 and x not in frequent:
+#         frequent.append(x)
 
-print(frequent)
+# print(frequent)
 
 
 # Remove empty array elements for books
