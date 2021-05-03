@@ -1001,6 +1001,7 @@ li.indicator-item.active {
 background-image: url(/static/images/mood_welcome_image.jpg);
 }
 
+/* https://stackoverflow.com/questions/46093353/header-margin-is-pushing-div-with-background-image */
 #mood-heading{
     padding: 2.3733333333rem 0 1.424rem 0;
     margin-top: 0;

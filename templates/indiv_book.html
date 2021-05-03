@@ -240,7 +240,7 @@
         </form>
     </div>
     {% if book.Comments %}
-    {% for comment in book.Comments %}
+    {% for comment in book.Comments|sort(reverse=true,attribute='date') %}
     <!-- posts -->
     <div class="card">
         <div class="card-content">
