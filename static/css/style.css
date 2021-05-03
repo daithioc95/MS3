@@ -49,7 +49,7 @@ nav{
 } */
 
 .page-footer{
-    margin-top: 20px
+    /* margin-top: 20px */
 }
 
 .page-footer a:hover{
@@ -65,7 +65,11 @@ nav{
         margin: 15px 0;
 }
 
-#generate-moods:hover{
+#post-button{
+    background-color: #7986CB;
+}
+
+#generate-moods:hover, #post-button:hover{
     transition: all 0.35s ease-in-out;
     -moz-transition: all 0.35s ease-in-out;
     -webkit-transition: all 0.35s ease-in-out;
@@ -974,7 +978,7 @@ li.indicator-item.active {
     border-radius: 50px; 
   }
     .indicators{
-  	visibility: hidden;
+  	/* visibility: hidden; */
   }
 
   .carousel-fixed-item.center.middle-indicator.with-indicators{
@@ -986,4 +990,18 @@ li.indicator-item.active {
     background: var(--quote-bg) no-repeat left / var(--quote-image-width);
     border-radius: var(--border-rad);
     border: 2px solid white;
+}
+
+#mood-container{
+    background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; 
+  height: 700px;
+  width: 100%;
+background-image: url(/static/images/mood_welcome_image.jpg);
+}
+
+#mood-heading{
+    padding: 2.3733333333rem 0 1.424rem 0;
+    margin-top: 0;
 }

@@ -26,8 +26,12 @@ $(document).ready(function () {
       e.stopPropagation();
       $('.carousel').carousel('prev');
    });
-});
 
+});
+// https://www.w3schools.com/js/tryit.asp?filename=tryjs_alert
+   function commentLogin() {
+        alert("Please login or register to post a comment");
+}
 // https://stackoverflow.com/questions/63033012/copy-the-text-to-the-clipboard-without-using-any-input
 function shareQuote(quote_id) {
   var TempText = document.createElement("input");

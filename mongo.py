@@ -27,6 +27,9 @@ documents = coll1.find()
 documents2 = coll2.find()
 documents3 = coll3.find()
 
+# main_authors = coll1.find().sort("Popularity", -1).limit(100)
+# for x in main_authors:
+#     print(x["Author"])
 # tags=[]
 # frequent = []
 # for doc in documents:

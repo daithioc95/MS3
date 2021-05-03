@@ -224,7 +224,7 @@
         <h2>Comments</h2>
     </div>
     <div class="row">
-        <form class="col s12" method="POST" action="{{ url_for('comment', Book=book.Book, section="books") }}">
+        <form class="col s12" {% if session.user %} method="POST" action="{{ url_for('comment', Book=book.Book, section="books") }}" {% else %}{% endif %}>
             <div class="row">
                 <div class="input-field col s10">
                     <i class="material-icons prefix">mode_edit</i>
@@ -232,7 +232,7 @@
                     <label for="comment">Write a public comment</label>
                 </div>
                 <div class="input-field col s2">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Post
+                    <button id="post-button"  class="btn waves-effect waves-light" {% if session.user %} type="submit" name="action"{% else %}type="button" onclick="commentLogin()"{% endif %}>Post
                         <i class="material-icons right">send</i>
                     </button>
                 </div>

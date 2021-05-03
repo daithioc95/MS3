@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
+<div id = "mood-container">
 <main class="container">
-    <h2>Mood Board</h2>
+
+    
+    <h2 id="mood-heading">Mood Board</h2>
     
     <!-- https://materializecss.com/carousel.html#two! -->
     <!-- https://codepen.io/Paco_Cervantes/pen/ZLxKpj -->
@@ -111,13 +114,13 @@
                         {% for x in search_tags if x|string == "poetry" %}checked{% else %}unchecked{% endfor %}><label
                         id="label_poetry" class="hvr-radial-out col s5 l3"
                         for="mood-button4_poetry">poetry</label>
-                    <div class="col hide-on-med-and-down l1"></div>
+                    <div class="col hide-on-med-and-down l2"></div>
                     <input type="checkbox" class="hidden mood-button" name="mood-button" value="writing"
                         id="mood-button5_writing"
                         {% for x in search_tags if x|string == "writing" %}checked{% else %}unchecked{% endfor %}><label
                         id="label_writing" class="hvr-radial-out col s5 l3" for="mood-button5_writing">writing</label>
-                    <div class="col hide-on-med-and-down l1"></div>
-                    <div class="col l2 s2"></div>
+                    <div class="col s2 l1"></div>
+                    <!-- <div class="col l2 s2"></div> -->
 
                     <input type="checkbox" class="hidden mood-button" name="mood-button" value="religion"
                         id="mood-button6_religion"
@@ -143,7 +146,9 @@
     
     </div>
     </form>
-    
+    </div>
+
+    <div class="container">
     {% for quote in quotes %}
 
     <!-- https://stackoverflow.com/questions/36674846/how-can-i-check-if-some-checkboxes-in-html-are-checked -->
@@ -236,8 +241,9 @@
                     class="fas fa-arrow-right"></i></a></li>
     </ul>
     {% endif %}
-
+</div>
 </main>
+
 {% endblock %}
 {% block scripts %}
 <script>
