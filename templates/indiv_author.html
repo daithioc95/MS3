@@ -9,8 +9,7 @@
             <div class="col l2 indiv-author-star">
                 <form>
                     {% if session.user %}
-                    <label for="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
-                        class="custom-checkbox">
+                    <label for="dsk-id-of-input{{ author._id }}_{{ session['user'] }}" class="custom-checkbox">
                         <input type="checkbox" id="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
                             name="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
                             category="logged-in-author-input"
@@ -41,7 +40,7 @@
             <div class="col l1"></div>
             {% if author.Categories %}
             <div class="col l8 user-details-dsk">
-                 <h3><b>Categories:</b></h3>
+                <h3><b>Categories:</b></h3>
                 <p>{% for category in author.Categories %}{{ category }}, {% endfor %}</p>
             </div>
             {% endif %}
@@ -51,11 +50,14 @@
             {% endif %}
             <div class="row">
                 <div class="col l1"></div>
-                
-            {% for book in author.Books %}<div class="col l2 author-book-entries"><a href="{{ url_for('book_profile', Book= book) }}"><i class="fas fa-book fa-5x {% if loop.index % 8 == 0 %}teal-book{% elif loop.index % 7 == 0 %}red-book{% elif loop.index % 6 == 0 %}orange-book{% elif loop.index % 5 == 0 %}green-book{% elif loop.index % 4 == 0 %}purple-book{% elif loop.index % 3 == 0 %}lavender-book{% elif loop.index % 2 == 0 %}brown-book{% elif loop.index % 1 == 0 %}blue-book{% endif %}"></i>
 
-                <p class="book-title">{{ book }}</p></a>
-            </div>{% endfor %}
+                {% for book in author.Books %}<div class="col l2 author-book-entries"><a
+                        href="{{ url_for('book_profile', Book= book) }}"><i
+                            class="fas fa-book fa-5x {% if loop.index % 8 == 0 %}teal-book{% elif loop.index % 7 == 0 %}red-book{% elif loop.index % 6 == 0 %}orange-book{% elif loop.index % 5 == 0 %}green-book{% elif loop.index % 4 == 0 %}purple-book{% elif loop.index % 3 == 0 %}lavender-book{% elif loop.index % 2 == 0 %}brown-book{% elif loop.index % 1 == 0 %}blue-book{% endif %}"></i>
+
+                        <p class="book-title">{{ book }}</p>
+                    </a>
+                </div>{% endfor %}
             </div>
         </div>
 
@@ -69,8 +71,7 @@
             <div class="col s3 indiv-author-star">
                 <form>
                     {% if session.user %}
-                    <label for="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
-                        class="custom-checkbox">
+                    <label for="dsk-id-of-input{{ author._id }}_{{ session['user'] }}" class="custom-checkbox">
                         <input type="checkbox" id="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
                             name="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
                             category="logged-in-author-input"
@@ -97,25 +98,28 @@
                     </div>
                 </div>
             </div>
-           </div> 
-            <div class="user-details-mob col s12">
-                <h3><b>Name:</b></h3>
-                <p>{{ author.Author }}<br /></p>
-                <h3><b>Categories:</b></h3>
-                <p>{% for category in author.Categories %}{{ category }}, {% endfor %}</p>
-                
-            </div>
+        </div>
+        <div class="user-details-mob col s12">
+            <h3><b>Name:</b></h3>
+            <p>{{ author.Author }}<br /></p>
+            <h3><b>Categories:</b></h3>
+            <p>{% for category in author.Categories %}{{ category }}, {% endfor %}</p>
+
+        </div>
 
 
-            <h3 class="book-heading"><b>Books</b></h3>
-            <div class="row">
-                
-            {% for book in author.Books %}<div class="col s4 author-book-entries"><a href="{{ url_for('book_profile', Book= book) }}"><i class="fas fa-book fa-5x {% if loop.index % 8 == 0 %}teal-book{% elif loop.index % 7 == 0 %}red-book{% elif loop.index % 6 == 0 %}orange-book{% elif loop.index % 5 == 0 %}green-book{% elif loop.index % 4 == 0 %}purple-book{% elif loop.index % 3 == 0 %}lavender-book{% elif loop.index % 2 == 0 %}brown-book{% elif loop.index % 1 == 0 %}blue-book{% endif %}"></i>
+        <h3 class="book-heading"><b>Books</b></h3>
+        <div class="row">
 
-                <p class="book-title">{{ book }}</p></a>
+            {% for book in author.Books %}<div class="col s4 author-book-entries"><a
+                    href="{{ url_for('book_profile', Book= book) }}"><i
+                        class="fas fa-book fa-5x {% if loop.index % 8 == 0 %}teal-book{% elif loop.index % 7 == 0 %}red-book{% elif loop.index % 6 == 0 %}orange-book{% elif loop.index % 5 == 0 %}green-book{% elif loop.index % 4 == 0 %}purple-book{% elif loop.index % 3 == 0 %}lavender-book{% elif loop.index % 2 == 0 %}brown-book{% elif loop.index % 1 == 0 %}blue-book{% endif %}"></i>
+
+                    <p class="book-title">{{ book }}</p>
+                </a>
             </div>{% endfor %}
-            </div>
-        
+        </div>
+
     </div>
     <div class="row">
         <!-- <div class="col s12 m8 offset-m2"> -->
@@ -135,15 +139,14 @@
                     </p>
                     <cite>{{ quote.Author }}</cite>
                     <div id="{{ quote._id }}" onclick="shareQuote(this.id)">
-                    <i class="share-quote fas fa-link"></i></div>
+                        <i class="share-quote fas fa-link"></i></div>
                     <div class="blockquote-author-image"
                         style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
                     </div>
                     <div class="star">
                         <form>
                             {% if session.user %}
-                            <label for="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
-                                class="custom-checkbox">
+                            <label for="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" class="custom-checkbox">
                                 <input type="checkbox" id="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
                                     name="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
                                     category="logged-in-quote-input"
@@ -171,12 +174,11 @@
                 <blockquote>
                     <p>{{ quote.Quote }}</p>
                     <div id="{{ quote._id }}" onclick="shareQuote(this.id)">
-                    <i class="share-quote-mob share-quote fas fa-link"></i></div>
+                        <i class="share-quote-mob share-quote fas fa-link"></i></div>
                     <cite>{{ quote.Author }}</cite>
                     <div class="star">
                         {% if session.user %}
-                        <label for="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
-                            class="custom-checkbox">
+                        <label for="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" class="custom-checkbox">
                             <input type="checkbox" id="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
                                 name="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
                                 category="logged-in-quote-input"
@@ -259,8 +261,7 @@
                                 <i class="glyphicon glyphicon-star"></i>
                             </label>
                             {% else %}
-                            <label for="dsk-id-of-input{{ similar_author._id }}"
-                                class="custom-checkbox">
+                            <label for="dsk-id-of-input{{ similar_author._id }}" class="custom-checkbox">
                                 <input type="checkbox" id="dsk-id-of-input{{ similar_author._id }}"
                                     name="dsk-id-of-input{{ similar_author._id }}" category="logged-out-author-input" />
                                 <i class="glyphicon glyphicon-star-empty"></i>
@@ -272,12 +273,12 @@
                 </blockquote>
             </article>
         </div>
-        
-  <!-- https://stackoverflow.com/questions/7537439/how-to-increment-a-variable-on-a-for-loop-in-jinja-template -->
-   {% set __ = count.append(1) %}
-   {% if count|length % 2 != 0 %}
-   <div class="hide-on-small-only col l2"></div>
-    {% endif %}
+
+        <!-- https://stackoverflow.com/questions/7537439/how-to-increment-a-variable-on-a-for-loop-in-jinja-template -->
+        {% set __ = count.append(1) %}
+        {% if count|length % 2 != 0 %}
+        <div class="hide-on-small-only col l2"></div>
+        {% endif %}
         {% endif %}
         {% else %}
         {% endfor %}
@@ -286,7 +287,42 @@
     <div class="row">
         <h2>Comments</h2>
     </div>
+    <div class="row">
+        <form class="col s12" method="POST" action="{{ url_for('comment', Author=author.Author, section="authors") }}">
+            <div class="row">
+                <div class="input-field col s10">
+                    <i class="material-icons prefix">mode_edit</i>
+                    <!-- <input id="icon_prefix2" class="materialize-textarea">
+                    <label for="icon_prefix2">Write a public comment</label> -->
 
+                    <input id="comment" name="comment" type="text" class="materialize-textarea validate" required>
+                    <label for="comment">Write a public comment</label>
+                </div>
+                <div class="input-field col s2">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Post
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% if author.Comments %}
+    {% for comment in author.Comments %}
+    <!-- posts -->
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ comment.user }}</span>
+            <b>
+                <p>{{ comment.date }}</p>
+            </b>
+
+            <p>{{ comment.text }}</p>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+        <h3 class="red-text text-darken-4 center-align">No comments made yet</h3>
+    {% endif %}
 </main>
 {% endblock %}
 {% block scripts %}

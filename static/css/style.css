@@ -980,3 +980,10 @@ li.indicator-item.active {
   .carousel-fixed-item.center.middle-indicator.with-indicators{
       height: 0;
   }
+  
+  /* Comments section */
+.card {
+    background: var(--quote-bg) no-repeat left / var(--quote-image-width);
+    border-radius: var(--border-rad);
+    border: 2px solid white;
+}

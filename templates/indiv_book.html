@@ -219,6 +219,43 @@
     </div>
     {% endif %}
 
+    <!-- Comments section -->
+    <div class="row">
+        <h2>Comments</h2>
+    </div>
+    <div class="row">
+        <form class="col s12" method="POST" action="{{ url_for('comment', Book=book.Book, section="books") }}">
+            <div class="row">
+                <div class="input-field col s10">
+                    <i class="material-icons prefix">mode_edit</i>
+                    <input id="comment" name="comment" type="text" class="materialize-textarea validate" required>
+                    <label for="comment">Write a public comment</label>
+                </div>
+                <div class="input-field col s2">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Post
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% if book.Comments %}
+    {% for comment in book.Comments %}
+    <!-- posts -->
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ comment.user }}</span>
+            <b>
+                <p>{{ comment.date }}</p>
+            </b>
+
+            <p>{{ comment.text }}</p>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+        <h3 class="red-text text-darken-4 center-align">No comments made yet</h3>
+    {% endif %}
 
 </main>
 {% endblock %}

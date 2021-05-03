@@ -11,6 +11,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import math
 if os.path.exists("env.py"):
     import env
+from datetime import date, datetime
 
 
 app = Flask(__name__)
@@ -331,7 +332,7 @@ def author_profile(Author):
                             page=page, 
                             pages=pages,
                             limit=limit,
-                            final_page=final_page,)
+                            final_page=final_page)
 
 
 @app.route("/get_books", methods=["GET"])
@@ -595,6 +596,23 @@ def profile(username):
 
     return redirect(url_for("login"))
 
+
+@app.route("/comment", methods=["GET", "POST"])
+def comment():
+    if request.method == "POST":
+        username = session["user"]
+        comment = request.form.get("comment")
+        section = request.args.get('section')
+        today = datetime.today()
+        date = today.strftime("%d/%m/%Y")
+        if section == "authors":
+            Author = request.args.get('Author')
+            mongo.db.authors.update_one({"Author": Author},{ "$addToSet": { "Comments": {'text':comment,'user':username,'date':date}}})
+            return redirect(url_for("author_profile", Author=Author))
+        if section == "books":
+            Book = request.args.get('Book')
+            mongo.db.books.update_one({"Book": Book},{ "$addToSet": { "Comments": {'text':comment,'user':username,'date':date}}})
+            return redirect(url_for("book_profile", Book=Book))
 
 @app.route("/logout")
 def logout():
