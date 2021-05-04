@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col l3">
                 <div id="circle-container">
-                    <div class="profile-image" style="background: url(/workspace/MS3/static/images/authors/mahatma_gandhi.jpg) no-repeat center center;">
+                    <div class="profile-image" style="background: url({% if author.image %}{{ author.image }}{% else %}https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg{% endif %}) no-repeat top center;">
                     </div>
                 </div>
             </div>
