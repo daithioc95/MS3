@@ -744,12 +744,12 @@ input[type=checkbox]:hover + label {
 
 /* -----Profile----- */
 .profile-image{
-    background: url("https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg") no-repeat center center;
+    /* background: url("https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg") no-repeat center center; */
     /* height: 120px;
     width: 100%;
     background-size: cover; */
     height: 100%;
-    background-size: cover;
+    background-size: cover !important;
     border-radius: 50%;
 }
 
