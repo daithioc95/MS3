@@ -36,7 +36,7 @@ def get_quotes():
     # final_page = math.ceil((mongo.db.quotes.count_documents({}))/(limit))
     # pages = range(1, int(final_page + 1))
     # Limit pages with updated db
-    final_page = 10
+    final_page = 20
     pages = range(1, int(final_page + 1))
     quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(limit)
     try:
