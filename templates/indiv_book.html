@@ -117,7 +117,7 @@
                     <i class="share-quote fas fa-link"></i></div>
                     <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
                     <div class="blockquote-author-image"
-                        style="--image: url('https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg')">
+                        style="--image: url({% if quote.image %}{{ quote.image }}{% else %}https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg{% endif %})">
                     </div>
                     <div class="star">
                         <form>

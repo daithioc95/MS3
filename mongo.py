@@ -27,6 +27,21 @@ documents = coll1.find()
 documents2 = coll2.find()
 documents3 = coll3.find()
 
+# Update quote image if author has image
+# image_authors = []
+# for doc in documents2:
+#     try:
+#         if doc["image"]:
+#             image_authors.append(doc["Author"])
+#     except:
+#         pass
+# # print(image_authors)
+# for doc in documents:
+#     if doc["Author"] in image_authors:
+#         image = coll2.find_one({"Author":  doc["Author"]})["image"]
+#         coll1.update_many({"Author":doc["Author"]},{"$set": {"image": image}})
+
+
 # main_authors = coll1.find().sort("Popularity", -1).limit(200)
 # for x in main_authors:
 #     print(x["Author"])
