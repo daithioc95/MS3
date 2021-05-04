@@ -231,16 +231,18 @@ def search_quotes():
     page = request.args.get('page', 1, type=int)
     limit = int(5)
     skips = limit * (page - 1)
-    # final_page = math.ceil((mongo.db.quotes.count_documents(
-    #     {"$text": {"$search": query}}))/(limit))
-    # pages = range(1, int(final_page + 1))
-    # Limit pages with updated db
-    final_page = 10
-    pages = range(1, int(final_page + 1))
     quotes = mongo.db.quotes.find(
         {"$text": {"$search": query}}).skip(skips).limit(limit)
-    # feed through favoutite id's so only favourite stars are checked
     searched = True
+    # limit pages to 10 as results excessive
+    if math.ceil((mongo.db.quotes.count_documents(
+        {"$text": {"$search": query}}))/(limit)) < 10:
+        final_page =math.ceil((mongo.db.quotes.count_documents(
+        {"$text": {"$search": query}}))/(limit))
+    else:
+        final_page = 10
+    pages = range(1, int(final_page + 1))
+    # Limit pages with updated db
     try:
         # if user logged in 
         if session["user"]:
@@ -278,11 +280,13 @@ def search_authors():
     # pages = range(1, int(final_page + 1))
     # Limit pages with updated db
     final_page = 10
-    pages = range(1, int(final_page + 1))
     # search query to index
     authors1 = mongo.db.authors.find({"$text": {"$search":searchTerm }}).skip(skips).limit(limit)
     # feed through favoutite id's so only favourite stars are checked
     searched = True
+    final_page =math.ceil((mongo.db.authors.count_documents(
+    {"$text": {"$search": searchTerm}}))/(limit))
+    pages = range(1, int(final_page + 1))
     try:
         # if user logged in 
         if session["user"]:
