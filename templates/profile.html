@@ -81,8 +81,8 @@
             <blockquote class="quote-blockquote">
                 <p>{{ quote.Quote }}
                 </p>
-                <div id="{{ quote._id }}" onclick="shareQuote(this.id)">
-                <i class="share-quote fas fa-link"></i></div>
+                <div>
+                <i id="{{ quote._id }}" onclick="shareQuote(this.id)" class="share-quote fas fa-link"></i></div>
                 <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
                 <div class="blockquote-author-image"
                     style="--image: url({% if quote.image %}{{ quote.image }}{% else %}/static/images/authors/avatar_icon.jpg{% endif %})">
@@ -118,8 +118,8 @@
         <div class="hide-on-med-and-up animated-border-quote">
             <blockquote>
                 <p>{{ quote.Quote }}</p>
-                 <div id="{{ quote._id }}" onclick="shareQuote(this.id)">
-                    <i class="share-quote-mob share-quote fas fa-link"></i></div>
+                 <div>
+                    <i id="{{ quote._id }}" onclick="shareQuote(this.id)" class="share-quote-mob share-quote fas fa-link"></i></div>
                 <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
                 <div class="star">
                     {% if session.user %}

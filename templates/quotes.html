@@ -50,8 +50,8 @@
             <p>{{ quote.Quote }}
             </p>
             <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
-            <div id="{{ quote._id }}">
-            <i onclick="shareQuote(this.id)" class="share-quote fas fa-link"></i></div>
+            <div>
+            <i id="{{ quote._id }}" onclick="shareQuote(this.id)" class="share-quote fas fa-link"></i></div>
             <!-- <cite>{{ quote.Tags[1] }} </cite> -->
             <!-- https://icon-library.com/icon/avatar-icon-free-26.html -->
             <div class="blockquote-author-image"
@@ -90,8 +90,8 @@
         <blockquote>
             <p>{{ quote.Quote }}</p>
             <!-- https://www.w3schools.com/howto/howto_js_copy_clipboard.asp -->
-            <div id="{{ quote._id }}" onclick="shareQuote(this.id)">
-                    <i class="share-quote-mob share-quote fas fa-link"></i></div>
+            <div>
+                    <i id="{{ quote._id }}" onclick="shareQuote(this.id)" class="share-quote-mob share-quote fas fa-link"></i></div>
             <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
             <div class="star">
                 {% if session.user %}
