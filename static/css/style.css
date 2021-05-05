@@ -538,7 +538,8 @@ border: 1px solid #fff;
 .wrap{
   width: 30%;
   position: absolute;
-  top: 35%;
+  /* top: 35%; */
+top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -996,6 +997,7 @@ li.indicator-item.active {
     border: 2px solid white;
 }
 
+/* if opacity needed in css https://stackoverflow.com/questions/7241341/can-i-set-an-opacity-only-to-the-background-image-of-a-div */
 #mood-container{
     background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
@@ -1015,4 +1017,12 @@ background-image: url(/static/images/mood_welcome_image.jpg);
     color: #7986CB;
     display: block;
     font-size: 45px;
+}
+
+#login-button, #register-button{
+    background-color: #7986CB;
+}
+
+form .input-attributes{
+    color: #7986CB;
 }
