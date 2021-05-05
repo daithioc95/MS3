@@ -27,6 +27,13 @@ documents = coll1.find()
 documents2 = coll2.find()
 documents3 = coll3.find()
 
+# Check for dupe quotes
+# store_quotes = []
+# for doc in documents:
+#     if doc["Quote"] in store_quotes:
+#         print(doc["Quote"])
+#     store_quotes.append(doc["Quote"])
+    
 # Update quote image if author has image
 # image_authors = []
 # for doc in documents2:

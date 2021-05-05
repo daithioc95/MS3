@@ -46,7 +46,7 @@
                 <blockquote class="author-blockquote">
                     <cite><a href="{{ url_for('author_profile', Author=author.Author) }}">{{ author.Author }}</a></cite>
                     <div class="blockquote-author-image"
-                        style="--image: url({% if author.image %}{{ author.image }}{% else %}https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg{% endif %})">
+                        style="--image: url({% if author.image %}{{ author.image }}{% else %}/static/images/authors/avatar_icon.jpg{% endif %})">
                     </div>
                     <div class="star">
                         <form>
