@@ -23,7 +23,7 @@
 </div>
 
 <main class="container">
-
+    <div id="title"  class="row">
     {% if session.user and get_fav == None and fav_authors2 %}
         <h2>{{ session['user'] }}'s Favourite authors</h2>
         <h3 class="link-heading"><a href="{{ url_for('get_authors', get_fav = "No") }}">Discover authors here</a></h3>
@@ -35,7 +35,7 @@
             <h3 class="link-heading"><a href="{{ url_for('get_authors') }}">{{ session['user'] }}'s Favourite Authors</a></h3>
         {% endif %}
     {% endif %}
-
+    </div>
 
     {% if authors1.count() > 0 %}
     <div class="row">
@@ -82,61 +82,61 @@
     {% if get_fav == None %}
     <!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
     <ul class="pagination center-align">
-        <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('get_authors', page = page - 1) }}"><i
+        <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('get_authors', page = page - 1, _anchor='title') }}"><i
                     class="fas fa-arrow-left"></i></a></li>
         {% for p in pages %}
         {% if  p == page  %}
         <li class="active">
-            <a href="{{ url_for('get_authors', page = p) }}">{{ p }}</a>
+            <a href="{{ url_for('get_authors', page = p, _anchor='title') }}">{{ p }}</a>
         </li>
         {% else %}
         <li class="">
-            <a href="{{ url_for('get_authors', page = p) }}">{{ p }}</a>
+            <a href="{{ url_for('get_authors', page = p, _anchor='title') }}">{{ p }}</a>
         </li>
         {% endif %}
         {% endfor %}
         <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{{ url_for('get_authors', page = page + 1) }}"><i class="fas fa-arrow-right"></i></a></li>
+                href="{{ url_for('get_authors', page = page + 1, _anchor='title') }}"><i class="fas fa-arrow-right"></i></a></li>
     </ul>
     {% elif searched %}
     <!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
     <ul class="pagination center-align">
         <li class="{% if  page < 2 %}disabled{% endif %}"><a
-                href="{{ url_for('search_authors', page = page - 1, query_author=query_author) }}"><i
+                href="{{ url_for('search_authors', page = page - 1, query_author=query_author, _anchor='title') }}"><i
                     class="fas fa-arrow-left"></i></a></li>
         {% for p in pages %}
             {% if  p == page  %}
             <li class="active">
-                <a href="{{ url_for('search_authors', page = p, query_author=query_author) }}">{{ p }}</a>
+                <a href="{{ url_for('search_authors', page = p, query_author=query_author, _anchor='title') }}">{{ p }}</a>
             </li>
             {% else %}
             <li class="">
-                <a href="{{ url_for('search_authors', page = p, query_author=query_author) }}">{{ p }}</a>
+                <a href="{{ url_for('search_authors', page = p, query_author=query_author, _anchor='title') }}">{{ p }}</a>
             </li>
             {% endif %}
         {% endfor %}
         <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{{ url_for('search_authors', page = page + 1, query_author=query_author) }}"><i
+                href="{{ url_for('search_authors', page = page + 1, query_author=query_author, _anchor='title') }}"><i
                     class="fas fa-arrow-right"></i></a></li>
     </ul>
     {% else %}
     <ul class="pagination center-align">
         <li class="{% if  page < 2 %}disabled{% endif %}"><a
-                href="{{ url_for('get_authors', get_fav = "No", page = page - 1) }}"><i
+                href="{{ url_for('get_authors', get_fav = "No", page = page - 1, _anchor='title') }}"><i
                     class="fas fa-arrow-left"></i></a></li>
         {% for p in pages %}
             {% if  p == page  %}
             <li class="active">
-                <a href="{{ url_for('get_authors', get_fav = "No", page = p) }}">{{ p }}</a>
+                <a href="{{ url_for('get_authors', get_fav = "No", page = p, _anchor='title') }}">{{ p }}</a>
             </li>
             {% else %}
             <li class="">
-                <a href="{{ url_for('get_authors', get_fav = "No", page = p) }}">{{ p }}</a>
+                <a href="{{ url_for('get_authors', get_fav = "No", page = p, _anchor='title') }}">{{ p }}</a>
             </li>
             {% endif %}
         {% endfor %}
         <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{{ url_for('get_authors', get_fav = "No", page = page + 1) }}"><i
+                href="{{ url_for('get_authors', get_fav = "No", page = page + 1, _anchor='title') }}"><i
                     class="fas fa-arrow-right"></i></a></li>
     </ul>
     {% endif %}

@@ -3,7 +3,7 @@
 <div class="row">
     <div class="welcome-qotd">
         <blockquote class="qotd">{{ qotd.Quote }}</blockquote>
-        <cite class="qotd">{{ qotd.Author }}</cite>
+        <cite class="qotd"><a href="{{ url_for('author_profile', Author=qotd.Author) }}">{{ qotd.Author }}</a></cite>
     </div>
 </div>
 <main class="container">
@@ -24,7 +24,7 @@
         </form>
     </div>
 
-    <div class="row heading-row">
+    <div id="quotes_title" class="row heading-row">
     {% if session.user and get_fav == None and fav_quotes2 %}
             <h2>{{ session['user'] }}'s favourite quotes</h2>
             <h3 class="link-heading"><a href="{{ url_for('get_quotes', get_fav = "No") }}">Discover quotes here</a></h3>
@@ -50,8 +50,8 @@
             <p>{{ quote.Quote }}
             </p>
             <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
-            <div id="{{ quote._id }}" onclick="shareQuote(this.id)">
-            <i class="share-quote fas fa-link"></i></div>
+            <div id="{{ quote._id }}">
+            <i onclick="shareQuote(this.id)" class="share-quote fas fa-link"></i></div>
             <!-- <cite>{{ quote.Tags[1] }} </cite> -->
             <!-- https://icon-library.com/icon/avatar-icon-free-26.html -->
             <div class="blockquote-author-image"
@@ -122,61 +122,61 @@
     {% if get_fav == None %}
     <!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
     <ul class="pagination center-align">
-        <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{% if  page < 2 %}{% else %}{{ url_for('get_quotes', page = page - 1) }}{% endif %}"><i
+        <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{% if  page < 2 %}{% else %}{{ url_for('get_quotes', page = page - 1, _anchor='quotes_title') }}{% endif %}"><i
                     class="material-icons">chevron_left</i></a></li>
         {% for p in pages %}
         {% if  p == page  %}
         <li class="active">
-            <a href="{{ url_for('get_quotes', page = p) }}">{{ p }}</a>
+            <a href="{{ url_for('get_quotes', page = p, _anchor='quotes_title') }}">{{ p }}</a>
         </li>
         {% else %}
         <li class="">
-            <a href="{{ url_for('get_quotes', page = p) }}">{{ p }}</a>
+            <a href="{{ url_for('get_quotes', page = p, _anchor='quotes_title') }}">{{ p }}</a>
         </li>
         {% endif %}
         {% endfor %}
         <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{% if  page >= final_page %}{% else %}{{ url_for('get_quotes', page = page + 1) }}{% endif %}"><i class="material-icons">chevron_right</i></a></li>
+                href="{% if  page >= final_page %}{% else %}{{ url_for('get_quotes', page = page + 1, _anchor='quotes_title') }}{% endif %}"><i class="material-icons">chevron_right</i></a></li>
     </ul>
     {% elif searched %}
     <!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
     <ul class="pagination center-align">
         <li class="{% if  page < 2 %}disabled{% endif %}"><a
-                href="{% if  page < 2 %}{% else %}{{ url_for('search_authors', page = page - 1, query_quote=query_quote) }}{% endif %}"><i
+                href="{% if  page < 2 %}{% else %}{{ url_for('search_authors', page = page - 1, query_quote=query_quote, _anchor='quotes_title') }}{% endif %}"><i
                     class="material-icons">chevron_left</i></a></li>
         {% for p in pages %}
         {% if  p == page  %}
         <li class="active">
-            <a href="{{ url_for('search_quotes', page = p, query_quote=query_quote) }}">{{ p }}</a>
+            <a href="{{ url_for('search_quotes', page = p, query_quote=query_quote, _anchor='quotes_title') }}">{{ p }}</a>
         </li>
         {% else %}
         <li class="">
-            <a href="{{ url_for('search_quotes', page = p, query_quote=query_quote) }}">{{ p }}</a>
+            <a href="{{ url_for('search_quotes', page = p, query_quote=query_quote, _anchor='quotes_title') }}">{{ p }}</a>
         </li>
         {% endif %}
         {% endfor %}
         <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{% if  page >= final_page %}{% else %}{{ url_for('search_quotes', page = page + 1, query_quote=query_quote) }}{% endif %}"><i
+                href="{% if  page >= final_page %}{% else %}{{ url_for('search_quotes', page = page + 1, query_quote=query_quote, _anchor='quotes_title') }}{% endif %}"><i
                     class="material-icons">chevron_right</i></a></li>
     </ul>
     {% else %}
     <ul class="pagination center-align">
         <li class="{% if  page < 2 %}disabled{% endif %}"><a
-                href="{% if  page < 2 %}{% else %}{{ url_for('get_quotes', get_fav = "No", page = page - 1) }}{% endif %}"><i
+                href="{% if  page < 2 %}{% else %}{{ url_for('get_quotes', get_fav = "No", page = page - 1, _anchor='quotes_title') }}{% endif %}"><i
                     class="material-icons">chevron_left</i></a></li>
         {% for p in pages %}
         {% if  p == page  %}
         <li class="active">
-            <a href="{{ url_for('get_quotes', get_fav = "No", page = p) }}">{{ p }}</a>
+            <a href="{{ url_for('get_quotes', get_fav = "No", page = p, _anchor='quotes_title') }}">{{ p }}</a>
         </li>
         {% else %}
         <li class="">
-            <a href="{{ url_for('get_quotes', get_fav = "No", page = p) }}">{{ p }}</a>
+            <a href="{{ url_for('get_quotes', get_fav = "No", page = p, _anchor='quotes_title') }}">{{ p }}</a>
         </li>
         {% endif %}
         {% endfor %}
         <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{% if  page >= final_page %}{% else %}{{ url_for('get_quotes', get_fav = "No", page = page + 1) }}{% endif %}"><i
+                href="{% if  page >= final_page %}{% else %}{{ url_for('get_quotes', get_fav = "No", page = page + 1, _anchor='quotes_title') }}{% endif %}"><i
                     class="material-icons">chevron_right</i></a></li>
     </ul>
     {% endif %}

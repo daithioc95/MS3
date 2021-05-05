@@ -23,7 +23,7 @@
 </div>
 
 <main class="container">
-
+<div id ="title" class="row">
     {% if session.user and get_fav == None and fav_books2 %}
         <h2>{{ session['user'] }}'s Favourite books</h2>
         <h3 class="link-heading"><a href="{{ url_for('get_books', get_fav = "No") }}">Discover books here</a></h3>
@@ -35,7 +35,7 @@
             <h3 class="link-heading"><a href="{{ url_for('get_books') }}">{{ session['user'] }}'s Favourite books</a></h3>
         {% endif %}
     {% endif %}
-
+</div>
     {% if books.count() > 0 %}
     <div class="row">
 

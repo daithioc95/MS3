@@ -217,7 +217,9 @@ nav{
 }
 
 .author-blockquote{
-    padding: 1.6em 2.4em .7em calc(1.4em + var(--quote-image-width));
+    /* padding: 1.6em 2.4em .7em calc(1.4em + var(--quote-image-width)); */
+    /* below for name middle verticle align */
+    padding: 3.5em 2.4em .7em calc(1.4em + var(--quote-image-width));
 }
 
 /* @media (min-width: 768px) {
@@ -230,7 +232,8 @@ blockquote.quote-blockquote{}
 
 blockquote.author-blockquote{
     /* To stop long names affecting rendering */
-    height: 100px;
+    /* height: 100px; */
+    height: 160px;
 }
 
  .article blockquote::before {
@@ -744,13 +747,14 @@ input[type=checkbox]:hover + label {
 
 /* -----Profile----- */
 .profile-image{
-    /* background: url("https://raw.githubusercontent.com/daithioc95/MS1/master/assets/images/logo.jpg") no-repeat center center; */
+    /*  */
     /* height: 120px;
     width: 100%;
     background-size: cover; */
     height: 100%;
     background-size: cover !important;
     border-radius: 50%;
+    background: url("/static/images/authors/avatar_icon.jpg") no-repeat center center;
 }
 
 #circle-container{
@@ -1005,4 +1009,10 @@ background-image: url(/static/images/mood_welcome_image.jpg);
 #mood-heading{
     padding: 2.3733333333rem 0 1.424rem 0;
     margin-top: 0;
+}
+
+.generated-down{
+    color: #7986CB;
+    display: block;
+    font-size: 45px;
 }

@@ -126,7 +126,7 @@
     </div>
     <div class="row">
         <!-- <div class="col s12 m8 offset-m2"> -->
-        <h2>{{ author.Author }}'s Quotes</h2>
+        <h2 id="author-title">{{ author.Author }}'s Quotes</h2>
         <!-- </div> -->
     </div>
     <div class="row">
@@ -208,21 +208,21 @@
     </div>
     <ul class="pagination center-align">
         <li class="{% if  page < 2 %}disabled{% endif %}"><a
-                href="{% if  page < 2 %}{% else %}{{ url_for('author_profile', Author=author.Author, page = page - 1) }}{% endif %}"><i
+                href="{% if  page < 2 %}{% else %}{{ url_for('author_profile', Author=author.Author, page = page - 1, _anchor='author-title') }}{% endif %}"><i
                     class="material-icons">chevron_left</i></a></li>
         {% for p in pages %}
         {% if  p == page  %}
         <li class="active">
-            <a href="{{ url_for('author_profile', Author=author.Author, page = p) }}">{{ p }}</a>
+            <a href="{{ url_for('author_profile', Author=author.Author, page = p, _anchor='author-title') }}">{{ p }}</a>
         </li>
         {% else %}
         <li class="">
-            <a href="{{ url_for('author_profile', Author=author.Author, page = p) }}">{{ p }}</a>
+            <a href="{{ url_for('author_profile', Author=author.Author, page = p, _anchor='author-title') }}">{{ p }}</a>
         </li>
         {% endif %}
         {% endfor %}
         <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{% if  page >= final_page %}{% else %}{{ url_for('author_profile', Author=author.Author, page = page + 1) }}{% endif %}"><i
+                href="{% if  page >= final_page %}{% else %}{{ url_for('author_profile', Author=author.Author, page = page + 1, _anchor='author-title') }}{% endif %}"><i
                     class="material-icons">chevron_right</i></a></li>
     </ul>
 

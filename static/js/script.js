@@ -42,7 +42,7 @@ function shareQuote(quote_id) {
   document.execCommand("copy");
   document.body.removeChild(TempText);
   
-  alert("Copied sharable link: " + TempText.value);
+  alert("Copied sharable link to clipboard: " + TempText.value);
 }
 
 // $(.mood-button).change(function(e) {
