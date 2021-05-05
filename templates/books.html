@@ -45,7 +45,7 @@
                 href="{{ url_for('book_profile', Book= book.Book) }}"><i
                     class="fas fa-book fa-5x {% if loop.index % 8 == 0 %}teal-book{% elif loop.index % 7 == 0 %}red-book{% elif loop.index % 6 == 0 %}orange-book{% elif loop.index % 5 == 0 %}green-book{% elif loop.index % 4 == 0 %}purple-book{% elif loop.index % 3 == 0 %}lavender-book{% elif loop.index % 2 == 0 %}brown-book{% elif loop.index % 1 == 0 %}blue-book{% endif %}"></i>
 
-                <p class="book-title">{{ book.Book }}</p>
+                <p class="book-title">{% if book.Book|length < 50 %}{{ book.Book }}{% else %}{{ book.Book|truncate(50) }}...{% endif %}</p>
             </a>
         </div>{% endfor %}
     </div>

@@ -844,7 +844,8 @@ height: 160px;
 }
 
  .book-title{
-     height: 80px;
+     /* height: 80px; */
+     height: 100px;
      /* height: fit-content; */
         /* display: inline-block; */
     }   
