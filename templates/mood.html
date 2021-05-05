@@ -149,6 +149,9 @@
     </div>
 
     <div class="container">
+    {% if generated %}
+    <h2>Generated Quotes</h2>
+    {% endif %}
     {% for quote in quotes %}
 
     <!-- https://stackoverflow.com/questions/36674846/how-can-i-check-if-some-checkboxes-in-html-are-checked -->
