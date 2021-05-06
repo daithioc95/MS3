@@ -1,5 +1,8 @@
 # Python and Data Centric Development Milestone Project 
 
+This website is collection of over 35,000 quotes gather and organised based on author, book, categories and popularity. The website is a community by which users can store their favourite quotes,  books and authors. They can additionally share quotes with friends and comment on authors and books to express their opinions. Users can use the “mood” section so that they can discover favourite authors depending on how they feel.
+This information is presented in an interactive, picturesque manner with a simple, easy on the eye design.
+
 ## UX
 
 ##### User Stories
