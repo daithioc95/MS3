@@ -3,6 +3,7 @@ import pymongo
 import json
 if os.path.exists("env.py"):
     import env
+from datetime import date, datetime
 MONGO_URI = os.environ.get("MONGO_URI")
 DATABASE = "ms3_quotes"
 COLLECTION_QUTOES = "quotes"
@@ -26,6 +27,13 @@ documents_authors = coll1.find({},{ "_id": 0, "Author": 1})
 documents = coll1.find()
 documents2 = coll2.find()
 documents3 = coll3.find()
+
+# QOTD Calculation
+# today = date.today()
+# date = today.strftime("%Y%m%d")
+# integer_date = int(date)
+# print(integer_date-20210305)
+# print(coll1.find_one({"_id": 20210305}))
 
 # Check for dupe quotes
 # store_quotes = []

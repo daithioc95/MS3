@@ -29,6 +29,7 @@ mongo = PyMongo(app)
 @app.route("/get_quotes")
 def get_quotes():
     get_fav = request.args.get('get_fav')
+    # start date - todays date
     qotd = mongo.db.quotes.find_one()
     page = request.args.get('page', 1, type=int)
     limit = int(5)
