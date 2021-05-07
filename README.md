@@ -119,6 +119,56 @@ The surface plane is the least conceptual plane and consists of the actual conte
 - Comment
   - In addition to the previously mentioned comments form, the comments section is visible at the bottom of the specified books page and the individual authors page which shows the posted comments.
 
+###Technologies Used
+
+- HTML Used to add content to the website.
+- CSS Used to add structure and design to my site.
+- JavaScript & jQuery Used for the below features
+  - Favourite Star
+  - Toast Messages
+  - Share Quote link
+  - Mood Board Carousel Slider
+- Python
+  - Used python for the backend elements of the Website used to interact with the database and feed data depending on users’ interactions.
+  - Python (Pymongo) was also used from a data analytics perspective for organising and manipulating the database.
+- Mongo DB
+  - Mongo DB was used to the upload the JSON format, store the database and also to connect with the python code to Create, Read, Update and Delete any necessary documents.
+  - Also used to allow me to create and search indexes.
+- Flask
+  - Flask and the Jinja Templating Language is used to allow for the high volume of information feed through to the HTML template pages.
+- Heroku
+  - Heroku is used to deploy and host the website.
+- Werkzeug
+  - Used to securely encrypt and stored passwords.
+- Materialize was used throughout the website to easily implement attractive and consistent designs. The Materialize Grid System was implemented throughout.
+  - Navbar
+  - Carousel
+  - Forms
+  - icons
+- Font Awesome
+  - Font Awesome was used for the favourite star animation
+- Balsamiq
+  - Used in the design process for wireframes.
+- Pxhere, Pexels, Unsplash, Wikipedia 
+  - Used for images and design inspiration.
+- GitPod
+  - Used to create, commit and push the HTML, CSS, JavaScript and Python changes for the website.
+- GitHub
+  - Used to store files and code.
+- Stackoverflow
+  - Used for problem solving to implement desired designs.
+  - Used to gain better understanding of how I should approach the implementation of elements.
+- W3Schools
+  - Used to gather a theoretical knowledge of elements and effects.
+- W3 HTML Validator
+  - Used throughout the project to ensure I was following best practices with HTML code.
+- Jigsaw CSS Validator
+  - Used throughout the project to ensure I was following best practices with CSS code.
+- JSHint JavaScript Validator
+  - Used this GitPod extension throughout the project to ensure I was following best practices with JavaScript code.
+- Colors.share
+  - Used to extract colour schemes to trial.
+
 
 
 
