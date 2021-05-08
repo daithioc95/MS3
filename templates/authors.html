@@ -26,14 +26,14 @@
 <main class="container">
     <div id="title"  class="row">
     {% if session.user and get_fav == None and fav_authors2 %}
-        <h2>{{ session['user'] }}'s Favourite authors</h2>
+        <h2>{{ session['user'] }}'{% if session['user'][session['user']|length-1] != "s" %}s{% endif %} Favourite authors</h2>
         <h3 class="link-heading"><a href="{{ url_for('get_authors', get_fav = "No") }}">Discover authors here</a></h3>
     {% elif url_for(request.endpoint) == url_for('search_authors') %}
         <h2>Results</h2>
     {% elif not session.user or get_fav == "No" or not fav_authors2 %}
         <h2>Popular authors</h2>
         {% if session.user and fav_authors2 %}
-            <h3 class="link-heading"><a href="{{ url_for('get_authors') }}">{{ session['user'] }}'s Favourite Authors</a></h3>
+            <h3 class="link-heading"><a href="{{ url_for('get_authors') }}">{{ session['user'] }}'{% if session['user'][session['user']|length-1] != "s" %}s{% endif %} Favourite Authors</a></h3>
         {% endif %}
     {% endif %}
     </div>

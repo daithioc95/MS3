@@ -42,7 +42,7 @@
             {% if author.Categories %}
             <div class="col l8 user-details-dsk">
                 <h3><b>Categories:</b></h3>
-                <p>{% for category in author.Categories %}{{ category }}, {% endfor %}</p>
+                <p>{% for category in author.Categories %}{{ category }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
             </div>
             {% endif %}
             {% if author.Books %}
@@ -108,7 +108,7 @@
             <p>{{ author.Author }}<br /></p>
             {% if author.Categories %}
             <h3><b>Categories:</b></h3>
-            <p>{% for category in author.Categories %}{{ category }}, {% endfor %}</p>
+            <p>{% for category in author.Categories %}{{ category }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
         </div>
 
         {% endif %}
@@ -129,7 +129,7 @@
     </div>
     <div class="row">
         <!-- <div class="col s12 m8 offset-m2"> -->
-        <h2 id="author-title">{{ author.Author }}'s Quotes</h2>
+        <h2 id="author-title">{{ author.Author }}'{% if author.Author[author.Author|length-1] != "s" %}s{% endif %} Quotes </h2>
         <!-- </div> -->
     </div>
     <div class="row">

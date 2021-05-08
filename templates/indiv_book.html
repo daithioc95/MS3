@@ -44,7 +44,7 @@
                 {% if book.Categories %}
 
                 <h3><b>Categories:</b></h3>
-                <p>{% for category in book.Categories %}{{ category }}, {% endfor %}</p>
+                <p>{% for category in book.Categories %}{{ category }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
             
                  {% endif %}
             </div>
@@ -91,7 +91,7 @@
                 <p><a href="{{ url_for('author_profile', Author=book.Author) }}">{{ book.Author }}</a></p>
                 {% if book.Categories %}
                 <h3><b>Categories:</b></h3>
-                <p>{% for category in book.Categories %}{{ category }}, {% endfor %}</p>
+                <p>{% for category in book.Categories %}{{ category }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
             {% endif %}
             </div>
         </div>

@@ -26,14 +26,14 @@
 
     <div id="quotes_title" class="row heading-row">
     {% if session.user and get_fav == None and fav_quotes2 %}
-            <h2>{{ session['user'] }}'s favourite quotes</h2>
+            <h2>{{ session['user'] }}'{% if session['user'][session['user']|length-1] != "s" %}s{% endif %} favourite quotes</h2>
             <h3 class="link-heading"><a href="{{ url_for('get_quotes', get_fav = "No") }}">Discover quotes here</a></h3>
     {% elif url_for(request.endpoint) == url_for('search_quotes') %}
         <h2>Results</h2>
     {% elif get_fav == "No" or not fav_quotes2 %}
     <h2>Popular quotes</h2>
         {% if session.user and fav_quotes2 %}
-        <h3 class="link-heading"><a href="{{ url_for('get_quotes') }}">{{ session['user'] }}'s favourite quotes</a></h3>
+        <h3 class="link-heading"><a href="{{ url_for('get_quotes') }}">{{ session['user'] }}'{% if session['user'][session['user']|length-1] != "s" %}s{% endif %} favourite quotes</a></h3>
         {% endif %}
     {% endif %}
     </div>  
