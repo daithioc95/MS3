@@ -1110,10 +1110,51 @@ font-size: 20px;
     margin-bottom: 20px;
 } */
 
+.card{
+margin-bottom: 50px;
+/* margin: 50px 0; */
+}
+
 .user-details-dsk{
     padding-left: 0 !important;
 }
 
 .material-icons:hover{
     color: #E6F4F1;
+}
+
+.comment-description{
+    font-size: 20px;
+}
+
+.i-circle {
+    background: #E6F4F1;
+    color: black;
+    /* padding: 5px 17px;
+    border-radius: 50%;
+    font-size: 30px;
+    border: solid 0.5px; */
+    /*  */
+      font-size: 35px;
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 0.5px solid black;
+  line-height: 45px;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.user-content{
+    padding-left: 35px !important;
+}
+
+@media screen and (max-width:570px) {
+.user-content{
+    margin-top: 5px;
+}
+    
 }

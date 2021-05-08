@@ -32,7 +32,8 @@
         <div class="row">
             <div class="col l3">
                 <div id="circle-container">
-                    <div class="profile-image" style="background: url({% if author.image %}{{ author.image }}{% else %}/static/images/authors/avatar_icon.jpg{% endif %}) no-repeat top center;">
+                    <div class="profile-image"
+                        style="background: url({% if author.image %}{{ author.image }}{% else %}/static/images/authors/avatar_icon.jpg{% endif %}) no-repeat top center;">
                     </div>
                 </div>
             </div>
@@ -55,7 +56,8 @@
                         href="{{ url_for('book_profile', Book= book) }}"><i
                             class="fas fa-book fa-5x {% if loop.index % 8 == 0 %}teal-book{% elif loop.index % 7 == 0 %}red-book{% elif loop.index % 6 == 0 %}orange-book{% elif loop.index % 5 == 0 %}green-book{% elif loop.index % 4 == 0 %}purple-book{% elif loop.index % 3 == 0 %}lavender-book{% elif loop.index % 2 == 0 %}brown-book{% elif loop.index % 1 == 0 %}blue-book{% endif %}"></i>
 
-                        <p class="book-title">{% if book|length < 50 %}{{ book }}{% else %}{{ book|truncate(50) }}...{% endif %}</p>
+                        <p class="book-title">
+                            {% if book|length < 50 %}{{ book }}{% else %}{{ book|truncate(50) }}...{% endif %}</p>
                     </a>
                 </div>{% endfor %}
             </div>
@@ -95,7 +97,7 @@
             <div class="col s12">
                 <div id="circle-container">
                     <div class="profile-image"
-                    style="background: url({% if author.image %}{{ author.image }}{% else %}/static/images/authors/avatar_icon.jpg{% endif %}) no-repeat top center;">
+                        style="background: url({% if author.image %}{{ author.image }}{% else %}/static/images/authors/avatar_icon.jpg{% endif %}) no-repeat top center;">
                     </div>
                 </div>
             </div>
@@ -113,12 +115,13 @@
         {% if author.Books %}
         <h3 class="book-heading"><b>Books</b></h3>
         <div class="row">
-        {% endif %}
+            {% endif %}
             {% for book in author.Books %}<div class="col s4 author-book-entries"><a
                     href="{{ url_for('book_profile', Book= book) }}"><i
                         class="fas fa-book fa-5x {% if loop.index % 8 == 0 %}teal-book{% elif loop.index % 7 == 0 %}red-book{% elif loop.index % 6 == 0 %}orange-book{% elif loop.index % 5 == 0 %}green-book{% elif loop.index % 4 == 0 %}purple-book{% elif loop.index % 3 == 0 %}lavender-book{% elif loop.index % 2 == 0 %}brown-book{% elif loop.index % 1 == 0 %}blue-book{% endif %}"></i>
 
-                    <p class="book-title">{% if book|length < 50 %}{{ book }}{% else %}{{ book|truncate(50) }}...{% endif %}</p>
+                    <p class="book-title">
+                        {% if book|length < 50 %}{{ book }}{% else %}{{ book|truncate(50) }}...{% endif %}</p>
                 </a>
             </div>{% endfor %}
         </div>
@@ -177,7 +180,8 @@
                 <blockquote>
                     <p>{{ quote.Quote }}</p>
                     <div>
-                        <i id="{{ quote._id }}" onclick="shareQuote(this.id)" class="share-quote-mob share-quote fas fa-link"></i></div>
+                        <i id="{{ quote._id }}" onclick="shareQuote(this.id)"
+                            class="share-quote-mob share-quote fas fa-link"></i></div>
                     <cite>{{ quote.Author }}</cite>
                     <div class="star">
                         {% if session.user %}
@@ -213,11 +217,13 @@
         {% for p in pages %}
         {% if  p == page  %}
         <li class="active">
-            <a href="{{ url_for('author_profile', Author=author.Author, page = p, _anchor='author-title') }}">{{ p }}</a>
+            <a
+                href="{{ url_for('author_profile', Author=author.Author, page = p, _anchor='author-title') }}">{{ p }}</a>
         </li>
         {% else %}
         <li class="">
-            <a href="{{ url_for('author_profile', Author=author.Author, page = p, _anchor='author-title') }}">{{ p }}</a>
+            <a
+                href="{{ url_for('author_profile', Author=author.Author, page = p, _anchor='author-title') }}">{{ p }}</a>
         </li>
         {% endif %}
         {% endfor %}
@@ -228,9 +234,9 @@
 
     {% if similar_authors.count() > 0 %}
 
-    
+
     <div class="row">
-        <h2>Similar Authors</h2>
+        <h2 id="comments-heading">Similar Authors</h2>
     </div>
 
     <div class="row">
@@ -294,7 +300,8 @@
         <h2>Comments</h2>
     </div>
     <div class="row">
-        <form class="col s12" {% if session.user %} method="POST" action="{{ url_for('comment', Author=author.Author, section="authors") }}"{% else %}{% endif %}>
+        <form class="col l12 s11" {% if session.user %} method="POST"
+            action="{{ url_for('comment', Author=author.Author, section="authors", _anchor = "comments-heading")  }}" {% else %}{% endif %}>
             <div class="row">
                 <div class="input-field col s10">
                     <i class="material-icons prefix">mode_edit</i>
@@ -305,7 +312,8 @@
                     <label for="comment">Write a public comment</label>
                 </div>
                 <div class="input-field col s2">
-                    <button id="post-button" class="btn waves-effect waves-light" {% if session.user %}type="submit" name="action"{% else %}type="button" onclick="commentLogin()"{% endif %}>Post
+                    <button id="post-button" class="btn waves-effect waves-light" {% if session.user %}type="submit"
+                        name="action" {% else %}type="button" onclick="commentLogin()" {% endif %}>Post
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
@@ -316,18 +324,24 @@
     {% for comment in author.Comments|sort(reverse=true,attribute='date')  %}
     <!-- posts -->
     <div class="card">
-        <div class="card-content">
-            <span class="card-title">{{ comment.user }}</span>
-            <b>
-                <p>{{ comment.date }}</p>
-            </b>
-
-            <p>{{ comment.text }}</p>
+        <div class="card-content row">
+            <div class="col l1 s6">
+                <span class="i-circle">{{ comment.user[0] }}</span>
+            </div>
+            <div class="col l3 s6 user-content">
+                <span class="card-title"><b>{{ comment.user }}</b></span>
+                <span>
+                    <p class="comment-date">{{ comment.date }}</p>
+                </span>
+            </div>
+            <div class="col l8 s12">
+                <p class="comment-description">{{ comment.text }}</p>
+            </div>
         </div>
     </div>
     {% endfor %}
     {% else %}
-        <h3 class="center-align">No comments made yet</h3>
+    <h3 class="center-align">No comments made yet</h3>
     {% endif %}
 </main>
 {% endblock %}

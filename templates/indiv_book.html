@@ -221,10 +221,10 @@
 
     <!-- Comments section -->
     <div class="row">
-        <h2>Comments</h2>
+        <h2 id="comments-heading">Comments</h2>
     </div>
     <div class="row">
-        <form class="col s12" {% if session.user %} method="POST" action="{{ url_for('comment', Book=book.Book, section="books") }}" {% else %}{% endif %}>
+        <form class="col s12" {% if session.user %} method="POST" action="{{ url_for('comment', Book=book.Book, section="books", _anchor = "comments-heading") }}" {% else %}{% endif %}>
             <div class="row">
                 <div class="input-field col s10">
                     <i class="material-icons prefix">mode_edit</i>
@@ -241,15 +241,21 @@
     </div>
     {% if book.Comments %}
     {% for comment in book.Comments|sort(reverse=true,attribute='date') %}
-    <!-- posts -->
+        <!-- posts -->
     <div class="card">
-        <div class="card-content">
-            <span class="card-title">{{ comment.user }}</span>
-            <b>
-                <p>{{ comment.date }}</p>
-            </b>
-
-            <p>{{ comment.text }}</p>
+        <div class="card-content row">
+            <div class="col l1 s6">
+                <span class="i-circle">{{ comment.user[0] }}</span>
+            </div>
+            <div class="col l3 s6 user-content">
+                <span class="card-title"><b>{{ comment.user }}</b></span>
+                <span>
+                    <p class="comment-date">{{ comment.date }}</p>
+                </span>
+            </div>
+            <div class="col l8 s12">
+                <p class="comment-description">{{ comment.text }}</p>
+            </div>
         </div>
     </div>
     {% endfor %}
