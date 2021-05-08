@@ -1028,3 +1028,8 @@ background-image: url(/static/images/mood_welcome_image.jpg);
 form .input-attributes{
     color: #7986CB;
 }
+
+footer li {
+    display: inline-flex;
+    margin: 0 3em;
+}
