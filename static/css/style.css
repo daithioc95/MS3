@@ -338,7 +338,8 @@ margin-left: auto;
 
 
 @media screen and (max-width:600px) {
-    blockquote.author-blockquote {    margin: 1em;
+    blockquote.author-blockquote {   
+    margin: 2em;
     max-width: 20em;
     margin-left: auto;
     margin-right: auto;
@@ -1111,4 +1112,8 @@ font-size: 20px;
 
 .user-details-dsk{
     padding-left: 0 !important;
+}
+
+.material-icons:hover{
+    color: #E6F4F1;
 }

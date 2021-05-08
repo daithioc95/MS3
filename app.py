@@ -537,6 +537,7 @@ def register():
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
+            "email": request.form.get("email").lower(),
             "fav_quote_ids": [],
             "fav_author_ids": [],
             "fav_book_ids": []

@@ -149,7 +149,7 @@
 
 
         {% else %}
-        <h3 class="red-text text-darken-4 center-align">No Favourites Found</h3>
+        <h3 class="center-align">No Favourites Found</h3>
         {% endif %}
 
 
@@ -205,14 +205,15 @@
 
     </div>
     {% else %}
-    <h3 class="red-text text-darken-4 center-align">No Favourites Found</h3>
+    <h3 class="center-align">No Favourites Found</h3>
     {% endif %}
 
 <div class="row">
 
-    {% if books %}
+    
         <h2>{{ user.username }}'s Favourite Books</h2>
-    {% endif %}
+    {% if books.count() > 0 %}    
+   
 
     {% for book in books %}<div class="col s4 l2 author-book-entries"><a
             href="{{ url_for('book_profile', Book= book.Book) }}"><i
@@ -221,6 +222,9 @@
             <p class="book-title">{% if book.Book|length < 50 %}{{ book.Book }}{% else %}{{ book.Book|truncate(50) }}...{% endif %}</p>
         </a>
     </div>{% endfor %}
+    {% else %}
+    <h3 class="center-align">No Favourites Found</h3>
+     {% endif %}
 </div>
 
 </main>
