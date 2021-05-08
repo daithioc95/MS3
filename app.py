@@ -32,7 +32,7 @@ def get_quotes():
     base = int(20210507)
     today = datetime.today()
     date = int(today.strftime("%Y%m%d")) + 1
-    qotd_num = date-base
+    qotd_num = abs(date-base)
     qotd = mongo.db.quotes.find().skip(qotd_num).limit(1)[0]
     page = request.args.get('page', 1, type=int)
     limit = int(5)
