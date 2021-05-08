@@ -1105,3 +1105,7 @@ font-size: 20px;
 /* main{
     margin-bottom: 20px;
 } */
+
+.user-details-dsk{
+    padding-left: 0 !important;
+}
