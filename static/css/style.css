@@ -569,6 +569,7 @@ top: 55%;
     align-items: center;
     justify-content: center;
         display: block;
+        width: 103%;
 }
 
 .pagination .active a{
@@ -986,7 +987,7 @@ li.indicator-item.active {
     border-radius: 50px; 
   }
     .indicators{
-  	/* visibility: hidden; */
+  	visibility: hidden;
   }
 
   .carousel-fixed-item.center.middle-indicator.with-indicators{
@@ -1007,7 +1008,9 @@ li.indicator-item.active {
   background-size: cover; 
   height: 700px;
   width: 100%;
-background-image: url(/static/images/mood_welcome_image.jpg);
+/* background-image: url(/static/images/mood_welcome_image.jpg); */
+background-image: url(/static/images/mood_welcome_image_opacity.png);
+
 }
 
 /* https://stackoverflow.com/questions/46093353/header-margin-is-pushing-div-with-background-image */

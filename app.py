@@ -317,7 +317,10 @@ def author_profile(Author):
     final_page = math.ceil((mongo.db.quotes.count_documents({"Author": Author}))/(limit))
     # final_page = math.ceil((mongo.db.quotes.find({"Author": Author}))/(limit-1))
     pages = range(1, int(final_page + 1))
-    Categories = mongo.db.authors.find_one({"Author": Author})["Categories"]
+    try:
+        Categories = mongo.db.authors.find_one({"Author": Author})["Categories"]
+    except KeyError:
+        Categories = []
     similar_authors = mongo.db.authors.find({"Categories": {"$in":  Categories}}).limit(6)
     try:
         # if user logged in 

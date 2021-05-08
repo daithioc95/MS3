@@ -226,6 +226,9 @@
                     class="material-icons">chevron_right</i></a></li>
     </ul>
 
+    {% if similar_authors.count() > 0 %}
+
+    
     <div class="row">
         <h2>Similar Authors</h2>
     </div>
@@ -286,7 +289,7 @@
         {% else %}
         {% endfor %}
     </div>
-
+    {% endif %}
     <div class="row">
         <h2>Comments</h2>
     </div>

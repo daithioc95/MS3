@@ -21,7 +21,7 @@
     
     <!-- https://materializecss.com/carousel.html#two! -->
     <!-- https://codepen.io/Paco_Cervantes/pen/ZLxKpj -->
-    <form method="POST" action="{{ url_for('generate_mood', generated = "yes") }}">
+    <form method="POST" action="{{ url_for('generate_mood', generated = "yes", _anchor='generated-title' ) }}">
     <div class="carousel carousel-slider center">
         <div class="carousel-fixed-item center middle-indicator">
      <div class="left">
@@ -36,9 +36,6 @@
             <button id="generate-moods" class="btn waves-effect waves-light" type="submit" name="action">Generate Quotes
                 <i class="material-icons right">sync</i>
             </button>
-            {% if generated %}
-              <i class="generated-down material-icons">keyboard_arrow_down</i>
-            {% endif %}
 
         </div>
         <div class="carousel-item white-text" href="#one!">
