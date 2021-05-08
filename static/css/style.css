@@ -49,16 +49,16 @@ nav{
 } */
 
 .page-footer{
-    /* margin-top: 20px */
+        margin-top: 40px;
 }
 
-.page-footer a:hover{
+/* .page-footer a.link:hover{
     transition: all 0.35s ease-in-out;
     -moz-transition: all 0.35s ease-in-out;
     -webkit-transition: all 0.35s ease-in-out;
     -o-transition: all 0.35s ease-in-out;
     background-color: rgba(0,0,0,0.1);
-}
+} */
 
 #generate-moods{
     background-color: #7986CB;
@@ -123,7 +123,7 @@ nav{
 @media screen and (min-width:570px) {
 .welcome-qotd blockquote {
     font-size: 60px;
-    max-width: 60%;
+    max-width: 80%;
 }
 
 .welcome-qotd {
@@ -160,7 +160,8 @@ nav{
 
 .welcome-qotd cite {
 	/* line-height: 3; is this causing the phone issue? */
-	text-align: center;
+    text-align: center;
+    font-size: 25px
 }
 /* font-family: "Font Awesome 5 Free";
     content: "\f5ac";
@@ -1029,7 +1030,78 @@ form .input-attributes{
     color: #7986CB;
 }
 
+footer{
+    text-align: center;
+}
+
 footer li {
     display: inline-flex;
-    margin: 0 3em;
 }
+
+.footer-page-links li {
+    margin: 0 1em;
+}
+
+.social-links li a i {
+    width: 40px;
+    height: 40px;
+    padding: 12px 0;
+    border-radius: 50%;
+    font-size: 23px;
+    line-height: 15px;
+    text-align: center;
+    color: #7986cb;
+    background: #E6F4F1;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+    margin: 20px 20px 15px 20px;
+}
+
+.social-links li a i:hover {
+    background: #2F4381;
+}
+
+/* Overline From Left */
+.hvr-overline-from-left {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  overflow: hidden;
+}
+.hvr-overline-from-left:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 100%;
+  top: 0;
+  background: #E6F4F1;
+  height: 4px;
+  -webkit-transition-property: right;
+  transition-property: right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-overline-from-left:hover:before, .hvr-overline-from-left:focus:before, .hvr-overline-from-left:active:before {
+  right: 0;
+}
+
+a.link{
+font-size: 20px;
+}
+
+.share-quote-section{
+    /* min-height: calc(100vh - 190px); */
+    min-height: 60vh;
+}
+
+/* main{
+    margin-bottom: 20px;
+} */

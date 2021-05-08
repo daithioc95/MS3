@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- for fav button -->
     <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"> -->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
         integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA=="
         crossorigin="anonymous" type="text/css">
@@ -29,32 +29,49 @@
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons"><i
                                 class="fas fa-bars"></i></i></a>
                     <ul class="right hide-on-med-and-down">
-                        <li {% if request.path == url_for('get_quotes') or request.path == url_for('search_quotes') %} class = "active"{% endif %}><a href="{{ url_for('get_quotes') }}">Home</a></li>
-                        <li {% if request.path == url_for('get_mood') or request.path == url_for('generate_mood') %} class = "active"{% endif %}><a href="{{ url_for('get_mood') }}">Mood</a></li>
-                        <li {% if request.path == url_for('get_authors') or request.path == url_for('search_authors') %} class = "active"{% endif %}><a href="{{ url_for('get_authors') }}">Authors</a></li>
-                        <li {% if request.path == url_for('get_books') or request.path == url_for('search_books') %} class = "active"{% endif %}><a href="{{ url_for('get_books') }}"">Books</a></li>
+                        <li {% if request.path == url_for('get_quotes') or request.path == url_for('search_quotes') %}
+                            class="active" {% endif %}><a href="{{ url_for('get_quotes') }}">Home</a></li>
+                        <li {% if request.path == url_for('get_mood') or request.path == url_for('generate_mood') %}
+                            class="active" {% endif %}><a href="{{ url_for('get_mood') }}">Mood</a></li>
+                        <li {% if request.path == url_for('get_authors') or request.path == url_for('search_authors') %}
+                            class="active" {% endif %}><a href="{{ url_for('get_authors') }}">Authors</a></li>
+                        <li {% if request.path == url_for('get_books') or request.path == url_for('search_books') %}
+                            class="active" {% endif %}><a href="{{ url_for('get_books') }}"">Books</a></li>
                         {% if session.user %}
-                        <li {% if request.path == url_for('profile', username=session['user']) %} class = "active"{% endif %}><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                        <li {% if request.path == url_for('logout') %} class = "active"{% endif %}><a href="{{ url_for('logout') }}">Log Out</a></li>
+                        <li {% if request.path == url_for('profile', username=session['user']) %} class = "
+                                active"{% endif %}><a
+                                    href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                        <li {% if request.path == url_for('logout') %} class="active" {% endif %}><a
+                                href="{{ url_for('logout') }}">Log Out</a></li>
                         {% else %}
-                        <li {% if request.path == url_for('login') %} class = "active"{% endif %}><a href="{{ url_for('login') }}">Log In</a></li>
-                        <li {% if request.path == url_for('register') %} class = "active"{% endif %}><a href="{{ url_for('register') }}">Register</a></li>
+                        <li {% if request.path == url_for('login') %} class="active" {% endif %}><a
+                                href="{{ url_for('login') }}">Log In</a></li>
+                        <li {% if request.path == url_for('register') %} class="active" {% endif %}><a
+                                href="{{ url_for('register') }}">Register</a></li>
                         {% endif %}
                     </ul>
                 </div>
             </nav>
         </div>
         <ul class="sidenav" id="mobile-demo">
-            <li {% if request.path == url_for('get_quotes') or request.path == url_for('search_quotes') %} class = "active"{% endif %}><a href="{{ url_for('get_quotes') }}">Home</a></li>
-            <li {% if request.path == url_for('get_mood') or request.path == url_for('generate_mood') %} class = "active"{% endif %}><a href="{{ url_for('get_mood') }}">Mood</a></li>
-            <li {% if request.path == url_for('get_authors') or request.path == url_for('search_authors') %} class = "active"{% endif %}><a href="{{ url_for('get_authors') }}">Authors</a></li>
-            <li {% if request.path == url_for('get_books') or request.path == url_for('search_books') %} class = "active"{% endif %}><a href="{{ url_for('get_books') }}"">Books</a></li>
+            <li {% if request.path == url_for('get_quotes') or request.path == url_for('search_quotes') %}
+                class="active" {% endif %}><a href="{{ url_for('get_quotes') }}">Home</a></li>
+            <li {% if request.path == url_for('get_mood') or request.path == url_for('generate_mood') %} class="active"
+                {% endif %}><a href="{{ url_for('get_mood') }}">Mood</a></li>
+            <li {% if request.path == url_for('get_authors') or request.path == url_for('search_authors') %}
+                class="active" {% endif %}><a href="{{ url_for('get_authors') }}">Authors</a></li>
+            <li {% if request.path == url_for('get_books') or request.path == url_for('search_books') %} class="active"
+                {% endif %}><a href="{{ url_for('get_books') }}"">Books</a></li>
             {% if session.user %}
-            <li {% if request.path == url_for('profile', username=session['user']) %} class = "active"{% endif %}><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-            <li {% if request.path == url_for('logout') %} class = "active"{% endif %}><a href="{{ url_for('logout') }}">Log Out</a></li>
+            <li {% if request.path == url_for('profile', username=session['user']) %} class = " active"{% endif %}><a
+                        href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+            <li {% if request.path == url_for('logout') %} class="active" {% endif %}><a
+                    href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}
-            <li {% if request.path == url_for('login') %} class = "active"{% endif %}><a href="{{ url_for('login') }}">Log In</a></li>
-            <li {% if request.path == url_for('register') %} class = "active"{% endif %}><a href="{{ url_for('register') }}">Register</a></li>
+            <li {% if request.path == url_for('login') %} class="active" {% endif %}><a
+                    href="{{ url_for('login') }}">Log In</a></li>
+            <li {% if request.path == url_for('register') %} class="active" {% endif %}><a
+                    href="{{ url_for('register') }}">Register</a></li>
             {% endif %}
         </ul>
 
@@ -63,13 +80,13 @@
     <section>
         <!-- flash messages -->
         {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                <div class="row flashes">
-                    <h4 class="indigo lighten-4 center-align">{{ message }}</h4>
-                </div>
-                {% endfor %}
-            {% endif %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="row flashes">
+            <h4 class="indigo lighten-4 center-align">{{ message }}</h4>
+        </div>
+        {% endfor %}
+        {% endif %}
         {% endwith %}
     </section>
 
@@ -85,23 +102,42 @@
                 <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
               </div> -->
                 <!-- <div class="col l4 offset-l2 s12"> -->
-                    <div class="col l12">
+                <div class="col l12">
                     <!-- <h5 class="white-text">Links</h5> -->
-                    <ul>
-                        <li><a class="grey-text text-lighten-3" href="{{ url_for('get_quotes') }}">Home</a></li>
-                        <li><a class="grey-text text-lighten-3" href="{{ url_for('get_mood') }}">Mood</a></li>
-                        <li><a class="grey-text text-lighten-3" href="{{ url_for('get_authors') }}">Authors</a></li>
-                        <li><a class="grey-text text-lighten-3" href="{{ url_for('get_books') }}">Books</a></li>
+                    <ul class="footer-page-links">
+                        <li><a class="hvr-overline-from-left link grey-text text-lighten-3" href="{{ url_for('get_quotes') }}">Home</a></li>
+                        <li><a class="hvr-overline-from-left link grey-text text-lighten-3" href="{{ url_for('get_mood') }}">Mood</a></li>
+                        <li><a class="hvr-overline-from-left link grey-text text-lighten-3" href="{{ url_for('get_authors') }}">Authors</a></li>
+                        <li><a class="hvr-overline-from-left link grey-text text-lighten-3" href="{{ url_for('get_books') }}">Books</a></li>
                         {% if session.user %}
-                        <li><a class="grey-text text-lighten-3"
+                        <li><a class="hvr-overline-from-left link grey-text text-lighten-3"
                                 href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                        <li><a class="grey-text text-lighten-3" href="{{ url_for('logout') }}">Log Out</a></li>
+                        <li><a class="hvr-overline-from-left link grey-text text-lighten-3" href="{{ url_for('logout') }}">Log Out</a></li>
                         {% else %}
-                        <li><a class="grey-text text-lighten-3" href="{{ url_for('login') }}">Log In</a></li>
-                        <li><a class="grey-text text-lighten-3" href="{{ url_for('register') }}">Register</a></li>
+                        <li><a class="hvr-overline-from-left link grey-text text-lighten-3" href="{{ url_for('login') }}">Log In</a></li>
+                        <li><a class="hvr-overline-from-left link grey-text text-lighten-3" href="{{ url_for('register') }}">Register</a></li>
                         {% endif %}
                     </ul>
                 </div>
+            </div>
+            <div class="row">
+                <ul class="social-links">
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </footer>

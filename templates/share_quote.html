@@ -1,16 +1,9 @@
 {% extends "base.html" %}
-{% block styles %}
-<style>
-    footer{
-        position:fixed;bottom:0;left:0;width:100%;
-    }
-</style>
-{% endblock %}
 {% block content %}
-<div class="row">
+<div class="share-quote-section row">
     <div class="welcome-qotd">
         <blockquote class="qotd">{{ quote.Quote }}</blockquote>
-        <cite class="qotd">{{ quote.Author }}</cite>
+        <cite class="qotd"><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
     </div>
 </div>
 {% endblock %}
