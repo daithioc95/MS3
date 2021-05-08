@@ -252,7 +252,7 @@ blockquote.author-blockquote{
 		inset 2px 2px 4px hsl(0 0% 0% / 20%);
 } 
 
- .article blockquote::after {
+ .article .quote-blockquote::after {
 	content: "❝";
 	position: absolute;
 	z-index: 1;
@@ -288,6 +288,29 @@ blockquote.author-blockquote{
 	border-top-left-radius: var(--border-rad);
 	border-bottom-left-radius: var(--border-rad);
 }
+
+.author-blockquote::after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f5ac";
+    font-weight: 900;
+    /* content: "❝"; */
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: -2px;
+    transform: translate(-50%, -50%);
+    width: 1.6em;
+    height: 1.6em;
+    background: white;
+    box-shadow: 0 4px 5px -1px hsl(0deg 0% 0% / 20%);
+    border-radius: 999px;
+    display: grid;
+    place-content: center;
+    padding-top: -0.5em;
+    color: var(--accent-color);
+    font-size: 28px;
+    font-style: normal;
+    text-indent: 0;}
 
 .article .star{
     position: absolute;
