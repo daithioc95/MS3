@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- Share quote -->
 <div class="share-quote-section row">
     <div class="welcome-qotd">
         <blockquote class="qotd">{{ quote.Quote }}</blockquote>
-        <cite class="qotd"><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
+        <!-- link to authors page -->
+        <cite class="qotd">
+            <a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a>
+        </cite>
     </div>
 </div>
 {% endblock %}

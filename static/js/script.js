@@ -1,78 +1,57 @@
 $(document).ready(function () {
+    // Mobile Navbar
+    // Source: https://materializecss.com/navbar.html
     $('.sidenav').sidenav({ edge: "right" });
     $('.collapsible').collapsible();
+    //  Mood Board carousel
+    //  Acknowledge: https://materializecss.com/carousel.html#two!
+    //  Acknowledge: https://codepen.io/Paco_Cervantes/pen/ZLxKpj
     $('.carousel.carousel-slider').carousel({
         fullWidth: true,
         indicators: true
-  });
-//   https://codepen.io/Paco_Cervantes/pen/ZLxKpj
-  // start carrousel
-   $('.carousel.carousel-slider').carousel({
-      fullWidth: true,
-      indicators: false
-   });
-
-
-   // move next carousel
-   $('.moveNextCarousel').click(function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      $('.carousel').carousel('next');
-   });
-
-   // move prev carousel
-   $('.movePrevCarousel').click(function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      $('.carousel').carousel('prev');
-   });
-
+    });
+    // start carrousel
+    $('.carousel.carousel-slider').carousel({
+        fullWidth: true,
+        indicators: false
+    });
+    // move next carousel
+    $('.moveNextCarousel').click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('.carousel').carousel('next');
+    });
+    // move prev carousel
+    $('.movePrevCarousel').click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('.carousel').carousel('prev');
+    });
 });
-// https://www.w3schools.com/js/tryit.asp?filename=tryjs_alert
-   function commentLogin() {
-        alert("Please login or register to post a comment");
+// Comment login prompt
+// Acknowledge: https://www.w3schools.com/js/tryit.asp?filename=tryjs_alert
+function commentLogin() {
+    alert("Please login or register to post a comment");
 }
-$("#comment").keyup(function(event) {
+// Prompt on enter key in textbox
+$("#comment").keyup(function (event) {
     if (event.keyCode === 13) {
         $("#post-button").click();
     }
 });
-// https://stackoverflow.com/questions/63033012/copy-the-text-to-the-clipboard-without-using-any-input
-// https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+// Funciton to copy quote info to clipboard
+// Acknowledge: https://stackoverflow.com/questions/63033012/copy-the-text-to-the-clipboard-without-using-any-input
+// Acknowledge: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
 function shareQuote(link_id) {
-  var TempText = document.createElement("input");
-quote_id = link_id.split("-")[1]
-  TempText.value = "http://ms3-quotes.herokuapp.com/share_quote/" + quote_id;
-  document.body.appendChild(TempText);
-  TempText.select();
-  
-  document.execCommand("copy");
-  document.body.removeChild(TempText);
-  
-  alert("Copied sharable link to clipboard: " + TempText.value);
-}
-
-// $(.mood-button).change(function(e) {
-//     if ($(this).is(':not(:checked)')) {
-//             $(this).addClass( "input[type=checkbox] + label" );}
-
-    // Moved to quotes.html
-// $('input[name=test_quote_star]').change(function(e) {
-//   if ($(this).is(':checked')) {
-//         console.log("JS Post");
-//         $.ajax({
-//             url:"/add_fav_quote",
-//             type: "POST",        // type or method?
-//             // data: "Hi",
-//             success: function(response) { 
-//                 console.log("AJAX Post") 
-//       }, 
-//       error: function(request, status, error) { 
-//                 console.log("Error: " + error) 
-//       } 
-//     }
-//     );
-// }
-// e.preventDefault();
-// });
-
+    var TempText = document.createElement("input");
+    // Extract quote id
+    quote_id = link_id.split("-")[1]
+    // formulate link
+    TempText.value = "http://ms3-quotes.herokuapp.com/share_quote/" + quote_id;
+    document.body.appendChild(TempText);
+    TempText.select();
+    // copy
+    document.execCommand("copy");
+    document.body.removeChild(TempText);
+    // Prompt user
+    alert("Copied sharable link to clipboard: " + TempText.value);}
