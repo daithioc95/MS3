@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- Welcome image -->
 <div class="welcome-image-text">
     <img src="static/images/authors_welcome_image.jpg" id="authors-welcome-img" alt="Library">
     <div class="text">
         Authors
     </div>
 </div>
-
+<!-- Search Bar -->
 <div class="row authors-search-form">
     <form action="{{ url_for('search_authors', generated = "yes") }}" method="POST" class="col s12">
         <div class="authors-search wrap">
@@ -22,36 +23,50 @@
 </div>
 
 <main class="container">
-    <div id="title"  class="row">
-    {% if session.user and get_fav == None and fav_authors2 %}
-        <h2>{{ session['user'] }}'{% if session['user'][session['user']|length-1] != "s" %}s{% endif %} Favourite authors</h2>
-        <h3 class="link-heading"><a href="{{ url_for('get_authors', get_fav = "No") }}">Discover authors here</a></h3>
-    {% elif url_for(request.endpoint) == url_for('search_authors') %}
-        <h2>Results</h2>
-    {% elif not session.user or get_fav == "No" or not fav_authors2 %}
-        <h2>Popular authors</h2>
-        {% if session.user and fav_authors2 %}
-            <h3 class="link-heading"><a href="{{ url_for('get_authors') }}">{{ session['user'] }}'{% if session['user'][session['user']|length-1] != "s" %}s{% endif %} Favourite Authors</a></h3>
+    <!-- Page Heading -->
+    <div id="title" class="row">
+        <!-- if logged in, user requested favourite authors and has favourite authors -->
+        {% if session.user and get_fav == None and fav_authors2 %}
+            <h2>{{ session['user'] }}'{% if session['user'][session['user']|length-1] != "s" %}s{% endif %} Favouriteauthors</h2>
+            <h3 class="link-heading"><a href="{{ url_for('get_authors', get_fav = "No") }}">Discover authors here</a></h3>
+        <!-- if searched -->
+        {% elif url_for(request.endpoint) == url_for('search_authors') %}
+            <h2>Results</h2>
+        <!-- if discover is selected or user has no favourites -->
+        {% elif not session.user or get_fav == "No" or not fav_authors2 %}
+            <h2>Popular authors</h2>
+            <!-- if user logged in and has favourite quotes -->
+            {% if session.user and fav_authors2 %}
+                <h3 class="link-heading">
+                    <a href="{{ url_for('get_authors') }}">{{ session['user'] }}'{% if session['user'][session['user']|length-1] != "s" %}s{% endif %} Favourite Authors</a>
+                </h3>
+            {% endif %}
         {% endif %}
-    {% endif %}
     </div>
 
+    <!-- if search returns results -->
     {% if authors1.count() > 0 %}
     <div class="row">
+        <!-- for each oject in authors -->
         {% for author in authors1 %}
-        <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
+        <!-------- Desktop Author card section -------->
+        <!-- Acknowledge: https://codepen.io/tiggr/pen/MWyJJEz -->
         <div class="col s12 l5 m12">
             <article class="left-align article author-card">
                 <blockquote class="author-blockquote">
-                    <cite><a href="{{ url_for('author_profile', Author=author.Author) }}">{{ author.Author }}</a></cite>
-                    <div class="blockquote-author-image"
-                        style="--image: url({% if author.image %}{{ author.image }}{% else %}/static/images/authors/avatar_icon.jpg{% endif %})">
-                    </div>
+                    <cite>
+                        <a href="{{ url_for('author_profile', Author=author.Author) }}">{{ author.Author }}</a>
+                    </cite>
+                    <a href="{{ url_for('author_profile', Author=author.Author) }}">
+                        <!-- if authors image store locate file path, else use avatar photo -->
+                        <div class="blockquote-author-image" style="--image: url({% if author.image %}{{ author.image }}{% else %}/static/images/authors/avatar_icon.jpg{% endif %})">
+                        </div>
+                    </a>
+                    <!-- Favourite star -->
                     <div class="star">
                         <form>
                             {% if session.user %}
-                            <label for="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
-                                class="custom-checkbox">
+                            <label for="dsk-id-of-input{{ author._id }}_{{ session['user'] }}" class="custom-checkbox">
                                 <input type="checkbox" id="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
                                     name="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
                                     class="logged-in-author-input"
@@ -74,35 +89,45 @@
             </article>
         </div>
         {% if loop.index % 2 != 0 %}
-                <div class="hide-on-small-only col l2"></div>
+            <div class="hide-on-small-only col l2"></div>
         {% endif %}
         {% endfor %}
     </div>
+    <!-------- Authors Pagination -------->
+    <!-- Acknowledge: https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
+    <!-- if not searched for users favourites -->
     {% if get_fav == None %}
-    <!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
     <ul class="pagination center-align">
-        <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{{ url_for('get_authors', page = page - 1, _anchor='title') }}"><i
-                    class="fas fa-arrow-left"></i></a></li>
+        <li class="{% if  page < 2 %}disabled{% endif %}">
+            <a href="{{ url_for('get_authors', page = page - 1, _anchor='title') }}">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </li>
         {% for p in pages %}
-        {% if  p == page  %}
-        <li class="active">
-            <a href="{{ url_for('get_authors', page = p, _anchor='title') }}">{{ p }}</a>
-        </li>
-        {% else %}
-        <li class="">
-            <a href="{{ url_for('get_authors', page = p, _anchor='title') }}">{{ p }}</a>
-        </li>
-        {% endif %}
+            {% if  p == page  %}
+            <li class="active">
+                <a href="{{ url_for('get_authors', page = p, _anchor='title') }}">{{ p }}</a>
+            </li>
+            {% else %}
+            <li class="">
+                <a href="{{ url_for('get_authors', page = p, _anchor='title') }}">{{ p }}</a>
+            </li>
+            {% endif %}
         {% endfor %}
-        <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{{ url_for('get_authors', page = page + 1, _anchor='title') }}"><i class="fas fa-arrow-right"></i></a></li>
+        <li class="{% if  page >= final_page %}disabled{% endif %}">
+            <a href="{{ url_for('get_authors', page = page + 1, _anchor='title') }}">
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </li>
     </ul>
+    <!-- If searched results -->
     {% elif searched %}
-    <!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
     <ul class="pagination center-align">
-        <li class="{% if  page < 2 %}disabled{% endif %}"><a
-                href="{{ url_for('search_authors', page = page - 1, query_author=query_author, _anchor='title') }}"><i
-                    class="fas fa-arrow-left"></i></a></li>
+        <li class="{% if  page < 2 %}disabled{% endif %}">
+            <a href="{{ url_for('search_authors', page = page - 1, query_author=query_author, _anchor='title') }}">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </li>
         {% for p in pages %}
             {% if  p == page  %}
             <li class="active">
@@ -114,15 +139,19 @@
             </li>
             {% endif %}
         {% endfor %}
-        <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{{ url_for('search_authors', page = page + 1, query_author=query_author, _anchor='title') }}"><i
-                    class="fas fa-arrow-right"></i></a></li>
+        <li class="{% if  page >= final_page %}disabled{% endif %}">
+            <a href="{{ url_for('search_authors', page = page + 1, query_author=query_author, _anchor='title') }}">
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </li>
     </ul>
     {% else %}
     <ul class="pagination center-align">
-        <li class="{% if  page < 2 %}disabled{% endif %}"><a
-                href="{{ url_for('get_authors', get_fav = "No", page = page - 1, _anchor='title') }}"><i
-                    class="fas fa-arrow-left"></i></a></li>
+        <li class="{% if  page < 2 %}disabled{% endif %}">
+            <a href="{{ url_for('get_authors', get_fav = "No", page = page - 1, _anchor='title') }}">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </li>
         {% for p in pages %}
             {% if  p == page  %}
             <li class="active">
@@ -134,38 +163,39 @@
             </li>
             {% endif %}
         {% endfor %}
-        <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{{ url_for('get_authors', get_fav = "No", page = page + 1, _anchor='title') }}"><i
-                    class="fas fa-arrow-right"></i></a></li>
+        <li class="{% if  page >= final_page %}disabled{% endif %}">
+            <a href="{{ url_for('get_authors', get_fav = "No", page = page + 1, _anchor='title') }}">
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </li>
     </ul>
     {% endif %}
-
+    <!-- if search returns no results -->
     {% else %}
         <h3 class="red-text text-darken-4 center-align">No Results Found</h3>
     {% endif %}
-    <!-- Author index -->
-    <!-- https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_column-fill -->
-
-    <!-- <div class="row author-index">
-        <div class="s12 center-align">
-            {% for author in authors2 %}
-                <p>{{ author.Author }}</p>
-            {% endfor %}
-        </div>
-    </div> -->
 </main>
 {% endblock %}
 {% block scripts %}
 <script>
+    // Script functions below related to actions when favourite star is checked
+
+    // Acknowledge: https://materializecss.com/toasts.html
+    // Acknowledge: https://www.tutorialrepublic.com/faq/how-to-check-a-checkbox-is-checked-or-not-using-jquery.php
+    // Acknowledge: https://stackoverflow.com/questions/33566041/materialize-css-change-position-of-toast-dialog
+
+    // if logged in
     $('input[class=logged-in-author-input]').change(function () {
+        // if checked/liked
         if ($(this).prop("checked") == true) {
             M.toast({ html: 'Added to Favourites' });
         }
+        // if unchecked/removed
         else if ($(this).prop("checked") == false) {
             M.toast({ html: 'Removed from Favourites' });
         }
+        // send info to update db
         var checkbox_id = $(this).attr("id");
-        console.log("JS Post");
         $.ajax({
             url: "{{ url_for('add_fav_author') }}",
             type: "POST",
@@ -174,7 +204,6 @@
                 'Status': $(this).prop("checked")
             },
             success: function (response) {
-                console.log(checkbox_id)
             },
             error: function (request, status, error) {
                 console.log("Error: " + error)
@@ -182,8 +211,8 @@
         }
         );
     });
+    // if logged out
     $('input[class=logged-out-author-input]').change(function (e) {
-        console.log("logged out fav");
         if (e.target.checked) {
             alert("Please login or register to save favourites");
         }

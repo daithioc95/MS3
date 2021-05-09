@@ -64,8 +64,8 @@
                 <div>
                     <!-- Share quote on clipboard function -->
                     <i id="dsk-{{ quote._id }}" onclick="shareQuote(this.id)" class="share-quote fas fa-link"></i></div>
-                <!-- if authors image store locate file path, else use avatar photo -->
                 <a href="{{ url_for('author_profile', Author=quote.Author) }}">
+                    <!-- if authors image store locate file path, else use avatar photo -->
                     <div class="blockquote-author-image"
                         style="--image: url{% if quote.image %}({{ quote.image }}){% else %}(/static/images/authors/avatar_icon.jpg){% endif %}">
                     </div>
@@ -161,7 +161,6 @@
     </ul>
     <!-- If searched results -->
     {% elif searched %}
-    <!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
     <ul class="pagination center-align">
         <li class="{% if  page < 2 %}disabled{% endif %}">
             <a href="{% if  page < 2 %}{% else %}{{ url_for('search_authors', page = page - 1, query_quote=query_quote, _anchor='quotes_title') }}{% endif %}">
@@ -210,9 +209,9 @@
         </li>
     </ul>
     {% endif %}
-
+    <!-- if search returns no results -->
     {% else %}
-    <h3 class="red-text text-darken-4 center-align">No Results Found</h3>
+        <h3 class="red-text text-darken-4 center-align">No Results Found</h3>
     {% endif %}
 
 </main>
@@ -247,6 +246,7 @@
             success: function (response) {
             },
             error: function (request, status, error) {
+                console.log("Error: " + error)
             }
         }
         );
