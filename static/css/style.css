@@ -783,7 +783,7 @@ input[type=checkbox]:hover + label {
     background: url("/static/images/authors/avatar_icon.jpg") no-repeat center center;
 }
 
-#circle-container{
+.circle-container{
     width: 300px;
     height: 300px;
     padding: 30px;
