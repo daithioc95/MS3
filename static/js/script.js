@@ -38,8 +38,9 @@ $("#comment").keyup(function(event) {
     }
 });
 // https://stackoverflow.com/questions/63033012/copy-the-text-to-the-clipboard-without-using-any-input
-function shareQuote(quote_id) {
+function shareQuote(link_id) {
   var TempText = document.createElement("input");
+quote_id = link_id.split("-")[1]
   TempText.value = "http://ms3-quotes.herokuapp.com/share_quote/" + quote_id;
   document.body.appendChild(TempText);
   TempText.select();

@@ -176,7 +176,7 @@
             </p>
             <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
             <div>
-                <i id="{{ quote._id }}" onclick="shareQuote(this.id)" class="share-quote fas fa-link"></i></div>
+                <i id="dsk-{{ quote._id }}" onclick="shareQuote(this.id)" class="share-quote fas fa-link"></i></div>
             <!-- <cite>{{ quote.Tags[1] }} </cite> -->
             <!-- try with this maybe https://www.pexels.com/photo/person-on-a-bridge-near-a-lake-747964/ -->
             <div class="blockquote-author-image"
@@ -212,7 +212,7 @@
         <blockquote>
             <p>{{ quote.Quote }}</p>
             <div>
-                <i id="{{ quote._id }}" onclick="shareQuote(this.id)" class="share-quote-mob share-quote fas fa-link"></i></div>
+                <i id="mob-{{ quote._id }}" onclick="shareQuote(this.id)" class="share-quote-mob share-quote fas fa-link"></i></div>
             <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
             <div class="star">
                 {% if session.user %}

@@ -357,6 +357,7 @@ margin-left: auto;
     padding: 1em;
     position: relative;
     border-radius: 0.5em;
+    min-width: 280px;
 }
 
 
@@ -680,7 +681,7 @@ input[type=checkbox]:checked + label, .hvr-radial-out:hover, .hvr-radial-out:foc
 }
 
 input[type=checkbox]:checked + label#label_friendship,
-input[type=checkbox]:checked + label#label_humuor {
+input[type=checkbox]:checked + label#label_humour {
     background: #2098D1;
 }
 @media screen and (min-width:570px) {
@@ -974,6 +975,7 @@ li.indicator-item.active {
   direction: ltr;
   -moz-font-feature-settings: 'liga';
   -moz-osx-font-smoothing: grayscale;
+      text-shadow: 0 0 1.5px #000;
 }
 
 .middle-indicator{

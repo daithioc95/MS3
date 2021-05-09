@@ -129,7 +129,7 @@
     </div>
     <div class="row">
         <!-- <div class="col s12 m8 offset-m2"> -->
-        <h2 id="author-title">{{ author.Author }}'{% if author.Author[author.Author|length-1] != "s" %}s{% endif %} Quotes </h2>
+        <h2 id="author-title">{{ author.Author }} Quotes </h2>
         <!-- </div> -->
     </div>
     <div class="row">
@@ -145,7 +145,7 @@
                     </p>
                     <cite>{{ quote.Author }}</cite>
                     <div>
-                        <i id="{{ quote._id }}" onclick="shareQuote(this.id)" class="share-quote fas fa-link"></i></div>
+                        <i id="dsk-{{ quote._id }}" onclick="shareQuote(this.id)" class="share-quote fas fa-link"></i></div>
                     <div class="blockquote-author-image"
                         style="--image: url({% if quote.image %}{{ quote.image }}{% else %}/static/images/authors/avatar_icon.jpg{% endif %})">
                     </div>
@@ -180,7 +180,7 @@
                 <blockquote>
                     <p>{{ quote.Quote }}</p>
                     <div>
-                        <i id="{{ quote._id }}" onclick="shareQuote(this.id)"
+                        <i id="mob-{{ quote._id }}" onclick="shareQuote(this.id)"
                             class="share-quote-mob share-quote fas fa-link"></i></div>
                     <cite>{{ quote.Author }}</cite>
                     <div class="star">
