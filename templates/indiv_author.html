@@ -271,9 +271,11 @@
                         <a href="{{ url_for('author_profile', Author=similar_author.Author) }}">{{ similar_author.Author }}</a>
                     </cite>
                     <!-- if authors image store locate file path, else use avatar photo -->
+                    <a href="{{ url_for('author_profile', Author=similar_author.Author) }}">
                     <div class="blockquote-author-image"
                         style="--image: url({% if similar_author.image %}{{ similar_author.image }}{% else %}/static/images/authors/avatar_icon.jpg{% endif %})">
                     </div>
+                    </a>
                     <!-- Favourite star -->
                     <div class="star">
                         <form>

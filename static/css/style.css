@@ -314,7 +314,7 @@ a.link {
 	position: relative;
 	margin: 50px 0;
 	font-style: italic;
-	background: var(--quote-bg) no-repeat left / var(--quote-image-width);
+	background: var(--quote-bg) no-repeat left / 140px;
 	border-radius: var(--border-rad);
 	border: 2px solid white;
 	box-shadow: 2px 2px 4px hsl(0 0% 0% / 20%);
@@ -323,11 +323,11 @@ a.link {
 }
 
 .quote-blockquote {
-	padding: 1.6em 11em .7em calc(1.4em + var(--quote-image-width));
+	padding: 1.6em 11em .7em calc(1.4em + 140px);
 }
 
 .author-blockquote {
-	padding: 3.5em 2.4em .7em calc(1.4em + var(--quote-image-width));
+	padding: 3.5em 2.4em .7em calc(1.4em + 140px);
 }
 
 blockquote.author-blockquote {
@@ -375,7 +375,7 @@ blockquote.author-blockquote {
 	position: absolute;
 	left: 0;
 	top: 0;
-	width: var(--quote-image-width);
+	width: 140px;
 	height: 100%;
 	opacity: 0.75;
 	background: var(--laven-color) var(--image) no-repeat center / cover;
@@ -400,7 +400,6 @@ blockquote.author-blockquote {
 	border-radius: 999px;
 	display: grid;
 	place-content: center;
-	padding-top: -0.5em;
 	color: var(--laven-color);
 	font-size: 28px;
 	font-style: normal;
@@ -1053,7 +1052,7 @@ a.middle-indicator-text {
 /* ------ Comments section ------ */
 
 .card {
-	background: var(--quote-bg) no-repeat left / var(--quote-image-width);
+	background: var(--quote-bg) no-repeat left / 140px;
 	border-radius: var(--border-rad);
 	border: 2px solid white;
 	margin-bottom: 50px;
