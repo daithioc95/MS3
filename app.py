@@ -28,28 +28,36 @@ mongo = PyMongo(app)
 # Function to get quotes
 @app.route("/get_quotes")
 def get_quotes():
+    # identify is user requested saved favourites
     get_fav = request.args.get('get_fav')
+    # formula to extract different date per day
     base = int(20210507)
     today = datetime.today()
-    date = int(today.strftime("%Y%m%d")) + 1
+    date = int(today.strftime("%Y%m%d"))
     qotd_num = abs(date-base)
+    # qotd meand "Quote of the day"
     qotd = mongo.db.quotes.find().skip(qotd_num).limit(1)[0]
+    # Pagination help: https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional
+    # get page number
     page = request.args.get('page', 1, type=int)
+    # limit quotes to 5 results
     limit = int(5)
+    # iterate through objects depending on page number
     skips = limit * (page - 1)
-    # final_page = math.ceil((mongo.db.quotes.count_documents({}))/(limit))
-    # pages = range(1, int(final_page + 1))
-    # Limit pages with updated db
-    final_page = 20 # change to 10
+    # limit results to 20 pages
+    final_page = 20
     pages = range(1, int(final_page + 1))
+    # set of quotes to return
     quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(limit)
+    # Fail safe for if user is logged out
     try:
         # if user logged in 
         if session["user"]:
             # get array of id's for users favourite quotes
-            # get array of id's for users favourite authors
             fav_quotes1 = get_favourites(session["user"], "quote")
+            # get list of favourite to identify which quotes to show as already favourited
             fav_quotes2 = get_starred(session["user"], "quote")
+            # is user has favourites saved and they requested to view them
             if fav_quotes1 and get_fav != "No":
                 # update the quotes and pages with users favourites
                 fav_quotes = mongo.db.quotes.find({"_id": {"$in":  fav_quotes1}}).skip(skips).limit(limit)
@@ -60,6 +68,7 @@ def get_quotes():
                 pages = range(1, int(final_page + 1))
     # if session["user"] not recognised, user is logged out
     except KeyError:
+        # return favquotes2 as empty
         fav_quotes2 = []
     return render_template(
         'quotes.html', 
@@ -73,11 +82,12 @@ def get_quotes():
         get_fav=get_fav
     )
 
-
+# Acknowledge below 2 videos in helping with adding fav star info
 # https://www.youtube.com/watch?v=XYx5sIbU8B4
 # https://www.youtube.com/watch?v=v2TSTKlrPwo
-@app.route("/add_fav_quote", methods=["GET", "POST"])        # is "Get" necessary?
+
 # funciton to update db with favourite quotes when star is checked
+@app.route("/add_fav_quote", methods=["GET", "POST"])
 def add_fav_quote():
     # extract quote id from checkbox id
     quote_id = request.form['Checkbox'].split('_')[0][15:]
@@ -93,25 +103,27 @@ def add_fav_quote():
         else:
             # Remove quote if from users db
             mongo.db.users.update_one({"username": user},{ "$pull": { "fav_quote_ids": quote_id}})
-    # Get 505 error when return None?
+    # To avoid 505 error
     return "Method not supported"
     
 
-@app.route("/get_authors", methods=["GET"])
 # Function to get authors
+@app.route("/get_authors", methods=["GET"])
 def get_authors():
+    # identify is user requested saved favourites
     get_fav = request.args.get('get_fav')
+    # get page number
     page = request.args.get('page', 1, type=int)
+    # limit authors to 6 results
     limit = int(6)
+    # iterate through objects depending on page number
     skips = limit * (page - 1)
-    # final_page = math.ceil((mongo.db.authors.count_documents({}))/(limit))
-    # pages = range(1, int(final_page + 1))
-    # Limit pages with updated db
-    final_page = 20 # change back to 10
+    # limit results to 20 pages
+    final_page = 20
     pages = range(1, int(final_page + 1))
     # find authors for display box
     authors1 = mongo.db.authors.find().skip(skips).limit(limit)
-    # Find authors for index
+    # Find authors for checked star
     authors2 = mongo.db.authors.find().sort("Author")
     try:
         # if user logged in 

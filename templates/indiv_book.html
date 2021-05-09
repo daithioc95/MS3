@@ -13,7 +13,7 @@
                             class="custom-checkbox">
                             <input type="checkbox" id="dsk-id-of-input{{ book._id }}_{{ session['user'] }}"
                                 name="dsk-id-of-input{{ book._id }}_{{ session['user'] }}"
-                                category="logged-in-book-input"
+                                class="logged-in-book-input"
                                 {% for x in fav_books2 if x|string == book._id|string %} checked {% else %}
                                 unchecked {% endfor %} />
                             <i class="glyphicon glyphicon-star-empty"></i>
@@ -22,7 +22,7 @@
                         {% else %}
                         <label for="dsk-id-of-input{{ book._id }}" class="custom-checkbox">
                             <input type="checkbox" id="dsk-id-of-input{{ book._id }}"
-                                name="dsk-id-of-input{{ book._id }}" category="logged-out-book-input" />
+                                name="dsk-id-of-input{{ book._id }}" class="logged-out-book-input" />
                             <i class="glyphicon glyphicon-star-empty"></i>
                             <i class="glyphicon glyphicon-star"></i>
                         </label>
@@ -65,7 +65,7 @@
                         class="custom-checkbox">
                         <input type="checkbox" id="mob-id-of-input{{ book._id }}_{{ session['user'] }}"
                             name="mob-id-of-input{{ book._id }}_{{ session['user'] }}"
-                            category="logged-in-book-input"
+                            class="logged-in-book-input"
                             {% for x in fav_books2 if x|string == book._id|string %} checked {% else %} unchecked
                             {% endfor %} />
                         <i class="glyphicon glyphicon-star-empty"></i>
@@ -74,7 +74,7 @@
                     {% else %}
                     <label for="mob-id-of-input{{ book._id }}" class="custom-checkbox">
                         <input type="checkbox" id="mob-id-of-input{{ book._id }}"
-                            name="mob-id-of-input{{ book._id }}" category="logged-out-book-input" />
+                            name="mob-id-of-input{{ book._id }}" class="logged-out-book-input" />
                         <i class="glyphicon glyphicon-star-empty"></i>
                         <i class="glyphicon glyphicon-star"></i>
                     </label>
@@ -126,7 +126,7 @@
                                 class="custom-checkbox">
                                 <input type="checkbox" id="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
                                     name="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
-                                    category="logged-in-quote-input"
+                                    class="logged-in-quote-input"
                                     {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %}
                                     unchecked {% endfor %} />
                                 <i class="glyphicon glyphicon-star-empty"></i>
@@ -135,7 +135,7 @@
                             {% else %}
                             <label for="dsk-id-of-input{{ quote._id }}" class="custom-checkbox">
                                 <input type="checkbox" id="dsk-id-of-input{{ quote._id }}"
-                                    name="dsk-id-of-input{{ quote._id }}" category="logged-out-quote-input" />
+                                    name="dsk-id-of-input{{ quote._id }}" class="logged-out-quote-input" />
                                 <i class="glyphicon glyphicon-star-empty"></i>
                                 <i class="glyphicon glyphicon-star"></i>
                             </label>
@@ -159,7 +159,7 @@
                             class="custom-checkbox">
                             <input type="checkbox" id="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
                                 name="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
-                                category="logged-in-quote-input"
+                                class="logged-in-quote-input"
                                 {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %} unchecked
                                 {% endfor %} />
                             <i class="glyphicon glyphicon-star-empty"></i>
@@ -168,7 +168,7 @@
                         {% else %}
                         <label for="mob-id-of-input{{ quote._id }}" class="custom-checkbox">
                             <input type="checkbox" id="mob-id-of-input{{ quote._id }}"
-                                name="mob-id-of-input{{ quote._id }}" category="logged-out-quote-input" />
+                                name="mob-id-of-input{{ quote._id }}" class="logged-out-quote-input" />
                             <i class="glyphicon glyphicon-star-empty"></i>
                             <i class="glyphicon glyphicon-star"></i>
                         </label>
@@ -267,7 +267,7 @@
 {% endblock %}
 {% block scripts %}
 <script>
-    $('input[category=logged-in-quote-input]').change(function () {
+    $('input[class=logged-in-quote-input]').change(function () {
         if ($(this).prop("checked") == true) {
             M.toast({ html: 'Added to Favourites' });
         }
@@ -292,13 +292,13 @@
         }
         );
     });
-    $('input[category=logged-out-quote-input]').change(function (e) {
+    $('input[class=logged-out-quote-input]').change(function (e) {
         console.log("logged out fav");
         if (e.target.checked) {
             alert("Please login or register to save favourites");
         }
     });
-    $('input[category=logged-in-book-input]').change(function () {
+    $('input[class=logged-in-book-input]').change(function () {
         if ($(this).prop("checked") == true) {
             M.toast({ html: 'Added to Favourites' });
         }
@@ -323,7 +323,7 @@
         }
         );
     });
-    $('input[category=logged-out-book-input]').change(function (e) {
+    $('input[class=logged-out-book-input]').change(function (e) {
         console.log("logged out fav");
         if (e.target.checked) {
             alert("Please login or register to save favourites");

@@ -63,7 +63,7 @@
                     <label for="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
                         class="custom-checkbox">
                         <input type="checkbox" id="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
-                            name="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" category="logged-in-quote-input"
+                            name="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" class="logged-in-quote-input"
                             {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %} unchecked
                             {% endfor %} />
                         <i class="glyphicon glyphicon-star-empty"></i>
@@ -72,7 +72,7 @@
                     {% else %}
                     <label for="dsk-id-of-input{{ quote._id }}" class="custom-checkbox">
                         <input type="checkbox" id="dsk-id-of-input{{ quote._id }}" name="dsk-id-of-input{{ quote._id }}"
-                            category="logged-out-quote-input" />
+                            class="logged-out-quote-input" />
                         <i class="glyphicon glyphicon-star-empty"></i>
                         <i class="glyphicon glyphicon-star"></i>
                     </label>
@@ -98,7 +98,7 @@
                 <label for="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
                     class="custom-checkbox">
                     <input type="checkbox" id="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
-                        name="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" category="logged-in-quote-input"
+                        name="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" class="logged-in-quote-input"
                         {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %} unchecked
                         {% endfor %} />
                     <i class="glyphicon glyphicon-star-empty"></i>
@@ -107,7 +107,7 @@
                 {% else %}
                 <label for="mob-id-of-input{{ quote._id }}" class="custom-checkbox">
                     <input type="checkbox" id="mob-id-of-input{{ quote._id }}" name="mob-id-of-input{{ quote._id }}"
-                        category="logged-out-quote-input" />
+                        class="logged-out-quote-input" />
                     <i class="glyphicon glyphicon-star-empty"></i>
                     <i class="glyphicon glyphicon-star"></i>
                 </label>
@@ -193,7 +193,7 @@
     // https://materializecss.com/toasts.html
     // https://www.tutorialrepublic.com/faq/how-to-check-a-checkbox-is-checked-or-not-using-jquery.php
     // https://stackoverflow.com/questions/33566041/materialize-css-change-position-of-toast-dialog
-    $('input[category=logged-in-quote-input]').change(function () {
+    $('input[class=logged-in-quote-input]').change(function () {
         if ($(this).prop("checked") == true) {
             M.toast({ html: 'Added to Favourites' });
         }
@@ -218,7 +218,7 @@
         }
         );
     });
-    $('input[category=logged-out-quote-input]').change(function (e) {
+    $('input[class=logged-out-quote-input]').change(function (e) {
         console.log("logged out fav");
         if (e.target.checked) {
             alert("Please login or register to save favourites");

@@ -66,38 +66,3 @@
     </div> -->
 </main>
 {% endblock %}
-{% block scripts %}
-<script>
-    $('input[category=logged-in-author-input]').change(function () {
-        if ($(this).prop("checked") == true) {
-            M.toast({ html: 'Added to Favourites' });
-        }
-        else if ($(this).prop("checked") == false) {
-            M.toast({ html: 'Removed from Favourites' });
-        }
-        var checkbox_id = $(this).attr("id");
-        console.log("JS Post");
-        $.ajax({
-            url: "{{ url_for('add_fav_author') }}",
-            type: "POST",
-            data: {
-                'Checkbox': checkbox_id,
-                'Status': $(this).prop("checked")
-            },
-            success: function (response) {
-                console.log(checkbox_id)
-            },
-            error: function (request, status, error) {
-                console.log("Error: " + error)
-            }
-        }
-        );
-    });
-    $('input[category=logged-out-author-input]').change(function (e) {
-        console.log("logged out fav");
-        if (e.target.checked) {
-            alert("Please login or register to save favourites");
-        }
-    });
-</script>
-{% endblock %}

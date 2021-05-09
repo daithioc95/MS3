@@ -56,7 +56,7 @@
                                 class="custom-checkbox">
                                 <input type="checkbox" id="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
                                     name="dsk-id-of-input{{ author._id }}_{{ session['user'] }}"
-                                    category="logged-in-author-input"
+                                    class="logged-in-author-input"
                                     {% for x in fav_authors2 if x|string == author._id|string %} checked {% else %}
                                     unchecked {% endfor %} />
                                 <i class="glyphicon glyphicon-star-empty"></i>
@@ -65,7 +65,7 @@
                             {% else %}
                             <label for="dsk-id-of-input{{ author._id }}" class="custom-checkbox">
                                 <input type="checkbox" id="dsk-id-of-input{{ author._id }}"
-                                    name="dsk-id-of-input{{ author._id }}" category="logged-out-author-input" />
+                                    name="dsk-id-of-input{{ author._id }}" class="logged-out-author-input" />
                                 <i class="glyphicon glyphicon-star-empty"></i>
                                 <i class="glyphicon glyphicon-star"></i>
                             </label>
@@ -159,7 +159,7 @@
 {% endblock %}
 {% block scripts %}
 <script>
-    $('input[category=logged-in-author-input]').change(function () {
+    $('input[class=logged-in-author-input]').change(function () {
         if ($(this).prop("checked") == true) {
             M.toast({ html: 'Added to Favourites' });
         }
@@ -184,7 +184,7 @@
         }
         );
     });
-    $('input[category=logged-out-author-input]').change(function (e) {
+    $('input[class=logged-out-author-input]').change(function (e) {
         console.log("logged out fav");
         if (e.target.checked) {
             alert("Please login or register to save favourites");

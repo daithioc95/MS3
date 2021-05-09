@@ -32,6 +32,11 @@ $(document).ready(function () {
    function commentLogin() {
         alert("Please login or register to post a comment");
 }
+$("#comment").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#post-button").click();
+    }
+});
 // https://stackoverflow.com/questions/63033012/copy-the-text-to-the-clipboard-without-using-any-input
 function shareQuote(quote_id) {
   var TempText = document.createElement("input");
