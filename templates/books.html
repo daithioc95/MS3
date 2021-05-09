@@ -1,16 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-
-<!-- Reduce height of welcome image -->
-
-<!-- https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260 -->
+<!-- Welcome image -->
 <div class="welcome-image-text">
     <img src="static/images/books2_welcome_image.jpg" id="authors-welcome-img" alt="Library">
     <div class="text">
         Books
     </div>
 </div>
-
+<!-- Search Bar -->
 <div class="row authors-search-form">
     <form action="{{ url_for('search_books', generated = "yes") }}" method="POST" class="col s12">
         <div class="authors-search wrap">
@@ -25,44 +22,47 @@
 </div>
 
 <main class="container">
-<div id ="title" class="row">
-    {% if session.user and get_fav == None and fav_books2 %}
-        <h2>{{ session['user'] }}'s Favourite books</h2>
-        <h3 class="link-heading"><a href="{{ url_for('get_books', get_fav = "No") }}">Discover books here</a></h3>
-    {% elif url_for(request.endpoint) == url_for('search_books') %}
-        <h2>Results</h2>
-    {% elif not session.user or get_fav == "No" or not fav_books2 %}
-        <h2>Popular books</h2>
-        {% if session.user and fav_books2 %}
-            <h3 class="link-heading"><a href="{{ url_for('get_books') }}">{{ session['user'] }}'s Favourite books</a></h3>
+    <!-- Page Heading -->
+    <div id="title" class="row">
+        <!-- if logged in, user requested favourite books and has favourite books -->
+        {% if session.user and get_fav == None and fav_books2 %}
+            <h2>{{ session['user'] }}'s Favourite books</h2>
+            <h3 class="link-heading"><a href="{{ url_for('get_books', get_fav = "No") }}">Discover books here</a></h3>
+        <!-- if searched -->
+        {% elif url_for(request.endpoint) == url_for('search_books') %}
+            <h2>Results</h2>
+        <!-- if discover is selected or user has no favourites -->
+        {% elif not session.user or get_fav == "No" or not fav_books2 %}
+            <h2>Popular books</h2>
+                <!-- if user logged in and has favourite quotes -->
+                {% if session.user and fav_books2 %}
+                    <h3 class="link-heading">
+                        <a href="{{ url_for('get_books') }}">{{ session['user'] }}'s Favourite books</a>
+                    </h3>
+                {% endif %}
         {% endif %}
-    {% endif %}
-</div>
-    {% if books.count() > 0 %}
-    <div class="row">
-
-        {% for book in books %}<div class="col l2 s4 author-book-entries"><a
-                href="{{ url_for('book_profile', Book= book.Book) }}"><i
-                    class="fas fa-book fa-5x {% if loop.index % 8 == 0 %}teal-book{% elif loop.index % 7 == 0 %}red-book{% elif loop.index % 6 == 0 %}orange-book{% elif loop.index % 5 == 0 %}green-book{% elif loop.index % 4 == 0 %}purple-book{% elif loop.index % 3 == 0 %}lavender-book{% elif loop.index % 2 == 0 %}brown-book{% elif loop.index % 1 == 0 %}blue-book{% endif %}"></i>
-
-                <p class="book-title">{% if book.Book|length < 50 %}{{ book.Book }}{% else %}{{ book.Book|truncate(50) }}...{% endif %}</p>
-            </a>
-        </div>{% endfor %}
     </div>
 
-
-    {% else %}
-        <h3 class="red-text text-darken-4 center-align">No Results Found</h3>
-    {% endif %}
-    <!-- Author index -->
-    <!-- https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_column-fill -->
-    
-    <!-- <div class="row author-index">
-        <div class="s12 center-align">
-            {% for author in authors2 %}
-                <p>{{ author.Author }}</p>
-            {% endfor %}
+    <!-- if search returns results -->
+    {% if books.count() > 0 %}
+    <div class="row">
+        <!-- for each book -->
+        {% for book in books %}
+        <div class="col l2 s4 author-book-entries">
+            <a href="{{ url_for('book_profile', Book= book.Book) }}">
+                    <!-- give icon different color depending on order -->
+                    <i class="fas fa-book fa-5x {% if loop.index % 8 == 0 %}teal-book{% elif loop.index % 7 == 0 %}red-book{% elif loop.index % 6 == 0 %}orange-book{% elif loop.index % 5 == 0 %}green-book{% elif loop.index % 4 == 0 %}purple-book{% elif loop.index % 3 == 0 %}lavender-book{% elif loop.index % 2 == 0 %}brown-book{% elif loop.index % 1 == 0 %}blue-book{% endif %}"></i>
+                <p class="book-title">
+                    <!-- if book link over 50 characters, minimise -->
+                    {% if book.Book|length < 50 %}{{ book.Book }}{% else %}{{ book.Book|truncate(50) }}...{% endif %}
+                </p>
+            </a>
         </div>
-    </div> -->
+        {% endfor %}
+    </div>
+    <!-- if search returns no results -->
+    {% else %}
+    <h3 class="red-text text-darken-4 center-align">No Results Found</h3>
+    {% endif %}
 </main>
 {% endblock %}
