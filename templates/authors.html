@@ -88,6 +88,8 @@
                 </blockquote>
             </article>
         </div>
+        <!-- loop to enter spacing for every odd entry -->
+        <!-- Acknowledge: https://stackoverflow.com/questions/7537439/how-to-increment-a-variable-on-a-for-loop-in-jinja-template -->
         {% if loop.index % 2 != 0 %}
             <div class="hide-on-small-only col l2"></div>
         {% endif %}

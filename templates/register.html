@@ -1,56 +1,56 @@
 {% extends "base.html" %}
 {% block content %}
 <main class="container">
-<h2 class="center-align">Register</h2>
+    <h2 class="center-align">Register</h2>
 
-<div class="row">
-    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
-        <div class="card-panel">
-            <!-- usename -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="input-attributes fas fa-user-plus prefix"></i>
-                    <input id="username" name="username" type="text" minlength="5" maxlength="15"
-                        pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
-                    <label for="username">Username</label>
+    <div class="row">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
+            <div class="card-panel">
+                <!-- usename -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="input-attributes fas fa-user-plus prefix"></i>
+                        <input id="username" name="username" type="text" minlength="5" maxlength="15"
+                            pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+                <!-- email -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="input-attributes fas fa-user-plus prefix"></i>
+                        <input id="email" name="email" type="email" minlength="5" maxlength="30"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="validate">
+                        <label for="email">Email (optional)</label>
+                    </div>
+                </div>
+                <!-- password -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="input-attributes fas fa-user-lock prefix"></i>
+                        <input id="password" name="password" type="password" minlength="5" maxlength="15"
+                            pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <!-- register -->
+                <div class="row">
+                    <button id="register-button" type="submit" class="col s12 btn-large">
+                        Register <i class="fas fa-sign-in-alt"></i>
+                    </button>
                 </div>
             </div>
-            <!-- email -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="input-attributes fas fa-user-plus prefix"></i>
-                    <input id="email" name="email" type="email" minlength="5" maxlength="30"
-                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="validate">
-                    <label for="email">Email (optional)</label>
-                </div>
-            </div>
-            <!-- password -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="input-attributes fas fa-user-lock prefix"></i>
-                    <input id="password" name="password" type="password" minlength="5" maxlength="15"
-                        pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
-                    <label for="password">Password</label>
-                </div>
-            </div>
-            <!-- register -->
-            <div class="row">
-                <button id="register-button" type="submit" class="col s12 btn-large">
-                    Register <i class="fas fa-sign-in-alt"></i>
-                </button>
-            </div>
-        </div>
-    </form>
-</div>
-
-<div class="row">
-    <div class="col s12">
-        <p class="center-align">
-            Already Registered? <a href="{{ url_for('login') }}" class="light-blue-text text-darken-4">
-                Log In
-            </a>
-        </p>
+        </form>
     </div>
-</div>
+
+    <div class="row">
+        <div class="col s12">
+            <p class="center-align">
+                Already Registered? <a href="{{ url_for('login') }}" class="light-blue-text text-darken-4">
+                    Log In
+                </a>
+            </p>
+        </div>
+    </div>
 </main>
 {% endblock %}
