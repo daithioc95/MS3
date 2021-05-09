@@ -3,7 +3,7 @@ import pymongo
 import json
 from flask import (
     Flask, flash, render_template,
-    redirect, request, session, url_for, request)
+    redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 # from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
@@ -274,8 +274,6 @@ def get_favourites(username, category):
     return (favourites)
 
 # Function to search quotes
-
-
 @app.route("/search_quotes", methods=["GET", "POST"])
 def search_quotes():
     # if search function just activated
@@ -286,7 +284,7 @@ def search_quotes():
     # For different pages extract query from url
     else:
         query = request.args.get('query_quote')
-    # ensure qotd is still defined
+    #ensure qotd is still defined
     # formula to extract different date per day
     base = int(20210507)
     today = datetime.today()
@@ -334,8 +332,6 @@ def search_quotes():
                            searched=searched)
 
 # Function to search authors
-
-
 @app.route("/search_authors", methods=["GET", "POST"])
 def search_authors():
     # if search function just activated
@@ -381,8 +377,6 @@ def search_authors():
                            searched=searched)
 
 # function for individual author profile
-
-
 @app.route("/author_profile/<Author>", methods=["GET", "POST"])
 def author_profile(Author):
     # limit author quotes to 6 results
@@ -436,8 +430,6 @@ def author_profile(Author):
                            final_page=final_page)
 
 # Function to get books
-
-
 @app.route("/get_books", methods=["GET"])
 def get_books():
     # identify is user requested saved favourites
@@ -500,8 +492,6 @@ def search_books():
                            searched=searched)
 
 # function for individual Book profile
-
-
 @app.route("/book_profile/<Book>", methods=["GET", "POST"])
 def book_profile(Book):
     # limit book quotes to 6 results
@@ -550,8 +540,6 @@ def book_profile(Book):
                            )
 
 # Funciton for mood page
-
-
 @app.route("/get_mood")
 def get_mood():
     return render_template("mood.html")
@@ -562,7 +550,7 @@ def get_mood():
 def generate_mood():
     # get page number
     page = request.args.get('page', 1, type=int)
-    # limit quotes to 5 results
+     # limit quotes to 5 results
     limit = int(5)
     # iterate through objects depending on page number
     skips = limit * (page - 1)
@@ -604,8 +592,6 @@ def generate_mood():
                            )
 
 # Funciton for shared quote page
-
-
 @app.route("/share_quote/<_id>", methods=["GET", "POST"])
 def share_quote(_id):
     # Locate quote based on object ID
@@ -644,8 +630,6 @@ def register():
     return render_template("register.html")
 
 # Funciton for user to login
-
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -675,8 +659,6 @@ def login():
     return render_template("login.html")
 
 # Funciton for users profile page
-
-
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # grab the session user's username from db
@@ -706,8 +688,6 @@ def profile(username):
     return redirect(url_for("login"))
 
 # funciton for comments section
-
-
 @app.route("/comment", methods=["GET", "POST"])
 def comment():
     if request.method == "POST":
@@ -737,8 +717,6 @@ def comment():
             return redirect(url_for("book_profile", Book=Book))
 
 # Funciton for user to log out
-
-
 @app.route("/logout")
 def logout():
     # remove user from session cookie

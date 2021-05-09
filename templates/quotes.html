@@ -1,15 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
+
+<!-- Welcome Quote -->
+<!-- QOTD Aknowledge: https://codepen.io/JoeHastings/pen/MOdRVm -->
 <div class="row">
     <div class="welcome-qotd">
         <blockquote class="qotd">{{ qotd.Quote }}</blockquote>
-        <cite class="qotd"><a href="{{ url_for('author_profile', Author=qotd.Author) }}">{{ qotd.Author }}</a></cite>
+        <cite class="qotd">
+            <a href="{{ url_for('author_profile', Author=qotd.Author) }}">{{ qotd.Author }}</a>
+        </cite>
     </div>
 </div>
+
 <main class="container">
-
-    <!-- embed https://codepen.io/JoeHastings/pen/MOdRVm -->
-
+    <!-- Search Bar -->
     <div class="row quotes-search-form">
         <form action="{{ url_for('search_quotes', generated = "yes") }}" method="POST" class="col s12">
             <div class="authors-search wrap">
@@ -23,107 +27,122 @@
             </div>
         </form>
     </div>
-
+    <!-- Page Heading -->
     <div id="quotes_title" class="row heading-row">
-    {% if session.user and get_fav == None and fav_quotes2 %}
+        <!-- if logged in, user requested favourite quotes and has favourite quotes -->
+        {% if session.user and get_fav == None and fav_quotes2 %}
             <h2>{{ session['user'] }}'{% if session['user'][session['user']|length-1] != "s" %}s{% endif %} favourite quotes</h2>
             <h3 class="link-heading"><a href="{{ url_for('get_quotes', get_fav = "No") }}">Discover quotes here</a></h3>
-    {% elif url_for(request.endpoint) == url_for('search_quotes') %}
-        <h2>Results</h2>
-    {% elif get_fav == "No" or not fav_quotes2 %}
-    <h2>Popular quotes</h2>
-        {% if session.user and fav_quotes2 %}
-        <h3 class="link-heading"><a href="{{ url_for('get_quotes') }}">{{ session['user'] }}'{% if session['user'][session['user']|length-1] != "s" %}s{% endif %} favourite quotes</a></h3>
+        <!-- if searched -->
+        {% elif url_for(request.endpoint) == url_for('search_quotes') %}
+            <h2>Results</h2>
+        <!-- if discover is selected or user has no favourites -->
+        {% elif get_fav == "No" or not fav_quotes2 %}
+            <h2>Popular quotes</h2>
+            <!-- if user logged in and has favourite quotes -->
+            {% if session.user and fav_quotes2 %}
+            <h3 class="link-heading">
+                <a href="{{ url_for('get_quotes') }}">{{ session['user'] }}'{% if session['user'][session['user']|length-1] != "s" %}s{% endif %}favourite quotes</a></h3>
+            {% endif %}
         {% endif %}
-    {% endif %}
-    </div>  
+    </div>
+
+    <!-- if search returns results -->
     {% if quotes.count() > 0 %}
-    
-    {% for quote in quotes %}
-<!-- <div class="row"> removed because of margin between quotes -->
-    <!-- https://stackoverflow.com/questions/36674846/how-can-i-check-if-some-checkboxes-in-html-are-checked -->
-    <!-- https://codepen.io/tiggr/pen/MWyJJEz -->
-<div class="hide-on-small-only col l12 m12"></div>
-    <article class="hide-on-small-only article">
-        
-        <blockquote class="quote-blockquote">
-            <p>{{ quote.Quote }}
-            </p>
-            <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
-            <div>
-            <i id="dsk-{{ quote._id }}" onclick="shareQuote(this.id)" class="share-quote fas fa-link"></i></div>
-            <!-- <cite>{{ quote.Tags[1] }} </cite> -->
-            <!-- https://icon-library.com/icon/avatar-icon-free-26.html -->
-            <div class="blockquote-author-image"
-            style="--image: url{% if quote.image %}({{ quote.image }}){% else %}(/static/images/authors/avatar_icon.jpg){% endif %}">
-            </div>
-            <div class="star">
-                <form>
+        <!-- for each oject in quotes -->
+        {% for quote in quotes %}
+
+        <!-------- Desktop Quote section -------->
+        <!-- Acknowledge: https://codepen.io/tiggr/pen/MWyJJEz -->
+        <div class="hide-on-small-only col l12 m12"></div>
+        <article class="hide-on-small-only article">
+            <blockquote class="quote-blockquote">
+                <p>{{ quote.Quote }}
+                </p>
+                <!-- Author name and link to page -->
+                <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
+                <div>
+                    <!-- Share quote on clipboard function -->
+                    <i id="dsk-{{ quote._id }}" onclick="shareQuote(this.id)" class="share-quote fas fa-link"></i></div>
+                <!-- if authors image store locate file path, else use avatar photo -->
+                <a href="{{ url_for('author_profile', Author=quote.Author) }}">
+                    <div class="blockquote-author-image"
+                        style="--image: url{% if quote.image %}({{ quote.image }}){% else %}(/static/images/authors/avatar_icon.jpg){% endif %}">
+                    </div>
+                </a>
+                <!-- Favourite star -->
+                <div class="star">
+                    <form>
+                        {% if session.user %}
+                        <label for="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" class="custom-checkbox">
+                            <input type="checkbox" id="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
+                                name="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" class="logged-in-quote-input"
+                                {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %} unchecked
+                                {% endfor %} />
+                            <i class="glyphicon glyphicon-star-empty"></i>
+                            <i class="glyphicon glyphicon-star"></i>
+                        </label>
+                        {% else %}
+                        <label for="dsk-id-of-input{{ quote._id }}" class="custom-checkbox">
+                            <input type="checkbox" id="dsk-id-of-input{{ quote._id }}" name="dsk-id-of-input{{ quote._id }}"
+                                class="logged-out-quote-input" />
+                            <i class="glyphicon glyphicon-star-empty"></i>
+                            <i class="glyphicon glyphicon-star"></i>
+                        </label>
+                        {% endif %}
+                    </form>
+                </div>
+            </blockquote>
+        </article>
+
+        <!-------- Mobile Quote section -------->
+        <!-- Acknowledge: https://codepen.io/chris22smith/pen/oQWavL -->
+        <div class="hide-on-med-and-up animated-border-quote">
+            <blockquote>
+                <p>{{ quote.Quote }}</p>
+                <!-- Share quote on clipboard function -->
+                <div>
+                    <i id="mob-{{ quote._id }}" onclick="shareQuote(this.id)"
+                        class="share-quote-mob share-quote fas fa-link"></i>
+                </div>
+                <!-- Author name and link to page -->
+                <cite>
+                    <a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a>
+                </cite>
+                <!-- Favourite star -->
+                <div class="star">
                     {% if session.user %}
-                    <label for="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
-                        class="custom-checkbox">
-                        <input type="checkbox" id="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}"
-                            name="dsk-id-of-input{{ quote._id }}_{{ session['user'] }}" class="logged-in-quote-input"
+                    <label for="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" class="custom-checkbox">
+                        <input type="checkbox" id="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
+                            name="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" class="logged-in-quote-input"
                             {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %} unchecked
                             {% endfor %} />
                         <i class="glyphicon glyphicon-star-empty"></i>
                         <i class="glyphicon glyphicon-star"></i>
                     </label>
                     {% else %}
-                    <label for="dsk-id-of-input{{ quote._id }}" class="custom-checkbox">
-                        <input type="checkbox" id="dsk-id-of-input{{ quote._id }}" name="dsk-id-of-input{{ quote._id }}"
+                    <label for="mob-id-of-input{{ quote._id }}" class="custom-checkbox">
+                        <input type="checkbox" id="mob-id-of-input{{ quote._id }}" name="mob-id-of-input{{ quote._id }}"
                             class="logged-out-quote-input" />
                         <i class="glyphicon glyphicon-star-empty"></i>
                         <i class="glyphicon glyphicon-star"></i>
                     </label>
                     {% endif %}
-                </form>
-            </div>
-        </blockquote>
-        
-    </article>
-<!-- </div> -->
-
-    <!-- https://codepen.io/chris22smith/pen/oQWavL -->
-
-    <div class="hide-on-med-and-up animated-border-quote">
-        <blockquote>
-            <p>{{ quote.Quote }}</p>
-            <!-- https://www.w3schools.com/howto/howto_js_copy_clipboard.asp -->
-            <div>
-                    <i id="mob-{{ quote._id }}" onclick="shareQuote(this.id)" class="share-quote-mob share-quote fas fa-link"></i></div>
-            <cite><a href="{{ url_for('author_profile', Author=quote.Author) }}">{{ quote.Author }}</a></cite>
-            <div class="star">
-                {% if session.user %}
-                <label for="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
-                    class="custom-checkbox">
-                    <input type="checkbox" id="mob-id-of-input{{ quote._id }}_{{ session['user'] }}"
-                        name="mob-id-of-input{{ quote._id }}_{{ session['user'] }}" class="logged-in-quote-input"
-                        {% for x in fav_quotes2 if x|string == quote._id|string %} checked {% else %} unchecked
-                        {% endfor %} />
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                </label>
-                {% else %}
-                <label for="mob-id-of-input{{ quote._id }}" class="custom-checkbox">
-                    <input type="checkbox" id="mob-id-of-input{{ quote._id }}" name="mob-id-of-input{{ quote._id }}"
-                        class="logged-out-quote-input" />
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                </label>
-                {% endif %}
-            </div>
-        </blockquote>
-    </div>
-
-    
-    {% endfor %}
+                </div>
+            </blockquote>
+        </div>
+        {% endfor %}
+    <!-------- Quotes Pagination -------->
+    <!-- Acknowledge: https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
+    <!-- if not searched for users favourites -->
     {% if get_fav == None %}
-    <!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
     <ul class="pagination center-align">
-        <li class="{% if  page < 2 %}disabled{% endif %}"><a href="{% if  page < 2 %}{% else %}{{ url_for('get_quotes', page = page - 1, _anchor='quotes_title') }}{% endif %}"><i
-                    class="material-icons">chevron_left</i></a></li>
-        {% for p in pages %}
+        <li class="{% if  page < 2 %}disabled{% endif %}">
+            <a href="{% if  page < 2 %}{% else %}{{ url_for('get_quotes', page = page - 1, _anchor='quotes_title') }}{% endif %}">
+                <i class="material-icons">chevron_left</i>
+            </a>
+        </li>
+    {% for p in pages %}
         {% if  p == page  %}
         <li class="active">
             <a href="{{ url_for('get_quotes', page = p, _anchor='quotes_title') }}">{{ p }}</a>
@@ -133,17 +152,23 @@
             <a href="{{ url_for('get_quotes', page = p, _anchor='quotes_title') }}">{{ p }}</a>
         </li>
         {% endif %}
-        {% endfor %}
-        <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{% if  page >= final_page %}{% else %}{{ url_for('get_quotes', page = page + 1, _anchor='quotes_title') }}{% endif %}"><i class="material-icons">chevron_right</i></a></li>
+    {% endfor %}
+        <li class="{% if  page >= final_page %}disabled{% endif %}">
+            <a href="{% if  page >= final_page %}{% else %}{{ url_for('get_quotes', page = page + 1, _anchor='quotes_title') }}{% endif %}">
+                <i class="material-icons">chevron_right</i>
+            </a>
+        </li>
     </ul>
+    <!-- If searched results -->
     {% elif searched %}
     <!-- https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
     <ul class="pagination center-align">
-        <li class="{% if  page < 2 %}disabled{% endif %}"><a
-                href="{% if  page < 2 %}{% else %}{{ url_for('search_authors', page = page - 1, query_quote=query_quote, _anchor='quotes_title') }}{% endif %}"><i
-                    class="material-icons">chevron_left</i></a></li>
-        {% for p in pages %}
+        <li class="{% if  page < 2 %}disabled{% endif %}">
+            <a href="{% if  page < 2 %}{% else %}{{ url_for('search_authors', page = page - 1, query_quote=query_quote, _anchor='quotes_title') }}{% endif %}">
+                <i class="material-icons">chevron_left</i>
+            </a>
+        </li>
+    {% for p in pages %}
         {% if  p == page  %}
         <li class="active">
             <a href="{{ url_for('search_quotes', page = p, query_quote=query_quote, _anchor='quotes_title') }}">{{ p }}</a>
@@ -153,17 +178,21 @@
             <a href="{{ url_for('search_quotes', page = p, query_quote=query_quote, _anchor='quotes_title') }}">{{ p }}</a>
         </li>
         {% endif %}
-        {% endfor %}
-        <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{% if  page >= final_page %}{% else %}{{ url_for('search_quotes', page = page + 1, query_quote=query_quote, _anchor='quotes_title') }}{% endif %}"><i
-                    class="material-icons">chevron_right</i></a></li>
+    {% endfor %}
+        <li class="{% if  page >= final_page %}disabled{% endif %}">
+            <a href="{% if  page >= final_page %}{% else %}{{ url_for('search_quotes', page = page + 1, query_quote=query_quote, _anchor='quotes_title') }}{% endif %}">
+                <i class="material-icons">chevron_right</i>
+            </a>
+        </li>
     </ul>
     {% else %}
     <ul class="pagination center-align">
-        <li class="{% if  page < 2 %}disabled{% endif %}"><a
-                href="{% if  page < 2 %}{% else %}{{ url_for('get_quotes', get_fav = "No", page = page - 1, _anchor='quotes_title') }}{% endif %}"><i
-                    class="material-icons">chevron_left</i></a></li>
-        {% for p in pages %}
+        <li class="{% if  page < 2 %}disabled{% endif %}">
+            <a href="{% if  page < 2 %}{% else %}{{ url_for('get_quotes', get_fav = "No", page = page - 1, _anchor='quotes_title') }}{% endif %}">
+                <i class="material-icons">chevron_left</i>
+            </a>
+        </li>
+    {% for p in pages %}
         {% if  p == page  %}
         <li class="active">
             <a href="{{ url_for('get_quotes', get_fav = "No", page = p, _anchor='quotes_title') }}">{{ p }}</a>
@@ -173,10 +202,12 @@
             <a href="{{ url_for('get_quotes', get_fav = "No", page = p, _anchor='quotes_title') }}">{{ p }}</a>
         </li>
         {% endif %}
-        {% endfor %}
-        <li class="{% if  page >= final_page %}disabled{% endif %}"><a
-                href="{% if  page >= final_page %}{% else %}{{ url_for('get_quotes', get_fav = "No", page = page + 1, _anchor='quotes_title') }}{% endif %}"><i
-                    class="material-icons">chevron_right</i></a></li>
+    {% endfor %}
+        <li class="{% if  page >= final_page %}disabled{% endif %}">
+            <a href="{% if  page >= final_page %}{% else %}{{ url_for('get_quotes', get_fav = "No", page = page + 1, _anchor='quotes_title') }}{% endif %}">
+                <i class="material-icons">chevron_right</i>
+            </a>
+        </li>
     </ul>
     {% endif %}
 
@@ -184,23 +215,28 @@
     <h3 class="red-text text-darken-4 center-align">No Results Found</h3>
     {% endif %}
 
-
 </main>
 {% endblock %}
 {% block scripts %}
 <script>
-    // https://materializecss.com/toasts.html
-    // https://www.tutorialrepublic.com/faq/how-to-check-a-checkbox-is-checked-or-not-using-jquery.php
-    // https://stackoverflow.com/questions/33566041/materialize-css-change-position-of-toast-dialog
+    // Script functions below related to actions when favourite star is checked
+
+    // Acknowledge: https://materializecss.com/toasts.html
+    // Acknowledge: https://www.tutorialrepublic.com/faq/how-to-check-a-checkbox-is-checked-or-not-using-jquery.php
+    // Acknowledge: https://stackoverflow.com/questions/33566041/materialize-css-change-position-of-toast-dialog
+
+    // if logged in
     $('input[class=logged-in-quote-input]').change(function () {
+        // if checked/liked
         if ($(this).prop("checked") == true) {
             M.toast({ html: 'Added to Favourites' });
         }
+        // if unchecked/removed
         else if ($(this).prop("checked") == false) {
             M.toast({ html: 'Removed from Favourites' });
         }
+        // send info to update db
         var checkbox_id = $(this).attr("id");
-        console.log("JS Post");
         $.ajax({
             url: "{{ url_for('add_fav_quote') }}",
             type: "POST",
@@ -209,17 +245,16 @@
                 'Status': $(this).prop("checked")
             },
             success: function (response) {
-                console.log(checkbox_id)
             },
             error: function (request, status, error) {
-                console.log("Error: " + error)
             }
         }
         );
     });
+    // if logged out
     $('input[class=logged-out-quote-input]').change(function (e) {
-        console.log("logged out fav");
         if (e.target.checked) {
+            // prompt user to login or register
             alert("Please login or register to save favourites");
         }
     });

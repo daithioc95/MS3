@@ -3,7 +3,6 @@ import pymongo
 import json
 if os.path.exists("env.py"):
     import env
-from datetime import date, datetime
 MONGO_URI = os.environ.get("MONGO_URI")
 DATABASE = "ms3_quotes"
 COLLECTION_QUTOES = "quotes"
