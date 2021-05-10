@@ -45,7 +45,7 @@ $("#comment").keyup(function (event) {
 function shareQuote(link_id) {
     var TempText = document.createElement("input");
     // Extract quote id
-    quote_id = link_id.split("-")[1]
+    quote_id = link_id.split("-")[1];
     // formulate link
     TempText.value = "http://ms3-quotes.herokuapp.com/share_quote/" + quote_id;
     document.body.appendChild(TempText);

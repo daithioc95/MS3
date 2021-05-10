@@ -1,5 +1,5 @@
 # Python and Data Centric Development Milestone Project 
-
+<img src="static/images/wireframes/ms3_responsive_image.JPG">
 This website is collection of over 35,000 quotes gather and organised based on author, book, categories and popularity. The website is a community by which users can store their favourite quotes,  books and authors. They can additionally share quotes with friends and comment on authors and books to express their opinions. Users can use the “mood” section so that they can discover favourite authors depending on how they feel.
 This information is presented in an interactive, picturesque manner with a simple, easy on the eye design.
 
@@ -119,12 +119,12 @@ The surface plane is the least conceptual plane and consists of the actual conte
 - Comment
   - In addition to the previously mentioned comments form, the comments section is visible at the bottom of the specified books page and the individual authors page which shows the posted comments.
 
-###Technologies Used
+### Technologies Used
 
 - HTML Used to add content to the website.
 - CSS Used to add structure and design to my site.
 - JavaScript & jQuery Used for the below features
-  - Favourite Star
+  - Favourite Star: AJAX was used to send information to the python function.
   - Toast Messages
   - Share Quote link
   - Mood Board Carousel Slider
@@ -168,6 +168,167 @@ The surface plane is the least conceptual plane and consists of the actual conte
   - Used this GitPod extension throughout the project to ensure I was following best practices with JavaScript code.
 - Colors.share
   - Used to extract colour schemes to trial.
+- Kaggle
+  - Used to browse and discover a wealth of databases
+- Google Fonts
+  - Used for font implementation and inspiration.
+
+### Testing
+
+#### Testing User Stories
+##### As a visitor, I would like to browse and discover quotes which interest me so that I can find inspiration.
+- Go to the website homepage
+- If logged in with no favourited quotes or logged out, you can browse and discover quotes in order of popularity.
+- If you are logged in and have favourited quotes you can click the “View Popular Quotes” link where you can discover quotes in order of popularity.
+- This will provide 20 pages of inspirational quotes.
+- The search box can also be used to enter terms to discover quotes depending on a specific category.
+***Quotes.HTML Screenshot***
+- The Author name can also be selected to route you to a page showing quotes and books exclusively from this Author.
+- Links to Similar Authors pages can also be chosen.
+***indiv Author SS***
+***Similar Authors section SS***
+
+##### As a visitor, I would like to save my favourite quotes/authors/books so that I can view at a later stage.
+- Adding Quote
+  - When logged in and the user sees a quote they like, select the star at the top right-hand corner of the quote box.
+***Quote box image****
+  - Select the star.
+  - The star should glow yellow and a confirmation “Added to Favourites toast message should appear.
+***Checked star and toast message image***
+- Adding Author
+  - When logged in and the user sees an Author they like, select the star at the right-hand corner of the quote box.
+***Author box image****
+  - The star should glow yellow and a confirmation “Added to Favourites toast message should appear.
+***Checked star and toast message image***
+- Adding Book
+  - When logged in and the user sees a book they like, select the link to the book page
+  - To the right-hand side of the main book icon the user cans select this star.
+  - The star will glow yellow and a confirmation “Added to Favourites toast message should appear.
+•	***Book Star image****
+- View favourites
+  - When the user is signed in, they can go to the ‘profile’ page to see their favourited items.
+  - The first heading will show the users favourited quotes.
+  - The second heading will show the users favourited Authors
+  - The third heading will show the users favourited Books
+  ***Profile page image***
+
+##### As a visitor, I would like to discover quotes which coincide with the current mood I am experiencing so that I can find inspiration.
+- Open the Mood page which can be located in the navbar.
+***Navbar SS***
+- The mood page will show a series of tags on the mood board.
+- The user can select the tags which coincide with their current mood.
+- They can then select the “generate mood” button.
+***Mood Board SS***
+- When they scroll down, they can find inspiration in the quotes shown to them.
+***Generated Quotes SS***
+##### As a visitor, I would like to search quotes/authors/books from the database so that I can research quotes in the database depending on my specific interest.
+- The user can use the homepage search bar to search Quotes, tags and Authors.
+*** homepage search bar SS***
+- The user can use the Authors.HTML search bar to search by Author only.
+*** Authors.HTML search bar SS***
+- The user can use the Books.HTML search bar to search by Book only.
+*** Books.HTML search bar SS***
+***Results SS***
+##### As a visitor, I would like to register and login so that I can view my favourite quotes/authors/books.
+- The user can register by selecting the register button in the navbar.
+***NavBar SS***
+- They can enter relevant info into the form as per below.
+***Form SS***
+- If the username is unique and the input passes the validation, they will see the alert as per below.
+***Flash message SS***
+- As they select favourited quotes/authors/books they can view at a later stage on the profile page.
+
+### Browsers
+Tested and working consistently on the below browsers for desktop.
+
+- Google Chrome
+- Microsoft Edge
+- Firefox**
+
+- Mobile version manually tested throughout using google chrome on Xiaomi 8 and One Plus 9.
+- Tested on below screen sizes using Google Chrome developer tools.
+  - Moto G4
+  - Galaxy S5
+  - Pixel 2
+  - Pixel 2 XL
+  - iPhone 5/SE
+  - iPhone 6/7/8
+  - iPhone 6/7/8 Plus
+  - iPhone X
+  - iPad
+  - iPad Pro
+  - Surface Duo
+  - Galaxy Fold
+
+- The project passed the below validation tests. Please see below links to view validation screenshot.
+***Validation tests***
+
+  - W3 HTML Validator: https://validator.w3.org/
+
+   - quotes.html Validator success
+   - authors.html Validator success
+   - books.html Validator success
+   - indiv_author.html Validator success
+   - indiv_book.html Validator success
+   - mood.html Validator success
+   - profile.html Validator success
+   - login.html Validator success
+   - register.html Validator success
+
+  - Jigsaw CSS Validator: https://validator.w3.org/
+
+- JSHint JavaScript Validator: https://jshint.com/
+
+  - js jint gitpod extention highlighted no JS errors
+
+### Credits
+All quotes content was taken from the below Kaggle database from user Amit Mittal.
+https://www.kaggle.com/akmittal/quotes-dataset
+Images
+Please see below image log for all used images. All images were reduced in quality by using https://picresize.com/ for a smoother user loading and user experience.
+***Image log***
+#### Acknowledgements
+- Materialize
+  - Icons
+  - Forms
+  - Mood Carousel - https://materializecss.com/carousel.html#two!
+  - Toast - https://materializecss.com/toasts.html
+ - Carousel Buttons
+  - Paco Cervantes - https://codepen.io/Paco_Cervantes/pen/ZLxKpj 
+- Mood Board Buttons Hover
+- Radial-out option
+  - https://ianlunn.github.io/Hover/
+- Toast
+  - https://stackoverflow.com/questions/33566041/materialize-css-change-position-of-toast-dialog
+- Font awesome
+  - Favourite Star
+   - https://www.tutorialrepublic.com/faq/how-to-check-a-checkbox-is-checked-or-not-using-jquery.php
+- Quote of the data / Share Quote
+  - Joe Hastings - https://codepen.io/JoeHastings/pen/MOdRVm 
+- Quote Box / Author Box
+  - Desktop - Tigran Sargsyan - https://codepen.io/tiggr/pen/MWyJJEz
+  - Mobile - Chris Smith - https://codepen.io/chris22smith/pen/oQWavL - Animated Border 
+  - Author Quote box desktop spacing - https://stackoverflow.com/questions/7537439/how-to-increment-a-variable-on-a-for-loop-in-jinja-template
+- Pagination
+  - https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional 
+- Login, Register forms:
+  - Mini Project
+  - Materialize
+- Colors.share
+  - https://mycolor.space/?hex=%237986CB&sub=1
+- Copy to clipboard share feature
+ - https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+ - https://stackoverflow.com/questions/63033012/copy-the-text-to-the-clipboard-without-using-any-input
+- Logged out favourite star
+  - https://www.w3schools.com/js/tryit.asp?filename=tryjs_alert
+  - Below 2 videos helped in sending data from jQuery AJAX to Python
+   - https://www.youtube.com/watch?v=v2TSTKlrPwo
+   - https://www.youtube.com/watch?v=XYx5sIbU8B4
+- Comments
+  - Letter icon - https://stackoverflow.com/questions/29980387/how-to-make-a-circle-around-a-letter/29980453
+
+
+
 
 
 
