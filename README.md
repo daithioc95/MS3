@@ -1,5 +1,7 @@
 # Python and Data Centric Development Milestone Project 
 <img src="static/images/wireframes/ms3_responsive_image.JPG">
+
+<a href="https://ms3-quotes.herokuapp.com/" target="_blank">Visit Website</a>
 This website is collection of over 35,000 quotes gather and organised based on author, book, categories and popularity. The website is a community by which users can store their favourite quotes,  books and authors. They can additionally share quotes with friends and comment on authors and books to express their opinions. Users can use the “mood” section so that they can discover favourite authors depending on how they feel.
 This information is presented in an interactive, picturesque manner with a simple, easy on the eye design.
 
@@ -372,8 +374,59 @@ Tested and working consistently on the below browsers for desktop.
 - Share link
   - The share link should sit vertically below the star however this was difficult to position on a all screen sizes due to the differing nature of both items elements. I will revisit this at a later time.
 
-### Deployment 
+### Data schemes
+The database is stored and hosted by MongoDB.
+The database was downloaded in JSON format from Kaggle, because being pasted to my data.txt file.
+Addition cleaning and preparation of the data was complete by using the mongo.py file which include removing dupes, creating additional collections and separating the values.
+For example the Author section contained the authors name and the book title (if any), so a split action was needed here before creating a new "book" key
+The cluster used for this project contains 4 collections in total which are outlined below.
 
+
+### Deployment 
+#### Working with the local Copy
+- Install the requirements based on librarys needed by using the pip3 install -r requirements.txt command.
+- A data base will be needed to work off for a local file, this can be created using MongoDB by following the below instructions.
+  - Create a MongoDB account.
+  - Create a cluster.
+  - Create 4 (self-explanitary) collections; authors, books, quotes and users.
+  - Set values for these collections as content for the website.
+- The environment variables will then be needed to allow the website to access the database. Please follow the below instrutions.
+  - Create a .gitignore file.
+  - Type "env.py" in the .gitignore file to ensure this is being ignored.
+  - Create the env.py file.
+  - This is where you can insert the following environment variables; IP, PORT, SECRET_KEY, MONGO_URI, MONGO_DBNAME.
+- The app can now be ran via the terminal, create the app.py file and enter the command "python3 app.py" and run the app.
+
+
+#### Heroku Deployment
+- To deploy the project to Heroky a local workspace will be needed to ensure the Heroku can run the backend code.
+- This can be done by using the command "pip3 freeze -- local > requirements.txt" which will populate the file convieniently to provide heroku with information on what needs to be installed.
+- To ensure Heroku knows that the app.py file is the main file and entry for this project, the Procfile will be needed by logging the following command, "python app.py > Procfile"
+
+- The next step involves creating a heroku account.
+  - Go to heroku.com
+  - Set up and account, create an app by following the instructions and enter any relevant information requested.
+  - Deploy the app on Github to ensure any updates on github will link to Heroku (reducing the risk for discrepencies)
+   - This can be done by selecting "Connect to GitHub" in the deploy tab and selecting the relevant repository. 
+  - Locate the Config variables in the settings section, click "Reveal Config Vars".
+  - Enter the previously mentioned variables which are present in the env.py file; IP, PORT, SECRET_KEY, MONGO_URI, MONGO_DBNAME
+   - Ensure these values those of which present in the env.py file.
+   - Also ensure the requirments.txt and Procfile are pushed into the live environment by using the below set of commands.
+    - $ git add requirements.txt
+    - $ git commit -m "Add requirements.txt"
+    - $ git add Procfile
+    - $ git commit -m "Add Procfile" 
+ - Enable automatic deployments on Heroky by going to the deploy tab, go to Automatic deployments and select enable.
+ Heroku now has the relevant packages to be linked and host the website. You can locate the apps URL by selecting "Open App" on the right hand corner of your Heroku account.
+
+#### Cloning the project
+If you wish to clone this project, action the following instructions.
+
+1. On the repository "Code" tab, select the "Code" option at the top right.
+2. Copy the URL provided in the HTTPS section.
+3. Open the GitPod (or favoured environment) terminal and change to the desired directory for the clone to be located. 
+4. Enter command "git clone" and paste the previously copied URL.
+5. Hit enter and the clone will be created.
 
 ### Credits
 All quotes content was taken from the below Kaggle database from user Amit Mittal.
