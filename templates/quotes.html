@@ -52,10 +52,10 @@
         <!-- for each oject in quotes -->
         {% for quote in quotes %}
 
-        <!-------- Desktop Quote section -------->
+        <!-- Desktop Quote section -->
         <!-- Acknowledge: https://codepen.io/tiggr/pen/MWyJJEz -->
         <div class="hide-on-small-only col l12 m12"></div>
-        <article class="hide-on-small-only article">
+        <div class="hide-on-small-only article">
             <blockquote class="quote-blockquote">
                 <p>{{ quote.Quote }}
                 </p>
@@ -93,9 +93,9 @@
                     </form>
                 </div>
             </blockquote>
-        </article>
+        </div>
 
-        <!-------- Mobile Quote section -------->
+        <!-- Mobile Quote section -->
         <!-- Acknowledge: https://codepen.io/chris22smith/pen/oQWavL -->
         <div class="hide-on-med-and-up animated-border-quote">
             <blockquote>
@@ -132,7 +132,7 @@
             </blockquote>
         </div>
         {% endfor %}
-    <!-------- Quotes Pagination -------->
+    <!-- Quotes Pagination -->
     <!-- Acknowledge: https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
     <!-- if not searched for users favourites -->
     {% if get_fav == None %}

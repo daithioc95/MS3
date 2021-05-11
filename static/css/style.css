@@ -312,7 +312,7 @@ a.link {
 
 .article blockquote {
 	position: relative;
-	margin: 50px 0;
+	margin-bottom: 50px;
 	font-style: italic;
 	background: var(--quote-bg) no-repeat left / 140px;
 	border-radius: var(--border-rad);

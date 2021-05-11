@@ -287,6 +287,10 @@ Tested and working consistently on the below browsers for desktop.
 
   - js jint gitpod extention highlighted no JS errors
 
+### Known bugs and issues
+- W3 HTML Validator Warnings
+  - All pages have a "Section lacks heading. Consider using h2-h6 elements to add identifying headings to all sections.". This is because flash messaged are stored in a section container and when the flash messages are not activated the H element in which they are stored in is not visible.
+
 ### Credits
 All quotes content was taken from the below Kaggle database from user Amit Mittal.
 https://www.kaggle.com/akmittal/quotes-dataset

@@ -151,7 +151,7 @@
             {% for quote in quotes %}
             <!-------- Desktop Quote section -------->
             <!-- Acknowledge: https://codepen.io/tiggr/pen/MWyJJEz -->
-            <article class="hide-on-small-only article">
+            <div class="hide-on-small-only article">
                 <blockquote class="quote-blockquote">
                     <p>{{ quote.Quote }}
                     </p>
@@ -189,7 +189,7 @@
                         </form>
                     </div>
                 </blockquote>
-            </article>
+            </div>
 
             <!-------- Mobile Quote section -------->
             <!-- Acknowledge: https://codepen.io/chris22smith/pen/oQWavL -->
@@ -265,7 +265,7 @@
         <!-------- Author card section -------->
         <!-- Acknowledge: https://codepen.io/tiggr/pen/MWyJJEz -->
         <div class="col l5 s12 m12">
-            <article class="left-align article author-card">
+            <div class="left-align article author-card">
                 <blockquote class="author-blockquote">
                     <cite>
                         <a href="{{ url_for('author_profile', Author=similar_author.Author) }}">{{ similar_author.Author }}</a>
@@ -302,7 +302,7 @@
                         </form>
                     </div>
                 </blockquote>
-            </article>
+            </div>
         </div>
 
         <!-- loop to enter spacing for every odd entry -->

@@ -49,10 +49,10 @@
     <div class="row">
         <!-- for each oject in authors -->
         {% for author in authors1 %}
-        <!-------- Desktop Author card section -------->
+        <!-- Desktop Author card section -->
         <!-- Acknowledge: https://codepen.io/tiggr/pen/MWyJJEz -->
         <div class="col s12 l5 m12">
-            <article class="left-align article author-card">
+            <div class="left-align article author-card">
                 <blockquote class="author-blockquote">
                     <cite>
                         <a href="{{ url_for('author_profile', Author=author.Author) }}">{{ author.Author }}</a>
@@ -86,7 +86,7 @@
                         </form>
                     </div>
                 </blockquote>
-            </article>
+            </div>
         </div>
         <!-- loop to enter spacing for every odd entry -->
         <!-- Acknowledge: https://stackoverflow.com/questions/7537439/how-to-increment-a-variable-on-a-for-loop-in-jinja-template -->
@@ -95,7 +95,7 @@
         {% endif %}
         {% endfor %}
     </div>
-    <!-------- Authors Pagination -------->
+    <!-- Authors Pagination -->
     <!-- Acknowledge: https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
     <!-- if not searched for users favourites -->
     {% if get_fav == None %}

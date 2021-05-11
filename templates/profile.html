@@ -59,7 +59,7 @@
         {% for quote in quotes %}
         <!-------- Desktop Quote section -------->
         <!-- Acknowledge: https://codepen.io/tiggr/pen/MWyJJEz -->
-        <article class="hide-on-small-only article">
+        <div class="hide-on-small-only article">
             <blockquote class="quote-blockquote">
                 <p>{{ quote.Quote }}
                 </p>
@@ -98,7 +98,7 @@
                     </form>
                 </div>
             </blockquote>
-        </article>
+        </div>
 
         <!-------- Mobile Quote section -------->
         <!-- Acknowledge: https://codepen.io/chris22smith/pen/oQWavL -->
@@ -152,7 +152,7 @@
         <!-------- Author card section -------->
         <!-- Acknowledge: https://codepen.io/tiggr/pen/MWyJJEz -->
         <div class="col s12 l5 m12">
-            <article class="left-align article author-card">
+            <div class="left-align article author-card">
                 <blockquote class="author-blockquote">
                     <cite>
                         <a href="{{ url_for('author_profile', Author=author.Author) }}">{{ author.Author }}</a>
@@ -187,7 +187,7 @@
                         </form>
                     </div>
                 </blockquote>
-            </article>
+            </div>
         </div>
         <!-- loop to enter spacing for every odd entry -->
         <!-- Acknowledge: https://stackoverflow.com/questions/7537439/how-to-increment-a-variable-on-a-for-loop-in-jinja-template -->
