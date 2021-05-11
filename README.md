@@ -271,17 +271,18 @@ Tested and working consistently on the below browsers for desktop.
 
   - W3 HTML Validator: https://validator.w3.org/
 
-   - quotes.html Validator success
-   - authors.html Validator success
-   - books.html Validator success
-   - indiv_author.html Validator success
-   - indiv_book.html Validator success
-   - mood.html Validator success
-   - profile.html Validator success
-   - login.html Validator success
-   - register.html Validator success
+   - <a href="static/images/user-story-testing/quotes-validator.JPG" target="_blank">quotes.html Validator success</a>
+   - <a href="static/images/user-story-testing/authors-validator.JPG" target="_blank">authors.html Validator success</a>
+   - <a href="static/images/user-story-testing/books-validator.JPG" target="_blank">books.html Validator success</a>
+   - <a href="static/images/user-story-testing/indiv_author-validator.JPG" target="_blank">indiv_author.html Validator success</a>
+   - <a href="static/images/user-story-testing/indiv_book-validator.JPG" target="_blank">indiv_book.html Validator success</a>
+   - <a href="static/images/user-story-testing/mood-validator.JPG" target="_blank">mood.html Validator success</a>
+   - <a href="static/images/user-story-testing/profile-validator.JPG" target="_blank">profile.html Validator success</a>
+   - <a href="static/images/user-story-testing/login-validator.JPG" target="_blank">login.html Validator success</a>
+   - <a href="static/images/user-story-testing/register-validator.JPG" target="_blank">register.html Validator success</a>
 
   - Jigsaw CSS Validator: https://validator.w3.org/
+   - <a href="static/images/user-story-testing/css-validator.JPG" target="_blank">CSS Validator success</a>
 
 - JSHint JavaScript Validator: https://jshint.com/
 
