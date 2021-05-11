@@ -172,6 +172,8 @@ The surface plane is the least conceptual plane and consists of the actual conte
   - Used to browse and discover a wealth of databases
 - Google Fonts
   - Used for font implementation and inspiration.
+- http://techsini.com/
+  - Used for Responsive Theme image at beginning of this ReadME.
 
 ### Testing
 
@@ -179,63 +181,67 @@ The surface plane is the least conceptual plane and consists of the actual conte
 ##### As a visitor, I would like to browse and discover quotes which interest me so that I can find inspiration.
 - Go to the website homepage
 - If logged in with no favourited quotes or logged out, you can browse and discover quotes in order of popularity.
+<img src="static/images/user-story-testing/logged-out-quotes.JPG">
 - If you are logged in and have favourited quotes you can click the “View Popular Quotes” link where you can discover quotes in order of popularity.
 - This will provide 20 pages of inspirational quotes.
 - The search box can also be used to enter terms to discover quotes depending on a specific category.
-***Quotes.HTML Screenshot***
+<img src="static/images/user-story-testing/logged-in-quotes.JPG">
 - The Author name can also be selected to route you to a page showing quotes and books exclusively from this Author.
 - Links to Similar Authors pages can also be chosen.
-***indiv Author SS***
-***Similar Authors section SS***
+<img src="static/images/user-story-testing/indiv_author.JPG">
+<img src="static/images/user-story-testing/indiv_author-similar-authors.JPG">
 
 ##### As a visitor, I would like to save my favourite quotes/authors/books so that I can view at a later stage.
 - Adding Quote
   - When logged in and the user sees a quote they like, select the star at the top right-hand corner of the quote box.
-***Quote box image****
+<img src="static/images/user-story-testing/quote-box.JPG">
   - Select the star.
   - The star should glow yellow and a confirmation “Added to Favourites toast message should appear.
-***Checked star and toast message image***
+<img src="static/images/user-story-testing/quote-box-added-to-favs.JPG">
 - Adding Author
   - When logged in and the user sees an Author they like, select the star at the right-hand corner of the quote box.
-***Author box image****
+<img src="static/images/user-story-testing/author-box.JPG">
   - The star should glow yellow and a confirmation “Added to Favourites toast message should appear.
-***Checked star and toast message image***
+<img src="static/images/user-story-testing/author-box-added-to-favs.JPG">
 - Adding Book
   - When logged in and the user sees a book they like, select the link to the book page
   - To the right-hand side of the main book icon the user cans select this star.
   - The star will glow yellow and a confirmation “Added to Favourites toast message should appear.
-•	***Book Star image****
+<img src="static/images/user-story-testing/indiv_book.JPG">
 - View favourites
   - When the user is signed in, they can go to the ‘profile’ page to see their favourited items.
   - The first heading will show the users favourited quotes.
   - The second heading will show the users favourited Authors
   - The third heading will show the users favourited Books
-  ***Profile page image***
+<img src="static/images/user-story-testing/profile-quotes.JPG">
+<img src="static/images/user-story-testing/profile-authors.JPG">
+<img src="static/images/user-story-testing/profile-books.JPG">
 
 ##### As a visitor, I would like to discover quotes which coincide with the current mood I am experiencing so that I can find inspiration.
 - Open the Mood page which can be located in the navbar.
-***Navbar SS***
 - The mood page will show a series of tags on the mood board.
 - The user can select the tags which coincide with their current mood.
 - They can then select the “generate mood” button.
-***Mood Board SS***
+<img src="static/images/user-story-testing/mood-board.JPG">
 - When they scroll down, they can find inspiration in the quotes shown to them.
-***Generated Quotes SS***
+<img src="static/images/user-story-testing/mood-board-generated.JPG">
+
 ##### As a visitor, I would like to search quotes/authors/books from the database so that I can research quotes in the database depending on my specific interest.
 - The user can use the homepage search bar to search Quotes, tags and Authors.
-*** homepage search bar SS***
+<img src="static/images/user-story-testing/homepage-searchbar.JPG">
 - The user can use the Authors.HTML search bar to search by Author only.
-*** Authors.HTML search bar SS***
+
 - The user can use the Books.HTML search bar to search by Book only.
-*** Books.HTML search bar SS***
-***Results SS***
+<img src="static/images/user-story-testing/books-searchbar.JPG">
+<img src="static/images/user-story-testing/searchbar-results.JPG">
+
 ##### As a visitor, I would like to register and login so that I can view my favourite quotes/authors/books.
 - The user can register by selecting the register button in the navbar.
-***NavBar SS***
+<img src="static/images/user-story-testing/navbar-register.JPG">
 - They can enter relevant info into the form as per below.
-***Form SS***
+<img src="static/images/user-story-testing/register-form.JPG">
 - If the username is unique and the input passes the validation, they will see the alert as per below.
-***Flash message SS***
+<img src="static/images/user-story-testing/register-success.JPG">
 - As they select favourited quotes/authors/books they can view at a later stage on the profile page.
 
 ### Browsers

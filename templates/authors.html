@@ -27,7 +27,7 @@
     <div id="title" class="row">
         <!-- if logged in, user requested favourite authors and has favourite authors -->
         {% if session.user and get_fav == None and fav_authors2 %}
-            <h2>{{ session['user'] }}'{% if session['user'][session['user']|length-1] != "s" %}s{% endif %} Favouriteauthors</h2>
+            <h2>{{ session['user'] }}'{% if session['user'][session['user']|length-1] != "s" %}s{% endif %} Favourite authors</h2>
             <h3 class="link-heading"><a href="{{ url_for('get_authors', get_fav = "No") }}">Discover authors here</a></h3>
         <!-- if searched -->
         {% elif url_for(request.endpoint) == url_for('search_authors') %}
