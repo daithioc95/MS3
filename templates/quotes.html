@@ -163,7 +163,7 @@
     {% elif searched %}
     <ul class="pagination center-align">
         <li class="{% if  page < 2 %}disabled{% endif %}">
-            <a href="{% if  page < 2 %}{% else %}{{ url_for('search_authors', page = page - 1, query_quote=query_quote, _anchor='quotes_title') }}{% endif %}">
+            <a href="{% if  page < 2 %}{% else %}{{ url_for('search_quotes', page = page - 1, query_quote=query_quote, _anchor='quotes_title') }}{% endif %}">
                 <i class="material-icons">chevron_left</i>
             </a>
         </li>
@@ -243,10 +243,10 @@
                 'Checkbox': checkbox_id,
                 'Status': $(this).prop("checked")
             },
-            success: function (response) {
+            success: function (_response) {
             },
-            error: function (request, status, error) {
-                console.log("Error: " + error)
+            error: function (_request, _status, error) {
+                console.log("Error: " + error);
             }
         }
         );

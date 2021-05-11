@@ -1,6 +1,4 @@
 import os
-import pymongo
-import json
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -9,9 +7,9 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 import math
+from datetime import datetime
 if os.path.exists("env.py"):
     import env
-from datetime import date, datetime
 
 
 app = Flask(__name__)
@@ -20,6 +18,7 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
+
 
 mongo = PyMongo(app)
 
@@ -273,6 +272,7 @@ def get_favourites(username, category):
     # Return list
     return (favourites)
 
+
 # Function to search quotes
 @app.route("/search_quotes", methods=["GET", "POST"])
 def search_quotes():
@@ -284,7 +284,7 @@ def search_quotes():
     # For different pages extract query from url
     else:
         query = request.args.get('query_quote')
-    #ensure qotd is still defined
+    # ensure qotd is still defined
     # formula to extract different date per day
     base = int(20210507)
     today = datetime.today()
@@ -331,6 +331,7 @@ def search_quotes():
                            query_quote=query,
                            searched=searched)
 
+
 # Function to search authors
 @app.route("/search_authors", methods=["GET", "POST"])
 def search_authors():
@@ -375,6 +376,7 @@ def search_authors():
                            fav_authors2=starred,
                            query_author=searchTerm,
                            searched=searched)
+
 
 # function for individual author profile
 @app.route("/author_profile/<Author>", methods=["GET", "POST"])
@@ -428,6 +430,7 @@ def author_profile(Author):
                            pages=pages,
                            limit=limit,
                            final_page=final_page)
+
 
 # Function to get books
 @app.route("/get_books", methods=["GET"])
@@ -491,6 +494,7 @@ def search_books():
                            query_book=searchTerm,
                            searched=searched)
 
+
 # function for individual Book profile
 @app.route("/book_profile/<Book>", methods=["GET", "POST"])
 def book_profile(Book):
@@ -518,14 +522,11 @@ def book_profile(Book):
         if session["user"]:
             # get array of id's for users favourite quotes
             fav_quotes2 = get_starred(session["user"], "quote")
-            # get array of id's for users favourite authors
-            fav_authors2 = get_starred(session["user"], "author")
             # get array of id's for users favourite books
             fav_books2 = get_starred(session["user"], "book")
     # if session["user"] not recognised, user is logged out
     except KeyError:
         fav_quotes2 = []
-        fav_authors2 = []
         fav_books2 = []
     return render_template("indiv_book.html",
                            book=book,
@@ -539,6 +540,7 @@ def book_profile(Book):
                            final_page=final_page
                            )
 
+
 # Funciton for mood page
 @app.route("/get_mood")
 def get_mood():
@@ -550,7 +552,7 @@ def get_mood():
 def generate_mood():
     # get page number
     page = request.args.get('page', 1, type=int)
-     # limit quotes to 5 results
+    # limit quotes to 5 results
     limit = int(5)
     # iterate through objects depending on page number
     skips = limit * (page - 1)
@@ -591,6 +593,7 @@ def generate_mood():
                            search_tags=search_tags
                            )
 
+
 # Funciton for shared quote page
 @app.route("/share_quote/<_id>", methods=["GET", "POST"])
 def share_quote(_id):
@@ -629,6 +632,7 @@ def register():
 
     return render_template("register.html")
 
+
 # Funciton for user to login
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -657,6 +661,7 @@ def login():
             return redirect(url_for("login"))
 
     return render_template("login.html")
+
 
 # Funciton for users profile page
 @app.route("/profile/<username>", methods=["GET", "POST"])
@@ -687,6 +692,7 @@ def profile(username):
 
     return redirect(url_for("login"))
 
+
 # funciton for comments section
 @app.route("/comment", methods=["GET", "POST"])
 def comment():
@@ -715,6 +721,7 @@ def comment():
             mongo.db.books.update_one({"Book": Book}, {"$addToSet": {"Comments": {
                                       'text': comment, 'user': username, 'date': date}}})
             return redirect(url_for("book_profile", Book=Book))
+
 
 # Funciton for user to log out
 @app.route("/logout")

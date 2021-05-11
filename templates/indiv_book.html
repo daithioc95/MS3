@@ -310,10 +310,10 @@
                 'Checkbox': checkbox_id,
                 'Status': $(this).prop("checked")
             },
-            success: function (response) {
+            success: function (_response) {
             },
-            error: function (request, status, error) {
-                console.log("Error: " + error)
+            error: function (_request, _status, error) {
+                console.log("Error: " + error);
             }
         }
         );
@@ -342,10 +342,10 @@
                 'Checkbox': checkbox_id,
                 'Status': $(this).prop("checked")
             },
-            success: function (response) {
+            success: function (_response) {
             },
-            error: function (request, status, error) {
-                console.log("Error: " + error)
+            error: function (_request, _status, error) {
+                console.log("Error: " + error);
             }
         }
         );

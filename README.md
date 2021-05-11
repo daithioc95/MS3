@@ -85,6 +85,49 @@ The Structure plane is focused on taking the content selected from the scope pla
 ### Skeleton Plane
 
 Once the sections and layout has been identified as in the previous planes, we can get started with the Skeleton Plane. The Skeleton Planes outlines the arrangement of each section on the website and the best way to design these are by creating wireframes. I initially drew these wireframes before creating using Balsamiq software.
+#### quotes.html (Homepage)
+##### Desktop
+<img src="static/images/wireframes/homepage_desktop.png">
+
+##### Mobile
+<img src="static/images/wireframes/homepage_mobile.png">
+
+#### authors.html
+##### Desktop
+<img src="static/images/wireframes/author_desktop.png">
+
+##### Mobile
+<img src="static/images/wireframes/author_mobile.png">
+
+#### books.html 
+##### Desktop
+<img src="static/images/wireframes/books_desktop.png">
+
+##### Mobile
+<img src="static/images/wireframes/books_mobile.png">
+
+#### indiv_author.html 
+##### Desktop
+<img src="static/images/wireframes/individual_author_desktop.png">
+
+##### Mobile
+<img src="static/images/wireframes/individual_author_mobile.png">
+
+#### profile.html 
+##### Desktop
+<img src="static/images/wireframes/user_profile_desktop.png">
+
+##### Mobile
+<img src="static/images/wireframes/user_profile_mobile.png">
+
+#### mood.html 
+##### Desktop
+<img src="static/images/wireframes/mood_desktop.png">
+
+##### Mobile
+<img src="static/images/wireframes/mood_mobile.png">
+
+
 
 ### Surface Plane
 The surface plane is the least conceptual plane and consists of the actual content and features on the website.
@@ -181,40 +224,58 @@ The surface plane is the least conceptual plane and consists of the actual conte
 ##### As a visitor, I would like to browse and discover quotes which interest me so that I can find inspiration.
 - Go to the website homepage
 - If logged in with no favourited quotes or logged out, you can browse and discover quotes in order of popularity.
+
 <img src="static/images/user-story-testing/logged-out-quotes.JPG">
+
 - If you are logged in and have favourited quotes you can click the “View Popular Quotes” link where you can discover quotes in order of popularity.
 - This will provide 20 pages of inspirational quotes.
 - The search box can also be used to enter terms to discover quotes depending on a specific category.
+
 <img src="static/images/user-story-testing/logged-in-quotes.JPG">
+
 - The Author name can also be selected to route you to a page showing quotes and books exclusively from this Author.
 - Links to Similar Authors pages can also be chosen.
+
 <img src="static/images/user-story-testing/indiv_author.JPG">
 <img src="static/images/user-story-testing/indiv_author-similar-authors.JPG">
 
 ##### As a visitor, I would like to save my favourite quotes/authors/books so that I can view at a later stage.
 - Adding Quote
   - When logged in and the user sees a quote they like, select the star at the top right-hand corner of the quote box.
+
 <img src="static/images/user-story-testing/quote-box.JPG">
+
   - Select the star.
   - The star should glow yellow and a confirmation “Added to Favourites toast message should appear.
+
 <img src="static/images/user-story-testing/quote-box-added-to-favs.JPG">
+
 - Adding Author
   - When logged in and the user sees an Author they like, select the star at the right-hand corner of the quote box.
+
 <img src="static/images/user-story-testing/author-box.JPG">
+
   - The star should glow yellow and a confirmation “Added to Favourites toast message should appear.
+
 <img src="static/images/user-story-testing/author-box-added-to-favs.JPG">
+
 - Adding Book
   - When logged in and the user sees a book they like, select the link to the book page
   - To the right-hand side of the main book icon the user cans select this star.
   - The star will glow yellow and a confirmation “Added to Favourites toast message should appear.
+
 <img src="static/images/user-story-testing/indiv_book.JPG">
+
 - View favourites
   - When the user is signed in, they can go to the ‘profile’ page to see their favourited items.
   - The first heading will show the users favourited quotes.
   - The second heading will show the users favourited Authors
   - The third heading will show the users favourited Books
+
 <img src="static/images/user-story-testing/profile-quotes.JPG">
+
 <img src="static/images/user-story-testing/profile-authors.JPG">
+
 <img src="static/images/user-story-testing/profile-books.JPG">
 
 ##### As a visitor, I would like to discover quotes which coincide with the current mood I am experiencing so that I can find inspiration.
@@ -222,26 +283,39 @@ The surface plane is the least conceptual plane and consists of the actual conte
 - The mood page will show a series of tags on the mood board.
 - The user can select the tags which coincide with their current mood.
 - They can then select the “generate mood” button.
+
 <img src="static/images/user-story-testing/mood-board.JPG">
+
 - When they scroll down, they can find inspiration in the quotes shown to them.
+
 <img src="static/images/user-story-testing/mood-board-generated.JPG">
 
 ##### As a visitor, I would like to search quotes/authors/books from the database so that I can research quotes in the database depending on my specific interest.
 - The user can use the homepage search bar to search Quotes, tags and Authors.
+
 <img src="static/images/user-story-testing/homepage-searchbar.JPG">
+
 - The user can use the Authors.HTML search bar to search by Author only.
 
 - The user can use the Books.HTML search bar to search by Book only.
+
 <img src="static/images/user-story-testing/books-searchbar.JPG">
+
 <img src="static/images/user-story-testing/searchbar-results.JPG">
 
 ##### As a visitor, I would like to register and login so that I can view my favourite quotes/authors/books.
 - The user can register by selecting the register button in the navbar.
+
 <img src="static/images/user-story-testing/navbar-register.JPG">
+
 - They can enter relevant info into the form as per below.
+
 <img src="static/images/user-story-testing/register-form.JPG">
+
 - If the username is unique and the input passes the validation, they will see the alert as per below.
+
 <img src="static/images/user-story-testing/register-success.JPG">
+
 - As they select favourited quotes/authors/books they can view at a later stage on the profile page.
 
 ### Browsers
@@ -249,7 +323,7 @@ Tested and working consistently on the below browsers for desktop.
 
 - Google Chrome
 - Microsoft Edge
-- Firefox**
+- Firefox
 
 - Mobile version manually tested throughout using google chrome on Xiaomi 8 and One Plus 9.
 - Tested on below screen sizes using Google Chrome developer tools.
@@ -267,9 +341,9 @@ Tested and working consistently on the below browsers for desktop.
   - Galaxy Fold
 
 - The project passed the below validation tests. Please see below links to view validation screenshot.
-***Validation tests***
 
   - W3 HTML Validator: https://validator.w3.org/
+    - Validation was complete by using URL to avoid false error flagging from Jinja templating l.anguage
 
    - <a href="static/images/user-story-testing/quotes-validator.JPG" target="_blank">quotes.html Validator success</a>
    - <a href="static/images/user-story-testing/authors-validator.JPG" target="_blank">authors.html Validator success</a>
@@ -286,11 +360,20 @@ Tested and working consistently on the below browsers for desktop.
 
 - JSHint JavaScript Validator: https://jshint.com/
 
-  - js jint gitpod extention highlighted no JS errors
+  - js jint gitpod extention highlights no JS errors
 
 ### Known bugs and issues
 - W3 HTML Validator Warnings
   - All pages have a "Section lacks heading. Consider using h2-h6 elements to add identifying headings to all sections.". This is because flash messaged are stored in a section container and when the flash messages are not activated the H element in which they are stored in is not visible.
+- Foreign Language Authors
+  - When authors with Foreign Language (such as arabic) is selected the page returned "Not Found". I believe this is due to an incompatability between the foreign Language and the database. This is for a tiny minority of the websites pages, however I intend to investigate this issue at a later point.
+- Narrow screen issue
+  - Author Box: for some very narrow screens the author box can become distored and the text may overlap the image. I will make no changed from this as the mobile version benefits from having these images and it occurs on a iregularly small screen size.
+- Share link
+  - The share link should sit vertically below the star however this was difficult to position on a all screen sizes due to the differing nature of both items elements. I will revisit this at a later time.
+
+### Deployment 
+
 
 ### Credits
 All quotes content was taken from the below Kaggle database from user Amit Mittal.
