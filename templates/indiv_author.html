@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <main class="container">
-    <!-------- desktop author details -------->
+    <!-- desktop author details -->
     <div class="desktop-author-details hide-on-small-only">
         <div class="row">
             <div class="col l2">
@@ -72,7 +72,7 @@
             </div>
         </div>
     </div>
-    <!-------- Mobile author details -------->
+    <!-- Mobile author details -->
     <div class="row mobile-author-details hide-on-med-and-up">
         <div class="flexbox">
             <div class="col s3"></div>
@@ -149,7 +149,7 @@
         <div class="flexbox">
             <!-- for each oject in quotes -->
             {% for quote in quotes %}
-            <!-------- Desktop Quote section -------->
+            <!-- Desktop Quote section -->
             <!-- Acknowledge: https://codepen.io/tiggr/pen/MWyJJEz -->
             <div class="hide-on-small-only article">
                 <blockquote class="quote-blockquote">
@@ -191,7 +191,7 @@
                 </blockquote>
             </div>
 
-            <!-------- Mobile Quote section -------->
+            <!-- Mobile Quote section -->
             <!-- Acknowledge: https://codepen.io/chris22smith/pen/oQWavL -->
             <div class="hide-on-med-and-up animated-border-quote">
                 <blockquote>
@@ -227,7 +227,7 @@
             {% endfor %}
         </div>
     </div>
-    <!-------- Quotes Pagination -------->
+    <!-- Quotes Pagination -->
     <!-- Acknowledge: https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional -->
     <!-- if not searched for users favourites -->
     <ul class="pagination center-align">
@@ -262,7 +262,7 @@
         {% set count = [] %}
         {% for similar_author in similar_authors %}
         {% if similar_author.Author != author.Author %}
-        <!-------- Author card section -------->
+        <!-- Author card section -->
         <!-- Acknowledge: https://codepen.io/tiggr/pen/MWyJJEz -->
         <div class="col l5 s12 m12">
             <div class="left-align article author-card">

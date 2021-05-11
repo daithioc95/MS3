@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <main class="container">
-    <!-------- desktop user details -------->
+    <!-- desktop user details -->
     <div class="desktop-author-details hide-on-small-only">
         <div class="row">
             <h2>{{ user.username }}'{% if user.username[user.username|length-1] != "s" %}s{% endif %} Profile</h2>
@@ -57,7 +57,7 @@
         {% if quotes.count() > 0 %}
         <!-- for each oject in quotes -->
         {% for quote in quotes %}
-        <!-------- Desktop Quote section -------->
+        <!-- Desktop Quote section -->
         <!-- Acknowledge: https://codepen.io/tiggr/pen/MWyJJEz -->
         <div class="hide-on-small-only article">
             <blockquote class="quote-blockquote">
@@ -100,7 +100,7 @@
             </blockquote>
         </div>
 
-        <!-------- Mobile Quote section -------->
+        <!-- Mobile Quote section -->
         <!-- Acknowledge: https://codepen.io/chris22smith/pen/oQWavL -->
         <div class="hide-on-med-and-up animated-border-quote">
             <blockquote>
@@ -149,7 +149,7 @@
     <div class="row">
         <!-- for each oject in authors -->
         {% for author in authors %}
-        <!-------- Author card section -------->
+        <!-- Author card section -->
         <!-- Acknowledge: https://codepen.io/tiggr/pen/MWyJJEz -->
         <div class="col s12 l5 m12">
             <div class="left-align article author-card">
