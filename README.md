@@ -622,7 +622,7 @@ Please see below image log for all used images. All images were reduced in quali
 - Thanks to the Code Institute Slack channel for providing me with a wealth of information on every aspect of the project.
 - The Elements of User Experience by Jesse James Garrett's book helped during the design process as mentioned in the UX section of the ReadMe.
 - Reused elements of my Milestone Project One & Two ReadMe to follow similar content, structure and to approach the design process in a similar manner. https://github.com/daithioc95/MS1, https://github.com/daithioc95/MS2
-- All learning content provded by CodeInstitute for theoretical knowledge and inspitration (particularly the flask-task-manager-project)
+- Thanks to all learning content provded by CodeInstitute for theoretical knowledge and inspitration (particularly the flask-task-manager-project)
 
 
 
