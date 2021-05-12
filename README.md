@@ -1,9 +1,20 @@
 # Python and Data Centric Development Milestone Project 
 <img src="static/images/wireframes/ms3_responsive_image.JPG">
 
-<a href="https://ms3-quotes.herokuapp.com/" target="_blank">Visit Website</a>
-This website is collection of over 35,000 quotes gather and organised based on author, book, categories and popularity. The website is a community by which users can store their favourite quotes,  books and authors. They can additionally share quotes with friends and comment on authors and books to express their opinions. Users can use the “mood” section so that they can discover favourite authors depending on how they feel.
+<a href="https://ms3-quotes.herokuapp.com/" target="_blank">Visit Website</a><br>
+This website is collection of over 35,000 quotes gathered and organised based on author, book, categories and popularity. The website is a community by which users can store their favourite quotes,  books and authors. Users can also share quotes with friends and comment on authors and books to express their opinions. Users can use the “mood” sectionto discover favourite authors depending on how they feel.
 This information is presented in an interactive, picturesque manner with a simple, easy on the eye design.
+
+## Index
+<a href="##UX">UX</a>
+<a href="#Technologies Used">Technologies Used</a>
+<a href="#Testing">Testing</a>
+<a href="#Browsers">Browsers</a>
+<a href="#Known bugs and issues">Known bugs and issues</a>
+<a href="#Data schemes">Data schemes</a>
+<a href="#Deployment">Deployment</a>
+[Deployment](#2-Deployment)
+<a href="#Credits">Credits</a>
 
 ## UX
 When designing this website, I followed the 5 levels of development, a well know web design process mentioned in Jesse James Garrett's book, The Elements of User Experience. The planning of each of these planes are to follow the same order as below with each plane aligning to the previous plane’s requirements. This ensures that the main objectives for the website identified in the Strategy plane aligns all the way through to the Surface Plane which identifies the actual features on the website.
@@ -138,7 +149,7 @@ The surface plane is the least conceptual plane and consists of the actual conte
 - Navbar
   - A fixed Navbar with active classes so the user can tell what page they’re on. This renders for mobile with a slide out menu on the side
 - Quote of the day
-  - A Welcome Quote box to provide daily inspiration. The same styling is implemented for the share quote page.
+  - A Welcome Quote box to provide daily inspiration. This changes to a different quote each day. The same styling is implemented for the share quote page.
 - Search
   - Considering the size of the database we have implemented search options for the Quotes, Authors and Books page so users can explore by wording or locate exact authors, books or quotes.
 - Form
@@ -248,7 +259,7 @@ The surface plane is the least conceptual plane and consists of the actual conte
 <img src="static/images/user-story-testing/quote-box.JPG">
 
   - Select the star.
-  - The star should glow yellow and a confirmation “Added to Favourites toast message should appear.
+  - The star will glow yellow and a confirmation “Added to Favourites toast message will appear.
 
 <img src="static/images/user-story-testing/quote-box-added-to-favs.JPG">
 
@@ -257,14 +268,14 @@ The surface plane is the least conceptual plane and consists of the actual conte
 
 <img src="static/images/user-story-testing/author-box.JPG">
 
-  - The star should glow yellow and a confirmation “Added to Favourites toast message should appear.
+  - The star will glow yellow and a confirmation “Added to Favourites toast message will appear.
 
 <img src="static/images/user-story-testing/author-box-added-to-favs.JPG">
 
 - Adding Book
   - When logged in and the user sees a book they like, select the link to the book page
   - To the right-hand side of the main book icon the user cans select this star.
-  - The star will glow yellow and a confirmation “Added to Favourites toast message should appear.
+  - The star will glow yellow and a confirmation “Added to Favourites toast message will appear.
 
 <img src="static/images/user-story-testing/indiv_book.JPG">
 
@@ -389,7 +400,7 @@ The cluster used for this project contains 4 collections in total which are show
 - A data base will be needed to work off for a local file, this can be created using MongoDB by following the below instructions.
   - Create a MongoDB account.
   - Create a cluster.
-  - Create 4 (self-explanitary) collections; authors, books, quotes and users.
+  - Create 4 collections; authors, books, quotes and users.
   - Set values for these collections as content for the website.
 - The environment variables will then be needed to allow the website to access the database. Please follow the below instrutions.
   - Create a .gitignore file.
@@ -434,7 +445,123 @@ All quotes content was taken from the below Kaggle database from user Amit Mitta
 https://www.kaggle.com/akmittal/quotes-dataset
 Images
 Please see below image log for all used images. All images were reduced in quality by using https://picresize.com/ for a smoother user loading and user experience.
-***Image log***
+-	authors_welcome_image 	:	https://www.pexels.com/photo/ancient-antique-architectural-design-architecture-442420/ 
+-	mood_welcome_image 	:	https://images.pexels.com/photos/395196/pexels-photo-395196.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 
+-	book_welcome_image 	:	https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260
+-	avatar_icon.jpg	:	https://icon-library.com/icon/avatar-icon-free-26.html
+-	dr._seuss 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Theodor_Seuss_Geisel_%2801037v%29.jpg/440px-Theodor_Seuss_Geisel_%2801037v%29.jpg 
+-	marilyn_monroe 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Monroecirca1953.jpg/440px-Monroecirca1953.jpg 
+-	oscar_wilde 	:	https://cdn.pixabay.com/photo/2016/01/27/22/49/oscar-wilde-1165545_1280.jpg 
+-	albert_einstein 	:	https://upload.wikimedia.org/wikipedia/commons/5/50/Albert_Einstein_%28Nobel%29.png 
+-	bernard_m._baruch 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/BARUCH%2C_BERNARD_2.jpg/440px-BARUCH%2C_BERNARD_2.jpg 
+-	marcus_tullius_cicero 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Cicero_-_Musei_Capitolini.JPG/460px-Cicero_-_Musei_Capitolini.JPG 
+-	frank_zappa 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/The_famous_mustache_and_goatee.jpg/440px-The_famous_mustache_and_goatee.jpg 
+-	mae_west 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Mae_West_LAT.jpg/440px-Mae_West_LAT.jpg 
+-	mahatma_gandhi 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Mahatma-Gandhi%2C_studio%2C_1931.jpg/440px-Mahatma-Gandhi%2C_studio%2C_1931.jpg 
+-	c.s._lewis 	:	https://upload.wikimedia.org/wikipedia/en/1/1e/C.s.lewis3.JPG 
+-	j.k._rowling 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/J._K._Rowlings_1999.jpg/340px-J._K._Rowlings_1999.jpg 
+-	albert_camus 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Albert_Camus%2C_gagnant_de_prix_Nobel%2C_portrait_en_buste%2C_pos%C3%A9_au_bureau%2C_faisant_face_%C3%A0_gauche%2C_cigarette_de_tabagisme.jpg/440px-Albert_Camus%2C_gagnant_de_prix_Nobel%2C_portrait_en_buste%2C_pos%C3%A9_au_bureau%2C_faisant_face_%C3%A0_gauche%2C_cigarette_de_tabagisme.jpg 
+-	eleanor_roosevelt 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Eleanor_Roosevelt_portrait_1933.jpg/440px-Eleanor_Roosevelt_portrait_1933.jpg 
+-	mark_twain 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Mark_Twain_by_AF_Bradley.jpg/440px-Mark_Twain_by_AF_Bradley.jpg 
+-	elbert_hubbard 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Elbert_Hubbard_-_Project_Gutenberg_eText_12933.jpg/440px-Elbert_Hubbard_-_Project_Gutenberg_eText_12933.jpg 
+-	maya_angelou 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Angelou_at_Clinton_inauguration_%28cropped_2%29.jpg/440px-Angelou_at_Clinton_inauguration_%28cropped_2%29.jpg 
+-	martin_luther_king_jr. 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Martin_Luther_King%2C_Jr..jpg/440px-Martin_Luther_King%2C_Jr..jpg 
+-	ralph_waldo_emerson 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Ralph_Waldo_Emerson_ca1857_retouched.jpg/440px-Ralph_Waldo_Emerson_ca1857_retouched.jpg 
+-	h._jackson_brown_jr. 	:	https://upload.wikimedia.org/wikipedia/commons/c/cb/H._Jackson_Brown%2C_Jr..jpg 
+-	andré_gide 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Andr%C3%A9_Gide.jpg/440px-Andr%C3%A9_Gide.jpg 
+-	j.r.r._tolkien 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/J._R._R._Tolkien%2C_1940s.jpg/440px-J._R._R._Tolkien%2C_1940s.jpg 
+-	jane_austen 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Jane_Austen%2C_from_A_Memoir_of_Jane_Austen_%281870%29.jpg/440px-Jane_Austen%2C_from_A_Memoir_of_Jane_Austen_%281870%29.jpg 
+-	william_shakespeare 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Shakespeare.jpg/440px-Shakespeare.jpg 
+-	bil_keane 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Bil_Keane_%281990%29.jpg/440px-Bil_Keane_%281990%29.jpg 
+-	thomas_a._edison 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Thomas_Edison2.jpg/440px-Thomas_Edison2.jpg 
+-	elie_wiesel 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/ELIE_WIESEL_%285112581267%29.jpg/440px-ELIE_WIESEL_%285112581267%29.jpg 
+-	neil_gaiman 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Kyle-cassidy-neil-gaiman-April-2013.jpg/440px-Kyle-cassidy-neil-gaiman-April-2013.jpg 
+-	groucho_marx 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Groucho_Marx_-_portrait.jpg/440px-Groucho_Marx_-_portrait.jpg 
+-	douglas_adams 	:	https://upload.wikimedia.org/wikipedia/commons/c/c0/Douglas_adams_portrait_cropped.jpg 
+-	steve_martin 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Steve_Martin%2C_2017-08-11.jpg/440px-Steve_Martin%2C_2017-08-11.jpg 
+-	pablo_neruda 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Pablo_Neruda_1963.jpg/440px-Pablo_Neruda_1963.jpg 
+-	friedrich_nietzsche 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Nietzsche187a.jpg/440px-Nietzsche187a.jpg 
+-	mother_teresa 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Mother_Teresa_1.jpg/440px-Mother_Teresa_1.jpg 
+-	sarah_dessen 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Sarah_Dessen_2017.jpg/440px-Sarah_Dessen_2017.jpg 
+-	garrison_keillor 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/GKpress.jpg/440px-GKpress.jpg 
+-	george_r.r._martin 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Portrait_photoshoot_at_Worldcon_75%2C_Helsinki%2C_before_the_Hugo_Awards_%E2%80%93_George_R._R._Martin.jpg/440px-Portrait_photoshoot_at_Worldcon_75%2C_Helsinki%2C_before_the_Hugo_Awards_%E2%80%93_George_R._R._Martin.jpg 
+-	robert_a._heinlein 	:	https://upload.wikimedia.org/wikipedia/commons/b/bf/Heinlein-face.jpg 
+-	jorge_luis_borges 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Jorge_Luis_Borges.jpg/440px-Jorge_Luis_Borges.jpg 
+-	suzanne_collins 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Suzanne_Collins_David_Shankbone_2010.jpg/440px-Suzanne_Collins_David_Shankbone_2010.jpg 
+-	anaïs_nin 	:	https://upload.wikimedia.org/wikipedia/commons/a/ab/Anaisnin.jpg 
+-	jim_henson 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NHS_Jim_Henson_Display_%28cropped%29.jpg/440px-NHS_Jim_Henson_Display_%28cropped%29.jpg 
+-	charles_m._schulz 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Charles_Schulz_NYWTS.jpg/440px-Charles_Schulz_NYWTS.jpg 
+-	pablo_picasso 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Portrait_de_Picasso%2C_1908.jpg/440px-Portrait_de_Picasso%2C_1908.jpg 
+-	lemony_snicket 	:	https://upload.wikimedia.org/wikipedia/en/1/1a/Patrick_Warburton_as_Lemony_Snicket.png 
+-	woody_allen 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Woody_Allen_Cannes_2016.jpg/440px-Woody_Allen_Cannes_2016.jpg 
+-	nicholas_sparks 	:	https://upload.wikimedia.org/wikipedia/commons/a/af/Nicholas-Sparks-Autograph-1-4-06.jpg 
+-	cassandra_clare 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Cassandra_Clare_by_Gage_Skidmore%2C_2013_b.jpg/440px-Cassandra_Clare_by_Gage_Skidmore%2C_2013_b.jpg 
+-	bob_marley 	:	https://images.unsplash.com/photo-1538598450935-581f6a5fa7e0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=766&q=80 
+-	walter_m._miller_jr. 	:	https://upload.wikimedia.org/wikipedia/en/8/81/Walter-m-miller-1.jpg 
+-	abraham_lincoln 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Abraham_Lincoln_O-77_matte_collodion_print.jpg/440px-Abraham_Lincoln_O-77_matte_collodion_print.jpg 
+-	haruki_murakami 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Murakami_Haruki_%282009%29.jpg/440px-Murakami_Haruki_%282009%29.jpg 
+-	markus_zusak 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Markus_Zusak_2019_%28cropped%29.jpg/440px-Markus_Zusak_2019_%28cropped%29.jpg 
+-	alexandre_dumas-fils 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Alexandre_Dumas_fils.jpg/440px-Alexandre_Dumas_fils.jpg 
+-	virginia_woolf 	:	"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/George_Charles_Beresford_-_Virginia_Woolf_in_1902_-_Restoration.jpg/440px-George_Charles_Beresford_-_Virginia_Woolf_in_1902_-_Restoration.jpg"
+-	theodore_roosevelt 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/President_Roosevelt_-_Pach_Bros_%28cropped%29.jpg/440px-President_Roosevelt_-_Pach_Bros_%28cropped%29.jpg 
+-	shel_silverstein 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Portrait_of_Shel_Silverstein_in_c._1964_by_Jerry_Yulsman.jpg/440px-Portrait_of_Shel_Silverstein_in_c._1964_by_Jerry_Yulsman.jpg 
+-	robert_fulghum 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Robert_Fulghum.jpg/400px-Robert_Fulghum.jpg 
+-	helen_keller 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Helen_Keller_circa_1920_-_restored.jpg/440px-Helen_Keller_circa_1920_-_restored.jpg 
+-	jodi_picoult 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jodi_Picoult_as_the_2013_Harry_Middleton_Lecturer_DIG13478-016.jpg/440px-Jodi_Picoult_as_the_2013_Harry_Middleton_Lecturer_DIG13478-016.jpg 
+-	stephenie_meyer 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Stephenie_Meyer_by_Gage_Skidmore.jpg/440px-Stephenie_Meyer_by_Gage_Skidmore.jpg 
+-	ernest_hemingway 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/440px-ErnestHemingway.jpg 
+-	a.a._milne 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Milne-Shadowland-1922.jpg/440px-Milne-Shadowland-1922.jpg 
+-	terry_pratchett 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/10.12.12TerryPratchettByLuigiNovi1.jpg/440px-10.12.12TerryPratchettByLuigiNovi1.jpg 
+-	alfred_lord_tennyson 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Alfred_Tennyson%2C_1st_Baron_Tennyson_by_George_Frederic_Watts.jpg/440px-Alfred_Tennyson%2C_1st_Baron_Tennyson_by_George_Frederic_Watts.jpg 
+-	charles_bukowski 	:	https://upload.wikimedia.org/wikipedia/en/e/e2/Charles_Bukowski_smoking.jpg 
+-	stephen_chbosky 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Stephen_Chbosky%2C_Jericho_Panel_at_Comic_Con_SD_2006_cropped.jpg/440px-Stephen_Chbosky%2C_Jericho_Panel_at_Comic_Con_SD_2006_cropped.jpg 
+-	benjamin_franklin_wade 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Benjamin_F_Wade_-_Brady-Handy.jpg/440px-Benjamin_F_Wade_-_Brady-Handy.jpg 
+-	george_carlin 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/George_Carlin_1975_%28Little_David_Records%29_Publicity.jpg/440px-George_Carlin_1975_%28Little_David_Records%29_Publicity.jpg 
+-	w.c._fields 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/W._C._Fields_1938.jpg/440px-W._C._Fields_1938.jpg 
+-	j.d._salinger 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/J._D._Salinger_%28Catcher_in_the_Rye_portrait%29.jpg/440px-J._D._Salinger_%28Catcher_in_the_Rye_portrait%29.jpg 
+-	margaret_thatcher 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Margaret_Thatcher_stock_portrait_%28cropped%29.jpg/440px-Margaret_Thatcher_stock_portrait_%28cropped%29.jpg 
+-	karl_a._menninger 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/DR._AND_MRS._KARL_MENNINGER_ATTENDING_THE_SECOND_ANNUAL_TALLGRASS_PRAIRIE_NATIONAL_PARK_CONFERENCE_HELD_AT_ELMDALE..._-_NARA_-_557149.jpg/440px-DR._AND_MRS._KARL_MENNINGER_ATTENDING_THE_SECOND_ANNUAL_TALLGRASS_PRAIRIE_NATIONAL_PARK_CONFERENCE_HELD_AT_ELMDALE..._-_NARA_-_557149.jpg 
+-	victor_borge 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Victor-Borge.jpg/440px-Victor-Borge.jpg 
+-	ivan_illich 	:	https://upload.wikimedia.org/wikipedia/en/7/70/Ivan_Illich.jpg 
+-	henry_ford 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Henry_ford_1919.jpg/440px-Henry_ford_1919.jpg 
+-	robert_green_ingersoll 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Robert_G._Ingersoll_-_Brady-Handy.jpg/440px-Robert_G._Ingersoll_-_Brady-Handy.jpg 
+-	henry_wadsworth_longfellow 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Henry_Wadsworth_Longfellow%2C_photographed_by_Julia_Margaret_Cameron_in_1868.jpg/440px-Henry_Wadsworth_Longfellow%2C_photographed_by_Julia_Margaret_Cameron_in_1868.jpg 
+-	saint_augustine 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Saint_Augustine_by_Philippe_de_Champaigne.jpg/350px-Saint_Augustine_by_Philippe_de_Champaigne.jpg 
+-	hunter_s._thompson 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Hunter_S._Thompson%2C_Las_Vegas_1971.jpg/440px-Hunter_S._Thompson%2C_Las_Vegas_1971.jpg 
+-	ambrose_bierce 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Abierce.jpg/440px-Abierce.jpg 
+-	anne_morrow_lindbergh 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Anne_Morrow_Lindbergh_LCCN2012647141_%28cropped%29.jpg/440px-Anne_Morrow_Lindbergh_LCCN2012647141_%28cropped%29.jpg 
+-	agnes_repplier 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Agnes_Repplier_C.jpg/440px-Agnes_Repplier_C.jpg 
+-	will_rogers 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Will_Rogers_1922.jpg/440px-Will_Rogers_1922.jpg 
+-	friedrich_durrenmatt 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Friedrich_duerrenmatt_19890427.jpg/440px-Friedrich_duerrenmatt_19890427.jpg 
+-	piet_mondrian 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Piet_Mondriaan.jpg/440px-Piet_Mondriaan.jpg 
+-	john_wooden 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/John_Wooden.JPG/440px-John_Wooden.JPG 
+-	herman_cain 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Herman_Cain_by_Gage_Skidmore_4.jpg/440px-Herman_Cain_by_Gage_Skidmore_4.jpg 
+-	oliver_goldsmith 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Oliver_Goldsmith_by_Sir_Joshua_Reynolds.jpg/440px-Oliver_Goldsmith_by_Sir_Joshua_Reynolds.jpg 
+-	ludwig_van_beethoven 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Beethoven.jpg/440px-Beethoven.jpg 
+-	philip_johnson 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Philip_Johnson.2002.FILARDO.jpg/440px-Philip_Johnson.2002.FILARDO.jpg 
+-	sid_caesar 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Sid_Caesar_-_1961.JPG/440px-Sid_Caesar_-_1961.JPG 
+-	francoise_sagan 	:	https://upload.wikimedia.org/wikipedia/en/a/a3/Fran%C3%A7oise_Sagan.jpg 
+-	charles_lindbergh 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Col_Charles_Lindbergh.jpg/440px-Col_Charles_Lindbergh.jpg 
+-	paul_valery 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Paul_Val%C3%A9ry_-_photo_Henri_Manuel.jpg/440px-Paul_Val%C3%A9ry_-_photo_Henri_Manuel.jpg 
+-	robert_benchley 	:	https://upload.wikimedia.org/wikipedia/commons/8/84/Robert_Benchley_photographed_in_Vanity_Fair.jpg 
+-	elizabeth_bibesco 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Elizabeth_Bibesco.jpg/440px-Elizabeth_Bibesco.jpg 
+-	buddha 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Buddha_in_Sarnath_Museum_%28Dhammajak_Mutra%29.jpg/440px-Buddha_in_Sarnath_Museum_%28Dhammajak_Mutra%29.jpg 
+-	norman_cousins 	:	https://upload.wikimedia.org/wikipedia/commons/3/3a/Norman_Cousins.jpg 
+-	frank_lloyd_wright 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Frank_Lloyd_Wright_portrait.jpg/440px-Frank_Lloyd_Wright_portrait.jpg 
+-	irvin_s._cobb 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Irvin_S._Cobb_cph.3a42965.jpg/440px-Irvin_S._Cobb_cph.3a42965.jpg 
+-	lord_acton 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Picture_of_John_Dalberg-Acton%2C_1st_Baron_Acton.jpg/440px-Picture_of_John_Dalberg-Acton%2C_1st_Baron_Acton.jpg 
+-	ray_bradbury 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Ray_Bradbury_%281975%29_-cropped-.jpg/440px-Ray_Bradbury_%281975%29_-cropped-.jpg 
+-	billy_sunday 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Billy_Sunday_1921.jpg/440px-Billy_Sunday_1921.jpg 
+-	alexander_pope 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Alexander_Pope_by_Michael_Dahl.jpg/440px-Alexander_Pope_by_Michael_Dahl.jpg 
+-	michael_dell 	:	https://upload.wikimedia.org/wikipedia/commons/c/ce/Michael_Dell_2010.jpg 
+-	max_eastman 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Max_Eastman.jpg/440px-Max_Eastman.jpg 
+-	ferdinand_foch 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Maarschalk_Ferdinand_Foch_%281851-1929%29%2C_Bestanddeelnr_158-1095_%28cropped%29.jpg/440px-Maarschalk_Ferdinand_Foch_%281851-1929%29%2C_Bestanddeelnr_158-1095_%28cropped%29.jpg 
+-	theodor_adorno 	:	https://upload.wikimedia.org/wikipedia/commons/d/d9/Adorno.jpg 
+-	mike_ditka 	:	https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Mike_Ditka.jpg/480px-Mike_Ditka.jpg 
+-	rumi	:	https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Mevlana_Statue%2C_Buca.jpg/200px-Mevlana_Statue%2C_Buca.jpg
+-	george_bernard_shaw	:	https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Bernard-Shaw-ILN-1911-original.jpg/220px-Bernard-Shaw-ILN-1911-original.jpg
+-	dalai_lama	:	https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Dalailama1_20121014_4639.jpg/220px-Dalailama1_20121014_4639.jpg
+
 #### Acknowledgements
 - Materialize: materializecss was used throughout for grid dspacing and designing elements.
   - Icons: Materialize icons were used for sidenav trigger, pagitation arrows, comment pencit icon, form send icon, mood carousel icon and generate mood quotes button.
@@ -451,8 +578,8 @@ Please see below image log for all used images. All images were reduced in quali
     - Radial-out option: https://ianlunn.github.io/Hover/
 - Toast: Selecting the posiitoning of the toast messages was complete with the help of the below article.
     - https://stackoverflow.com/questions/33566041/materialize-css-change-position-of-toast-dialog
-- Font awesome: Font awesome elements were implemented throughout. (book icon, share quote, search icon, facebook, instagram, email, )
-- Favourite Star: The favourit star was help implemented using font awesome and the below article help in implementing the backend messaging.
+- Font awesome: Font awesome elements were implemented throughout. (book icon, share quote, search icon, facebook, instagram, email envelope, form user cog, form password lock, login/register button icons)
+- Favourite Star: The favourite star was help implemented using font awesome and the below article help in implementing the backend messaging.
    - https://www.tutorialrepublic.com/faq/how-to-check-a-checkbox-is-checked-or-not-using-jquery.php
 - Below 2 videos helped in sending data from jQuery AJAX to Python
    - https://www.youtube.com/watch?v=v2TSTKlrPwo
@@ -475,8 +602,6 @@ Please see below image log for all used images. All images were reduced in quali
   - https://www.w3schools.com/js/tryit.asp?filename=tryjs_alert
 - Comments - The comments user letter icon was complete with the help of the below page.
   - Letter icon - https://stackoverflow.com/questions/29980387/how-to-make-a-circle-around-a-letter/29980453
-
-
 
 
 
