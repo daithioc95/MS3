@@ -7,7 +7,7 @@ This information is presented in an interactive, picturesque manner with a simpl
 
 ## Index
 - <a href="#UX">UX</a>
-- <a href="#Technologies Used">Technologies Used</a>
+- <a href="#Technologies">Technologies Used</a>
 - <a href="#Testing">Testing</a>
 - <a href="#Browsers">Browsers</a>
 - <a href="#Known bugs and issues">Known bugs and issues</a>
