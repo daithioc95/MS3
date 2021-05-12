@@ -376,11 +376,12 @@ Tested and working consistently on the below browsers for desktop.
 
 ### Data schemes
 The database is stored and hosted by MongoDB.
-The database was downloaded in JSON format from Kaggle, because being pasted to my data.txt file.
+The database was downloaded in JSON format from Kaggle, before being pasted to my data.txt file.
 Addition cleaning and preparation of the data was complete by using the mongo.py file which include removing dupes, creating additional collections and separating the values.
 For example the Author section contained the authors name and the book title (if any), so a split action was needed here before creating a new "book" key
-The cluster used for this project contains 4 collections in total which are outlined below.
+The cluster used for this project contains 4 collections in total which are shown in the data schema diagram below.
 
+<img src="static/images/wireframes/data_schema.JPG">
 
 ### Deployment 
 #### Working with the local Copy
@@ -435,43 +436,44 @@ Images
 Please see below image log for all used images. All images were reduced in quality by using https://picresize.com/ for a smoother user loading and user experience.
 ***Image log***
 #### Acknowledgements
-- Materialize
-  - Icons
-  - Forms
-  - Mood Carousel - https://materializecss.com/carousel.html#two!
-  - Toast - https://materializecss.com/toasts.html
- - Carousel Buttons
-  - Paco Cervantes - https://codepen.io/Paco_Cervantes/pen/ZLxKpj 
-- Mood Board Buttons Hover
-- Radial-out option
-  - https://ianlunn.github.io/Hover/
-- Toast
-  - https://stackoverflow.com/questions/33566041/materialize-css-change-position-of-toast-dialog
-- Font awesome
-  - Favourite Star
+- Materialize: materializecss was used throughout for grid dspacing and designing elements.
+  - Icons: Materialize icons were used for sidenav trigger, pagitation arrows, comment pencit icon, form send icon, mood carousel icon and generate mood quotes button.
+    - https://materializecss.com/icons.html
+  - Forms: used materialize with the help of code institute mini project for the login and register form elements.
+    - https://materializecss.com/text-inputs.html
+  - Mood Carousel: for rotating the mood carousel to provide more options.
+    - https://materializecss.com/carousel.html#two!
+  - Toast: Toast messages which are used to provide the user with information when likeing/unliking stars.
+    - https://materializecss.com/toasts.html
+ - Carousel Buttons: The fucnitonality for the Mood board caousel buttons was helped with Acknowledgement to the below codepen.
+    - Paco Cervantes - https://codepen.io/Paco_Cervantes/pen/ZLxKpj 
+- Mood Board Buttons Hover: The mood board hover funcitonality was create with help using the Radial-out funcituon below.
+    - Radial-out option: https://ianlunn.github.io/Hover/
+- Toast: Selecting the posiitoning of the toast messages was complete with the help of the below article.
+    - https://stackoverflow.com/questions/33566041/materialize-css-change-position-of-toast-dialog
+- Font awesome: Font awesome elements were implemented throughout. (book icon, share quote, search icon, facebook, instagram, email, )
+- Favourite Star: The favourit star was help implemented using font awesome and the below article help in implementing the backend messaging.
    - https://www.tutorialrepublic.com/faq/how-to-check-a-checkbox-is-checked-or-not-using-jquery.php
-- Quote of the data / Share Quote
-  - Joe Hastings - https://codepen.io/JoeHastings/pen/MOdRVm 
-- Quote Box / Author Box
-  - Desktop - Tigran Sargsyan - https://codepen.io/tiggr/pen/MWyJJEz
-  - Mobile - Chris Smith - https://codepen.io/chris22smith/pen/oQWavL - Animated Border 
-  - Author Quote box desktop spacing - https://stackoverflow.com/questions/7537439/how-to-increment-a-variable-on-a-for-loop-in-jinja-template
-- Pagination
-  - https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional 
-- Login, Register forms:
-  - Mini Project
-  - Materialize
-- Colors.share
-  - https://mycolor.space/?hex=%237986CB&sub=1
-- Copy to clipboard share feature
- - https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
- - https://stackoverflow.com/questions/63033012/copy-the-text-to-the-clipboard-without-using-any-input
-- Logged out favourite star
-  - https://www.w3schools.com/js/tryit.asp?filename=tryjs_alert
-  - Below 2 videos helped in sending data from jQuery AJAX to Python
+- Below 2 videos helped in sending data from jQuery AJAX to Python
    - https://www.youtube.com/watch?v=v2TSTKlrPwo
    - https://www.youtube.com/watch?v=XYx5sIbU8B4
-- Comments
+- Quote of the data / Share Quote: The welcoming quote of the day and the share quote page was implemented using the below codepen.
+  - Joe Hastings - https://codepen.io/JoeHastings/pen/MOdRVm 
+- Quote Box / Author Box: The quote box and author box was implemented using the below CodePens for each device.
+  - Desktop - Tigran Sargsyan - https://codepen.io/tiggr/pen/MWyJJEz
+  - Mobile - Chris Smith - https://codepen.io/chris22smith/pen/oQWavL - Animated Border 
+  - The Author box spacing was completed with thanks to the below forum.
+    - Author Quote box desktop spacing - https://stackoverflow.com/questions/7537439/how-to-increment-a-variable-on-a-for-loop-in-jinja-template
+- Pagination - Pagination for the quotes, authors, indiv_author, indiv_book and mood pages was completed with the help of the below forum
+  - https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional 
+- Colors.share: Color share was used for color inspiration throughout and I used the below series of gradients in deciding the book icon and bood button colors.
+  - https://mycolor.space/?hex=%237986CB&sub=1
+- Copy to clipboard share feature - The backend of the copy to clipboard feature was complete with help of the below board posts.
+    - https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+    - https://stackoverflow.com/questions/63033012/copy-the-text-to-the-clipboard-without-using-any-input
+- Logged out favourite star -  The alert message backend was implemented with help of the below w3 schools page.
+  - https://www.w3schools.com/js/tryit.asp?filename=tryjs_alert
+- Comments - The comments user letter icon was complete with the help of the below page.
   - Letter icon - https://stackoverflow.com/questions/29980387/how-to-make-a-circle-around-a-letter/29980453
 
 

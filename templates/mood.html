@@ -247,7 +247,7 @@
         <ul class="pagination center-align">
             <li class="{% if  page < 2 %}disabled{% endif %}">
                 <a href="{{ url_for('generate_mood', page = page - 1, search_tags=search_tags, _anchor='generated-title' ) }}">
-                    <i class="fas fa-arrow-left"></i>
+                    <i class="material-icons">chevron_left</i>
                 </a>
             </li>
             {% for p in pages %}
@@ -263,7 +263,7 @@
             {% endfor %}
             <li class="{% if  page >= final_page %}disabled{% endif %}">
                 <a href="{{ url_for('generate_mood', page = page + 1, search_tags=search_tags, _anchor='generated-title' ) }}">
-                    <i class="fas fa-arrow-right"></i>
+                    <i class="material-icons">chevron_right</i>
                 </a>
             </li>
         </ul>
