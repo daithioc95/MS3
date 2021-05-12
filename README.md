@@ -2,29 +2,27 @@
 <img src="static/images/wireframes/ms3_responsive_image.JPG">
 
 <a href="https://ms3-quotes.herokuapp.com/" target="_blank">Visit Website</a><br>
-This website is collection of over 35,000 quotes gathered and organised based on author, book, categories and popularity. The website is a community by which users can store their favourite quotes,  books and authors. Users can also share quotes with friends and comment on authors and books to express their opinions. Users can use the “mood” sectionto discover favourite authors depending on how they feel.
+This website is collection of over 35,000 quotes gathered and organised based on authors, books, categories and popularity. The website is a community by which users can store their favourite quotes,  books and authors. Users can also share quotes with friends and comment on authors and books to express their opinions. Users can use the mood section to discover favourite authors depending on how they feel.
 This information is presented in an interactive, picturesque manner with a simple, easy on the eye design.
 
 ## Index
-<a href="##UX">UX</a>
-<a href="#Technologies Used">Technologies Used</a>
-<a href="#Testing">Testing</a>
-<a href="#Browsers">Browsers</a>
-<a href="#Known bugs and issues">Known bugs and issues</a>
-<a href="#Data schemes">Data schemes</a>
-<a href="#Deployment">Deployment</a>
-[Deployment](#2-Deployment)
-<a href="#Credits">Credits</a>
+- <a href="#UX">UX</a>
+- <a href="#Technologies Used">Technologies Used</a>
+- <a href="#Testing">Testing</a>
+- <a href="#Browsers">Browsers</a>
+- <a href="#Known bugs and issues">Known bugs and issues</a>
+- <a href="#Data schemes">Data schemes</a>
+- <a href="#Deployment">Deployment</a>
+- <a href="#Credits">Credits</a>
 
 ## UX
 When designing this website, I followed the 5 levels of development, a well know web design process mentioned in Jesse James Garrett's book, The Elements of User Experience. The planning of each of these planes are to follow the same order as below with each plane aligning to the previous plane’s requirements. This ensures that the main objectives for the website identified in the Strategy plane aligns all the way through to the Surface Plane which identifies the actual features on the website.
 
-- Strategy Plane
-- Scope Plane
-- Structure Plane
-- Skeleton Plane
-- Surface Plane
-- Strategy Plane
+- <a href="#Strategy Plane">Strategy Plane</a>
+- <a href="#Scope Plane">Scope Plane</a>
+- <a href="#Structure Plane">Structure Plane</a>
+- <a href="#Skeleton Plane">Skeleton Plane</a>
+- <a href="#Surface Plane">Surface Plane</a>
 
 ### Strategy Plane
 
@@ -40,13 +38,13 @@ When designing this website, I followed the 5 levels of development, a well know
 - As a visitor, I would like to browse and discover quotes which interest me so that I can find inspiration.
 - As a visitor, I would like to save my favourite quotes/authors/books so that I can view at a later stage.
 - As a visitor, I would like to discover quotes which coincide with the current mood I am experiencing so that I can find inspiration.
-- As a visitor, I would like to search quotes/authors/books from the database so that I can research quotes in the database depending on my specific interest.
+- As a visitor, I would like to search quotes/authors/books from the database so that I can research quotes depending on my specific interest.
 - As a visitor, I would like to register and login so that I can view my favourite quotes/authors/books.
 
 ### Scope Plane
 
 The scope plane ensures that the website sections align to the objects and that these don’t grow in number throughout the project.
-Necessary sections which align to the project objectives and user stories mentioned in the Structure plane.
+Necessary sections which align to the project objectives and user stories mentioned in the Structure plane are chosen.
 For this project we will include all phase 1 sections and omit phase 2 sections until a later sprint due to resource capacity.
 
 #### Phase 1
@@ -86,58 +84,58 @@ The Structure plane is focused on taking the content selected from the scope pla
 #### Design Process
 
 - Considering the website consists of a collection of text, many pages will contain images to encourage engagement.
-- The quote boxes will be an important aspect as these will present the collection of texts to the users.
+- The quote boxes will be an important aspect as these will present the collection of text to the users.
 - I have chosen an indigo/Lavender colour as the primary colour featuring as the Navbar and footer.
 - This colour is also used on buttons and icons throughout the site.
-- For font, a standard black is used for the quotes and text. For H2’s a Navy is used which contrasts wells with the lavender and is attention grapping. Sub heading and info messages are a lighter, less intense blue.
+- For font, a standard black is used for the quotes and text. For H2’s a Navy is used which contrasts well with the lavender and is attention grapping. Sub heading and info messages are a lighter, less intense blue.
 - Other colours chosen for the book icons, I selected using trial and error from the mycolor  pallet below.
   - https://mycolor.space/?hex=%237986CB&sub=1
-- The Mood Board, Books and Authors pages all contain landing images whereas the home page include a “quote of the day” in large 'EB Garamond' font. This is used to portray the website concept on the main landing page.
+- The Mood Board, Books and Authors pages all contain landing images whereas the home page includes a “quote of the day” in large 'EB Garamond' font. This is used to portray the website concept on the main landing page.
 - Materialize icons are used throughout.
 
 ### Skeleton Plane
 
-Once the sections and layout has been identified as in the previous planes, we can get started with the Skeleton Plane. The Skeleton Planes outlines the arrangement of each section on the website and the best way to design these are by creating wireframes. I initially drew these wireframes before creating using Balsamiq software.
+Once the sections and layout has been identified as in the previous planes, we can get started with the Skeleton Plane. The Skeleton Plane outlines the arrangement of each section on the website and the best way to design these are by creating wireframes. I initially drew these wireframes before creating by using Balsamiq software.
 #### quotes.html (Homepage)
-##### Desktop
+- Desktop
 <img src="static/images/wireframes/homepage_desktop.png">
 
-##### Mobile
+- Mobile
 <img src="static/images/wireframes/homepage_mobile.png">
 
 #### authors.html
-##### Desktop
+- Desktop
 <img src="static/images/wireframes/author_desktop.png">
 
-##### Mobile
+- Mobile
 <img src="static/images/wireframes/author_mobile.png">
 
 #### books.html 
-##### Desktop
+- Desktop
 <img src="static/images/wireframes/books_desktop.png">
 
-##### Mobile
+- Mobile
 <img src="static/images/wireframes/books_mobile.png">
 
 #### indiv_author.html 
-##### Desktop
+- Desktop
 <img src="static/images/wireframes/individual_author_desktop.png">
 
-##### Mobile
+- Mobile
 <img src="static/images/wireframes/individual_author_mobile.png">
 
 #### profile.html 
-##### Desktop
+- Desktop
 <img src="static/images/wireframes/user_profile_desktop.png">
 
-##### Mobile
+- Mobile
 <img src="static/images/wireframes/user_profile_mobile.png">
 
 #### mood.html 
-##### Desktop
+- Desktop
 <img src="static/images/wireframes/mood_desktop.png">
 
-##### Mobile
+- Mobile
 <img src="static/images/wireframes/mood_mobile.png">
 
 
@@ -155,7 +153,7 @@ The surface plane is the least conceptual plane and consists of the actual conte
 - Form
   - To meet the community-based requirements such as login, register and comment, forms will be imperative to feed information to the database.
 - Copy quote link
-  - I created an instant copy to clipboard link using a materialize icon in the quote box. This will allow the user to share the link of the quote with their friends (weather they have registered or not.
+  - I created an instant copy to clipboard link using a materialize icon in the quote box. This will allow the user to share the link of the quote with their friends (weather they have registered or not).
 - Favourite icon
   - I have implemented a bright yellow favourited icon using Font Awesome. This animates to a glowing yellow when checked. When checking, this also feeds the information to store this as the users favourite in the database.
   - “Toast” prompt messages also pop up to inform the user when added or removed. For logged out customers, it also informs the user with relevant information.
@@ -163,7 +161,7 @@ The surface plane is the least conceptual plane and consists of the actual conte
   - The mood board is the most interactive feature and great for users who don’t have any particular authors in mind and would like to stumble upon a treasure of quotes.
   - It consists of a welcome image and 16 options taken form the most frequently mentioned tags throughout the database.
   - When the user selects the “Generate Quotes” button, these tags search the database and return the most relevant quotes to these queries.
-  - The user can go back and play around with the remaing tags.
+  - The user can go back and play around with the remaining tags.
 - Mood board Carousel
   - The 16 options would look like overkill but this range of tags is necessary to ensure the search returns depth in the choice of quotes. For this reason, I included these tags on an interactive carousel (8 on each side) so the user can browse and select moods in an interactive manner.
   - The search logic behind this board is that the highlighted tags are fed into an index created in the quotes collection which returns results based on a text index for quote, author and tags.
@@ -195,14 +193,14 @@ The surface plane is the least conceptual plane and consists of the actual conte
 - Heroku
   - Heroku is used to deploy and host the website.
 - Werkzeug
-  - Used to securely encrypt and stored passwords.
+  - Used to securely encrypt and store passwords.
 - Materialize was used throughout the website to easily implement attractive and consistent designs. The Materialize Grid System was implemented throughout.
   - Navbar
   - Carousel
   - Forms
   - icons
 - Font Awesome
-  - Font Awesome was used for the favourite star animation
+  - Font Awesome was used for the favourite star animation and range of other icons mentioned in the credits section.
 - Balsamiq
   - Used in the design process for wireframes.
 - Pxhere, Pexels, Unsplash, Wikipedia 
@@ -212,7 +210,7 @@ The surface plane is the least conceptual plane and consists of the actual conte
 - GitHub
   - Used to store files and code.
 - Stackoverflow
-  - Used for problem solving to implement desired designs.
+  - Used for problem solving to implement desired website functionality.
   - Used to gain better understanding of how I should approach the implementation of elements.
 - W3Schools
   - Used to gather a theoretical knowledge of elements and effects.
@@ -234,48 +232,48 @@ The surface plane is the least conceptual plane and consists of the actual conte
 ### Testing
 
 #### Testing User Stories
-##### As a visitor, I would like to browse and discover quotes which interest me so that I can find inspiration.
-- Go to the website homepage
-- If logged in with no favourited quotes or logged out, you can browse and discover quotes in order of popularity.
+- <b>As a visitor, I would like to browse and discover quotes which interest me so that I can find inspiration.</b>
+    - Go to the website homepage
+    - If logged in with no favourited quotes or logged out, you can browse and discover quotes in order of popularity.
 
 <img src="static/images/user-story-testing/logged-out-quotes.JPG">
 
-- If you are logged in and have favourited quotes you can click the “View Popular Quotes” link where you can discover quotes in order of popularity.
-- This will provide 20 pages of inspirational quotes.
-- The search box can also be used to enter terms to discover quotes depending on a specific category.
+    - If you are logged in and have favourited quotes you can click the “View Popular Quotes” link where you can discover quotes in order of popularity.
+    - This will provide 20 pages of inspirational quotes.
+    - The search box can also be used to enter terms to discover quotes depending on a specific category.
 
 <img src="static/images/user-story-testing/logged-in-quotes.JPG">
 
-- The Author name can also be selected to route you to a page showing quotes and books exclusively from this Author.
-- Links to Similar Authors pages can also be chosen.
+    - The Author name can also be selected to route you to a page showing quotes and books exclusively from this Author.
+    - Links to Similar Authors pages can also be found as you scroll down.
 
 <img src="static/images/user-story-testing/indiv_author.JPG">
 <img src="static/images/user-story-testing/indiv_author-similar-authors.JPG">
 
-##### As a visitor, I would like to save my favourite quotes/authors/books so that I can view at a later stage.
-- Adding Quote
-  - When logged in and the user sees a quote they like, select the star at the top right-hand corner of the quote box.
+- <b>As a visitor, I would like to save my favourite quotes/authors/books so that I can view at a later stage.</b>
+    - Adding Quote
+        - When logged in and the user sees a quote they like, select the star at the top right-hand corner of the quote box.
 
 <img src="static/images/user-story-testing/quote-box.JPG">
 
-  - Select the star.
-  - The star will glow yellow and a confirmation “Added to Favourites toast message will appear.
+- Select the star.
+- The star will glow yellow and a confirmation “Added to Favourites toast message will appear.
 
 <img src="static/images/user-story-testing/quote-box-added-to-favs.JPG">
 
 - Adding Author
-  - When logged in and the user sees an Author they like, select the star at the right-hand corner of the quote box.
+    - When logged in and the user sees an Author they like, select the star at the right-hand corner of the quote box.
 
 <img src="static/images/user-story-testing/author-box.JPG">
 
-  - The star will glow yellow and a confirmation “Added to Favourites toast message will appear.
+- The star will glow yellow and a confirmation “Added to Favourites toast message will appear.
 
 <img src="static/images/user-story-testing/author-box-added-to-favs.JPG">
 
 - Adding Book
-  - When logged in and the user sees a book they like, select the link to the book page
-  - To the right-hand side of the main book icon the user cans select this star.
-  - The star will glow yellow and a confirmation “Added to Favourites toast message will appear.
+    - When logged in and the user sees a book they like, select the link to the book page
+    - To the right-hand side of the main book icon the user can select this star.
+    - The star will glow yellow and a confirmation “Added to Favourites toast message will appear.
 
 <img src="static/images/user-story-testing/indiv_book.JPG">
 
@@ -291,7 +289,7 @@ The surface plane is the least conceptual plane and consists of the actual conte
 
 <img src="static/images/user-story-testing/profile-books.JPG">
 
-##### As a visitor, I would like to discover quotes which coincide with the current mood I am experiencing so that I can find inspiration.
+- <b>As a visitor, I would like to discover quotes which coincide with the current mood I am experiencing so that I can find inspiration.</b>
 - Open the Mood page which can be located in the navbar.
 - The mood page will show a series of tags on the mood board.
 - The user can select the tags which coincide with their current mood.
@@ -299,24 +297,28 @@ The surface plane is the least conceptual plane and consists of the actual conte
 
 <img src="static/images/user-story-testing/mood-board.JPG">
 
-- When they scroll down, they can find inspiration in the quotes shown to them.
+- Once loaded, they can find inspiration in the quotes provided.
 
 <img src="static/images/user-story-testing/mood-board-generated.JPG">
 
-##### As a visitor, I would like to search quotes/authors/books from the database so that I can research quotes in the database depending on my specific interest.
-- The user can use the homepage search bar to search Quotes, tags and Authors.
+- <b>As a visitor, I would like to search quotes/authors/books from the database so that I can research quotes depending on my specific interest.</b>
+    - The user can use the homepage search bar to search quotes, tags and authors.
 
 <img src="static/images/user-story-testing/homepage-searchbar.JPG">
 
 - The user can use the Authors.HTML search bar to search by Author only.
 
+static/images/user-story-testing/authors-searchbar.JPG
+
 - The user can use the Books.HTML search bar to search by Book only.
 
 <img src="static/images/user-story-testing/books-searchbar.JPG">
 
+-Example of search results (from the quotes.html page)
+
 <img src="static/images/user-story-testing/searchbar-results.JPG">
 
-##### As a visitor, I would like to register and login so that I can view my favourite quotes/authors/books.
+- <b>As a visitor, I would like to register and login so that I can view my favourite quotes/authors/books.</b>
 - The user can register by selecting the register button in the navbar.
 
 <img src="static/images/user-story-testing/navbar-register.JPG">
@@ -356,7 +358,7 @@ Tested and working consistently on the below browsers for desktop.
 - The project passed the below validation tests. Please see below links to view validation screenshot.
 
   - W3 HTML Validator: https://validator.w3.org/
-    - Validation was complete by using URL to avoid false error flagging from Jinja templating l.anguage
+    - Validation was complete by using URL to avoid false error flagging from Jinja templating language
 
    - <a href="static/images/user-story-testing/quotes-validator.JPG" target="_blank">quotes.html Validator success</a>
    - <a href="static/images/user-story-testing/authors-validator.JPG" target="_blank">authors.html Validator success</a>
@@ -373,63 +375,63 @@ Tested and working consistently on the below browsers for desktop.
 
 - JSHint JavaScript Validator: https://jshint.com/
 
-  - js jint gitpod extention highlights no JS errors
+  - js hint gitpod extension highlights no JS errors
 
 ### Known bugs and issues
 - W3 HTML Validator Warnings
   - All pages have a "Section lacks heading. Consider using h2-h6 elements to add identifying headings to all sections.". This is because flash messaged are stored in a section container and when the flash messages are not activated the H element in which they are stored in is not visible.
 - Foreign Language Authors
-  - When authors with Foreign Language (such as arabic) is selected the page returned "Not Found". I believe this is due to an incompatability between the foreign Language and the database. This is for a tiny minority of the websites pages, however I intend to investigate this issue at a later point.
+  - When authors with Foreign Language (such as Arabic) is selected the page returned "Not Found". I believe this is due to an incompatibility between the foreign Language and the database. This is for a small minority of the website’s pages; however, I intend to investigate and resolve this issue at a later point.
 - Narrow screen issue
-  - Author Box: for some very narrow screens the author box can become distored and the text may overlap the image. I will make no changed from this as the mobile version benefits from having these images and it occurs on a iregularly small screen size.
+  - Author Box: for some very narrow screens the author box can become distorted and the text may overlap the image. I will make no changed from this as the mobile version benefits from having these images and it occurs on an irregularly small screen size.
 - Share link
-  - The share link should sit vertically below the star however this was difficult to position on a all screen sizes due to the differing nature of both items elements. I will revisit this at a later time.
+  - The share link should sit vertically below the star however this was difficult to position on all screen sizes due to the differing nature of both items' elements. I will revisit this at a later time.
 
 ### Data schemes
 The database is stored and hosted by MongoDB.
 The database was downloaded in JSON format from Kaggle, before being pasted to my data.txt file.
-Addition cleaning and preparation of the data was complete by using the mongo.py file which include removing dupes, creating additional collections and separating the values.
-For example the Author section contained the authors name and the book title (if any), so a split action was needed here before creating a new "book" key
+Additional cleaning and preparation of the data was complete by using the mongo.py file which include removing dupes, creating additional collections and separating the values.
+For example, the Author section contained the authors name and the book title (if any), so a split action was needed here before creating a new "book" key
 The cluster used for this project contains 4 collections in total which are shown in the data schema diagram below.
 
 <img src="static/images/wireframes/data_schema.JPG">
 
 ### Deployment 
 #### Working with the local Copy
-- Install the requirements based on librarys needed by using the pip3 install -r requirements.txt command.
+- Install the requirements based on libraries needed by using the pip3 install -r requirements.txt command.
 - A data base will be needed to work off for a local file, this can be created using MongoDB by following the below instructions.
   - Create a MongoDB account.
   - Create a cluster.
   - Create 4 collections; authors, books, quotes and users.
   - Set values for these collections as content for the website.
-- The environment variables will then be needed to allow the website to access the database. Please follow the below instrutions.
+- The environment variables will then be needed to allow the website to access the database. Please follow the below instructions.
   - Create a .gitignore file.
   - Type "env.py" in the .gitignore file to ensure this is being ignored.
   - Create the env.py file.
   - This is where you can insert the following environment variables; IP, PORT, SECRET_KEY, MONGO_URI, MONGO_DBNAME.
-- The app can now be ran via the terminal, create the app.py file and enter the command "python3 app.py" and run the app.
+- The app can now be running via the terminal, create the app.py file and enter the command "python3 app.py" and run the app.
 
 
 #### Heroku Deployment
-- To deploy the project to Heroky a local workspace will be needed to ensure the Heroku can run the backend code.
-- This can be done by using the command "pip3 freeze -- local > requirements.txt" which will populate the file convieniently to provide heroku with information on what needs to be installed.
+- To deploy the project to Heroku a local workspace will be needed to ensure the Heroku can run the backend code.
+- This can be done by using the command "pip3 freeze -- local > requirements.txt" which will populate the file conveniently to provide Heroku with information on what needs to be installed.
 - To ensure Heroku knows that the app.py file is the main file and entry for this project, the Procfile will be needed by logging the following command, "python app.py > Procfile"
 
-- The next step involves creating a heroku account.
-  - Go to heroku.com
+- The next step involves creating a Heroku account.
+  - Go to Heroku.com
   - Set up and account, create an app by following the instructions and enter any relevant information requested.
-  - Deploy the app on Github to ensure any updates on github will link to Heroku (reducing the risk for discrepencies)
+  - Deploy the app on GitHub to ensure any updates on GitHub will link to Heroku (reducing the risk for discrepancies)
    - This can be done by selecting "Connect to GitHub" in the deploy tab and selecting the relevant repository. 
   - Locate the Config variables in the settings section, click "Reveal Config Vars".
   - Enter the previously mentioned variables which are present in the env.py file; IP, PORT, SECRET_KEY, MONGO_URI, MONGO_DBNAME
-   - Ensure these values those of which present in the env.py file.
+   - Ensure these values match those of which present in the env.py file.
    - Also ensure the requirments.txt and Procfile are pushed into the live environment by using the below set of commands.
     - $ git add requirements.txt
     - $ git commit -m "Add requirements.txt"
     - $ git add Procfile
     - $ git commit -m "Add Procfile" 
- - Enable automatic deployments on Heroky by going to the deploy tab, go to Automatic deployments and select enable.
- Heroku now has the relevant packages to be linked and host the website. You can locate the apps URL by selecting "Open App" on the right hand corner of your Heroku account.
+ - Enable automatic deployments on Heroku by going to the deploy tab, go to Automatic deployments and select enable.
+ Heroku now has the relevant packages to be linked and host the website. You can locate the apps URL by selecting "Open App" on the right-hand corner of your Heroku account.
 
 #### Cloning the project
 If you wish to clone this project, action the following instructions.
@@ -563,37 +565,46 @@ Please see below image log for all used images. All images were reduced in quali
 -	dalai_lama	:	https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Dalailama1_20121014_4639.jpg/220px-Dalailama1_20121014_4639.jpg
 
 #### Acknowledgements
-- Materialize: materializecss was used throughout for grid dspacing and designing elements.
-  - Icons: Materialize icons were used for sidenav trigger, pagitation arrows, comment pencit icon, form send icon, mood carousel icon and generate mood quotes button.
+- Materialize: materializecss was used throughout for grid spacing and designing elements.
+  - Icons: Materialize icons were used for sidenav trigger, pagitation arrows, comment pencil icon, form send icon, mood carousel icon and generate mood quotes button.
     - https://materializecss.com/icons.html
   - Forms: used materialize with the help of code institute mini project for the login and register form elements.
     - https://materializecss.com/text-inputs.html
   - Mood Carousel: for rotating the mood carousel to provide more options.
     - https://materializecss.com/carousel.html#two!
-  - Toast: Toast messages which are used to provide the user with information when likeing/unliking stars.
+  - Toast: Toast messages which are used to provide the user with information when liking/unlinking stars.
     - https://materializecss.com/toasts.html
- - Carousel Buttons: The fucnitonality for the Mood board caousel buttons was helped with Acknowledgement to the below codepen.
+ - Carousel Buttons: The functionality for the Mood board carousel buttons was helped with Acknowledgement to the below CodePen.
     - Paco Cervantes - https://codepen.io/Paco_Cervantes/pen/ZLxKpj 
-- Mood Board Buttons Hover: The mood board hover funcitonality was create with help using the Radial-out funcituon below.
+- Mood Board Buttons Hover: The mood board hover functionality was created with help using the Radial-out function below.
     - Radial-out option: https://ianlunn.github.io/Hover/
-- Toast: Selecting the posiitoning of the toast messages was complete with the help of the below article.
+- Toast: Selecting the positioning of the toast messages was complete with the help of the below article.
     - https://stackoverflow.com/questions/33566041/materialize-css-change-position-of-toast-dialog
-- Font awesome: Font awesome elements were implemented throughout. (book icon, share quote, search icon, facebook, instagram, email envelope, form user cog, form password lock, login/register button icons)
+- Font awesome: Font awesome elements were implemented throughout. 
+    - book icon
+    - share quote
+    - search icon
+    - Facebook
+    - Instagram
+    - email envelope
+    - form user cog
+    - form password lock
+    - login/register button icons
 - Favourite Star: The favourite star was help implemented using font awesome and the below article help in implementing the backend messaging.
    - https://www.tutorialrepublic.com/faq/how-to-check-a-checkbox-is-checked-or-not-using-jquery.php
-- Below 2 videos helped in sending data from jQuery AJAX to Python
+- The below 2 videos helped in allowing me to send data from jQuery AJAX to Python
    - https://www.youtube.com/watch?v=v2TSTKlrPwo
    - https://www.youtube.com/watch?v=XYx5sIbU8B4
-- Quote of the data / Share Quote: The welcoming quote of the day and the share quote page was implemented using the below codepen.
+- Quote of the data / Share Quote: The welcoming quote of the day and the share quote page was implemented using the below CodePen.
   - Joe Hastings - https://codepen.io/JoeHastings/pen/MOdRVm 
-- Quote Box / Author Box: The quote box and author box was implemented using the below CodePens for each device.
+- Quote Box / Author Box: The quote box and author box were implemented using the below CodePens for each device.
   - Desktop - Tigran Sargsyan - https://codepen.io/tiggr/pen/MWyJJEz
   - Mobile - Chris Smith - https://codepen.io/chris22smith/pen/oQWavL - Animated Border 
   - The Author box spacing was completed with thanks to the below forum.
     - Author Quote box desktop spacing - https://stackoverflow.com/questions/7537439/how-to-increment-a-variable-on-a-for-loop-in-jinja-template
-- Pagination - Pagination for the quotes, authors, indiv_author, indiv_book and mood pages was completed with the help of the below forum
+- Pagination - Pagination for the quotes, authors, indiv_author, indiv_book and mood pages were completed with the help of the below forum
   - https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional 
-- Colors.share: Color share was used for color inspiration throughout and I used the below series of gradients in deciding the book icon and bood button colors.
+- Colors.share: Color share was used for colour inspiration throughout and I used the below series of gradients in deciding the book icon and mood button colours.
   - https://mycolor.space/?hex=%237986CB&sub=1
 - Copy to clipboard share feature - The backend of the copy to clipboard feature was complete with help of the below board posts.
     - https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
