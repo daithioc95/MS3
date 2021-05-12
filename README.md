@@ -7,22 +7,22 @@ This information is presented in an interactive, picturesque manner with a simpl
 
 ## Index
 - <a href="#UX">UX</a>
-- <a href="#Technologies">Technologies Used</a>
+- <a href="#Technologies-Used">Technologies Used</a>
 - <a href="#Testing">Testing</a>
 - <a href="#Browsers">Browsers</a>
-- <a href="#Known bugs and issues">Known bugs and issues</a>
-- <a href="#Data schemes">Data schemes</a>
+- <a href="#Known-bugs-and-issues">Known bugs and issues</a>
+- <a href="#Data-schemes">Data schemes</a>
 - <a href="#Deployment">Deployment</a>
 - <a href="#Credits">Credits</a>
 
 ## UX
 When designing this website, I followed the 5 levels of development, a well know web design process mentioned in Jesse James Garrett's book, The Elements of User Experience. The planning of each of these planes are to follow the same order as below with each plane aligning to the previous plane’s requirements. This ensures that the main objectives for the website identified in the Strategy plane aligns all the way through to the Surface Plane which identifies the actual features on the website.
 
-- <a href="#Strategy Plane">Strategy Plane</a>
-- <a href="#Scope Plane">Scope Plane</a>
-- <a href="#Structure Plane">Structure Plane</a>
-- <a href="#Skeleton Plane">Skeleton Plane</a>
-- <a href="#Surface Plane">Surface Plane</a>
+- <a href="#Strategy-Plane">Strategy Plane</a>
+- <a href="#Scope-Plane">Scope Plane</a>
+- <a href="#Structure-Plane">Structure Plane</a>
+- <a href="#Skeleton-Plane">Skeleton Plane</a>
+- <a href="#Surface-Plane">Surface Plane</a>
 
 ### Strategy Plane
 
@@ -238,14 +238,14 @@ The surface plane is the least conceptual plane and consists of the actual conte
 
 <img src="static/images/user-story-testing/logged-out-quotes.JPG">
 
-    - If you are logged in and have favourited quotes you can click the “View Popular Quotes” link where you can discover quotes in order of popularity.
-    - This will provide 20 pages of inspirational quotes.
-    - The search box can also be used to enter terms to discover quotes depending on a specific category.
+ - If you are logged in and have favourited quotes you can click the “View Popular Quotes” link where you can discover quotes in order of popularity.
+ - This will provide 20 pages of inspirational quotes.
+ - The search box can also be used to enter terms to discover quotes depending on a specific category.
 
 <img src="static/images/user-story-testing/logged-in-quotes.JPG">
 
-    - The Author name can also be selected to route you to a page showing quotes and books exclusively from this Author.
-    - Links to Similar Authors pages can also be found as you scroll down.
+ - The Author name can also be selected to route you to a page showing quotes and books exclusively from this Author.
+ - Links to Similar Authors pages can also be found as you scroll down.
 
 <img src="static/images/user-story-testing/indiv_author.JPG">
 <img src="static/images/user-story-testing/indiv_author-similar-authors.JPG">
@@ -290,10 +290,10 @@ The surface plane is the least conceptual plane and consists of the actual conte
 <img src="static/images/user-story-testing/profile-books.JPG">
 
 - <b>As a visitor, I would like to discover quotes which coincide with the current mood I am experiencing so that I can find inspiration.</b>
-- Open the Mood page which can be located in the navbar.
-- The mood page will show a series of tags on the mood board.
-- The user can select the tags which coincide with their current mood.
-- They can then select the “generate mood” button.
+    - Open the Mood page which can be located in the navbar.
+    - The mood page will show a series of tags on the mood board.
+    - The user can select the tags which coincide with their current mood.
+    - They can then select the “generate mood” button.
 
 <img src="static/images/user-story-testing/mood-board.JPG">
 
@@ -319,7 +319,7 @@ static/images/user-story-testing/authors-searchbar.JPG
 <img src="static/images/user-story-testing/searchbar-results.JPG">
 
 - <b>As a visitor, I would like to register and login so that I can view my favourite quotes/authors/books.</b>
-- The user can register by selecting the register button in the navbar.
+    - The user can register by selecting the register button in the navbar.
 
 <img src="static/images/user-story-testing/navbar-register.JPG">
 
@@ -613,14 +613,12 @@ Please see below image log for all used images. All images were reduced in quali
   - https://www.w3schools.com/js/tryit.asp?filename=tryjs_alert
 - Comments - The comments user letter icon was complete with the help of the below page.
   - Letter icon - https://stackoverflow.com/questions/29980387/how-to-make-a-circle-around-a-letter/29980453
-
-
-
-
-
-
-
-
+- Thanks to the Code Institute Tutors for helping me with problem solving throguhout the project.
+- Thanks to my mentor, Nishant Kumar for guidance throughout the project.
+- Thanks to the Code Institute Slack channel for providing me with a wealth of information on every aspect of the project.
+- The Elements of User Experience by Jesse James Garrett's book helped during the design process as mentioned in the UX section of the ReadMe.
+- Reused elements of my Milestone Project One & Two ReadMe to follow similar content, structure and to approach the design process in a similar manner. https://github.com/daithioc95/MS1, https://github.com/daithioc95/MS2
+- All learning content provded by CodeInstitute for theoretical knowledge and inspitration (particularly the flask-task-manager-project)
 
 
 
