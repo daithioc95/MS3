@@ -377,6 +377,8 @@ Tested and working consistently on the below browsers for desktop.
 
   - js hint gitpod extension highlights no JS errors
 
+- All python code is PEP8 compliant as per http://pep8online.com/ validator.
+
 ### Known bugs and issues
 - W3 HTML Validator Warnings
   - All pages have a "Section lacks heading. Consider using h2-h6 elements to add identifying headings to all sections.". This is because flash messaged are stored in a section container and when the flash messages are not activated the H element in which they are stored in is not visible.
@@ -386,6 +388,8 @@ Tested and working consistently on the below browsers for desktop.
   - Author Box: for some very narrow screens the author box can become distorted and the text may overlap the image. I will make no changed from this as the mobile version benefits from having these images and it occurs on an irregularly small screen size.
 - Share link
   - The share link should sit vertically below the star however this was difficult to position on all screen sizes due to the differing nature of both items' elements. I will revisit this at a later time.
+- Author profile images
+  - Some of the Author profile pictures appear out of scope for the circular container. The reason for this is a time constraint for sizing individually over 100 images, I hope to add more photos with improved alignment at a later stage. 
 
 ### Data schemes
 The database is stored and hosted by MongoDB.

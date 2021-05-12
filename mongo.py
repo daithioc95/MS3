@@ -24,15 +24,13 @@ coll1 = conn[DATABASE][COLLECTION_QUTOES]
 coll2 = conn[DATABASE][COLLECTION_AUTHORS]
 coll3 = conn[DATABASE][COLLECTION_BOOKS]
 
-# mongo "mongodb+srv://myfirstcluster.jvdhi.mongodb.net/ms3_quotes" --username mongoDBlearning
-
 documents_authors = coll1.find(
     {}, {"_id": 0, "Author": 1})
 documents = coll1.find()
 documents2 = coll2.find()
 documents3 = coll3.find()
 
-# -------All code has been run to clean database and does not need to be ran again-------
+# All code has been run to clean database and does not need to be ran again
 
 # Check for dupe quotes
 store_quotes = []

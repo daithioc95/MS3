@@ -36,7 +36,8 @@ def get_quotes():
     qotd_num = abs(date-base)
     # qotd meand "Quote of the day"
     qotd = mongo.db.quotes.find().skip(qotd_num).limit(1)[0]
-    # Pagination Aknowledgement: https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional
+    # Pagination Aknowledgement:
+    # https://stackoverflow.com/questions/58031816/how-to-display-active-bootstrap-pagination-using-jinja-conditional
     # get page number
     page = request.args.get('page', 1, type=int)
     # limit quotes to 5 results
@@ -47,14 +48,16 @@ def get_quotes():
     final_page = 20
     pages = range(1, int(final_page + 1))
     # set of quotes to return
-    quotes = mongo.db.quotes.find().sort("Popularity", -1).skip(skips).limit(limit)
+    quotes = mongo.db.quotes.find().sort(
+            "Popularity", -1).skip(skips).limit(limit)
     # Fail safe for if user is logged out
     try:
         # if user logged in
         if session["user"]:
             # get array of id's for users favourite quotes
-            fav_quotes1 = get_favourites(session["user"], "quote")
-            # get list of favourite to identify which quotes to show as already favourited
+            fav_quotes1 = get_favourites(
+                session["user"], "quote")
+            # get list of favourite to identify which quotes to show as favs
             fav_quotes2 = get_starred(session["user"], "quote")
             # if user has favourites saved and they requested to view them
             if fav_quotes1 and get_fav != "No":
@@ -135,7 +138,7 @@ def get_authors():
         if session["user"]:
             # get array of id's for users favourite authors
             fav_authors1 = get_favourites(session["user"], "author")
-            # get list of favourite to identify which authors to show as already favourited
+            # get list of favourite to identify which authors to show as favs
             fav_authors2 = get_starred(session["user"], "author")
             # if user has favourites saved and they requested to view them
             if fav_authors1 and get_fav != "No":
@@ -174,7 +177,8 @@ def add_fav_author():
         if request.form['Status'] == 'true':
             # Add author id to users db
             mongo.db.users.update_one(
-                {"username": user}, {"$addToSet": {"fav_author_ids": author_id}})
+                {"username": user},
+                {"$addToSet": {"fav_author_ids": author_id}})
         # else (box is unchecked)
         else:
             # Remove author if unchecked
@@ -445,7 +449,7 @@ def get_books():
         if session["user"]:
             # get array of id's to use for returning objects
             fav_books1 = get_favourites(session["user"], "book")
-            # get list of favourite to identify which books to show as already favourited
+            # get list of favourite to identify which books to show as favs
             fav_books2 = get_starred(session["user"], "book")
             # if user has favourites saved and they requested to view them
             if fav_books1 and get_fav != "No":
@@ -710,16 +714,22 @@ def comment():
             # Locate the authors object
             Author = request.args.get('Author')
             # Update with users comments details
-            mongo.db.authors.update_one({"Author": Author}, {"$addToSet": {"Comments": {
-                                        'text': comment, 'user': username, 'date': date}}})
+            mongo.db.authors.update_one(
+                                {"Author": Author}, {"$addToSet": {
+                                    "Comments": {
+                                                    'text': comment,
+                                                    'user': username,
+                                                    'date': date}}})
             return redirect(url_for("author_profile", Author=Author))
         # if from books section
         if section == "books":
             # Locate the book object
             Book = request.args.get('Book')
             # Update with users comments details
-            mongo.db.books.update_one({"Book": Book}, {"$addToSet": {"Comments": {
-                                      'text': comment, 'user': username, 'date': date}}})
+            mongo.db.books.update_one(
+                                {"Book": Book}, {"$addToSet": {"Comments": {
+                                  'text': comment, 'user': username,
+                                  'date': date}}})
             return redirect(url_for("book_profile", Book=Book))
 
 
