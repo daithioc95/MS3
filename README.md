@@ -1,7 +1,7 @@
 # Python and Data Centric Development Milestone Project 
 <img src="static/images/wireframes/ms3_responsive_image.JPG">
 
-<a href="https://ms3-quotes.herokuapp.com/" target="_blank">Visit Website</a><br>
+<a href="https://web-production-aaee.up.railway.app/" target="_blank">Visit Website</a><br>
 This website is collection of over 35,000 quotes gathered and organised based on authors, books, categories and popularity. The website is a community by which users can store their favourite quotes,  books and authors. Users can also share quotes with friends and comment on authors and books to express their opinions. Users can use the mood section to discover favourite authors depending on how they feel.
 This information is presented in an interactive, picturesque manner with a simple, easy on the eye design.
 
@@ -191,7 +191,9 @@ The surface plane is the least conceptual plane and consists of the actual conte
 - Flask
   - Flask and the Jinja Templating Language is used to allow for the high volume of information feed through to the HTML template pages.
 - Heroku
-  - Heroku is used to deploy and host the website.
+  - Heroku was used to deploy and host the first version of the website.
+- Railway
+  - Railway is used to deploy and host the current version of the website.
 - Werkzeug
   - Used to securely encrypt and store passwords.
 - Materialize was used throughout the website to easily implement attractive and consistent designs. The Materialize Grid System was implemented throughout.
